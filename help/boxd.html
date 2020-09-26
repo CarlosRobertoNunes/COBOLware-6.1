@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware BoxDialog</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20080501;6572800">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20110930;18183400">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">BoxDialog</FONT></H1>
+<P>Caixa de di&aacute;logo.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">BoxDialog</FONT><BR>[ <FONT COLOR="#008080">TITLE</FONT>
+<I><A HREF="#mensagem">mensagem</A> </I>]<BR>[ <FONT COLOR="#008080">LINE</FONT>
+<I><A HREF="#linha">linha</A> </I>]<BR>[ <FONT COLOR="#008080">COLUMN</FONT>
+<I><A HREF="#coluna">coluna</A> </I>]<BR>[ <FONT COLOR="#008080">COLOR</FONT>
+<EM><A HREF="#c&oacute;digo-da-cor" NAME="cor">c&oacute;digo-da-cor</A></EM>
+]<BR>[ <FONT COLOR="#008080">CANCEL</FONT><EM><A HREF="#indicador-de-cancelamento">;indicador-de-cancelamento</A></EM>
+]<BR>{ <FONT COLOR="#008080">CAPTION</FONT>(1...10) <A HREF="#texto"><I>texto</I></A>
+[ <FONT COLOR="#008080">DATA</FONT>(1...10)
+<I><A HREF="#vari&aacute;vel-de-retorno">valor-inicial</A>;<A HREF="#vari&aacute;vel-de-retorno">vari&aacute;vel-de-retorno</A>
+</I><FONT COLOR="#008080">SIZE</FONT>(1...10) <EM><A HREF="#tamanho">tamanho</A></EM>
+] | <FONT COLOR="#008080">KEY</FONT><FONT COLOR="#000000">(1...10)
+</FONT><A HREF="#c&oacute;digo-de-tecla"><I>c&oacute;digo-de-tecla</I></A>
+}<BR>[ <FONT COLOR="#008080">PIC</FONT>(1...10) <EM><A HREF="#m&aacute;scara">m&aacute;scara</A></EM>
+| [ <FONT COLOR="#008080">PUSH-BUTTON</FONT><FONT COLOR="#000000">(1...10)</FONT>
+]<BR>[ <A HREF="#SECURE"><FONT COLOR="#008080">SECURE</FONT></A>(1...10)
+]<BR>[ <A HREF="#PROTECTED"><FONT COLOR="#008080">PROTECTED</FONT></A>(1...10)
+]<BR>[ <A HREF="#AUTO"><FONT COLOR="#008080">AUTO</FONT></A>(1...10)
+]<BR>[ <A HREF="#NUMERIC"><FONT COLOR="#008080">NUMERIC</FONT></A>(1...10)
+] [ <A HREF="#BLANK"><FONT COLOR="#008080">BLANK</FONT></A>(1...10) ]</P>
+<H5>Argumentos</H5>
+<P><A NAME="mensagem"></A><I>mensagem</I></P>
+<P>T&iacute;tulo da janela de at&eacute; 78 caracteres.</P>
+<P><A NAME="linha"></A><I>linha</I></P>
+<P>Linha de posicionamento da janela.</P>
+<P><A NAME="coluna"></A><I>coluna</I></P>
+<P>Coluna de posicionamento da janela.</P>
+<P><A NAME="c&oacute;digo-da-cor"></A><EM>c&oacute;digo-da-cor</EM></P>
+<P><A NAME="indicador-de-cancelamento"></A>Indica o c&oacute;digo da
+cor (<A HREF="cores.html"><FONT COLOR="#008080">CWNCOR.CPY</FONT></A>)
+a ser usada na janela.<BR><BR><EM>indicador-de-cancelamento<BR><BR></EM>Vari&aacute;vel
+de 1 byte que recebe o valor &quot;Y&quot; quando usu&aacute;rio
+fechar a janela sem se importar com o preenchimento correto dos
+dados.</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P>Declara&ccedil;&atilde;o de campos (de 1 at&eacute; 10)</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P><A NAME="texto"></A><I>texto</I></P>
+			<P>Texto de at&eacute; 30 caracteres que identifica o campo para o
+			usu&aacute;rio.</P>
+			<P><A NAME="valor-inicial"></A><I>valor-inicial</I></P>
+			<P>Valor inicial do campo.</P>
+			<P><A NAME="vari&aacute;vel-de-retorno"></A><I>vari&aacute;vel-de-retorno</I></P>
+			<P>Vari&aacute;vel de at&eacute; 50 bites que receber&aacute; o
+			retorno digitado pelo usu&aacute;rio.</P>
+			<P><A NAME="tamanho"></A><A NAME="c&oacute;digo-de-tecla"></A><A NAME="m&aacute;scara"></A>
+			<EM>tamanho</EM><BR><BR>Indica o tamanho de
+			<I>vari&aacute;vel-de-retorno</I>.<BR><BR><EM><I>c&oacute;digo-de-tecla</I></EM><BR><BR>Indica
+			o c&oacute;digo de retorno para push-button.<BR><BR><EM>m&aacute;scara</EM></P>
+			<P><A NAME="SECURE"></A>PICTURE de edi&ccedil;&atilde;o segundo a
+			conven&ccedil;&atilde;o da linguagem
+			COBOL.<BR><BR><FONT COLOR="#008080">PUSH-BUTTON<BR><BR></FONT><FONT COLOR="#000000">Seleciona
+			op&ccedil;&atilde;o de push-button. </FONT><FONT COLOR="#008080"><BR><BR>SECURE</FONT></P>
+			<P><A NAME="PROTECTED"></A><A NAME="AUTO"></A>Habilita a op&ccedil;&atilde;o
+			de campo de senha. Ser&atilde;o exibidos asteriscos (*) ao inv&eacute;s
+			dos dados reais existentes no campos.<BR><BR><FONT COLOR="#008080">PROTECTED</FONT><BR><BR>Desabilita
+			a altera&ccedil;&atilde;o de dados, o campo servir&aacute; apenas
+			para exibi&ccedil;&atilde;o.<BR><BR><FONT COLOR="#008080">AUTO</FONT></P>
+			<P>Habilita a op&ccedil;&atilde;o de aceite autom&aacute;tico.
+			Quando o campo estiver totalmente preenchiso o cursor passar&aacute;
+			para o pr&oacute;ximo sem a necessidade de se teclar [tab] ou
+			[enter].</P>
+			<P><A NAME="NUMERIC"></A><FONT COLOR="#008080">NUMERIC</FONT></P>
+			<P><A NAME="BLANK"></A>Define que o campo deve aceitar somente
+			dados num&eacute;ricos.<BR><BR><FONT COLOR="#008080">BLANK</FONT><BR><BR>Habilita
+			a fun&ccedil;&atilde;o BLANK WHEN ZEROS para que campos numericos
+			exibam espa&ccedil;os quando estiverem totalmente preenchidos com
+			zeros.</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5>Observa&ccedil;&otilde;es</H5>
+<P>A acentua&ccedil;&atilde;o deve ser codificada com a p&aacute;gina
+de c&oacute;digo 850, os processadores de tela se encarregam de
+traduzir para o codifica&ccedil;&atilde;o apropriada a plataforma de
+execu&ccedil;&atilde;o: 
+</P>
+<H5>Exemplo</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<A HREF="../help"><FONT COLOR="#008080">BoxDialog</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">TITLE</FONT>&nbsp; <I>&quot;</I><A HREF="#texto"><FONT COLOR="#ff0000"><I>Dados
+			da m&uacute;sica</I></FONT></A><I>&quot;<BR></I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">LINE</FONT> <A HREF="#linha"><FONT COLOR="#ff0000"><I>10</I></FONT></A>
+			<FONT COLOR="#008080">COLUMN</FONT> <A HREF="#coluna"><FONT COLOR="#ff0000"><I>15</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">1</FONT>)
+			<I>&quot;</I><A HREF="#texto"><FONT COLOR="#ff0000"><I>Artista</I></FONT></A><I>&quot;</I>
+			<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">DATA</FONT>(<FONT COLOR="#ff0000">1</FONT>);<EM><A HREF="#vari&aacute;vel-de-retorno"><FONT COLOR="#008000">artista</FONT></A></EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">SIZE</FONT>(<FONT COLOR="#ff0000">1</FONT>)
+			<EM><A HREF="#tamanho"><FONT COLOR="#ff0000">30</FONT></A></EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">2</FONT>)
+			<I>&quot;</I><A HREF="#texto"><FONT COLOR="#ff0000"><I>Nome</I></FONT></A><I>&quot;
+			&nbsp;&nbsp; </I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">DATA</FONT>(<FONT COLOR="#ff0000">2</FONT>)<I>;</I><A HREF="#vari&aacute;vel-de-retorno"><FONT COLOR="#008000"><I>titulo</I></FONT></A><I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</I><FONT COLOR="#008080">SIZE</FONT>(<FONT COLOR="#ff0000">2</FONT><I>)
+			</I><A HREF="#tamanho"><FONT COLOR="#008000"><I>50</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">3</FONT>)
+			<I>&quot;</I><A HREF="#texto"><FONT COLOR="#ff0000"><I>Minutos</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">DATA</FONT>(<FONT COLOR="#ff0000">3</FONT>);<EM><A HREF="#vari&aacute;vel-de-retorno"><FONT COLOR="#008000">tempo</FONT></A></EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">SIZE</FONT>(<FONT COLOR="#ff0000">3</FONT>)
+			<A HREF="#tamanho"><FONT COLOR="#ff0000">3</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<A HREF="#NUMERIC"><FONT COLOR="#008080">NUMERIC(</FONT><FONT COLOR="#ff0000">3</FONT><FONT COLOR="#008080">)</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<A HREF="#BLANK"><FONT COLOR="#008080">BLANK(</FONT><FONT COLOR="#ff0000">3</FONT><FONT COLOR="#008080">)</FONT></A><BR>END-EXEC</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeito no modo gr&aacute;fico</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER><IMG SRC="boxdg.jpg" NAME="figura1" ALIGN=BOTTOM WIDTH=505 HEIGHT=151 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeito no modo texto</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER><IMG SRC="boxdt.jpg" NAME="figura2" ALIGN=BOTTOM WIDTH=620 HEIGHT=199 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><!--RELATEDTOPICSLIST--><BR><BR>
+</P>
+</BODY>
+</HTML>

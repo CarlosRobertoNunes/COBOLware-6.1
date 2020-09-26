@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Option</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20100611;2210800">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">Option</FONT></H1>
+<P>Seletor de op&ccedil;&otilde;es de fun&ccedil;&otilde;es de
+manuten&ccedil;&atilde;o de cadastro.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">Option</FONT><BR>&nbsp; <FONT COLOR="#008080">FUNCTION</FONT>
+<I><A HREF="#fun&ccedil;&atilde;o">fun&ccedil;&atilde;o</A>;<A HREF="#fun&ccedil;&atilde;o">fun&ccedil;&atilde;o</A></I>
+</P>
+<H5>Argumentos</H5>
+<P><A NAME="fun&ccedil;&atilde;o"></A><I>fun&ccedil;&atilde;o</I></P>
+<P>Campo de retorno da fun&ccedil;&atilde;o selecionada pelo usu&aacute;rio.
+Se j&aacute; estiver preenchida com uma fun&ccedil;&atilde;o v&aacute;lida
+o comando n&atilde;o ter&aacute; efeito.</P>
+<H5>Observa&ccedil;&otilde;es</H5>
+<P>Somente ser&atilde;o exibidas as op&ccedil;&otilde;es para sele&ccedil;&atilde;o
+de fun&ccedil;&otilde;es autorizadas para o usu&aacute;rio de acordo
+com o que estiver estabelecido no <A HREF="grupos.html">grupo</A>
+associado. 
+</P>
+<H5>Exemplo</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD WIDTH=276>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<A HREF=""><FONT COLOR="#008080">Option</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">FUNCTION</FONT>
+			SPACES<FONT FACE="Courier New">;<A HREF="#fun&ccedil;&atilde;o">funcao</A></FONT><BR>END-EXEC<BR><BR>EVALUATE
+			<A HREF="#fun&ccedil;&atilde;o"><FONT FACE="Courier New">funcao</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">I</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">inclusao</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">A</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">alteracao</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">E</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">exclusao</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">F</FONT>&quot; STOP RUN<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">V</FONT>&quot; GOBACK<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">C</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">consulta</FONT></FONT><BR>END-EVALUATE</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=276>
+			<P ALIGN=CENTER>Efeito no modo gr&aacute;fico</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=276>
+			<P ALIGN=CENTER><IMG SRC="optig.jpg" NAME="figura1" ALIGN=BOTTOM WIDTH=505 HEIGHT=84 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=276>
+			<P ALIGN=CENTER>Efeito no modo texto</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=276>
+			<P ALIGN=CENTER><IMG SRC="optit.jpg" NAME="figura2" ALIGN=LEFT WIDTH=646 HEIGHT=77 BORDER=0><BR CLEAR=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><B>Veja tamb&eacute;m</B></H5>
+<P><A NAME="LinKs"></A><A HREF="f3-grupos.html">Configura&ccedil;&atilde;o
+de grupos</A></P>
+</BODY>
+</HTML>

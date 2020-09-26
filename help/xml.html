@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware XML</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20080208;9244000">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20130513;15304700">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+		PRE { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">XML</FONT></H1>
+<P>Documentos <A HREF="http://pt.wikipedia.org/wiki/XML">XML</A>.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">XML </FONT><FONT COLOR="#000000">[ [ [</FONT><FONT COLOR="#008080">
+<A HREF="#GET">GET INTO</A> </FONT><FONT COLOR="#000000">| </FONT><FONT COLOR="#008080"><A HREF="#PUT">PUT
+FROM</A> </FONT><FONT COLOR="#000000">]</FONT><FONT COLOR="#008080">
+</FONT><FONT COLOR="#008080"><I><A HREF="#registro">registro</A> </I></FONT><FONT COLOR="#000000">]
+</FONT><FONT COLOR="#008080">FILE </FONT><A HREF="#arquivo"><FONT COLOR="#000080"><I>arquivo</I></FONT></A><FONT COLOR="#008080">
+</FONT><FONT COLOR="#000000">]</FONT><FONT COLOR="#008080"><BR><A HREF="#LINE-FEED">LINE-FEED</A></FONT><A HREF="#tabela em documento XML"><FONT COLOR="#008080"><I><BR></I></FONT></A><FONT COLOR="#008080">SPECIALS
+<A HREF="#marcadores">marcadores especiais</A> <BR>STATUS </FONT><A HREF="#file status"><FONT COLOR="#000080"><I>file
+status</I></FONT></A></P>
+<H5>Argumentos</H5>
+<P><A NAME="arquivo"></A><I>arquivo</I></P>
+<P>Nome do arquivo a ser importado de XML para COBOL ou exportado de
+COBOL para XML.</P>
+<P><A NAME="GET"></A><FONT COLOR="#008080">GET INTO</FONT><BR><BR>Indica
+que a opera&ccedil;&atilde;o a ser realizada &eacute; de importa&ccedil;&atilde;o
+de um documento XML para um <A HREF="#registro"><FONT COLOR="#008080"><I>registro</I></FONT></A>
+COBOL.</P>
+<P><A NAME="PUT"></A><FONT COLOR="#008080">PUT FROM</FONT><BR><BR>Indica
+que a opera&ccedil;&atilde;o a ser realizada &eacute; de exporta&ccedil;&atilde;o
+de um <A HREF="#registro"><FONT COLOR="#008080"><I>registro</I></FONT></A>
+COBOL produzindo um documento XML.</P>
+<P><A NAME="LINE-FEED"></A><A NAME="registro"></A><A NAME="file status"></A>
+<FONT COLOR="#008080">LINE-FEED</FONT><BR><BR>Indica que a documento
+XML deve ser produzido no formato texto. Neste caso, um terminador de
+linha X&ldquo;0D0A&rdquo; ser&aacute; inserido ao final do
+encerramento de cada marca&ccedil;&atilde;o XML e a hierarquia ser&aacute;
+edentada de modo que seja facilmente visualiz&aacute;vel por qualquer
+editor de textos. <BR><EM><BR>registro</EM><BR><BR>Identificador
+COBOL de n&iacute;vel 1 que recebe os dados resultantes da requisi&ccedil;&atilde;o
+<A HREF="#GET"><FONT COLOR="#008080">GET INTO</FONT></A> ou fornece
+os dados para a produ&ccedil;&atilde;o do documento XML quando
+solicitado <A HREF="#PUT"><FONT COLOR="#008080">PUT FROM</FONT></A>.
+<BR><BR>Durante a compila&ccedil;&atilde;o, o registro &eacute;
+analisado produzindo uma associa&ccedil;&atilde;o entre os n&iacute;veis,
+nomes e atributos dos campos COBOL e a hierarquia, marcadores e
+delimitadores XML.<BR><BR>Ao se codificar o registro em COBOL visando
+a compatibilidade com os padr&otilde;es XML &eacute; preciso
+observar:<BR><BR>- Mai&uacute;sculas e min&uacute;sculas nos nomes
+COBOL fazem diferen&ccedil;a nas associa&ccedil;&otilde;es
+COBOL-XML;<BR><BR>- Quando em COBOL se utiliza o mesmo nome para mais
+de um campo &eacute; necess&aacute;rio qualificar as refer&ecirc;ncias.
+Para evitar esse inconveniente utiliza-se prefixos separados com
+h&iacute;fen como Arquivo-Nome e Ws-Nome, j&aacute; em XML felizmente
+n&atilde;o &eacute; costumeiro usar hifens pois em outras linguagens
+Arquivo-Nome geralmente significaria a subtra&ccedil;&atilde;o da
+vari&aacute;vel Nome da vari&aacute;vel Arquivo. Sendo assim, durante
+a associa&ccedil;&atilde;o os prefixos declarados nos registros COBOL
+n&atilde;o s&atilde;o considerados, tanto Arquivo-Nome como WS-Nome
+resultam no marcador &lt;Nome&gt;. <BR><BR>- A clausula OCCURS s&oacute;
+deve ser utilizada em grupos ou seja, jamais no mesmo n&iacute;vel
+que a PICTURE, quanto maior o n&uacute;mero de ocorr&ecirc;ncias
+previstas nos arrays do registro COBOL mais pesado ser&aacute; o
+processamento;<BR><BR>- Na exporta&ccedil;&atilde;o, as ocorr&ecirc;ncias
+n&atilde;o utilizadas devem estar totalmente preenchidas com espa&ccedil;os
+(no n&iacute;vel do grupo) para que n&atilde;o sejam consideradas, da
+mesma forma, as marca&ccedil;&otilde;es XML n&atilde;o encontradas no
+documento XML durante a importa&ccedil;&atilde;o resultam em
+ocorr&ecirc;ncias com o grupo totalmente preenchido com espa&ccedil;os
+indicando que n&atilde;o h&aacute; mais dados nas ocorr&ecirc;ncias
+restantes no array; <BR><BR>- Os campos precisam ser todos USAGE
+DISPLAY como &eacute; o padr&atilde;o da linguagem COBOL, entretanto
+para efeito de produ&ccedil;&atilde;o de um documento XML, a cl&aacute;usula
+DISPLAY indica que o campo deve ser gravado como um atributo do
+marcador do grupo <B>Campo=&rdquo;Conte&uacute;do&rdquo;</B>, sem
+essa declara&ccedil;&atilde;o, ser&aacute; um tratado como um
+elemento ordin&aacute;rio <B>&lt;Campo&gt;Conte&uacute;do&lt;Campo/&gt;</B>.<BR><BR>-
+Os campos preenchidos com <FONT COLOR="#ff0000">LOW-VALUES</FONT> s&atilde;o
+considerados nulos e n&atilde;o produzem marcadores XML.<BR><BR><EM>file
+status</EM><BR><BR>Vari&aacute;vel de 2 caracteres que retorna o
+c&oacute;digo do resultado da opera&ccedil;&atilde;o seguindo o
+padr&atilde;o do file status do COBOL.</P>
+<P><A NAME="marcadores"></A><EM>marcadores especiais</EM><BR><BR>Para
+uso avan&ccedil;ado: Permite a defini&ccedil;&atilde;o de listas de
+marcadores de inicializa&ccedil;&atilde;o a serem inseridos no inicio
+do documento XML, se omitido ser&aacute; assumido
+automaticamente:<BR><FONT COLOR="#000000"><SPAN STYLE="font-weight: normal">xml</SPAN></FONT>
+<SPAN STYLE="font-weight: normal">version=&quot;1.0&quot;
+encoding=&quot;UTF-8&quot;</SPAN> que atende a grande maioria das
+necessidades de transfer&ecirc;ncias de dados via XML. Para cada
+prefixo <FONT COLOR="#800000">xml</FONT> encontrado ser&aacute;
+gravada uma nova linha de inicializa&ccedil;&atilde;o.<BR><BR>Por
+exemplo: <FONT COLOR="#ff0000">xml</FONT> version=&quot;1.0&quot;
+encoding=&quot;UTF-8&quot; <FONT COLOR="#ff0000">xml</FONT>-stylesheet
+type=&quot;text/xsl&quot; href=&quot;stylesheet.xsl&quot; produz o
+cabe&ccedil;alho de inicializa&ccedil;&atilde;o &lt;?<FONT COLOR="#ff0000">xml</FONT>
+version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?<FONT COLOR="#ff0000">xml</FONT><FONT COLOR="#000000">-stylesheet
+type=&quot;text/xsl&quot; href=&quot;stylesheet.xsl&rdquo;?</FONT>&gt;</P>
+<H5>Exemplo<BR><BR><BR>
+</H5>
+<TABLE WIDTH=838 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=826>
+	<TR>
+		<TD WIDTH=826>
+			<P ALIGN=CENTER>Documento XML</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=826>
+			<PRE STYLE="text-align: left"><FONT COLOR="#0000ff">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">curriculo</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+   <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">InformacaoPessoal</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+      <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">DataNascimento</FONT><FONT COLOR="#0000ff">&gt;</FONT>1980-12-01<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">DataNascimento</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+      <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Nomecompleto</FONT><FONT COLOR="#0000ff">&gt;</FONT>MONTEIRO LOBATO<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Nomecompleto</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+      <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Contatos</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+         <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Endereco</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+              <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Rua</FONT><FONT COLOR="#0000ff">&gt;</FONT>R.COBOL<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Rua</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+              <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Numero</FONT><FONT COLOR="#0000ff">&gt;</FONT>123<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Numero</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+              <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Cidade</FONT><FONT COLOR="#0000ff">&gt;</FONT>RIO DE JANEIRO<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Cidade</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+              <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">CEP</FONT><FONT COLOR="#0000ff">&gt;</FONT>99999999<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">CEP</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+              <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">UF</FONT><FONT COLOR="#0000ff">&gt;</FONT>RJ<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">UF</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+         <FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Endereco</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+         <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Telefone</FONT><FONT COLOR="#0000ff">&gt;</FONT>9999-9999<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Telefone</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+         <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Email</FONT><FONT COLOR="#0000ff">&gt;</FONT>contato@COBOLware.com<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Email</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+      <FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Contatos</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+      <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Nacionalidade</FONT><FONT COLOR="#0000ff">&gt;</FONT>Brasileira<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Nacionalidade</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+      <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Sexo</FONT><FONT COLOR="#0000ff">&gt;</FONT>M<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Sexo</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+   <FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">InformacaoPessoal</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+   <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">objetivo</FONT><FONT COLOR="#0000ff">&gt;</FONT>Atuar na area de TI<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">objetivo</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+   <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Experiencias</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Emprego Num</FONT>=&quot;1&quot;<FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Cargo</FONT><FONT COLOR="#0000ff">&gt;</FONT>Suporte tecnico<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Cargo</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Empregador</FONT><FONT COLOR="#0000ff">&gt;</FONT>IBM, RIO DE JANEIRO - RJ<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Empregador</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Emprego</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Emprego Num</FONT>=&quot;2&quot;<FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Cargo</FONT><FONT COLOR="#0000ff">&gt;</FONT>Programador<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Cargo</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Empregador</FONT><FONT COLOR="#0000ff">&gt;</FONT>Micro Focus, RECIFE - PE<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Empregador</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Emprego</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Emprego Num</FONT>=&quot;3&quot;<FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Cargo</FONT><FONT COLOR="#0000ff">&gt;</FONT>Engenheiro<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Cargo</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Empregador</FONT><FONT COLOR="#0000ff">&gt;</FONT>COBOLware, Cataguases - MG<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Empregador</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+    <FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Emprego</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+   <FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Experiencias</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+   <FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#ff0000">Formacao</FONT><FONT COLOR="#0000ff">&gt;</FONT>Superior Completo<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">Formacao</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#ff0000">curriculo</FONT><FONT COLOR="#0000ff">&gt;</FONT></PRE>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=826>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=826 VALIGN=TOP>
+			<PRE STYLE="text-align: left">       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    <FONT COLOR="#ff0000">XML</FONT>.
+       AUTHOR.        COBOLware Services Ltda.
+       DATE-WRITTEN.  12/11/2010.
+       SECURITY.      <FONT COLOR="#ff0000">*************************************************</FONT>
+<FONT COLOR="#ff0000">                      *                                               *</FONT>
+<FONT COLOR="#ff0000">                      *  Exemplo de leitura de documento XML          *</FONT>
+<FONT COLOR="#ff0000">                      *                                               *</FONT>
+<FONT COLOR="#ff0000">                      *************************************************</FONT>
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       77  <FONT COLOR="#008000">FS-XML</FONT>                          PIC  X(002) VALUE '<FONT COLOR="#ff0000">00</FONT>'.
+
+       01  <FONT COLOR="#008000">DOCUMENTO-XML</FONT>.
+           02 <FONT COLOR="#008000">curriculo</FONT>.
+              03 <FONT COLOR="#008000">InformacaoPessoal</FONT>.
+                 04 <FONT COLOR="#008000">DataNascimento</FONT>         PIC  X(010).
+                 04 <FONT COLOR="#008000">Nomecompleto</FONT>           PIC  X(050).
+                 04 <FONT COLOR="#008000">Contatos</FONT>.
+                    05 <FONT COLOR="#008000">Endereco</FONT>.
+                       06 <FONT COLOR="#008000">Rua</FONT>              PIC  X(050).
+                       06 <FONT COLOR="#008000">Numero</FONT>           PIC  X(010).
+                       06 <FONT COLOR="#008000">Cidade</FONT>           PIC  X(020).
+                       06 <FONT COLOR="#008000">CEP</FONT>              PIC  9(008).
+                       06 <FONT COLOR="#008000">UF</FONT>               PIC  X(002).
+                     05 <FONT COLOR="#008000">Telefone</FONT>           PIC  X(009).
+                     05 <FONT COLOR="#008000">Email</FONT>              PIC  X(050).
+                  04 <FONT COLOR="#008000">Nacionalidade</FONT>         PIC  X(020).
+                  04 <FONT COLOR="#008000">Sexo</FONT>                  PIC  X(001).
+               03 <FONT COLOR="#008000">objetivo</FONT>                 PIC  X(050).
+               03 <FONT COLOR="#008000">Experiencias</FONT>.
+                  04 <FONT COLOR="#008000">Emprego</FONT> OCCURS 10.
+                     05 <FONT COLOR="#008000">Num</FONT>                PIC  9(002) DISPLAY.
+                     05 <FONT COLOR="#008000">Cargo</FONT>              PIC  X(030).
+                     05 <FONT COLOR="#008000">Empregador</FONT>         PIC  X(030).
+               03 <FONT COLOR="#008000">Formacao</FONT>                 PIC  X(030).
+
+       PROCEDURE DIVISION.
+
+       <FONT COLOR="#008000">000-INICIO</FONT>.
+
+           EXEC <FONT COLOR="#008080">COBOLware XML GET INTO</FONT> DOCUMENTO-XML
+                <FONT COLOR="#008080">File</FONT> '<FONT COLOR="#ff0000">teste.xml</FONT>'
+                <FONT COLOR="#008080">STATUS</FONT> <A HREF="#file status"><FONT COLOR="#008000">FS-XML</FONT></A>
+           END-EXEC
+
+           IF FS-XML = '<FONT COLOR="#ff0000">00</FONT>'
+              EXEC <FONT COLOR="#008080">COBOLware <A HREF="send.html">Send</A></FONT>
+                   <FONT COLOR="#008080">Message</FONT> '<FONT COLOR="#ff0000">Documento XML carregado com sucesso</FONT>'
+              END-EXEC
+           ELSE
+              EXEC <FONT COLOR="#008080">COBOLware <A HREF="#send.html">Send</A></FONT>
+                   <FONT COLOR="#008080">Message</FONT> '<FONT COLOR="#ff0000">Falha na carga do documento XML</FONT>'
+              END-EXEC
+           END-IF.
+
+       <FONT COLOR="#008000">000-99-FIM</FONT>. GOBACK.
+
+       END PROGRAM <FONT COLOR="#ff0000">XML</FONT>.</PRE>
+		</TD>
+	</TR>
+</TABLE>
+<H5><BR><BR>
+</H5>
+</BODY>
+</HTML>

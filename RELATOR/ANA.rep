@@ -1,0 +1,28 @@
+      00017 2      Teste do Relator                T                                                                                                                                                                                         ; CWCAD4                                                      01 059
+00001 00 000 O 000 2TIPO-DESCRICAO                DESCRICAO
+00002 01 001 L 006 codigo
+00003 01 008 L 009 Descricao
+00004 01 041 L 004 Tipo
+00005 01 056 L 005 Preco
+00006 01 067 L 005 VENDA
+00007 01 073 L 005 DOLAR
+00008 01 079 E 009 Prompt-DOLAR                  ZZ.ZZ9,99
+00009 02 001 9 005 CODIGO
+00010 02 008 X 030 DESCRICAO
+00011 02 041 9 001 TIPO
+00012 02 042 L 001 -
+00013 02 043 X 008 TIPO-DESCRICAO
+00014 02 053 E 008 PRECO                         Z.ZZ9,99
+00015 02 062 E 010 (=)VENDA                      ZZ.ZZ9,99-
+00016 02 076 E 010 (=)PRECO$                     ZZ.ZZ9,99-
+00017 03 061 E 011 (=)VENDA[+]                   ZZZ.ZZ9,99-
+00018 03 073 E 013 (=)PRECO$[+]                  Z.ZZZ.ZZ9,99-
+00019 00 000 Q 000
+00020 01 000 P 000                               MENOR    Menor c¢digo                  CODIGO
+00021 02 000 P 000                               MAIOR    Maior c¢digo                  CODIGO
+00022 03 000 P 000                               DOLAR    COTA€ÇO DO DOLAR              PRECO
+00023 01 000 S 000                               ETIPO                          = 000000000000000000            L01
+00024 02 000 S 000                               ICODIGO                        >=Prompt-MENOR
+00025 03 000 S 000                               ECODIGO                        > Prompt-MAIOR
+00026 01 000 C 000                               VENDA    052PRECO                          *1,8                           $0283
+00027 02 000 C 000                               PRECO$   052Prompt-DOLAR                   *PRECO                          0285

@@ -1,0 +1,132 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>COBOLware 6.1 - Gerenciador - Relatórios</title>
+</head>
+
+<body style="font-family: Arial">
+
+<h1>Relatórios</h1>
+
+<p>Configuração de relatórios.</p>
+
+<table border="1" height="90">
+  <tr>
+    <td valign="middle" align="center" height="18">Modo gráfico</td>
+  </tr>
+  <tr>
+    <td valign="middle" align="center" height="12"><img src="f3-13g.jpg" width="806"
+    height="554"></td>
+  </tr>
+  <tr>
+    <td valign="middle" align="center" height="18">Modo texto</td>
+  </tr>
+  <tr>
+    <td valign="middle" align="center" height="18"><img src="f3-13t.jpg" width="799"
+    height="515"></td>
+  </tr>
+</table>
+
+<p><font color="#008080">Relatório</font></p>
+
+<p class="indent">Identificação do relatório informada nos comando <a
+href="prin.html#código-relatório" style="color: rgb(0,128,128)">Print Report</a> e <a
+href="splf.html#código-relatório" style="color: rgb(0,128,128)"><font color="#008080">Spool</font>
+<font color="#008080">File</font></a> ou na definição de relatórios do <a
+href="rel1.html#código-relatório" style="color: rgb(0,128,128)">Relator</a>.</p>
+
+<p><font color="#008080">Comprime impressora</font></p>
+
+<p class="indent">Programação de <a href="f3-impressoras_estilos.html"
+style="color: rgb(0,128,128)">estilo</a> de impressão a ser usada no relatório.<br>
+<br>
+<font color="#008080">Descomprime impressora</font><br>
+<br>
+Programação de <a href="f3-impressoras_estilos.html" style="color: rgb(0,128,128)">estilo</a>
+de impressão padrão.<br>
+<br>
+<font color="#008080">Tipo de formulário</font><br>
+<br>
+Lembrete de alteração de formulário no momento da impressão.<br>
+<br>
+<font color="#008080">Linhas por página</font><br>
+<br>
+Substitui o tamanho da página definido pelo programador.<br>
+<br>
+<font color="#008080">Impressora</font><br>
+<br>
+Define <a href="f3-impressoras_modelos.html" style="color: rgb(0,128,128)">impressora</a>
+específica para impressão direta (sem utilizar <a href="f5.html"
+style="color: rgb(0,128,128)">spool</a>).<br>
+<br>
+<font color="#008080">Manter spool</font><br>
+<br>
+Habilita a criação de uma cópia do relatório em spool mesmo quando direcionado direto
+para impressora.<br>
+<br>
+<font color="#008080">Modo quieto</font><br>
+<br>
+Suprime todas as mensagens, lembretes e indicadores de progresso durante a geração e
+impressão. <br>
+<br>
+<font color="#008080">Título/Subtítulo</font><br>
+<br>
+Substitui os títulos definidos pelo programador.<br>
+<br>
+<font color="#008080">Colunas suprimidas</font><br>
+<br>
+Indica faixas de colunas iniciais e finais que devem ser suprimidas do relatório. São
+permitidas até 5 faixas. A supressão de uma coluna não provoca deslocamento, o
+conteúdo é substituído por espaços em branco.</p>
+
+<p><font color="#008080">Colunas tabuladas</font><br>
+<br>
+Indica faixas de colunas iniciais e finais que devem ser tabuladas no relatório, são
+permitidas até 5&nbsp; faixas. O comando <a href="prin.html#código-relatório"
+style="color: rgb(0,128,128)">Print Report</a> entende tabulação como substituir por
+espaços em branco quando o conteúdo da coluna se repete em relação à linha anterior.</p>
+
+<p>Exemplo: supondo que a coluna vencimento ocupe as posições de <font
+face="Courier New" color="#ff0000">1</font> a <font face="Courier New" color="#ff0000">10</font>
+e tenha sido declarada como tabulada:</p>
+
+<table border="1">
+  <tr>
+    <td valign="middle" align="center">Normal</td>
+    <td valign="middle" align="center">Tabulada</td>
+  </tr>
+  <tr>
+    <td><font face="Courier New">01/05/2001 100,00<br>
+    01/05/2001 200,00<br>
+    01/05/2001 300,00<br>
+    02/05/2001 150,00<br>
+    02/05/2001 250,00<br>
+    02/05/2001 350,00</font></td>
+    <td><font face="Courier New">01/05/2001 100,00<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 200,00<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 300,00<br>
+    02/05/2001 150,00<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 250,00<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 350,00</font></td>
+  </tr>
+</table>
+
+<p class="indent"><font color="#008080">Empresa/Sistema</font><br>
+<br>
+O comando <a href="prin.html" style="color: rgb(0,128,128)">Print Report</a> utiliza os
+nomes de <a href="f3-empresa.html" style="color: rgb(0,128,128)">Empresa</a> e <a
+href="f3-sistema.html" style="color: rgb(0,128,128)">Sistema</a> configurados no
+gerenciador para efeito de cabeçalho. Estes atributos permitem que tais nomes sejam
+substituídos.<br>
+<br>
+<b>Veja também</b></p>
+<span id="LinKs">
+
+<p></span><a href="prin.html" style="color: rgb(0,128,128)">Print Report</a><br>
+<a href="rel.html" style="color: rgb(0,128,128)">Relator</a><br>
+<a href="splf.html" style="color: rgb(0,128,128)"><font color="#008080">Spool</font> <font
+color="#008080">File</font></a><span id="LinKs"></p>
+</span>
+</body>
+</html>

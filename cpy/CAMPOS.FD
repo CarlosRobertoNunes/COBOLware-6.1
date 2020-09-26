@@ -1,0 +1,36 @@
+       FD  CAMPOS
+           LABEL RECORD IS STANDARD
+           VALUE OF FILE-ID IS LB-CAMPOS.
+
+       01  CAMPOS-REG.
+           05 CAMPOS-CHAVE.
+              10 CAMPOS-PROVEDOR   PIC  X(008).
+              10 CAMPOS-COLUNA     PIC  9(004).
+           05 CAMPOS-POSIT         PIC  9(004).
+           05 CAMPOS-TAMANHO       PIC  9(003).
+           05 CAMPOS-DEC           PIC  9(002).
+           05 CAMPOS-TIPO          PIC  X(001).
+              88 CAMPOS-ALFANUMERICO     VALUE "X" "x".
+              88 CAMPOS-EDITADO          VALUE "E" "e" "Z" "z".
+              88 CAMPOS-LITERAL          VALUE "L" "l".
+              88 CAMPOS-NUMERICO         VALUE "9".
+              88 CAMPOS-DATA             VALUE "D" "d".
+              88 CAMPOS-HORA             VALUE "H" "h".
+              88 CAMPOS-VALOR            VALUE "V" "v".
+              88 CAMPOS-CGC-CIC          VALUE "C" "c".
+           05 CAMPOS-ACUMULADOR    PIC  X(001).
+           05 CAMPOS-DATANAME      PIC  X(030).
+              88 CAMPOS-CAB               VALUE "Relator-PAGINA"
+                                                "Relator-FOLHA"
+                                                "Relator-DATA"
+                                                "Relator-HORA"
+                                                "Relator-USUARIO"
+                                                "Relator-E-MAIL"
+                                                "Relator-EMPRESA"
+                                                "Relator-SISTEMA".
+              88 CAMPOS-NOFILE            VALUE "Relator-PAGINA"
+                                                "Relator-FOLHA"
+                                                "Relator-SELECIONADOS".
+           05 CAMPOS-RELATORIO     PIC  X(007).
+           05 CAMPOS-MASCARA       PIC  X(030).
+

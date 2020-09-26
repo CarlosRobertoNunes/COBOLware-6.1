@@ -1,0 +1,63 @@
+       01  LINHAS-DE-IMPRESSAO-CLIC.
+       02  CAB-01.
+           05 FILLER                         PIC  X(055) VALUE
+              "COBOLware Services Ltda.                               ".
+           05 FILLER                         PIC  X(054) VALUE
+              "      RELACAO DE FUNCIONARIOS                         ".
+           05 FILLER                         PIC  X(016) VALUE
+              "        PAGINA  ".
+           05 PAGINA                         PIC  ZZZ.ZZ9.
+       02  CAB-02.
+           05 FILLER                         PIC  X(055) VALUE
+              "FP0010                                                 ".
+           05 FILLER                         PIC  X(054) VALUE SPACES.
+           05 FILLER                         PIC  X(015) VALUE
+              "       EMISSAO ".
+           05 DATA-EMISSAO                   PIC  99/99/99.
+       02  TRACOS-01                         PIC  X(132) VALUE ALL "-".
+       02  CAB-03.
+           05 FILLER                         PIC  X(055) VALUE
+              "MATR     NOME                           S CARGO        ".
+           05 FILLER                         PIC  X(047) VALUE
+              "     SALARIO TIPOS ADMISSAO DEMISSAO OBSERVACAO".
+       02  TRACOS-02                         PIC  X(132) VALUE ALL "-".
+       02  DETALHE.
+           05 C01L06                         PIC  X(006) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE "-".
+           05 C02L06                         PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C03L06                         PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C04L06                         PIC  9(001) VALUE ZERO.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C05L06                         PIC  XBXBXBXBXBX.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C06L06   BLANK ZERO            PIC  ZZ.ZZZ.ZZ9,99.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C07L06                         PIC  9(001) VALUE ZERO.
+           05 C08L06                         PIC  9(001) VALUE ZERO.
+           05 C09L06                         PIC  9(001) VALUE ZERO.
+           05 C10L06                         PIC  9(001) VALUE ZERO.
+           05 C11L06                         PIC  9(001) VALUE ZERO.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C12L06                         PIC  99/99/99.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C13L06   BLANK ZERO            PIC  9(002) VALUE ZEROS.
+           05 C14L06                         PIC  X(001) VALUE SPACE.
+           05 C15L06   BLANK ZERO            PIC  9(002) VALUE ZEROS.
+           05 C16L06                         PIC  X(001) VALUE SPACE.
+           05 C17L06   BLANK ZERO            PIC  9(002) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 OBSERVACAO                     PIC  X(040) VALUE SPACES.
+       02  TOTAIS.
+           05 FILLER                         PIC  X(009) VALUE SPACES.
+           05 FILLER                         PIC  X(041) VALUE
+              "T O T A L  G E R A L                 \a  ".
+           05 C01L07   BLANK ZERO            PIC  ZZ.ZZZ.ZZZ.ZZ9,99.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 C01L07   BLANK ZERO            PIC  9(002) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE "/".
+           05 C01L07   BLANK ZERO            PIC  9(002) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE "/".
+           05 C01L07   BLANK ZERO            PIC  9(002) VALUE ZEROS.
+       02  CLIC-LINHA                        PIC  X(030) VALUE SPACES.

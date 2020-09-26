@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware 6.1 - Gerenciador - Arquivos</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="20070715;9321200">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20100222;13433100">
+        <STYLE TYPE="text/css">
+        <!--
+                TD P { color: #000000; font-family: "Arial" }
+                H1 { color: #000000 }
+                P { color: #000000; font-family: "Arial" }
+                H5 { color: #000000 }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1>Arquivos</H1>
+<P>Manuten&ccedil;&atilde;o da tabela labels de arquivos utilizada
+pelo manipulador CWSQLC. Esta t&eacute;cnica faz com que o sistema
+possa ser facilmente adaptado a diferentes organiza&ccedil;&otilde;es
+de diret&oacute;rios.</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD HEIGHT=18>
+                        <P ALIGN=CENTER>Modo gr&aacute;fico</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=12>
+                        <P ALIGN=CENTER><IMG SRC="f3-01g.jpg" NAME="figura1" ALIGN=BOTTOM WIDTH=807 HEIGHT=558 BORDER=0></P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P ALIGN=CENTER>Modo texto</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P ALIGN=CENTER><IMG SRC="f3-01t.jpg" NAME="figura2" ALIGN=BOTTOM WIDTH=795 HEIGHT=517 BORDER=0></P>
+                </TD>
+        </TR>
+</TABLE>
+<P><FONT COLOR="#008080">Arquivo</FONT></P>
+<P>Nome interno do arquivo que deve ser informado como chave de
+pesquisa.</P>
+<P><FONT COLOR="#008080">Label</FONT></P>
+<P>Nome externo configurado a ser utilizado no momento do OPEN ou
+SQL(manipulador-SQL).</P>
+<H5>Observa&ccedil;&otilde;es</H5>
+<P ALIGN=LEFT>A tabela de labels&nbsp;&eacute; armazenada no arquivo
+de configura&ccedil;&atilde;o do <A HREF="../help">gerenciador</A>.<BR><BR>Este
+recurso &eacute; especialmente &uacute;til&nbsp; para evitar colis&otilde;es
+entre &aacute;reas de trabalho em ambientes multiusu&aacute;rios,
+pois ser&aacute; considerado o car&aacute;cter <FONT COLOR="#ff0000">#</FONT>
+(<FONT COLOR="#ff0000">X&quot;23&quot;</FONT>) como d&iacute;gito do
+n&uacute;mero da task (um contador de execu&ccedil;&otilde;es do
+<A HREF="menu.html">gerenciador</A>), logo, se na tabela constar por
+exemplo <FONT COLOR="#ff0000">SORT###.TMP</FONT> e o n&uacute;mero da
+task estiver em <FONT COLOR="#ff0000">1748</FONT> retornar&aacute;
+<FONT COLOR="#ff0000">SORT748.TMP</FONT>.<BR><BR>Op&ccedil;&otilde;es:
+Caso o arquivo n&atilde;o esteja cadastrado, &eacute; permitido
+definir op&ccedil;&otilde;es de tratamento via vari&aacute;veis de
+ambiente.
+</P>
+<TABLE WIDTH=681 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+        <COL WIDTH=92>
+        <COL WIDTH=570>
+        <TR>
+                <TD WIDTH=92>
+                        <P><A NAME="ENV"></A>Vari&aacute;vel</P>
+                </TD>
+                <TD WIDTH=570>
+                        <P>Coment&aacute;rio</P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=92>
+                        <P ALIGN=LEFT><FONT COLOR="#008080">CWDRIVE</FONT></P>
+                </TD>
+                <TD WIDTH=570>
+                        <P ALIGN=LEFT>&quot;<FONT COLOR="#ff0000">OFF</FONT>&quot;, remove
+                        drive dos camihos&nbsp; <FONT COLOR="#ff0000">C:\DAT\CADCLI.DAT</FONT>
+                        para <FONT COLOR="#ff0000">\DAT\CADCLI.DAT</FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=92>
+                        <P ALIGN=LEFT><FONT COLOR="#008080">CWFORCE</FONT></P>
+                </TD>
+                <TD WIDTH=570>
+                        <P ALIGN=LEFT>Se configurada para &quot;<FONT COLOR="#ff0000">ON</FONT>&quot;
+                        torna o cadastramento obrigat&oacute;rio</P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=92>
+                        <P ALIGN=LEFT><FONT COLOR="#008080">CWLEVEL</FONT></P>
+                </TD>
+                <TD WIDTH=570>
+                        <P ALIGN=LEFT>Padronizar o separador de n&iacute;veis de pastas&nbsp;
+                        para &quot;<FONT COLOR="#ff0000">\</FONT>&quot; ou &quot;<FONT COLOR="#ff0000">/</FONT>&quot;</P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=92>
+                        <P ALIGN=LEFT><FONT COLOR="#008080">CWLOCATE</FONT></P>
+                </TD>
+                <TD WIDTH=570>
+                        <P ALIGN=LEFT>&quot;<FONT COLOR="#ff0000">ON</FONT>&quot; , Insere
+                        caminho corrente quando caminho omitido</P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=92>
+                        <P ALIGN=LEFT><FONT COLOR="#008080">CWPREFIX</FONT></P>
+                </TD>
+                <TD WIDTH=570>
+                        <P ALIGN=LEFT>Caminho gen&eacute;rico a ser anexado ao nome, por
+                        exemplo: <FONT COLOR="#ff0000">C:\DATABASE</FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD WIDTH=92>
+                        <P ALIGN=LEFT><FONT COLOR="#008080">CWSUFIX</FONT></P>
+                </TD>
+                <TD WIDTH=570>
+                        <P ALIGN=LEFT>Extens&atilde;o gen&eacute;rica a ser anexada ao
+                        nome, por exemplo: <FONT COLOR="#ff0000">DAT</FONT></P>
+                </TD>
+        </TR>
+</TABLE>
+<H5>Exemplo</H5>
+<TABLE WIDTH=399 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+        <COL WIDTH=78>
+        <COL WIDTH=168>
+        <COL WIDTH=127>
+        <TR>
+                <TD WIDTH=78>
+                        <P>Valor inicial</P>
+                </TD>
+                <TD WIDTH=168>
+                        <P>Retorno sob Windows</P>
+                </TD>
+                <TD WIDTH=127>
+                        <P>Retorno sob Linux</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD WIDTH=78>
+                        <P><FONT COLOR="#ff0000">CADCLI</FONT></P>
+                </TD>
+                <TD WIDTH=168>
+                        <P><FONT COLOR="#ff0000">C:\DATABASE\CADCLI</FONT></P>
+                </TD>
+                <TD WIDTH=127>
+                        <P><FONT COLOR="#ff0000">/database/CADCLI</FONT></P>
+                </TD>
+        </TR>
+</TABLE>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

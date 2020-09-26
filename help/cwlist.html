@@ -1,0 +1,440 @@
+<html>
+
+<head>
+<title>COBOLware 6.1 - Listagem</title>
+</head>
+
+<body style="font-family: Courier New">
+
+<pre>       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    <font color="#FF0000">CWLIST</font>.
+       AUTHOR.        COBOLware Services Ltda</a>.
+       DATE-WRITTEN.  <font
+color="#FF0000">99/99/9999</font>.
+       SECURITY.      <font color="#FF0000">*************************************************
+                      *                                               *
+                      *  Exemplo de programa de listagem              *
+                      *                                               *
+                      *************************************************</font>
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES. DECIMAL-POINT IS COMMA.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+
+           SELECT <font
+color="#008000">FileName</font> ASSIGN TO DISK
+                  ORGANIZATION  IS INDEXED
+                  ACCESS MODE   IS DYNAMIC
+                  RECORD  KEY   IS <font
+color="#008000">FileName-CHAVE</font>
+                  ALTERNATE RECORD KEY IS <font
+color="#008000">FileName-DESCRICAO</font>
+                                          WITH DUPLICATES
+                  LOCK MODE     IS MANUAL
+                  FILE STATUS   IS <font
+color="#008000">FS-FileName</font>.
+
+      $Set IdxFormat&quot;14&quot;
+           SELECT <font
+color="#008000">SORTWK</font> ASSIGN TO DISK
+                  ORGANIZATION  IS INDEXED
+                  ACCESS MODE   IS DYNAMIC
+                  RECORD  KEY   IS <font
+color="#008000">SORTWK-KEY</font>
+                  LOCK MODE     IS EXCLUSIVE
+                  FILE STATUS   IS <font
+color="#008000">FS-SORTWK</font>.
+      $Set IdxFormat&quot;4&quot;
+
+       DATA DIVISION.
+       FILE SECTION.
+
+       FD  <font
+color="#008000">FileName</font>
+           LABEL RECORD IS STANDARD
+           VALUE OF FILE-ID IS <font
+color="#008000">LB-FileName</font>.
+
+       01  <font color="#008000">FileName-REG</font>.
+           05 <font
+color="#008000">FileName-CHAVE</font>.
+              10 <font color="#008000">FileName-CODIGO</font>          PIC  9(005).
+           05 <font
+color="#008000">FileName-DESCRICAO</font>          PIC  X(030).
+           05 <font
+color="#008000">FileName-PRECO</font>              PIC  9(008)V99.
+           05 <font
+color="#008000">FileName-TIPO</font>               PIC  9(001).
+              88 <font
+color="#FF00FF">FileName-PECA</font>                         VALUE <font color="#FF0000">1</font>.
+              88 <font
+color="#FF00FF">FileName-ACABADO</font>                      VALUE <font color="#FF0000">2</font>.
+              88 <font
+color="#FF00FF">FileName-MATERIAL</font>                     VALUE <font color="#FF0000">3</font>.
+           05 <font
+color="#008000">FileName-OPCOES</font>.
+              10 <font color="#FF00FF">FileName-IMPORTADO</font>       PIC  9(001).
+              10 <font
+color="#FF00FF">FileName-GARANTIA</font>        PIC  9(001).
+              10 <font
+color="#FF00FF">FileName-DURAVEL</font>         PIC  9(001).
+
+       FD  <font
+color="#008000">SORTWK</font>
+           LABEL RECORD IS STANDARD
+           VALUE OF FILE-ID IS <font
+color="#008000">LB-SORTWK</font>.
+
+       01  <font color="#008000">SORTWK-REG</font>.
+           05 <font
+color="#008000">SORTWK-KEY</font>.
+              10 <font color="#008000">SORTWK-CHAVE</font>           PIC  X(018).
+              10 <font
+color="#008000">SORTWK-CHAVE-NUMERICA</font> REDEFINES <font color="#008000">SORTWK-CHAVE</font>
+                                           PIC  9(016)V99.
+              10 <font
+color="#008000">SORTWK-ORDEM</font>       COMP-3 PIC  9(005).
+
+       WORKING-STORAGE SECTION.
+
+       01  <font
+color="#008000">AREAS-DE-TRABALHO-1</font>.
+           05 <font color="#008000">SUBTITULO</font>           PIC  X(174) VALUE SPACES.
+           05 <font
+color="#008000">CANCELOU</font>            PIC  X(001) VALUE SPACE.
+              88 <font
+color="#FF00FF">REPORT-CANCELED</font>              VALUE &quot;<font color="#FF0000">9</font>&quot;.
+           05 <font
+color="#008000">CHAVE</font>               PIC  9(002) VALUE <font color="#FF0000">0</font>.
+              88 <font
+color="#FF00FF">POR-CODIGO</font>                   VALUE <font color="#FF0000">1</font>.
+              88 <font
+color="#FF00FF">POR-DESCRICAO</font>                VALUE <font color="#FF0000">2</font>.
+              88 <font
+color="#FF00FF">POR-PRECO</font>                    VALUE <font color="#FF0000">3</font>.
+           05 <font
+color="#008000">LD-FileName</font>  COMP-3 PIC  9(008) VALUE <font color="#FF0000">0</font>.
+           05 <font
+color="#008000">LS-FileName</font>  COMP-3 PIC  9(008) VALUE <font color="#FF0000">0</font>.
+           05 <font
+color="#008000">ER-FileName</font>.
+              10 <font color="#008000">FS-FileName</font>      PIC  X(002) VALUE &quot;<font
+color="#FF0000">00</font>&quot;.
+              10 <font color="#008000">LB-FileName</font>      PIC  X(255) VALUE &quot;<font
+color="#FF0000">FileName</font>&quot;.
+           05 <font color="#008000">ER-SORTWK</font>.
+              10 <font
+color="#008000">FS-SORTWK</font>        PIC  X(002) VALUE &quot;<font color="#FF0000">00</font>&quot;.
+              10 <font
+color="#008000">LB-SORTWK</font>        PIC  X(255) VALUE &quot;<font color="#FF0000">SORTWK</font>&quot;.
+
+       01  <font
+color="#008000">LINHAS-DE-IMPRESSAO-<a href="clic.html" style="color: rgb(0,128,128)">CLIC</a></font>.
+       02  <font
+color="#008000">LINHA-01</font>.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(010) VALUE
+              &quot;<font
+color="#FF0000">CODIGO DES</font>&quot;.
+           05 FILLER                         PIC  X(002) VALUE &quot;<font
+color="#FF0000">CR</font>&quot;.
+           05 FILLER                         PIC  X(039) VALUE
+              &quot;<font
+color="#FF0000">ICAO                              PRECO</font>&quot;.
+       02  <font
+color="#008000">LINHA-02</font>.
+           05 FILLER                         PIC  X(002) VALUE SPACES.
+           05 <font
+color="#008000">CLIC-CODIGO</font>                    PIC  9(005) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 <font
+color="#008000">CLIC-DESCRICAO</font>                 PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 <font
+color="#008000">CLIC-PRECO</font>                     PIC  ZZ.ZZZ.ZZ9,99.
+
+       SCREEN SECTION.
+
+       01  <a
+href="ctac.html" style="color: rgb(0,128,128)">CTAC</a><font color="#008000">-LIT-CWLIST</font>.
+           05 LINE <font
+color="#FF0000">08</font> COLUMN <font color="#FF0000">14</font> VALUE &quot;Lidos de&quot;.
+           05 LINE <font
+color="#FF0000">10</font> COLUMN <font color="#FF0000">14</font> VALUE &quot;Listados&quot;.
+
+       01  <a
+href="ctac.html" style="color: rgb(0,128,128)">CTAC</a><font color="#008000">-VAR-CWLIST</font>.
+           05 <font
+color="#008000">TELA-LD-FileName</font>
+              LINE <font color="#FF0000">08</font> COLUMN <font
+color="#FF0000">03</font> PIC ZZ.ZZZ.ZZ9 FROM <font color="#008000">LD-FileName</font>.
+           05 <font
+color="#008000">TELA-LB-FileName</font>
+              LINE <font color="#FF0000">08</font> COLUMN <font
+color="#FF0000">23</font> PIC X(050) FROM <font color="#008000">LB-FileName</font>.
+           05 <font
+color="#008000">TELA-LS-FileName</font>
+              LINE <font color="#FF0000">10</font> COLUMN <font
+color="#FF0000">03</font> PIC ZZ.ZZZ.ZZ9 FROM <font color="#008000">LS-FileName</font>.
+
+       PROCEDURE DIVISION.
+
+       <font
+color="#008000">000-INICIO</font>.
+
+           PERFORM <font color="#008000">800-INICIAIS</font>      THRU <font
+color="#008000">800-99-FIM</font>
+           PERFORM <font color="#008000">100-PROCESSAMENTO</font> THRU <font
+color="#008000">100-99-FIM</font>
+                   UNTIL <font color="#008000">FS-FileName</font> &gt; &quot;09&quot;
+                      OR REPORT-CANCELED
+           PERFORM 900-FINAIS        THRU 900-99-FIM.
+
+       000-99-FIM. GOBACK.
+
+       <font
+color="#008000">100-PROCESSAMENTO</font>.
+
+           READ <font color="#008000">FileName</font> NEXT RECORD IGNORE LOCK
+
+           IF   <font
+color="#008000">FS-FileName</font> &lt; &quot;<font color="#FF0000">10</font>&quot;
+                ADD     <font
+color="#FF0000">1</font>            TO <font color="#008000">LD-FileName</font>
+                DISPLAY <font
+color="#008000">TELA-LD-FileName</font>
+                IF   <font color="#008000">CHAVE</font> = <font
+color="#FF0000">1</font> OR <font color="#FF0000">2</font>
+                     PERFORM <font
+color="#008000">110-LISTAR</font>  THRU <font color="#008000">110-99-FIM</font>
+                ELSE
+                     PERFORM <font
+color="#008000">120-ORDENAR</font> THRU <font color="#008000">120-99-FIM</font>
+                END-IF
+           ELSE
+                IF  <font
+color="#008000">FS-FileName</font> &gt; &quot;<font color="#FF0000">10</font>&quot;
+                    EXEC <font
+color="#008080">COBOLware</font> <a href="isam.html"><font color="#008080">ISAMerror</font></a>
+                         <font
+color="#008080">STATUS</font> <font color="#008000">FS-FileName</font>
+                         <font
+color="#008080">LABEL</font>  <font color="#008080">LB-FileName</font>
+                    END-EXEC
+                ELSE
+                    IF   <font
+color="#FF00FF">POR-PRECO</font>
+                         MOVE LOW-VALUES TO <font
+color="#008000">SORTWK-CHAVE</font>
+                         START SORTWK KEY NOT &lt; <font
+color="#008000">SORTWK-CHAVE</font>
+                         PERFORM <font color="#008000">130-LISTAR-ORDENADO</font> THRU <font
+color="#008000">130-99-FIM</font>
+                                 UNTIL <font
+color="#008000">FS-SORTWK</font> &gt; &quot;<font color="#FF0000">09</font>&quot;
+                                    OR <font
+color="#FF00FF">REPORT-CANCELED</font>
+                         MOVE &quot;<font
+color="#FF0000">10</font>&quot; TO <font color="#008000">FS-FileName</font>
+                    END-IF
+                END-IF
+           END-IF.
+
+       <font
+color="#008000">100-99-FIM</font>. EXIT.
+
+       <font color="#008000">110-LISTAR</font>.
+
+           MOVE <font
+color="#008000">FileName-CODIGO</font>    TO <font color="#008000">CLIC-CODIGO</font>
+           MOVE <font
+color="#008000">FileName-DESCRICAO</font> TO <font color="#008000">CLIC-DESCRICAO</font>
+           MOVE <font
+color="#008000">FileName-PRECO</font>     TO <font color="#008000">CLIC-PRECO</font>
+           EXEC <font
+color="#008080">COBOLware</font> <a href="prin.html"><font color="#008080">Print Report</font></a> &quot;<font
+color="#FF0000">CWLISTA</font>&quot;
+                <font color="#008080">TITLE</font>     &quot;<font
+color="#FF0000">LISTAGEM DO FileName</font>&quot;
+                <font color="#008080">SUBTITLE</font>  <font
+color="#008000">SUBTITULO</font>
+                <font color="#008080">HEADER</font>(<font
+color="#FF0000">1</font>) <font color="#008000">LINHA-01</font>
+                <font
+color="#008080">DETAIL</font>    <font color="#008000">LINHA-02</font>
+                <font
+color="#008080">WIDTH-080</font>
+                <font color="#008080">CANCEL</font>;<font
+color="#008000">CANCELOU</font>
+           END-EXEC
+           ADD  <font color="#FF0000">1</font>                  TO <font
+color="#008000">LS-FileName</font>
+           DISPLAY <font color="#008000">TELA-LS-FileName</font>.
+
+       <font
+color="#008000">110-99-FIM</font>. EXIT.
+
+       <font color="#008000">120-ORDENAR</font>.
+
+           MOVE <font
+color="#008000">FileName-CHAVE</font> TO <font color="#008000">SORTWK-ORDEM</font>
+
+           IF   <font
+color="#FF00FF">POR-PRECO</font>
+                MOVE <font color="#008000">FileName-PRECO</font> TO <font
+color="#008000">SORTWK-CHAVE-NUMERICA</font>
+           END-IF
+
+           WRITE <font
+color="#008000">SORTWK-REG</font>
+
+           IF   <font color="#008000">FS-SORTWK</font> &gt; &quot;<font
+color="#FF0000">09</font>&quot;
+                MOVE &quot;<font color="#FF0000">10</font>&quot; TO <font
+color="#008000">FS-FileName</font>
+           END-IF.
+
+       <font color="#008000">120-99-FIM</font>. EXIT.
+
+       <font
+color="#008000">130-LISTAR-ORDENADO</font>.
+
+           READ <font color="#008000">SORTWK</font> NEXT RECORD
+
+           IF   <font
+color="#008000">FS-SORTWK</font> &lt; &quot;10&quot;
+                MOVE <font
+color="#008000">SORTWK-ORDEM</font> TO <font color="#008000">FileName-CODIGO</font>
+                READ <font
+color="#008000">FileName</font> IGNORE LOCK
+                PERFORM <font color="#008000">110-LISTAR</font> THRU <font
+color="#008000">110-99-FIM</font>
+           END-IF.
+
+       <font color="#008000">130-99-FIM</font>. EXIT.
+
+       <font
+color="#008000">800-INICIAIS</font>.
+
+           EXEC <font color="#008080">COBOLware <a
+href="getf.html">GetFile</a>
+                Label</font> <font color="#008000">LB-FileName</font>
+           END-EXEC
+
+           EXEC <font
+color="#008080">COBOLware <a href="getf.html">GetFile</a>
+                Label</font> <font
+color="#008000">LB-SORTWK</font>
+           END-EXEC
+
+           OPEN INPUT <font
+color="#008000">FileName</font>
+
+           IF   <font color="#008000">FS-FileName</font> &gt; &quot;09&quot;
+                EXEC <font
+color="#008080">COBOLware</font> <a href="isam.html"><font color="#008080">ISAMerror</font></a>
+                     <font
+color="#008080">STATUS</font> <font color="#008000">FS-FileName</font>
+                     <font
+color="#008080">LABEL</font>  <font color="#008000">LB-FileName</font>
+                END-EXEC
+                GOBACK
+           END-IF
+
+           INITIALIZE <font
+color="#008080">FileName-REG</font>
+           DISPLAY <a href="ctac.html"
+style="color: rgb(0,128,128)">CTAC</a><font color="#008000">-LIT-CWLIST</font>
+                   <a
+href="ctac.html" style="color: rgb(0,128,128)">CTAC</a><font color="#008000">-VAR-CWLIST</font>
+
+           EXEC <font
+color="#008080">COBOLware</font> <a href="boxs.html"><font color="#008080">BoxSelect</font></a>
+                <font
+color="#008080">LINE</font> <font color="#FF0000">10</font> <font color="#008080">COLUMN</font> <font
+color="#FF0000">30</font>
+                <font color="#008080">TITLE</font> &quot;<font
+color="#FF0000">listar por</font>&quot;
+                <font color="#008080">TEXT</font>(<font
+color="#FF0000">1</font>) &quot;<font color="#FF0000">~C¢digo</font>&quot;
+                <font
+color="#008080">TEXT</font>(<font color="#FF0000">2</font>) &quot;<font color="#FF0000">~Descrição</font>&quot;
+                <font
+color="#008080">TEXT</font>(<font color="#FF0000">3</font>) &quot;<font color="#FF0000">~Preço</font>&quot;
+                <font
+color="#008080">OPTION</font> <font color="#FF0000">2</font>;<font color="#008000">CHAVE</font>
+           END-EXEC
+
+           EVALUATE <font
+color="#008000">CHAVE</font>
+               WHEN <font color="#FF0000">0</font>
+                    CLOSE <font
+color="#008000">FileName</font>
+                    GOBACK
+               WHEN <font
+color="#FF0000">1</font>
+                    MOVE &quot;<font color="#FF0000">CODIGO</font>&quot;    TO <font
+color="#008000">SUBTITULO</font> (<font color="#FF0000">13</font>: )
+                    START <font
+color="#008000">FileName</font> KEY NOT &lt; <font color="#008000">FileName-CHAVE</font>
+               WHEN <font
+color="#FF0000">2</font>
+                    MOVE &quot;<font color="#FF0000">DESCRICAO</font>&quot; TO <font
+color="#008000">SUBTITULO</font> (<font color="#FF0000">13</font>: )
+                    START <font
+color="#008000">FileName</font> KEY NOT &lt; <font color="#008000">FileName-DESCRICAO</font>
+               WHEN <font
+color="#FF0000">3</font>
+                    OPEN OUTPUT <font color="#008000">SORTWK</font>
+                    MOVE &quot;<font
+color="#FF0000">PRECO</font>&quot;     TO <font color="#008000">SUBTITULO</font> (<font
+color="#FF0000">13</font>: )
+           END-EVALUATE.
+
+       <font color="#008000">800-99-FIM</font>. EXIT.
+
+       <font
+color="#008000">900-FINAIS</font>.
+
+           IF  <font color="#FF00FF">POR-PRECO</font>
+               IF   <font
+color="#008000">FS-SORTWK</font> &gt; &quot;10&quot;
+               AND (NOT <font
+color="#FF00FF">REPORT-CANCELED</font>)
+                    EXEC <font color="#008080">COBOLware</font> <a
+href="isam.html"><font color="#008080">ISAMerror</font></a>
+                         <font
+color="#008080">STATUS</font> <font color="#008000">FS-SORTWK</font>
+                         <font
+color="#008080">LABEL</font>  <font color="#008000">LB-SORTWK</font>
+                    END-EXEC
+                    MOVE &quot;<font
+color="#FF0000">10</font>&quot;  TO <font color="#008000">FS-FileName</font>
+                    EXEC <font
+color="#008080">COBOLware</font> <a href="prin.html"><font color="#008080">Print Report</font></a> &quot;<font
+color="#FF0000">CWLISTA</font>&quot;
+                         <font color="#008080">DETAIL</font> &quot;<font
+color="#FF0000">ERRO DE CLASSIFICACAO</font>&quot;
+                    END-EXEC
+               END-IF
+               CLOSE <font
+color="#008000">SORTWK</font>
+           END-IF
+
+           CLOSE <font color="#008000">FileName</font>
+
+           IF   NOT <font
+color="#008000">REPORT-CANCELED</font>
+                EXEC <font color="#008080">COBOLware</font> <a
+href="prin.html"><font color="#008080">Print</font></a> <font color="#008080">CLOSE</font>
+                END-EXEC
+           END-IF.
+
+       900-99-FIM. EXIT.
+
+       END PROGRAM <font
+color="#FF0000">CWLIST</font>.
+</pre>
+</body>
+</html>

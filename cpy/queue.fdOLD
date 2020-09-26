@@ -1,0 +1,25 @@
+       FD  (FILENAME)
+           LABEL RECORD IS STANDARD
+           RECORD VARYING DEPENDING ON LEN-(FILENAME)
+           VALUE OF FILE-ID IS LB-(FILENAME).
+
+       01  (FILENAME)-REG.
+           02 (FILENAME)-FIXED.
+              05 (FILENAME)-CHAVE.
+                 10 (FILENAME)-HANDLER       PIC  X(030).
+                 10 (FILENAME)-SEQUENCE      PIC  9(018) COMP-3.
+              05 (FILENAME)-CWSQLC           PIC  X(018).
+              05 (FILENAME)-PROGRAM          PIC  X(030).
+              05 (FILENAME)-POINTER.
+                 10 (FILENAME)-REC-FLAG      PIC  X(001).
+                 10 (FILENAME)-REC-LENGTH    PIC  9(004) COMP-X.
+                 10 (FILENAME)-VOLUME        PIC  9(018) COMP-3.
+              05 (FILENAME)-NAME             PIC  X(255).
+              05 (FILENAME)-MAX-REC-LENGTH   PIC  9(004) COMP-X.
+              05 (FILENAME)-RELATIVE-KEY     PIC  9(009) COMP-X.
+              05 (FILENAME)-SESSION-ID       PIC  9(009) COMP-X.
+           02 (FILENAME)-VARIABLE.
+              05 (FILENAME)-BUFFER.
+                 10 (FILENAME)-BYTE          PIC  X(001)
+                                OCCURS 1 TO 32402
+                                DEPENDING ON (FILENAME)-REC-LENGTH.

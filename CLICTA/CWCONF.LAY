@@ -1,0 +1,153 @@
+       01  LINHAS-DE-IMPRESSAO-CLIC.
+       02  LINHA-01.
+           05 FILLER                         PIC  X(036) VALUE
+              "ARQUIVO                        LABEL".
+       02  LINHA-02.
+           05 CLIC-ARQUIVO                   PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-LABEL                     PIC  X(050) VALUE SPACES.
+       02  LINHA-03.
+           05 FILLER                         PIC  X(055) VALUE
+              "GRUPO                 PROGRAMA MODO            ACESSO A".
+           05 FILLER                         PIC  X(044) VALUE
+              "LTERACAO CONSULTA EXCLUSAO INCLUSAO USUARIOS".
+       02  LINHA-04.
+           05 CLIC-NOME-GRUPO                PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-ADM                       PIC  X(008) VALUE SPACES.
+           05 FILLER                         PIC  X(052) VALUE SPACES.
+           05 CLIC-USUARIOS                  PIC  X(030) VALUE SPACES.
+       02  LINHA-05.
+           05 FILLER                         PIC  X(022) VALUE SPACES.
+           05 CLIC-PROG-GRUPO                PIC  X(008) VALUE SPACES.
+           05 FILLER                         PIC  X(017) VALUE SPACES.
+           05 CLIC-ACESSO-GRUPO              PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(006) VALUE SPACES.
+           05 CLIC-ALTERACAO-GRUPO           PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(009) VALUE SPACES.
+           05 CLIC-CONSULTA-GRUPO            PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(008) VALUE SPACES.
+           05 CLIC-EXCLUSAO-GRUPO            PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(008) VALUE SPACES.
+           05 CLIC-INCLUSAO-GRUPO            PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(008) VALUE SPACES.
+           05 CLIC-USUARIOS2                 PIC  X(030) VALUE SPACES.
+       02  LINHA-06.
+           05 FILLER                         PIC  X(055) VALUE
+              "IMPRESSORA                     DEVICE                  ".
+           05 FILLER                         PIC  X(046) VALUE
+              "                           PREPARO      ESTILO".
+       02  LINHA-07.
+           05 CLIC-IMPRESSORA                PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-DEVICE                    PIC  X(050) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-PREPARO                   PIC  X(012) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-ESTILO                    PIC  X(030) VALUE SPACES.
+       02  LINHA-08.
+           05 FILLER                         PIC  X(078) VALUE SPACES.
+           05 CLIC-ASCII-TEXTO               PIC  X(014) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-ASC BLANK ZERO OCCURS 10  PIC  999B.
+       02  LINHA-09.
+           05 FILLER                         PIC  X(050) VALUE
+              "ESTILO                         ATRIBUTO     STRING".
+       02  LINHA-10.
+           05 CLIC-ESTILO2                   PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-ATRIBUTO                  PIC  X(013) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-STRING OCCURS 16          PIC  999B.
+       02  LINHA-11.
+           05 FILLER                         PIC  X(055) VALUE
+              "PAGINA OPCAO CONFIRMA NIVEL FUNCAO                     ".
+           05 FILLER                         PIC  X(033) VALUE
+              "        PROGRAMA HELP/PAGINA/PATH".
+       02  LINHA-12.
+           05 FILLER                         PIC  X(002) VALUE SPACES.
+           05 CLIC-PAGINA                    PIC  Z(004) VALUE ZEROS.
+           05 FILLER                         PIC  X(004) VALUE SPACES.
+           05 CLIC-OPCAO                     PIC  Z(002) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-CONFIRMA                  PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(008) VALUE SPACES.
+           05 CLIC-NIVEL                     PIC  Z(001) VALUE ZERO.
+           05 FILLER                         PIC  X(005) VALUE SPACES.
+           05 CLIC-FUNCAO                    PIC  X(034) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-PROGRAMA                  PIC  X(008) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-HELP                      PIC  X(020) VALUE SPACES.
+       02  LINHA-13.
+           05 FILLER                         PIC  X(055) VALUE
+              "JOB     MODULO/PARAMETRO                               ".
+           05 FILLER                         PIC  X(033) VALUE
+              "    TIPO OK      NAO OK  MENSAGEM".
+       02  LINHA-14.
+           05 CLIC-JOB                       PIC  X(007) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-MODULO                    PIC  X(050) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-TIPO                      PIC  X(003) VALUE SPACES.
+           05 FILLER                         PIC  X(002) VALUE SPACES.
+           05 CLIC-OK                        PIC  X(007) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-NAO-OK                    PIC  X(007) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-MENSAGEM                  PIC  X(050) VALUE SPACES.
+       02  LINHA-15.
+           05 FILLER                         PIC  X(008) VALUE SPACES.
+           05 CLIC-PARAMETRO                 PIC  X(060) VALUE SPACES.
+       02  LINHA-16.
+           05 FILLER                         PIC  X(055) VALUE
+              "RELATORIO COMPRIME DESCOMPRIME FORMULARIO        LINHAS".
+           05 FILLER                         PIC  X(009) VALUE
+              " SAIDA PA".
+           05 FILLER                         PIC  X(002) VALUE "DR".
+           05 FILLER                         PIC  X(032) VALUE
+              "AO    COLUNAS TABULADAS/APAGADAS".
+       02  LINHA-17.
+           05 CLIC-RELATORIO                 PIC  X(007) VALUE SPACES.
+           05 FILLER                         PIC  X(003) VALUE SPACES.
+           05 CLIC-PROGRAMA-ASC1 BLANK ZERO  PIC  9(003) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-PROGRAMA-ASC2 BLANK ZERO  PIC  9(003) VALUE ZEROS.
+           05 FILLER                         PIC  X(002) VALUE SPACES.
+           05 CLIC-DESPROG-ASC1 BLANK ZERO   PIC  9(003) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-DESPROG-ASC2 BLANK ZERO   PIC  9(003) VALUE ZEROS.
+           05 FILLER                         PIC  X(005) VALUE SPACES.
+           05 CLIC-TIPO-FORM                 PIC  X(020) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-SIZE-PAGE                 PIC  Z(003) VALUE ZEROS.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-SAIDA                     PIC  X(015) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-TAB OCCURS 12 BLANK ZERO  PIC  999B.
+       02  LINHA-18.
+           05 CLIC-NAME-REPORT               PIC  X(023) VALUE SPACES.
+           05 FILLER                         PIC  X(049) VALUE SPACES.
+           05 CLIC-APA OCCURS 12 BLANK ZERO  PIC  999B.
+       02  LINHA-19.
+           05 FILLER                         PIC  X(020) VALUE SPACES.
+           05 CLIC-REP-TXT                   PIC  X(009) VALUE SPACES.
+           05 FILLER                         PIC  X(002) VALUE ": ".
+           05 CLIC-REP                       PIC  X(086) VALUE SPACES.
+       02  LINHA-20.
+           05 FILLER                         PIC  X(055) VALUE
+              "USUARIO                        NIVEL                   ".
+           05 FILLER                         PIC  X(054) VALUE
+              "  GRUPO                  PATH SPOOL                   ".
+           05 FILLER                         PIC  X(012) VALUE
+              "  IMPRESSORA".
+       02  LINHA-21.
+           05 CLIC-NOME                      PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-NIVEL-PS                  PIC  X(025) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-GRUPO                     PIC  X(022) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-PATH-SPOOL                PIC  X(030) VALUE SPACES.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 CLIC-PRINTER-DEFAULT           PIC  X(008) VALUE SPACES.

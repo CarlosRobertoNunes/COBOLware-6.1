@@ -1,0 +1,7 @@
+       LINKAGE SECTION.
+
+       01  ER-ARQUIVO                      PIC  X(052).
+
+       PROCEDURE DIVISION USING ER-ARQUIVO.
+
+           CALL "CWISAM" USING ER-ARQUIVO.

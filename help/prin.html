@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware Print Report</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="0;0">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20101119;20362900">
+        <STYLE TYPE="text/css">
+        <!--
+                TD P { color: #000000; font-family: "Arial" }
+                H1 { color: #000000 }
+                P { color: #000000; font-family: "Arial" }
+                H5 { color: #000000 }
+                PRE { color: #000000 }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">Print</FONT> <FONT COLOR="#008080">Report</FONT></H1>
+<P>Emiss&atilde;o de relat&oacute;rio.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">Print</FONT> { <FONT COLOR="#008080">REPORT</FONT>&nbsp;
+<I><A HREF="#c&oacute;digo-relat&oacute;rio">c&oacute;digo-relat&oacute;rio</A>
+| </I><A HREF="#CLOSE"><FONT COLOR="#008080">CLOSE</FONT></A> }<I><BR></I>[
+<FONT COLOR="#008080">WIDTH</FONT> <A HREF="#largura-do-relat&oacute;rio"><I>largura-do-relat&oacute;rio</I></A>]
+<BR>[ <A HREF="#FREE"><FONT COLOR="#008080">FREE</FONT></A> | [ <FONT COLOR="#008080">TITLE</FONT>
+<I><A HREF="#t&iacute;tulo-do-relat&oacute;rio">t&iacute;tulo-do-relat&oacute;rio</A>
+</I>]<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[ <FONT COLOR="#008080">SUBTITLE</FONT> <I><A HREF="#subtitulo-do-relat&oacute;rio">subtitulo-do-relat&oacute;rio</A>
+</I>]<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[ <FONT COLOR="#008080">HEADER</FONT>(1...5) <I><A HREF="#cabe&ccedil;alho">cabe&ccedil;alho</A>
+</I>] ]<BR>[ <FONT COLOR="#008080">DETAIL</FONT> <EM><A HREF="#linha-de-detalhe">linha-de-detalhe</A></EM>
+]<BR>[ <FONT COLOR="#008080">FULL</FONT> <I><A HREF="#decorrido">decorrido</A>
+</I><FONT COLOR="#008080">EMPTY</FONT>&nbsp; <A HREF="#previsto"><I>previsto</I></A>
+]<BR>[ <FONT COLOR="#008080">NOTE</FONT> <EM><A HREF="#coment&aacute;rio">coment&aacute;rio</A></EM>
+]<BR>[ <FONT COLOR="#008080">CANCEL</FONT>;<A HREF="#indicador-de-processo-interrompido"><I>indicador-de-processo-interrompido</I></A>
+]</P>
+<H5>Argumentos</H5>
+<P><A NAME="c&oacute;digo-relat&oacute;rio"></A><I>c&oacute;digo-relat&oacute;rio</I></P>
+<P>Identifica&ccedil;&atilde;o do relat&oacute;rio para efeito de
+<A HREF="f5.html">configura&ccedil;&atilde;o e spool</A>.</P>
+<P><A NAME="CLOSE"></A><FONT COLOR="#008080">CLOSE</FONT><BR><BR>Encerra
+a impress&atilde;o do relat&oacute;rio corrente.</P>
+<P><A NAME="largura-do-relat&oacute;rio"></A><I>largura-do-relat&oacute;rio</I></P>
+<P>Largura m&aacute;xima reconhecida para a linha de impress&atilde;o,
+sendo suportado at&eacute; 500 colunas, quando omitido &eacute;
+assumido largura 132.</P>
+<P><A NAME="FREE"></A><FONT COLOR="#008080">FREE</FONT></P>
+<P>Formato de impress&atilde;o livre. O controle de salto de p&aacute;gina
+e formata&ccedil;&atilde;o de cabe&ccedil;alhos ser&atilde;o
+controlados pelo programador na <EM>linha-de-detalh</EM>.</P>
+<P><A NAME="t&iacute;tulo-do-relat&oacute;rio"></A><I>t&iacute;tulo-do-relat&oacute;rio</I></P>
+<P>Frase de at&eacute; 34, 86 ou 174 caracteres de acordo com a
+largura de impress&atilde;o a ser impressa no topo de cada p&aacute;gina.</P>
+<P><A NAME="subtitulo-do-relat&oacute;rio"></A><I>subtitulo-do-relat&oacute;rio</I></P>
+<P>Frase complementar a ser impressa na linha abaixo do
+<I>t&iacute;tulo-do-relat&oacute;rio</I>..</P>
+<P><A NAME="cabe&ccedil;alho"></A><I>cabe&ccedil;alho</I></P>
+<P>Cabe&ccedil;alho de identifica&ccedil;&atilde;o dos campos de
+detalhe (at&eacute; 5).</P>
+<P><A NAME="linha-de-detalhe"></A><EM>linha-de-detalhe</EM></P>
+<P>Linha de detalhe do relat&oacute;rio ou na coluna 1 <FONT COLOR="#008080">$Include</FONT>
+arquivo-a-anexar (&eacute; apagado em seguida).</P>
+<P><A NAME="decorrido"></A><I>decorrido</I></P>
+<P>Indica o progresso do processo de gera&ccedil;&atilde;o do
+relat&oacute;rio, pode ser usado quando a quantidade a processar &eacute;
+conhecida.</P>
+<P><A NAME="previsto"></A><I>previsto</I></P>
+<P><A NAME="coment&aacute;rio"></A><A NAME="indicador-de-processo-interrompido"></A><A NAME="cancel"></A>
+Indica a quantidade prevista no processamento<BR><BR><EM>coment&aacute;rio<BR><BR></EM>Mensagem
+de coment&aacute;rio na lista de relat&oacute;rios no
+<A HREF="spool.html">spool</A>.<BR><BR><I>indicador-de-processo-interrompido</I><BR><BR>Vari&aacute;vel
+de 1 byte que retorna o valor &quot;<FONT COLOR="#ff0000">9</FONT>&quot;
+se o usu&aacute;rio cancelar a emiss&atilde;o do relat&oacute;rio.
+<BR><FONT FACE="Courier New">77 </FONT><FONT COLOR="#008000"><FONT FACE="Courier New">fim</FONT></FONT>
+<FONT FACE="Courier New">PIC X(001) VALUE SPACE.<BR>88 </FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">END-PRINT</FONT></FONT>
+<FONT FACE="Courier New">VALUE &quot;</FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">9</FONT></FONT><FONT FACE="Courier New">&quot;.</FONT></P>
+<H5>Exemplo</H5>
+<TABLE WIDTH=654 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+        <COL WIDTH=642>
+        <TR>
+                <TD WIDTH=642>
+                        <P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD WIDTH=642 VALIGN=TOP>
+                        <P ALIGN=LEFT>PERFORM VARYING <FONT COLOR="#008000">I</FONT> FROM
+                        <FONT COLOR="#ff0000">1</FONT> BY <FONT COLOR="#ff0000">1</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        UNTIL <FONT COLOR="#008000">I</FONT> &gt; <FONT COLOR="#ff0000">100</FONT>
+                        OR <FONT COLOR="#ff00ff">END-PRINT</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXEC
+                        <FONT COLOR="#008080">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT><FONT COLOR="#008080">
+                        <A HREF="../help">Print Report</A></FONT>
+                        &quot;<A HREF="#c&oacute;digo-relat&oacute;rio"><FONT COLOR="#ff0000">TESTE</FONT></A>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT COLOR="#008080">WIDTH </FONT><A HREF="#largura-do-relat&oacute;rio"><FONT COLOR="#000000">80</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT COLOR="#008080">TITLE</FONT> &quot;<A HREF="#t&iacute;tulo-do-relat&oacute;rio"><FONT COLOR="#ff0000">Teste
+                        do comando PRINT</FONT></A>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT COLOR="#008080">SUBTITLE</FONT> &quot;<A HREF="#subtitulo-do-relat&oacute;rio"><FONT COLOR="#ff0000">Listando
+                        de 1 a 100</FONT></A>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT COLOR="#008080">HEADER</FONT>(<FONT COLOR="#ff0000">1</FONT>)
+                        &quot;<A HREF="#cabe&ccedil;alho"><FONT COLOR="#ff0000">I</FONT></A>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT COLOR="#008080">DETAIL</FONT>
+                        <A HREF="#linha-de-detalhe"><FONT COLOR="#008000">I</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT COLOR="#008080">FULL</FONT> <A HREF="#decorrido"><FONT COLOR="#008000">I</FONT></A>
+                        <FONT COLOR="#008080">EMPTY</FONT>
+                        <A HREF="#previsto"><FONT COLOR="#ff0000">100</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT COLOR="#008080">CANCEL</FONT>;<A HREF="#indicador-de-processo-interrompido"><FONT COLOR="#008000"><FONT FACE="Courier New">fim</FONT></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END-EXEC<BR>END-PERFORM<BR><BR>IF&nbsp;&nbsp;
+                        NOT END-PRINT<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXEC <FONT COLOR="#008080">COBOLware
+                        </FONT><A HREF="#CLOSE">Print <FONT COLOR="#008080">CLOSE</FONT></A>
+                        END-EXEC<BR>END-IF</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD WIDTH=642>
+                        <P ALIGN=CENTER>Efeito</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD WIDTH=642 VALIGN=TOP>
+                        <PRE STYLE="text-align: left">COBOLware Services Ltda.           Teste do comando PRINT       Qui    0001/0001
+COBOLware 6.1                       Listando de 1 a 100         02/09/2019 18:51
+------------------------------------------------------------------------TESTE---
+I
+--------------------------------------------------------------------------------
+
+001
+002
+003
+004
+005
+006
+007
+008
+009
+010
+011
+012
+013
+014
+015
+016
+017
+018
+019
+020
+021
+022
+023
+024
+025
+026
+027
+028
+029
+030
+031
+032
+033
+034
+035
+036
+037
+038
+039
+040
+041
+042
+043
+044
+045
+046
+047
+048
+049
+050
+051
+052
+053</PRE>
+                        <HR>
+                        <PRE>COBOLware Services Ltda.           Teste do comando PRINT       Qui    0002/0002
+COBOLware 6.1                       Listando de 1 a 100         02/09/2019 18:51
+------------------------------------------------------------------------TESTE---
+I
+--------------------------------------------------------------------------------
+
+054
+055
+056
+057
+058
+059
+060
+061
+062
+063
+064
+065
+066
+067
+068
+069
+070
+071
+072
+073
+074
+075
+076
+077
+078
+079
+080
+081
+082
+083
+084
+085
+086
+087
+088
+089
+090
+091
+092
+093
+094
+095
+096
+097
+098
+099
+100</PRE><P ALIGN=LEFT>
+                        <BR>
+                        </P>
+                </TD>
+        </TR>
+</TABLE>
+<P><!--RELATEDTOPICSLIST-->Vari&aacute;veis reconhecidas:</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD>
+                        <P><FONT COLOR="#008080">CWIMPR-PAGE</FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT COLOR="#ff0000">Off</FONT>, Desabilita contador de
+                        p&aacute;ginas.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P><FONT COLOR="#008080">CWIMPR-FOLD</FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT COLOR="#ff0000">Off</FONT>, Desabilita contador de
+                        Folhas.</P>
+                </TD>
+        </TR>
+</TABLE>
+<H5><B>Veja tamb&eacute;m</B></H5>
+<P><A HREF="clic.html"><FONT COLOR="#008080">CLIC</FONT></A><BR><A HREF="f5.html"><FONT COLOR="#008080">Spool</FONT></A><BR><A HREF="splf.html"><FONT COLOR="#008080">Spool
+File</FONT></A><BR><A HREF="rel.html"><FONT COLOR="#008080">Relator</FONT></A></P>
+</BODY>
+</HTML>

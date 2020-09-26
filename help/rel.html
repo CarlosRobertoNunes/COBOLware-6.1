@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware 6.1 - Relator - Gerador de relat&oacute;rios</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="0;0">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20130513;4453700">
+        <STYLE TYPE="text/css">
+        <!--
+                TD P { color: #000000; font-family: "Arial" }
+                H1 { color: #000000 }
+                P { color: #000000; font-family: "Arial" }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1 ALIGN=LEFT><FONT COLOR="#008080">Relator</FONT></H1>
+<P ALIGN=LEFT>Gerador de relat&oacute;rios</P>
+<P ALIGN=LEFT>O Relator visa simplificar e agilizar a cria&ccedil;&atilde;o
+de relat&oacute;rios customizados, reduzindo a quantidade de
+programas dos sistemas e os custos de m&atilde;o-de-obra de
+programa&ccedil;&atilde;o.</P>
+<P ALIGN=LEFT><A NAME="Provedor"></A>Para tornar vi&aacute;vel a
+distribui&ccedil;&atilde;o &quot;embutida&quot; de um gerador de
+relat&oacute;rios em sistemas de software houses para seus clientes,
+a meta foi obter baixos pre&ccedil;os de licenciamento e alta
+performance, para isso precisavam ser reduzidos os custos de
+desenvolvimento e eliminada depend&ecirc;ncia de softwares de
+terceiros, assim, o Relator incorpora um conceito inovador de
+obten&ccedil;&atilde;o das informa&ccedil;&otilde;es no momento da
+emiss&atilde;o dos relat&oacute;rios, o <A HREF="provedor.html">provedor</A>
+de dados.<BR><BR>Diferente das solu&ccedil;&otilde;es at&eacute;
+ent&atilde;o dispon&iacute;veis, o Relator n&atilde;o recorre a <A HREF="http://pt.wikipedia.org/wiki/ODBC" TARGET="_blank"><FONT COLOR="#0000ff">ODBC</FONT></A>
+ou a dicion&aacute;rios de dados que reconhe&ccedil;am o formato
+propriet&aacute;rio da Micro Focus, para obter os dados, o caminho
+adotado foi repassar a tarefa de leitura&nbsp;a programas reentrantes
+escritos pelo pr&oacute;prio desenvolvedor do sistema que se
+encarregam de fazer a leitura de um registro a cada chamada.<BR><BR>O
+conceito de <A HREF="provedor.html">provedor</A> de dados se vale do
+fato de que praticamente todos os relat&oacute;rios se baseiam na
+leitura de um arquivo mestre e de um ou mais arquivos de apoio,
+criando uma linha de detalhe montada em fun&ccedil;&atilde;o de uma
+vis&atilde;o relacional.<BR><BR>Desta forma, um gerador de relat&oacute;rios
+pode tratar uma vis&atilde;o relacional como se fosse apenas um
+arquivo (o mestre) e as demais colunas se repetem enquanto mant&eacute;m
+o mesmo relacionamento.</P>
+<P>Exemplo: Lista de profissionais.</P>
+<P><TABLE DIR="LTR" ALIGN=LEFT BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR VALIGN=TOP>
+                <TD BGCOLOR="#c0c0c0">
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=1>CODIGO</FONT></FONT></P>
+                </TD>
+                <TD BGCOLOR="#c0c0c0">
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=1>NOME</FONT></FONT></P>
+                </TD>
+                <TD BGCOLOR="#c0c0c0">
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=1>PROFISSAO</FONT></FONT></P>
+                </TD>
+                <TD BGCOLOR="#c0c0c0">
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=1>CARGO
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </FONT></FONT>
+                        </P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>001</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>DOM
+                        PEDRO I</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">01
+                        </FONT><FONT COLOR="#0080ff">IMPERADOR</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">20
+                        </FONT><FONT COLOR="#000080">GOVERNANTE</FONT></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>002</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>DOM
+                        PEDRO II</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">01
+                        </FONT><FONT COLOR="#0080ff">IMPERADOR</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT SIZE=2><FONT COLOR="#ff0000"><FONT FACE="Courier New">10
+                        </FONT></FONT><FONT COLOR="#000080"><FONT FACE="Courier New">PRINCIPE</FONT></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>003</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>JULIO
+                        CESAR</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">01
+                        </FONT><FONT COLOR="#0080ff">IMPERADOR</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">30
+                        </FONT><FONT COLOR="#000080">APOSENTADO</FONT></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>004</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>PEDRO
+                        ALVARES CABRAL</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">02
+                        </FONT><FONT COLOR="#0080ff">NAVEGADOR</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">40
+                        </FONT><FONT COLOR="#000080">CAPITAO</FONT></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>005</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>VASCO
+                        DA GAMA</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">02
+                        </FONT><FONT COLOR="#0080ff">NAVEGADOR</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2><FONT COLOR="#ff0000">44
+                        </FONT><FONT COLOR="#000080">COMANDANTE</FONT></FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>006</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=2>CRISTOVAO
+                        COLOMBO</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT SIZE=2><FONT COLOR="#ff0000"><FONT FACE="Courier New">02
+                        </FONT></FONT><FONT COLOR="#0080ff"><FONT FACE="Courier New">NAVEGADOR</FONT></FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT SIZE=2><FONT COLOR="#ff0000"><FONT FACE="Courier New">80
+                        </FONT></FONT><FONT COLOR="#000080"><FONT FACE="Courier New">ALMIRANTE</FONT></FONT></FONT></P>
+                </TD>
+        </TR>
+</TABLE>&nbsp;
+</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>Neste caso, o cadastro de profissionais &eacute; o <FONT COLOR="#ff0000">MasterFile</FONT>
+enquanto que a tabela de profiss&otilde;es &eacute; o <FONT COLOR="#0080ff">AddFile1</FONT>
+e a tabela de cargos o <FONT COLOR="#000080">AddFile2</FONT>. Assim,
+o gerador pode utilizar uma l&oacute;gica padr&atilde;o para a
+ordena&ccedil;&atilde;o, sele&ccedil;&atilde;o, impress&atilde;o e
+quebra/totaliza&ccedil;&atilde;o tratando como simulando um &uacute;nico
+arquivo montado pelo Provedor, tal&nbsp; situa&ccedil;&atilde;o se
+repete em uma vasta gama de relat&oacute;rios, mudando apenas a
+quantidade de arquivos secund&aacute;rios, v&aacute;rios <A HREF="provedor.html">provedor</A>
+podem ser disponibilizados em fun&ccedil;&atilde;o dos diversos
+arquivos de um sistema, um arquivo pode ser considerado mestre por um
+<A HREF="provedor.html">provedor</A> e de apoio por outro.&nbsp;</P>
+<P ALIGN=CENTER><IMG SRC="relator.jpg" NAME="figura1" ALT="relator.jpg (17646 bytes)" ALIGN=BOTTOM WIDTH=558 HEIGHT=171 BORDER=0>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P>
+<P>Desta forma, a arquitetura do dicion&aacute;rio se torna bem
+simples, j&aacute; que &eacute; necess&aacute;rio definir somente as
+posi&ccedil;&otilde;es e os atributos das colunas (ou campos) que
+ser&atilde;o repassadas pelo provedor via <FONT FACE="Courier New">LINKAGE
+SECTION</FONT>.<BR><BR>S&atilde;o 3 m&oacute;dulos escritos em Micro
+Focus COBOL que devem ser cadastrados na <A HREF="f3-programas.html">tabela
+de programas do gerenciador</A>.<BR><BR><A HREF="rel1.html"><FONT COLOR="#008080">CWREL1</FONT></A>:&nbsp;
+Editor, cria e mant&eacute;m as defini&ccedil;&otilde;es dos
+relat&oacute;rios (Arquivo<FONT COLOR="#00ffff">
+</FONT><FONT COLOR="#008080">FORMATOS</FONT>/<FONT COLOR="#008080">FORMATOS.idx</FONT>),&nbsp;
+utilizado apenas por desenvolvedores ou por usu&aacute;rios
+autorizados e treinados em definir relat&oacute;rios.<BR><BR><A HREF="rel2.html"><FONT COLOR="#008080">CWREL2</FONT></A>:
+Gerador, interpreta as defini&ccedil;&otilde;es, tratando da sele&ccedil;&atilde;o,
+ordena&ccedil;&atilde;o, formata&ccedil;&atilde;o, impress&atilde;o e
+totaliza&ccedil;&atilde;o.<BR><BR><A HREF="rel3.html"><FONT COLOR="#008080">CWREL3</FONT></A>:
+Carrega os dicion&aacute;rios. Uma vez escrito o programa <A HREF="provedor.html">provedor</A>,
+as defini&ccedil;&otilde;es da <FONT FACE="Courier New">LINKAGE
+SECTION</FONT> precisam ser carregadas no dicion&aacute;rio (Arquivo
+<FONT COLOR="#008080">COLUNAS</FONT>/<FONT COLOR="#008080">COLUNAS.idx</FONT>),
+para que estejam dispon&iacute;veis para os m&oacute;dulos <A HREF="rel1.html"><FONT COLOR="#008080">CWREL1</FONT></A>
+e <A HREF="rel2.html"><FONT COLOR="#008080">CWREL2</FONT></A> que
+assim podem &quot;entender&quot; o que est&aacute; sendo passado como
+par&acirc;metro.</P>
+<P>Todos os campos devem ter <FONT FACE="Courier New">USAGE DISPLAY</FONT>.
+A macro <A HREF="retator.kex"><FONT COLOR="#008080">RELATOR.KEX</FONT></A>&nbsp;(Linguagem
+de programa&ccedil;&atilde;o de macros do <A HREF="http://www.kedit.com/">Kedit</A>)
+transforma o programa <A HREF="provedor.html">provedor</A> em uma
+tabela texto <FONT COLOR="#ff0000"><FONT FACE="Courier New">Nome-do-Provedor.DIC</FONT></FONT>
+que ser&aacute; solicitado pelo <FONT COLOR="#008080">CWREL3</FONT>.</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD VALIGN=TOP>
+                        <P ALIGN=CENTER>Editando o provedor de exemplo com o kedit e
+                        executado o comando relator</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P><IMG SRC="relator-kex.jpg" NAME="figura2" ALIGN=BOTTOM WIDTH=963 HEIGHT=501 BORDER=0></P>
+                </TD>
+        </TR>
+        <TR>
+                <TD VALIGN=TOP>
+                        <P ALIGN=CENTER>Resultado obtido</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P><IMG SRC="relator2-kex.jpg" NAME="figura3" ALIGN=BOTTOM WIDTH=962 HEIGHT=500 BORDER=0></P>
+                </TD>
+        </TR>
+</TABLE>
+<P>Na impossibilidade de se utilizar o <A HREF="http://www.kedit.com/" TARGET="_blank">Kedit</A>,
+ser&aacute; necess&aacute;rio definir o arquivo de carga do
+dicion&aacute;rio (formato texto) manualmente seguindo o Layout.</P>
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=3>
+        <TR VALIGN=TOP>
+                <TD>
+                        <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+                                <TR VALIGN=TOP>
+                                        <TD BGCOLOR="#c0c0c0">
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=1>Posi&ccedil;&atilde;o</FONT></FONT></P>
+                                        </TD>
+                                        <TD BGCOLOR="#c0c0c0">
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=1>Nome</FONT></FONT></P>
+                                        </TD>
+                                        <TD BGCOLOR="#c0c0c0">
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=1>Tipo</FONT></FONT></P>
+                                        </TD>
+                                </TR>
+                                <TR VALIGN=TOP>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>01-05</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>Posi&ccedil;&atilde;o</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>9&nbsp;&nbsp;&nbsp;
+                                                </FONT></FONT>
+                                                </P>
+                                        </TD>
+                                </TR>
+                                <TR VALIGN=TOP>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>07-09</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>Tamanho</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>9 </FONT></FONT>
+                                                </P>
+                                        </TD>
+                                </TR>
+                                <TR VALIGN=TOP>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>11-12</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>Decimais</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>9</FONT></FONT></P>
+                                        </TD>
+                                </TR>
+                                <TR VALIGN=TOP>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>14-14</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>Tipo</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>X</FONT></FONT></P>
+                                        </TD>
+                                </TR>
+                                <TR VALIGN=TOP>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>16-45</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>Nome</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>X</FONT></FONT></P>
+                                        </TD>
+                                </TR>
+                                <TR VALIGN=TOP>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>47-76</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>M&aacute;scara</FONT></FONT></P>
+                                        </TD>
+                                        <TD>
+                                                <P ALIGN=LEFT><FONT FACE="Courier New"><FONT SIZE=2>X</FONT></FONT></P>
+                                        </TD>
+                                </TR>
+                        </TABLE>
+                        <P><BR><BR>
+                        </P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT COLOR="#ff0000"><FONT FACE="Courier New"><FONT SIZE=1>Exemplo
+                        de dicion&aacute;rio<BR>00001 005 00 9 CAMPO-1<BR>00006 030 00 X
+                        CAMPO-2<BR>00036 008 02 V CAMPO-3<BR>00044 005 00 9 CAMPO-4<BR>00049
+                        030 00 X CAMPO-5<BR>00079 008 00 D CAMPO-6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        AAAAMMDD<BR>00087 005 00 9 CAMPO-7<BR>00092 030 00 X CAMPO-8<BR>00122
+                        014 00 C CAMPO-9<BR>00136 008 00 9 CAMPO-10 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        99999-999</FONT></FONT></FONT></P>
+                </TD>
+        </TR>
+</TABLE>
+<P><A NAME="CAMPO-3"></A><A NAME="CAMPO-6"></A>Utilizando o indicador
+de coment&aacute;rio <FONT COLOR="#ff0000">*&gt;</FONT> do COBOL, as
+colunas Tipo e M&aacute;scara podem ser declaradas na pr&oacute;pia
+<FONT FACE="Courier New">LINKAGE SECTION</FONT>, vide exemplo no
+<A HREF="provedor.html">provedor</A>.<BR><BR>Os Itens num&eacute;ricos
+que possam dar origem a totaliza&ccedil;&otilde;es (Acumuladores,
+vide <A HREF="provedor.html#CAMPO-3">CAMPO-3</A>[+]), devem ser
+sinalizados com <FONT COLOR="#ff0000">&quot;V&quot;</FONT>, gerar
+acumuladores para valores oriundos de arquivos de apoio (<FONT COLOR="#0080ff">AddFiles</FONT>)
+pode n&atilde;o fazer sentido j&aacute; que dar&atilde;o origem a
+colunas sujeitas a repeti&ccedil;&atilde;o.<BR><BR>Itens de data
+devem ser indicados com <FONT COLOR="#ff0000">&quot;D&quot;</FONT> e
+a m&aacute;scara precisa ser definida orientando o gerador nas
+compara&ccedil;&otilde;es e classifica&ccedil;&otilde;es cronol&oacute;gicas
+(vide <A HREF="provedor.html#CAMPO-6">CAMPO-6</A>). Se o ano tiver
+apenas dois d&iacute;gitos <FONT COLOR="#ff0000">&quot;AA&quot;</FONT>,
+a princ&iacute;pio, o &quot;janelamento&quot; ser&aacute; feito em
+fun&ccedil;&atilde;o do valor <FONT COLOR="#ff0000">28</FONT> (<FONT COLOR="#ff0000">1929</FONT>
+a <FONT COLOR="#ff0000">2028</FONT>) mas este valor pode ser alterado
+na <A HREF="f3-relator.html">configura&ccedil;&atilde;o do
+gerenciador</A>.</P>
+<P><A NAME="CAMPO-10"></A>A macro <A HREF="data.kex"><FONT COLOR="#008080">DATA.KEX</FONT></A>
+pode ser usada logo ap&oacute;s a <A HREF="retator.kex"><FONT COLOR="#008080">RELATOR.KEX</FONT></A>
+para identificar as datas automaticamente caso os nomes dos campos
+sejam intuitivos.<BR><BR>A marca&ccedil;&atilde;o <FONT COLOR="#ff0000">&quot;C&quot;</FONT>
+indica que o item deve ser tratado e editado como um CPNJ(CGC) ou
+CIC(CPF).<BR><BR>M&aacute;scaras podem ser definidas para qualquer
+item num&eacute;rico que exija edi&ccedil;&atilde;o fora do padr&atilde;o
+convencional (de 3 em 3 casas para inteiros mais v&iacute;rgula
+decimal) (como por exemplo o <A HREF="provedor.html#CAMPO-10">CAMPO-10</A>
+que deve ser editado como um CEP <FONT COLOR="#ff0000">&quot;99999-999&quot;</FONT>.<BR><BR>Caso
+a posi&ccedil;&atilde;o inicial do campo n&atilde;o seja num&eacute;rica,
+o importador trata os primeiros 30 caracteres como coment&aacute;rio
+para descri&ccedil;&atilde;o do provedor.</P>
+<P>Conv&eacute;m disponibilizar um arquivo texto com o mesmo nome do
+provedor com a extens&atilde;o HLP contendo explica&ccedil;&otilde;es
+sobre os campos existentes no dicion&aacute;rio, este arquivo ser&aacute;
+exibido ao se pressionar F1 no momento da sele&ccedil;&atilde;o de
+colunas durante a defini&ccedil;&atilde;o de relat&oacute;rios.</P>
+</BODY>
+</HTML>

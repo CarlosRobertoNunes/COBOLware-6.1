@@ -1,0 +1,1880 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Gerenciador</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20070911;10491100">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20191001;5191800">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1>Gerenciamento</H1>
+<P>O COBOL<FONT COLOR="#ff0000">ware</FONT> disp&otilde;e de um
+sofisticado sistema de gerenciamento de aplicativos que se adapta ao
+perfil operacional da empresa sem necessidade de programa&ccedil;&atilde;o.
+Os menus s&atilde;o definidos por parametriza&ccedil;&atilde;o e os
+usu&aacute;rios s&atilde;o cadastrados por grupos. Desta forma os
+menus s&atilde;o personalizados ou seja, somente os itens pertinentes
+&agrave; rotina de trabalho de um usu&aacute;rio s&atilde;o exibidos.
+</P>
+<P>O gerenciador possui 4 modalidades de opera&ccedil;&atilde;o em
+fun&ccedil;&atilde;o da plataforma hospedeira e das prefer&ecirc;ncias
+do usu&aacute;rio. Como um programa compilado com o COBOL<FONT COLOR="#ff0000">ware</FONT>
+produz programas independentes de plataforma e de tipo de interface,
+a sele&ccedil;&atilde;o do ambiente operacional ser&aacute; definida
+pelo atalho de execu&ccedil;&atilde;o do gerenciador.</P>
+<TABLE BORDER=1 CELLPADDING=0 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Gr&aacute;fico</FONT></P>
+		</TD>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">cwmenuG.exe
+			</FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Texto em
+			janela</FONT></P>
+		</TD>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">cwmenuT.exe
+			</FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Texto em
+			tela DOS</FONT></P>
+		</TD>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">cwmenuF.exe
+			</FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Texto em
+			Unix</FONT></P>
+		</TD>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">cwmenu</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P>Os par&acirc;metros que configuram o gerenciador s&atilde;o
+armazenados em um arquivo indexado (cwconf e cwconf.idx) formando o
+perfil de um sistema. Uma instala&ccedil;&atilde;o pode possuir
+in&uacute;meros sistemas, cada qual com o seu arquivo de
+configura&ccedil;&atilde;o. O atalho de ativa&ccedil;&atilde;o de um
+sistema deve partir da pasta de instala&ccedil;&atilde;o do
+gerenciador e declarar em qual pasta este arquivo est&aacute;
+armazenado (<FONT COLOR="#008080">/D:</FONT>) e de qual pasta devem
+ser carregados os bin&aacute;rios, sejam eles .int, .gnt ou .dll
+(<FONT COLOR="#008080">/C:</FONT>).</P>
+<P>Exemplo:</P>
+<P>Supondo que o gerenciador esteja instalado em C:\COBOLware, o
+configurador do sistema de estoque resida na pasta F:\estoque e os
+bin&aacute;rios em F:\programas\cil e que o usu&aacute;rio tenha
+prefer&ecirc;ncia pela interface gr&aacute;fica:</P>
+<P>C:\COBOLware\cwmenuG.exe /d:F:\ estoque /c:F:\programas\cil</P>
+<P>No ambiente Unix seria pr&aacute;tico escrever um pequeno shell.
+Supondo que o gerenciador esteja instalado em /opt/COBOLware, o
+configurador do sistema de estoque na pasta /estoque e os bin&aacute;rios
+em /programas/cil, o shell teria o seguinte conte&uacute;do:</P>
+<P>cd /opt/COBOLware<BR>./cobware . cwmenu /d:/estoque
+/c:/programas/cil</P>
+<P>Para executar o gerenciador no ambiente Unix &eacute; necess&aacute;rio
+instalar os bin&aacute;rios espec&iacute;ficos para Unix que podem
+ser obtidos por download em <A HREF="http://www.COBOLware.com/">http://www.COBOLware.com</A>.</P>
+<P>A instala&ccedil;&atilde;o do gerenciador em Unix requer apenas a
+cria&ccedil;&atilde;o de uma pasta e descompress&atilde;o do arquivo
+tar.</P>
+<P>Exemplo: 
+</P>
+<P>mkdir /opt/COBOL<FONT COLOR="#ff0000">ware</FONT><BR>cd
+/opt/COBOL<FONT COLOR="#ff0000">ware</FONT><BR>tar -xvf COBOLware.tar</P>
+<TABLE WIDTH=46% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=138*>
+	<COL WIDTH=118*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P>Arquivo de instaladores</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Compila&ccedil;&atilde;o</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P><A HREF="http://www.cobolware.com/download/OC/cobolware.zip">cobolware.com/downlod/OC/obolware.zip</A>
+						</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Micro Focus Object COBOL 4.0.38</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P><A HREF="http://www.cobolware.com/download/NE/cobolware.zip">cobolware.com/download/NE/cobolware.zip</A></P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Micro Focus NetExpress 3.1 
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P><A HREF="http://www.cobolware.com/download/VC/cobolware.zip">cobolware.com/download/VC/cobware.zip</A></P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Micro Focus Visual COBOL 2.1 
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=46% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=138*>
+	<COL WIDTH=118*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P>Membros da pasta compactada cobolware.zip</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Plataforma do instalador</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P>COBOLware.exe</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>IWindows</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P>COBOLware.tar</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Unix/Linux no formato gnt</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=54%>
+			<P>int/COBOLware.tar</P>
+		</TD>
+		<TD WIDTH=46%>
+			<P>Unix/Linux no formato int</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR>Assim que &eacute; executado, o gerenciador abre o arquivo de
+configura&ccedil;&atilde;o na pasta indicada. Se o arquivo n&atilde;o
+for encontrado ser&aacute; emitida uma mensagem de erro e o
+gerenciador se encerra. Por seguran&ccedil;a n&atilde;o existe a
+op&ccedil;&atilde;o de cria&ccedil;&atilde;o pelo gerenciador. Um
+arquivo de configura&ccedil;&atilde;o b&aacute;sica de exemplo pode
+ser encontrado no diret&oacute;rio de instala&ccedil;&atilde;o.<BR><BR>Existindo
+uma configura&ccedil;&atilde;o v&aacute;lida o gerenciador solicita
+usu&aacute;rio e senha de logon no sistema. No arquivo b&aacute;sico
+est&aacute; cadastrado apenas o usu&aacute;rio SUPERVISOR com a senha
+inicial COBOL.</P>
+<TABLE BORDER=1 CELLPADDING=0 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Modo
+			gr&aacute;fico</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><A NAME="_x0000_i10251"></A><A NAME="_x0000_i1025"></A>
+			<IMG SRC="menug.jpg" NAME="figura1" ALIGN=BOTTOM WIDTH=805 HEIGHT=555 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Modo
+			texto</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><A NAME="_x0000_i10261"></A><A NAME="_x0000_i1026"></A>
+			<IMG SRC="menut.jpg" NAME="figura2" ALIGN=BOTTOM WIDTH=807 HEIGHT=584 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<P>Informando usu&aacute;rio e senha ser&aacute; exibido o menu
+conforme o perfil configurado:</P>
+<TABLE BORDER=1 CELLPADDING=0 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">No modo
+			gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><A NAME="_x0000_i10271"></A><A NAME="_x0000_i1027"></A>
+			<IMG SRC="menu2g.jpg" NAME="figura3" ALIGN=BOTTOM WIDTH=805 HEIGHT=557 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">No modo
+			texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P STYLE="border: none; padding: 0cm"><A NAME="_x0000_i10281"></A><A NAME="_x0000_i1028"></A>
+			<IMG SRC="menu2t.jpg" NAME="figura4" ALIGN=BOTTOM WIDTH=803 HEIGHT=516 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><A HREF="f3.html">Configura&ccedil;&atilde;o</A><BR><A HREF="f1.html">Modo
+Help</A><BR><A HREF="f5.html">Spool</A><BR><BR>O gerenciador
+disponibiliza help de contexto. Teclando F1 &eacute; exibido o help
+correspondente ao campo em que estiver posicionado o cursor, teclando
+ALT-H o help &eacute; editado.<BR><BR>Algumas op&ccedil;&otilde;es de
+customiza&ccedil;&atilde;o do <FONT COLOR="#008080">gerenciador</FONT>
+s&atilde;o configuradas atrav&eacute;s de vari&aacute;veis de
+ambiente que podem ser declaradas no sistema operacional ou no
+arquivo cwmenu.ini.</P>
+<P>Vari&aacute;veis reconhecidas:</P>
+<TABLE WIDTH=945 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=211>
+	<COL WIDTH=715>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">COBWARE3</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita o suporte a chamadas de rotinas do COBOLware 3.0 (GRs).</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CONSOLE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Direciona ACCEPTs e DISPLAYs n&atilde;o posicionados para o
+			simulador de console no estilo mainframe, para operar a console &eacute;
+			preciso executar o programa console.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CCITCP2</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Endere&ccedil;o
+			IP do servidor FileShare.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWACCENT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Remove acentua&ccedil;&atilde;o.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWACCENTCONTROL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita o suporte ao controle acentua&ccedil;&atilde;o do modo
+			texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWATTRIBUTE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">nnn</FONT>,
+			C&oacute;digo de cor inicial para programas oriundos do COBOL II
+			Plus da Microbase..</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWAUTO</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Ao preencher totalmente um campo, passa automaticamente para o
+			pr&oacute;ximo.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWAUTOFSERROR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita tratamento autom&aacute;tico de mensagens de erro de FILE
+			STATUS para programas compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWAUTOPATH</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita cria&ccedil;&atilde;o autom&aacute;tica de pastas na
+			abertura de arquivos para programas compilados com a diretiva
+			CALLFH&rdquo;CWSQLC&rdquo;.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWAUTORETRYLOCK</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita tentativa autom&aacute;tica de releitura de registros
+			travados para programas compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWAUTOSPOOL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita o direcionamento autom&aacute;tico para spool de
+			relat&oacute;rios assinalados para PRINTER para programas
+			compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWBACKDEFAULT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">N</FONT>,
+			C&oacute;digo de cor de fundo default para o modo texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWBEEP</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita o sinal sonoro de todos os ACCEPTs.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWBORDER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">N</FONT>,
+			C&oacute;digo fixo de moldura para o modo texto (de 0 a 9).</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWBOXR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita o tratamento do modo radion button na op&ccedil;&atilde;o
+			<FONT COLOR="#008080">NOERASE</FONT> da <FONT COLOR="#008080">CWBOXR</FONT>
+			no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCASE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Upper</FONT>,
+			Vari&aacute;veis convertidas para mai&uacute;sculas <FONT COLOR="#ff0000">Lower</FONT>,
+			Vari&aacute;veis convertidas para Min&uacute;sculas.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCASE-INPUT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Upper</FONT>,
+			Digita&ccedil;&atilde;o convertida para mai&uacute;sculas <FONT COLOR="#ff0000">Lower</FONT>,
+			Digita&ccedil;&atilde;o convertida para Min&uacute;sculas.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCELL-HEIGHT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Altura do
+			caractere em pixels no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCELL-WIDTH</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Largura
+			do caractere em pixels no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCLEAR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desliga a limpeza de tela no inicio da execu&ccedil;&atilde;o de
+			programas sem passar pelo pelo menu no modo texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCOBSW
+			xn</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On/Off</FONT>,
+			Liga ou desliga RTS switches, x = letra da swiche e n = n&uacute;mero
+			da swiche, s&atilde;o interpretados somente via
+			cwmenu.ini.<BR>Exemplos: <BR>CWCOBSW N=On <BR>CWCOBSW P1=Off</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCOLORBARR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">nnn</FONT>,
+			C&oacute;digo de cor da barra de menu do gerenciador no modo
+			texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCOLOR-BARR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">nnn</FONT>,
+			C&oacute;digo de cor da barra de menu de todos os menus no modo
+			texto</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCONF</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Nome alternativo para o
+			<A HREF="f3.html">arquivo de configura&ccedil;&atilde;o </A><A HREF="f3.html"><FONT COLOR="#008000"><FONT FACE="Courier New">cwconf</FONT></FONT></A>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCONF-FS</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita o tratamento do <A HREF="f3.html">arquivo de configura&ccedil;&atilde;o
+			</A><A HREF="f3.html"><FONT COLOR="#008000"><FONT FACE="Courier New">cwconf</FONT></FONT></A>
+			via FileShare.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWICON</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Nome do
+			arquivo de &iacute;cone a ser usado na janela no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCONTROL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita a interpreta&ccedil;&atilde;o de WITH CONTROL em
+			DISPLAY no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWCURSOR-COLOR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">C&oacute;digo
+			de cor do entry-field cursor no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWDISABLED-COLOR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">C&oacute;digo
+			de cor dos entry-fields desabilitados no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWDISPLAY-BARR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Exibe &quot;<FONT COLOR="#ff0000">/</FONT>&quot; em campos
+			editados com &quot;<FONT COLOR="#ff0000">/</FONT>&quot; e cl&aacute;usula
+			BLANK ZERO mesmo com valor zero no modo texto.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWDRIVE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Remove a defini&ccedil;&atilde;o de letras de drive na
+			configura&ccedil;&atilde;o de nomes de arquivos.. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWEDITCHAR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita a altera&ccedil;&atilde;o de campos alfanum&eacute;ricos
+			no modo texto, quando digitada a primeira coluna o resto do campo
+			&eacute; apagado 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWEDITNUM</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Permite a altera&ccedil;&atilde;o valores num&eacute;ricos
+			editados no modo texto.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWENDK</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Trata a tecla End como interrup&ccedil;&atilde;o.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWENTER-TERMINATE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Faz com que a tecla enter encerre o aceite de todos os itens da
+			tela/janela.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWENTRY</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita a emula&ccedil;&atilde;o de apar&ecirc;ncia de
+			entry-field no modo texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWERRORMAIL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Destinat&aacute;rio
+			de emails para relato de erros de runtime.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFAXWORK</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Define
+			pasta de trabalho alternativa para a exibi&ccedil;&atilde;o de
+			figuras no modo texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFIELD-COLOR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">nnn</FONT>,
+			C&oacute;digo de cor para vari&aacute;veis desabilitadas no modo
+			gr&aacute;fico. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFIND</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita a pesquisa em listas de sele&ccedil;&atilde;o.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFILE-CASE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Upper</FONT>,
+			Converte nome de arquivos para mai&uacute;sculas, <FONT COLOR="#ff0000">Lower</FONT>,
+			para min&uacute;sculas. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFONT-FIELD-NAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Nome da
+			fonte para vari&aacute;veis no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFONT-FIELD-WEIGHT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Altura da
+			fonte para vari&aacute;veis&nbsp; no modo gr&aacute;fico</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFONT-FIELD-WIDTH</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Largura
+			da fonte para vari&aacute;veis no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFONT-STATIC-MODE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">Fixed</FONT>,
+			Equipara tamanho das fontes no modo gr&aacute;fico.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFONT-STATIC-NAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Nome da
+			fonte para literais no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFONT-STATIC-WEIGHT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Altura da
+			fonte para literais&nbsp; no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFONT-STATIC-WIDTH</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Largura
+			da fonte para literais no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFOOTLINE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Numero de
+			linha para posicionamento da linha de rodap&eacute; dos m&oacute;dulos
+			de configura&ccedil;&atilde;o do gerenciador quando definido
+			<FONT COLOR="#008080">CWFRAMEPGM</FONT>.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFRAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita exibi&ccedil;&atilde;o de caracteres de moldura no modo
+			gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFRAMEPGM</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Nome de
+			<A HREF="cwframe.html">programa</A> de tratamento de padr&atilde;o
+			de tela alternativo para o modo texto.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFOREBACK</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita diferenciamento autom&aacute;tico de coincid&ecirc;ncias
+			de c&oacute;digos de cor do fundo com a cor do texto que torna os
+			caracteres invis&iacute;veis.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFORCE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Define como obrigat&oacute;rio o cadastramento dos arquivos. 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFS35</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita retorno de FILE STATUS 35 para facilitar a convers&atilde;o
+			de programas do padr&atilde;o Microsoft o c&oacute;digos menores
+			que 10 e o valor 42 retornam 00 conforme o padr&atilde;o Microbase
+			(v&aacute;lido para programas compilados com a diretiva
+			CALLFH&rdquo;CWSQLC&rdquo;).</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFSFATAL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Lista de
+			c&oacute;digos de FILE STATUS que devem encerrar o sistema (v&aacute;lido
+			para programas compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;),
+			cada c&oacute;digo deve ser separado por v&iacute;rgula, exemplo:
+			39,30,9*.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFSIGNORE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Lista de
+			c&oacute;digos de FILE STATUS que devem n&atilde;o devem gerar
+			mensagem autom&aacute;tica (v&aacute;lido para programas
+			compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;), cada c&oacute;digo
+			deve ser separado por v&iacute;rgula, exemplo: 39,30,9*.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFSREPLACE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Tabela de
+			correspond&ecirc;ncia de c&oacute;digos de FILE STATUS para
+			compatibilidade de l&oacute;gica de programas portados de outras
+			implementa&ccedil;&otilde;es COBOL (v&aacute;lido para programas
+			compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;), cada c&oacute;digo
+			deve ser separado por v&iacute;rgula com a correspond&ecirc;ncia
+			indicada por um sinal de igual, exemplo: 35=30,9D=99.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFSRETRY</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Lista de
+			c&oacute;digos de FILE STATUS que indica quando a opera&ccedil;&atilde;o
+			mal sucedida deve ser repetida continuamente at&eacute; que seja
+			obtido sucesso (v&aacute;lido para programas compilados com a
+			diretiva CALLFH&rdquo;CWSQLC&rdquo;), cada c&oacute;digo deve ser
+			separado por v&iacute;rgula, exemplo: 9A,9#,9D.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFULL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Nome de
+			bitmap para tela em branco.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWFULLMODE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Menu</FONT>,
+			Exibe bitmap para tela em branco somente durante o menu.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWGETLABEL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita a atribui&ccedil;&atilde;o autom&aacute;tica da
+			propriedade definida na tabela de arquivos para VALUE OF FILE-ID
+			em programas compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;
+			desde que o tamanho da vari&aacute;vel comporte o valor, do
+			contr&aacute;rio o nome do arquivo ser&aacute; transparente
+			manipulado apenas pelo CWSQLC.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWGUICOLOR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita o tratamento de FOREGROUND-COLOR e BACKGROUND-COLOR no
+			modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWGUICOLOR-ACCEPT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita a heran&ccedil;a de atributos de cor para entry-fields
+			no modo gr&aacute;fico.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWGUINEW</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Lista de
+			caracteres substitutos (deve ter correspond&ecirc;ncia com
+			<FONT COLOR="#008080">CWGUIOLD</FONT>).</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWGUIOLD</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Lista de
+			caracteres a serem substitu&iacute;dos (deve ter correspond&ecirc;ncia
+			com <FONT COLOR="#008080">CWGUINEW</FONT>).</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Programa COBOL alternativo a
+			<A HREF="help.html">CWHELP</A> para o modo gr&aacute;fico.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELPINPUT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">Windows</FONT>,
+			Indica que os arquivos texto de ajuda (<A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>)
+			possuem acentua&ccedil;&atilde;o codificada no padr&atilde;o
+			Windows..</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELPOBS</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita exibi&ccedil;&atilde;o de &quot;Fim arquivo de ajuda&quot;
+			na fun&ccedil;&atilde;o <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>
+			modo texto.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-FONT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Nome de fonte para o texto
+			de ajuda (<A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>).</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-COLOR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">nnn</FONT>,
+			C&oacute;digo de cor para o texto de ajuda (<A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>).</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-WIDTH</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Largura da fonte para <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-HEIGHT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Altura da fonte para <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-FIXED</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita estilo de fonte fixa para <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-BOLD</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita estilo de fonte negrito para <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-ITALIC</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita estilo de fonte it&aacute;lica para <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-STRIKE-OUT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita estilo de fonte riscado para <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWHELP-UNDERLINE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita estilo de fonte sublinhado para <A HREF="help.html"><FONT COLOR="#008080">Help</FONT></A>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWIMPR-QUIET</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita o modo quiet na fun&ccedil;&atilde;o <A HREF="prin.html"><FONT COLOR="#008080">Print
+			Report</FONT></A> no modo texto.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWIMPR-SIZE-PAGE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">nnn</FONT>,
+			Numero de linhas por p&aacute;gina em alternativa ao default 59.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWIMPR-SIZE-PAGE-nnn</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">nnn</FONT>,
+			Numero de linhas por p&aacute;gina em alternativa ao default 59
+			espec&iacute;fico para a largura <FONT COLOR="#008080"><FONT FACE="Arial">nnn</FONT></FONT>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWIMPR--USER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Atribui relat&oacute;rios a
+			um determinado usu&aacute;rio.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWINISHOW</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Exibe na linha 25 o nome relativo do cwmenu.ini carregado.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWJUST</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Off</FONT>,
+			Desabilita a op&ccedil;&atilde;o de no modo texto os campos
+			alfanum&eacute;rico alinhados a direita serem durante digita&ccedil;&otilde;es
+			alinhados a esquerda.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLEVEL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Padroniza para <FONT COLOR="#ff0000">/</FONT>
+			ou <FONT COLOR="#ff0000">\</FONT>, os indicadores de n&iacute;veis
+			de pastas o cadastro de arquivos . 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLITS</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">Upper</FONT>,
+			Literais convertidas para mai&uacute;sculas <FONT COLOR="#ff0000">Lower</FONT>,
+			Literais convertidas para Min&uacute;sculas.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOADS</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Lista de
+			nomes programas, DLLs ou bibliotecas para carga na inicializa&ccedil;&atilde;o
+			do gerenciador. (Separados por espa&ccedil;os, v&iacute;rgulas
+			&ldquo;,&rdquo;, dois pontos &ldquo;;&rdquo; pipes &ldquo;|&rdquo;
+			ou ponto e virgula &ldquo;;&rdquo;)</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOCATE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita o retorno do caminho completo da pasta corrente na
+			configura&ccedil;&atilde;o de labels quando o arquivo cadastrado
+			n&atilde;o possui caminho declarado.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOCKNEW</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial"><FONT COLOR="#ff0000">On</FONT>,
+			Habilita o bloqueio autom&aacute;tico em todos os grupos para
+			novos programas adicionados ao menu. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOCKS</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Indica
+			nome de arquivo onde deve ser mantido o controle de travamento de
+			registros para programas compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;
+			, esse recurso visa dar subs&iacute;dios para a localiza&ccedil;&atilde;o
+			de dead locks, para visualizar os recursos travados pode ser
+			utilizado o programa CWLOCKV.</FONT></P>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Os books
+			e <A HREF="LOCKS.sl">SELECT</A> e <A HREF="LOCKS.fd">FD</A>
+			permitem o desenvolvimento de um programa pr&oacute;prio de
+			consultas de travamentos, nesse caso, os registros </FONT><FONT COLOR="#7e0021"><FONT FACE="Arial">n&atilde;o
+			travados</FONT></FONT> <FONT FACE="Arial">desse arquivo devem ser
+			desconsiderados, pois &eacute; justamente a situa&ccedil;&atilde;o
+			de travado &eacute; que indica que o recurso ainda est&aacute; em
+			uso.<BR><BR>Para que a leitura n&atilde;o fique parada em um
+			registro travado (status = &ldquo;9D&rdquo;) basta fazer executar
+			</FONT><FONT COLOR="#c5000b"><FONT FACE="Arial">START LOCKS KEY
+			GREATER nome-da-chave</FONT></FONT><FONT FACE="Arial">, assim o
+			</FONT><FONT COLOR="#c5000b"><FONT FACE="Arial">READ LOCKS NEXT
+			RECORD</FONT></FONT><FONT FACE="Arial">, sair&aacute; do registro
+			travado corrente.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOGO</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Substituto ao indicador
+			<FONT COLOR="#0000ff">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT>,
+			<FONT COLOR="#ff0000">Off</FONT> desabilita.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOGON-COLOR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">nnn</FONT>,
+			C&oacute;digo de cor da janela de <A HREF="#logon">logon</A>&nbsp;no
+			modo gr&aacute;fico.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOGON-COLUMN</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="#logon"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Coluna
+			de posicionamento da janela de </SPAN></FONT>logon<FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+			no modo gr&aacute;fico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOGON-LINE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="#logon"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Linha
+			de posicionamento da janela de </SPAN></FONT>logon<FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+			no modo gr&aacute;fico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWLOGPGM</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Nome de programa alternativo
+			para receber usu&aacute;rio e senha no momento do login no modo
+			gr&aacute;fico, par&acirc;metros: USUARIO, SENHA ambos PIC X(30) e
+			RESPOSTA PIC X(1) que deve retornar 'Y' caso o usu&aacute;rio
+			desista de efetuar o login.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWMD5DIR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Define em qual diret&oacute;rio
+			devem ser sem mantidos os controles de layout dos documentos XML e
+			JSON utilizados pelo comado <A HREF="xml.html">XML</A> e <A HREF="json.html">JSON</A>
+			respectivamente, o default &eacute; $COBOLWARE/md5.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWMENU-CLOSE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">Off</FONT>,
+			mantem a janela gr&aacute;fica aberta quando chamar programa que
+			utilize SP2.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWMENU-F9</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#ff0000">Descri&ccedil;&atilde;o,Programa</FONT>,
+			Define descri&ccedil;&atilde;o e programa para a tecla F9 no menu
+			principal.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWMENU-HELP</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="#logon"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Nome
+			de programa help alternativo para o modo help.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWMENUCOMMENT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="#logon"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Exibe coment&aacute;rios dos menus como op&ccedil;&otilde;es
+			desabilitadas no modo gr&aacute;fico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWMENULIST</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="#logon"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Classifica a lista de programas por posi&ccedil;&atilde;o no menu
+			durante a </SPAN></FONT>manuten&ccedil;&atilde;o de grupos<FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWMENUPAGE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f3-grupos.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			O itens dos menus secund&aacute;rios exibem os n&uacute;meros das
+			p&aacute;ginas para as quais apontam; </SPAN></FONT><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">All</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			exibe tamb&eacute;m nos itens de menu prim&aacute;rio.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWNOFRAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f3-grupos.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Desabilita moldura padr&atilde;o do modo texto.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWNOPENEDS</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Nome de arquivo onde deve
+			ser gravada a lista de nomes dos arquivos abertos caso o limite de
+			arquivos abertos simultaneamente do ambiente seja atingido.
+			<FONT FACE="Arial">(v&aacute;lido para programas compilados com a
+			diretiva CALLFH&rdquo;CWSQLC&rdquo;).</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWODBCSTRING</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">String de conex&atilde;o a
+			ODBC p<FONT FACE="Arial">ara programas compilados com a diretiva
+			CALLFH&rdquo;CWSQLC&rdquo;.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPASSWORD</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715 VALIGN=BOTTOM>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f3-grupos.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Senha
+			para logon autom&aacute;tico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPAUSE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715 VALIGN=BOTTOM>
+			<P STYLE="border: none; padding: 0cm">Nome de arquivo de bloqueio
+			de I/O do sistema p<FONT FACE="Arial">ara programas compilados com
+			a diretiva CALLFH&rdquo;CWSQLC&rdquo; enquanto esse arquivo
+			existir nenhuma opera&ccedil;&atilde;o de I/O ser&aacute;
+			permitida e o sistema fica em espera.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPREFIX</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f3-grupos.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Declara
+			caminho padr&atilde;o para retornado cadastro de arquivos. </SPAN></FONT></A>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPRINTFONT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Fonte
+			para impress&atilde;o via Windows.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPURGEPRINT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Apaga relat&oacute;rios gerados em spool quando impressos.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPURGEVIEW</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Apaga relat&oacute;rios gerados em spool no modo auto-visualiza&ccedil;&atilde;o
+			quando visualizados.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPUSH-WIDTH</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Largura
+			da fonte para push-buttons.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPUSH-HEIGHT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Altura
+			da fonte para push-buttons.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPUSH-FIXED</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte fixa para push-buttons.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPUSH-BOLD</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte negrito para push-buttons.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPUSH-ITALIC</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte it&aacute;lica para push-buttons.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPUSH-STRIKE-OUT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte riscado para push-buttons.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWPUSH-UNDERLINE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte sublinhado para push-buttons.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWREFRESH</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Atualiza&ccedil;&atilde;o
+			de telas por comando DISPLAY.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWREMOVE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Lista
+			de caracteres que n&atilde;o devem ser exibidos no modo gr&aacute;fico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWREMINDER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715 VALIGN=BOTTOM>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">Off</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Desabilita o recurso de lembrete de senhas.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWREPORTEXTMAIL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715 VALIGN=BOTTOM>
+			<P STYLE="border: none; padding: 0cm">Texto de at&eacute; 255
+			caracteres para o corpo dos e-mail de envio de relat&oacute;rios
+			pelo comando <A HREF="prin.html"><FONT COLOR="#008080">Print</FONT>
+			<FONT COLOR="#008080">Report</FONT></A>, o caractere &ldquo;^&rdquo;
+			&eacute; interpretado como fim de linha. 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWRESOLUTION</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715 VALIGN=BOTTOM>
+			<P STYLE="border: none; padding: 0cm">Define o tamanho da janela
+			no modo gr&aacute;fico, valores v&aacute;lidos de <FONT COLOR="#ff0000">1</FONT>
+			a <FONT COLOR="#ff0000">4</FONT>.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWREWRITE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715 VALIGN=BOTTOM>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">Off</SPAN></FONT></A>,
+			Substitui o comando REWRITE no tratamento de arquivos indexados
+			por um DELETE RECORD e em seguida um WRITE, se n&atilde;o houver
+			modifica&ccedil;&otilde;es no registro nenhuma opera&ccedil;&atilde;o
+			ser&aacute; realizada, (para <FONT FACE="Arial">programas
+			compilados com a diretiva CALLFH&rdquo;CWSQLC&rdquo;) </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWRITEATTR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">Off</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Desabilita o tratamento de atributos de cor das rotinas
+			CBL_SCR_WRITE no modo gr&aacute;fico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWRTSW</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Programa
+			alternativo para visualizar mensagens de runtime.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSHOWFAX</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="pict.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita a exibi&ccedil;&atilde;o de imagens no comando PICTURE no
+			modo texto utilizando o Visualizador de Fax do Windows. </SPAN></FONT></A>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSPLTMP</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Pasta
+			para arquivos tempor&aacute;rios espec&iacute;fica para </SPAN></FONT></A><A HREF="f5.html">spool<FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSEND-OK</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="pict.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			determina que a op&ccedil;&atilde;o default seja OK em mensagens
+			que solicitem somente OK/Cancelar. . </SPAN></FONT></A>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSPOOLVIEW</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Programa
+			alternativo para visualizar relat&oacute;rios, o caractere $
+			indica a posi&ccedil;&atilde;o no nome do arquivo na linha de
+			comando.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSPOOLHANDLER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Programa
+			alternativo para manipular o diret&oacute;rio de <A HREF="f5.html">spool</A>
+			(relat&oacute;rios gerados) <BR>O caractere </SPAN></FONT><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">?</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+			Indica o nome e a posi&ccedil;&atilde;o na linha de comando do
+			arquivo a ser gerado contendo a exporta&ccedil;&atilde;o da lista
+			de relat&oacute;rios armazenados no <A HREF="f5.html">spool</A>.<BR>S&atilde;o
+			suportados os formatos XML, JSON, DBF e TXT delimitado por &ldquo;|&rdquo;.
+			<BR>O caractere </SPAN></FONT><FONT COLOR="#9966cc"><SPAN STYLE="text-decoration: none">#</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+			indica um d&iacute;gito n&uacute;mero da task que visa obter nomes
+			exclusivos do processo.<BR><BR>Exemplos:<BR><BR>explorer
+			</SPAN></FONT><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">?</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">lista</SPAN></FONT><FONT COLOR="#9966cc"><SPAN STYLE="text-decoration: none">###</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.xml<BR>notepad
+			</SPAN></FONT><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">?</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">lista</SPAN></FONT><FONT COLOR="#9966cc"><SPAN STYLE="text-decoration: none">##</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.txt<BR>dbu
+			</SPAN></FONT><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">?</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">lista</SPAN></FONT><FONT COLOR="#9966cc"><SPAN STYLE="text-decoration: none">###</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.dbf</SPAN></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSPOOLTEXTMAIL</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm">Texto de at&eacute; 255
+			caracteres para o corpo dos e-mails de envio de relat&oacute;rios
+			pelo <A HREF="f5.html"><FONT COLOR="#008080">spool</FONT></A>, o
+			caractere &ldquo;^&rdquo; &eacute; interpretado como fim de linha.
+						</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSPOOL-FONT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Nome
+			de fonte para o visualizador de relat&oacute;rios no modo gr&aacute;fico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">CWSPOOL-COLOR</SPAN></FONT></A></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">nnn</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			C&oacute;digo de cor para o </SPAN></FONT></A><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none"><A HREF="f5.html">spool</A><A HREF="f5.html">.</A></SPAN></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">CWSPOOL-WIDTH</SPAN></FONT></A></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Largura
+			da fonte para </SPAN></FONT><FONT COLOR="#008080">spool.</FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">CWSPOOL-HEIGHT</SPAN></FONT></A></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Altura
+			da fonte para </SPAN></FONT><FONT COLOR="#008080">spool</FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">CWSPOOL-FIXED</SPAN></FONT></A></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte fixa para </SPAN></FONT><FONT COLOR="#008080">spool</FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">CWSPOOL-BOLD</SPAN></FONT></A></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte negrito para </SPAN></FONT><FONT COLOR="#008080">spool</FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">CWSPOOL-ITALIC</SPAN></FONT></A></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte it&aacute;lica para </SPAN></FONT><FONT COLOR="#008080">spool</FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">CWSPOOL-STRIKE-OUT</SPAN></FONT></A></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte riscado para </SPAN></FONT><FONT COLOR="#008080">spool</FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSPOOL-UNDERLINE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Habilita estilo de fonte sublinhado para </SPAN></FONT><FONT COLOR="#008080">spool</FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSTATIC-COLOR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">C&oacute;digo
+			de cor para literais no modo gr&aacute;fico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWTITLE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">T&iacute;tulo
+			da janela para o modo texto-Windows.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSECURECHAR</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Caractere
+			de exibi&ccedil;&atilde;o na entrada de campos invis&iacute;veis
+			no modo texto. </SPAN></FONT><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">Off</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
+			para exibir somente o cursor.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWSUFIX</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Declara
+			extens&atilde;o padr&atilde;o para retorno de nomes de arquivos
+			cadastrados. </SPAN></FONT><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">Off</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			remove a extens&atilde;o cadastrada. </SPAN></FONT></A>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWTOP-BMP</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Nome
+			de bitmap para primeiras 6 linhas em branco.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWUPDATE</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT></A>,
+			Trata todos os ACCEPTs como WITH UPDATE.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWUSERNAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Usu&aacute;rio
+			para logon autom&aacute;tico.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">CWZEROSUPRESS</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="f5.html"><FONT COLOR="#ff0000"><SPAN STYLE="text-decoration: none">On</SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">,
+			Suprime exibi&ccedil;&atilde;o de um zero como identificador de
+			ACCEPT num&eacute;rico no modo texto.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">DB-LINK</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Nome
+			de banco para conex&atilde;o com Oracle.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">FSPASSWORD</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Senha
+			pra conex&atilde;o ao FileShare.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">FSSERVER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Nome
+			do servidor FileShare.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">FSUSERNAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><A HREF="getf.html"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">Usu&aacute;rio
+			para conex&atilde;o ao FileShare.</SPAN></FONT></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">HOTKEY-nnn</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT SIZE=3>Programa COBOL
+			a ser executado ao pressionar determinada tecla. onde nnn &eacute;
+			o c&oacute;digo da tecla conforme o CWKEYS.CPY (3 d&iacute;gitos)</FONT>
+						</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">ORACLE-PASSWORD</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Senha
+			para conex&atilde;o com Oracle.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">ORACLE-USERNAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Usu&aacute;rio
+			para conex&atilde;o com Oracle.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">ORACLE-STRING</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">String
+			para conex&atilde;o com Oracle.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">SMTPSERVER</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Nome de
+			servidor SMTP em alternativa ao default mail.cobolware.com</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">SMTPUSERNAME</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Usu&aacute;rio
+			do servidor SMTP em alternativa ao default spool@cobolware.com.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">SMTPPASSWORD</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Senha do
+			usu&aacute;rio do servidor SMTP alternativo.</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=211>
+			<P STYLE="border: none; padding: 0cm"><FONT COLOR="#008080"><FONT FACE="Arial">SMTPPPORT</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=715>
+			<P STYLE="border: none; padding: 0cm"><FONT FACE="Arial">Porta
+			alternativa para o servidor SMTP.</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0.42cm">&nbsp;</P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

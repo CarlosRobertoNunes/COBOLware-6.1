@@ -1,0 +1,98 @@
+       01  LINHAS-DE-IMPRESSAO-CLIC.
+       02  LINHA-01.
+           05 FILLER                         PIC  X(055) VALUE
+              "A corrupá∆o de °ndices n∆o Ç um problema de software ma".
+           05 FILLER                         PIC  X(005) VALUE
+              "s Ç o".
+       02  LINHA-02.
+           05 FILLER                         PIC  X(055) VALUE
+              "software  que  detecta  um  problema  causado  por  fal".
+           05 FILLER                         PIC  X(005) VALUE
+              "ha no".
+       02  LINHA-03.
+           05 FILLER                         PIC  X(055) VALUE
+              "hardware tais como:  defeitos no processador, pode ter ".
+           05 FILLER                         PIC  X(005) VALUE
+              " sido".
+       02  LINHA-04.
+           05 FILLER                         PIC  X(055) VALUE
+              "feito um overcloking (procedimento que foráa o processa".
+           05 FILLER                         PIC  X(005) VALUE
+              "dor a".
+       02  LINHA-05.
+           05 FILLER                         PIC  X(055) VALUE
+              "operar em  uma freqÅància  superior a  qual foi  projet".
+           05 FILLER                         PIC  X(005) VALUE
+              "ado),".
+       02  LINHA-06.
+           05 FILLER                         PIC  X(055) VALUE
+              "super aquecimento, erros de mem¢ria, variaáDes de tens∆".
+           05 FILLER                         PIC  X(005) VALUE
+              "o  na".
+       02  LINHA-07.
+           05 FILLER                         PIC  X(055) VALUE
+              "rede  elÇtrica  e  problemas  da  placa  de  rede de um".
+           05 FILLER                         PIC  X(005) VALUE
+              "a das".
+       02  LINHA-08.
+           05 FILLER                         PIC  X(055) VALUE
+              "estaáDes ou mesmo do servidor.  Outra causa comum Ç o  ".
+           05 FILLER                         PIC  X(005) VALUE
+              "campo".
+       02  LINHA-09.
+           05 FILLER                         PIC  X(055) VALUE
+              "eletro-magnÇtico  gerado   pelas  correntes   elÇtricas".
+           05 FILLER                         PIC  X(005) VALUE
+              "  que".
+       02  LINHA-10.
+           05 FILLER                         PIC  X(055) VALUE
+              "atravessam os cabos de foráa, se a distÉncia entre os  ".
+           05 FILLER                         PIC  X(005) VALUE
+              "cabos".
+       02  LINHA-11.
+           05 FILLER                         PIC  X(055) VALUE
+              "de rede e  os de foráa  for inferior a  20 cm, estes  c".
+           05 FILLER                         PIC  X(005) VALUE
+              "ampos".
+       02  LINHA-12.
+           05 FILLER                         PIC  X(055) VALUE
+              "podem  comprometer  a  qualidade  da  transmiss∆o de da".
+           05 FILLER                         PIC  X(005) VALUE
+              "dos e".
+       02  LINHA-13.
+           05 FILLER                         PIC  X(055) VALUE
+              "corromper  arquivos  no  servidor.    Os  arquivos  de ".
+           05 FILLER                         PIC  X(005) VALUE
+              "dados".
+       02  LINHA-14.
+           05 FILLER                         PIC  X(055) VALUE
+              "possuem dois volumes:   o de  dados e o  de °ndice, a  ".
+           05 FILLER                         PIC  X(005) VALUE
+              "opá∆o".
+       02  LINHA-15.
+           05 FILLER                         PIC  X(055) VALUE
+              "'Restaurar' cria um novo volume  de °ndices em funá∆o d".
+           05 FILLER                         PIC  X(005) VALUE
+              "o  de".
+       02  LINHA-16.
+           05 FILLER                         PIC  X(055) VALUE
+              "dados mas  se o  volume de  dados tambÇm  estiver corro".
+           05 FILLER                         PIC  X(005) VALUE
+              "mpido".
+       02  LINHA-17.
+           05 FILLER                         PIC  X(055) VALUE
+              "pode haver perda de informaá‰es, Ç recomend†vel comunic".
+           05 FILLER                         PIC  X(005) VALUE
+              "ar  a".
+       02  LINHA-18.
+           05 FILLER                         PIC  X(055) VALUE
+              "situaá∆o a um especialista em hardware e redes para ras".
+           05 FILLER                         PIC  X(005) VALUE
+              "trear".
+       02  LINHA-19.
+           05 FILLER                         PIC  X(055) VALUE
+              "o ambiente a fim de evitar que o problema volte e a oco".
+           05 FILLER                         PIC  X(005) VALUE
+              "rrer.".
+       01  REDEFINES LINHAS-DE-IMPRESSAO-CLIC.
+           06 LINHA-60 PIC X(060) OCCURS 18.

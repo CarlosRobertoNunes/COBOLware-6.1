@@ -1,0 +1,498 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware 6.1 - Cores</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="0;0">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20110613;17504200">
+        <!-- saved from url=(0037)file://G:\INTERNET\manual\CWTIME.html -->
+        <STYLE TYPE="text/css">
+        <!--
+                TD P { color: #000000; font-family: "Arial" }
+                H1 { color: #000000 }
+                P { color: #000000; font-family: "Arial" }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1 ALIGN=JUSTIFY>Cores</H1>
+<P ALIGN=JUSTIFY>Tabela de cores.<BR><BR>Os nomes <FONT COLOR="#008080">BLACK</FONT>,
+<FONT COLOR="#008080">BLUE</FONT>, <FONT COLOR="#008080">GREEN</FONT>,
+<FONT COLOR="#008080">CYAN</FONT>, <FONT COLOR="#008080">MAGENTA</FONT>,
+<FONT COLOR="#008080">BROW</FONT> e <FONT COLOR="#008080">WHITE</FONT>
+podem ser usados como argumentos para as cl&aacute;usulas
+BACKGROUND-COLOR e FOREGROUND-COLOR. Os demais s&atilde;o v&aacute;lidos
+para o preenchimento de atributos de cor dos <A HREF="precomp.html"><FONT COLOR="#008080">comandos
+de extens&atilde;o</FONT></A>, por exemplo no atributo de cor do
+comando <A HREF="boxd.html#cor"><FONT COLOR="#008080">BoxDialog</FONT></A>.</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="BLACK"></A><A NAME="BLUE"></A><A NAME="GREEN"></A><A NAME="CYAN"></A><A NAME="RED"></A><A NAME="MAGENTA"></A><A NAME="BROWN"></A><A NAME="WHITE"></A>
+                        <FONT FACE="Courier New">01&nbsp; COLOR-ATRIBUTES.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">BLACK</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">0</FONT>.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">BLUE</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">1</FONT>.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">GREEN</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">2</FONT>.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">CYAN</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">3</FONT>.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">RED</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">4</FONT>.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">MAGENTA</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">5</FONT>.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">BROWN</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">6</FONT>.<BR>&nbsp;&nbsp;&nbsp;
+                        05 <FONT COLOR="#008080">WHITE</FONT> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC 9(1) VALUE <FONT COLOR="#ff0000">7</FONT>.</FONT></P>
+                </TD>
+                <TD>
+                        <P ALIGN=LEFT><FONT FACE="Courier New"><BR>Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><BR><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT>&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05
+                        </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">000</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">001</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">002</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">003</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">004</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-MAGENTA-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">005</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">006</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">007</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">008</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">009</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">010</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">011</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">012</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-MAGENTA-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">013</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">014</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLACK-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">015</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#000000">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="BLUE-BLACK-LOW"></A><A NAME="BLUE-BLUE-LOW"></A><A NAME="BLUE-GREEN-LOW"></A><A NAME="BLUE-CYAN-LOW"></A><A NAME="BLUE-RED-LOW"></A><A NAME="BLUE-MAGENTA-LOW"></A><A NAME="BLUE-BROWN-LOW"></A><A NAME="BLUE-WHITE-LOW"></A><A NAME="BLUE-BLACK-HIGH"></A><A NAME="BLUE-BLUE-HIGH"></A><A NAME="BLUE-GREEN-HIGH"></A><A NAME="BLUE-CYAN-HIGH"></A><A NAME="BLUE-RED-HIGH"></A><A NAME="BLUE-MAGENTA-HIGH"></A><A NAME="BLUE-BROWN-HIGH"></A><A NAME="BLUE-WHITE-HIGH"></A>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">016</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">017</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">018</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">019</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">020</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-MAGENTA-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">021</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">022</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">023</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">024</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">025</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">026</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">027</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">028</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-MAGENTA-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">029</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">030</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BLUE-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">031</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#0000ff">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="GREEN-BLACK-LOW"></A><A NAME="GREEN-BLUE-LOW"></A><A NAME="GREEN-GREEN-LOW"></A><A NAME="GREEN-CYAN-LOW"></A><A NAME="GREEN-RED-LOW"></A><A NAME="GREEN-MAGENTA-LOW"></A><A NAME="GREEN-BROWN-LOW"></A><A NAME="GREEN-WHITE-LOW"></A><A NAME="GREEN-BLACK-HIGH"></A><A NAME="GREEN-BLUE-HIGH"></A><A NAME="GREEN-GREEN-HIGH"></A><A NAME="GREEN-CYAN-HIGH"></A><A NAME="GREEN-RED-HIGH"></A><A NAME="GREEN-MAGENTA-HIGH"></A><A NAME="GREEN-BROWN-HIGH"></A><A NAME="GREEN-WHITE-HIGH"></A>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">032</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">033</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">034</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">035</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">036</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-MAGENTA-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">037</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">038</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">039</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">040</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">041</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">042</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">043</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">044</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-MAGENTA-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">045</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">046</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">GREEN-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">047</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#008000">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="CYAN-BLACK-LOW"></A><A NAME="CYAN-BLUE-LOW"></A><A NAME="CYAN-GREEN-LOW"></A><A NAME="CYAN-CYAN-LOW"></A><A NAME="CYAN-RED-LOW"></A><A NAME="CYAN-MAGENTA-LOW"></A><A NAME="CYAN-BROWN-LOW"></A><A NAME="CYAN-WHITE-LOW"></A><A NAME="CYAN-BLACK-HIGH"></A><A NAME="CYAN-BLUE-HIGH"></A><A NAME="CYAN-GREEN-HIGH"></A><A NAME="CYAN-CYAN-HIGH"></A><A NAME="CYAN-RED-HIGH"></A><A NAME="CYAN-MAGENTA-HIGH"></A><A NAME="CYAN-BROWN-HIGH"></A><A NAME="CYAN-WHITE-HIGH"></A>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">048</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">049</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">050</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">051</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">052</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-MAGENTA-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">053</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">054</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">055</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">056</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">057</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">058</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">059</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">060</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-MAGENTA-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">061</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">062</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">CYAN-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">063</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#00ffff">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="RED-BLACK-LOW"></A><A NAME="RED-BLUE-LOW"></A><A NAME="RED-GREEN-LOW"></A><A NAME="RED-CYAN-LOW"></A><A NAME="RED-RED-LOW"></A><A NAME="RED-MAGENTA-LOW"></A><A NAME="RED-BROWN-LOW"></A><A NAME="RED-WHITE-LOW"></A><A NAME="RED-BLACK-HIGH"></A><A NAME="RED-BLUE-HIGH"></A><A NAME="RED-GREEN-HIGH"></A><A NAME="RED-CYAN-HIGH"></A><A NAME="RED-RED-HIGH"></A><A NAME="RED-MAGENTA-HIGH"></A><A NAME="RED-BROWN-HIGH"></A><A NAME="RED-WHITE-HIGH"></A>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">064</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">065</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">066</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">067</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">068</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-MAGENTA-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">069</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">070</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">071</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">072</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">073</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">074</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">075</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">076</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-MAGENTA-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">077</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">078</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">RED-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">079</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#ff0000">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="MAGENTA-BLACK-LOW"></A><A NAME="MAGENTA-BLUE-LOW"></A><A NAME="MAGENTA-GREEN-LOW"></A><A NAME="MAGENTA-CYAN-LOW"></A><A NAME="MAGENTA-RED-LOW"></A><A NAME="MAGENTA-MAGENTA-LOW"></A><A NAME="MAGENTA-BROWN-LOW"></A><A NAME="MAGENTA-WHITE-LOW"></A><A NAME="MAGENTA-BLACK-HIGH"></A><A NAME="MAGENTA-BLUE-HIGH"></A><A NAME="MAGENTA-GREEN-HIGH"></A><A NAME="MAGENTA-CYAN-HIGH"></A><A NAME="MAGENTA-RED-HIGH"></A><A NAME="MAGENTA-MAGENTA-HIGH"></A><A NAME="MAGENTA-BROWN-HIGH"></A><A NAME="MAGENTA-WHITE-HIGH"></A>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">080</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">081</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">082</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">083</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">084</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-MAGENTA-LOW</FONT></FONT>
+                        &nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">085</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">086</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">087</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">088</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">089</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">090</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">091</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">092</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-MAGENTA-HIGH</FONT></FONT>
+                        <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">093</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">094</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">MAGENTA-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">095</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#ff00ff">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="BROWN-BLACK-LOW"></A><A NAME="BROWN-BLUE-LOW"></A><A NAME="BROWN-GREEN-LOW"></A><A NAME="BROWN-CYAN-LOW"></A><A NAME="BROWN-RED-LOW"></A><A NAME="BROWN-MAGENTA-LOW"></A><A NAME="BROWN-BROWN-LOW"></A><A NAME="BROWN-WHITE-LOW"></A><A NAME="BROWN-BLACK-HIGH"></A><A NAME="BROWN-BLUE-HIGH"></A><A NAME="BROWN-GREEN-HIGH"></A><A NAME="BROWN-CYAN-HIGH"></A><A NAME="BROWN-RED-HIGH"></A><A NAME="BROWN-MAGENTA-HIGH"></A><A NAME="BROWN-BROWN-HIGH"></A><A NAME="BROWN-WHITE-HIGH"></A>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">096</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">097</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">098</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">099</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">100</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-MAGENTA-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">101</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">102</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">103</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">104</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">105</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">106</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">107</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">108</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-MAGENTA-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">109</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">110</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">BROWN-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">111</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#808000">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+        <TR VALIGN=TOP>
+                <TD>
+                        <P ALIGN=LEFT><A NAME="WHITE-BLACK-LOW"></A><A NAME="WHITE-BLUE-LOW"></A><A NAME="WHITE-GREEN-LOW"></A><A NAME="WHITE-CYAN-LOW"></A><A NAME="WHITE-RED-LOW"></A><A NAME="WHITE-MAGENTA-LOW"></A><A NAME="WHITE-BROWN-LOW"></A><A NAME="WHITE-WHITE-LOW"></A><A NAME="WHITE-BLACK-HIGH"></A><A NAME="WHITE-BLUE-HIGH"></A><A NAME="WHITE-GREEN-HIGH"></A><A NAME="WHITE-CYAN-HIGH"></A><A NAME="WHITE-RED-HIGH"></A><A NAME="WHITE-MAGENTA-HIGH"></A><A NAME="WHITE-BROWN-HIGH"></A><A NAME="WHITE-WHITE-HIGH"></A>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-BLACK-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">112</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-BLUE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">113</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-GREEN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">114</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-CYAN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">115</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-RED-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">116</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-MAGENTA-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">117</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-BROWN-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">118</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-WHITE-LOW</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">119</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-BLACK-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">120</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-BLUE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">121</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-GREEN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">122</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-CYAN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3)
+                        VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">123</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-RED-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC
+                        9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">124</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-MAGENTA-HIGH</FONT></FONT>
+                        &nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">125</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-BROWN-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">126</FONT></FONT><FONT FACE="Courier New">.<BR>&nbsp;&nbsp;&nbsp;
+                        05 </FONT><FONT COLOR="#008080"><FONT FACE="Courier New">WHITE-WHITE-HIGH</FONT></FONT>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <FONT FACE="Courier New">PIC 9(3) VALUE
+                        </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">127</FONT></FONT><FONT FACE="Courier New">.</FONT></P>
+                </TD>
+                <TD BGCOLOR="#ffffff">
+                        <P ALIGN=LEFT><FONT FACE="Courier New">Efeito<BR></FONT><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT><FONT FACE="Courier New"><BR></FONT><STRONG><FONT FACE="Courier New">Efeito<BR></FONT></STRONG><STRONG><FONT COLOR="#0000ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#008000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#00ffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ff00ff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#808000"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG><STRONG><FONT FACE="Courier New"><BR></FONT></STRONG><STRONG><FONT COLOR="#ffffff"><FONT FACE="Courier New">Efeito</FONT></FONT></STRONG></P>
+                </TD>
+        </TR>
+</TABLE>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

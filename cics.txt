@@ -1,0 +1,148 @@
+abend force the current task to terminate abnormally
+EXEC CICS ABEND [ABCODE(name)] [CANCEL] [NODUMP] END-EXEC. 
+address lets you access system information maintained in storage outside your program
+EXEC CICS ADDRESS [ACEE(pointer-ref)] [COMMAREA(pointer-ref)] [CSA(pointer-ref)] [CWA(pointer-ref)] [EIB(pointer-ref)] [TCTUA(pointer-ref)] [TWA(pointer-ref)] END-EXEC. 
+allocate establishes a distributed processing session with another system
+EXEC CICS ALLOCATE SYSID(name) [PROFILE(name)] [NOQUEUE | NOSUSPEND] [STATE(data-area)] END-EXEC. 
+asktime obtain current time and date
+EXEC CICS ASKTIME [ABSTIME(data-area)] END-EXEC. 
+assign obtain information from various system control areas
+EXEC CICS ASSIGN option(data-area) END-EXEC. 
+bif deedit formats alphanumeric data into numeric data
+EXEC CICS BIF DEEDIT FIELD(data-area) [LENGTH(data-value)] END-EXEC. 
+build attach creates an ATTACH FMH used to initiate a background transaction with LU6.1 or MRO
+EXEC CICS BUILD ATTACH ATTACHID(name) [PROCESS(name)] [RESOURCE(name)] [RPROCESS(name)] [RRESOURCE(name)] [QUEUE(name)] [IUTYPE(data-value)] [DATASTR(data-value)] [RECFM(data-value)] END-EXEC. 
+cancel cancels the effect of a DELAY, POST, or START command
+EXEC CICS CANCEL [REQID(name)] [TRANSID(name)] [SYSID(name)] END-EXEC. 
+change task changes the priority of the current task
+EXEC CICS CHANGE TASK PRIORITY(data-value) END-EXEC. 
+connect process initiates an application program on a remote system once a session has been ALLOCATEd
+EXEC CICS CONNECT PROCESS {CONV(name) | SESSION(name) } PROCNAME(data-area) PROCLENGTH(data-area) SYNCLEVEL(data-area) [PIPLIST(data-area) PIPLENGTH(data-value)] [STATE(data-area)] END-EXEC. 
+converse send data to a remote process and receive a response
+EXEC CICS CONVERSE [CONVID(name) | SESSION(name)] [ATTACHID(name)] FROM(data-area) { FROMLENGTH(data-area) | FROMFLENGTH(data-area) } { INTO(data-area) | SET(pointer-ref) } {TOLENGTH(data-area) | TOFLENGTH(data-area) } [MAXLENGTH(data-value) | MAXFLENGTH(data-value)] [NOTRUNCATE] [STATE(data-area)] END-EXEC. 
+delay suspend a task
+EXEC CICS DELAY [INTERVAL(hhmmss) | TIME(hhmmss) | FOR [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)] | UNTIL [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)]] [REQID(name)] END-EXEC. 
+delete remove a record from a file
+EXEC CICS DELETE { DATASET(name) | FILE(name) } [RIDFLD(data-area) [KEYLENGTH(data-value) [GENERIC [NUMREC(data-area)]]]] [RBA | RRN] [SYSID(name)] END-EXEC. 
+deleteq td remove a record from a transient data queue
+EXEC CICS DELETEQ TD QUEUE(name) [SYSID(name)] END-EXEC. 
+deleteq ts remove a record from a temporary storage queue
+EXEC CICS DELETEQ TS QUEUE(name) [SYSID(name)] END-EXEC. 
+deq release a user defined resource
+EXEC CICS DEQ RESOURCE(data-area) [LENGTH(data-value)] [LUW | TASK | MAXLIFETIME(data-area)] END-EXEC. 
+dump force a storage dump
+EXEC CICS DUMP [TRANSACTION] DUMPCODE(name) [FROM(data-area) [LENGTH(data-value) | FLENGTH(data-value)]] [SEGMENTLIST(data-area) LENGTHLIST(data-area) NUMSEGMENTS(data-area)] [COMPLETE] [TRT] [TASK] [STORAGE] [PROGRAM] [TERMINAL] [TABLES] [DCT] [FCT] [PCT] [PPT] [SIT] [TCT] END-EXEC. 
+endbr terminate a browse operation
+EXEC CICS ENDBR { DATASET(name) | FILE(name) } REQID(data-value) [SYSID(name)] END-EXEC. 
+enq reserve a user defined resource
+EXEC CICS ENQ RESOURCE(data-area) [LENGTH(data-value)] [NOSUSPEND] [LUW | TASK | MAXLIFETIME(data-area)] END-EXEC. 
+enter write a user trace entry into the CICS trace table
+EXEC CICS ENTER {TRACENUM(data-value) | TRACEID(data-value) } [FROM(data-area) [FROMLENGTH(data-area)]] [RESOURE(data-area)] [EXCEPTION] END-EXEC. 
+extract attach retrieve values from an ATTACH FMH
+EXEC CICS EXTRACT ATTACH [ATTACHID(name) | CONVID(name) | SESSION(name)] [PROCESS(name)] [RESOURCE(name)] [RPROCESS(name)] [RRESOURCE(name)] [QUEUE(name)] [IUTYPE(data-value)] [DATASTR(data-value)] [RECFM(data-value)] END-EXEC. 
+extract attributes determine the current state of an MRO or APPC conversation
+EXEC CICS EXTRACT ATTRIBUTES [CONVID(name) | SESSION(name)] [STATE(data-value)] END-EXEC. 
+extract process used in a back end program to obtain information passed via the CONNECT PROCESS command in the front end program
+EXEC CICS EXTRACT PROCESS [CONVID(name) | SESSION(name)] [PROCNAME(data-value)PROCLENGTH(data-area) [MAXPROCLEN(data-value)]] [SYNCLEVEL(data-area)] [PIPLIST(data-area) PIPLENGTH(data-value)] END-EXEC. 
+formattime convert time to required format
+EXEC CICS FORMATTIME ABSTIME(data-value) [YYDDD(data-area)] [YYMMDD(data-area)] [YYDDMM(data-area)] [DDMMYY(data-area)] [MMDDYY(data-area)] [DATE(data-area) [DATEFORM(data-area)]] [DATESEP[(data-value)]] [DAYCOUNT(data-area)] [DAYOFWEEK(data-area)] [DAYOFMONTH(data-area)] [MONTHOFYEAR(data-area)] [YEAR(data-area)] [TIME(data-area) [TIMESEP[(data-value)]]] END-EXEC. 
+free release a distributed processing session
+EXEC CICS FREE [CONVID(name) | SESSION(name)] [STATE(data-area)] END-EXEC. 
+freemain release virtual storage
+EXEC CICS FREEMAIN { DATA(data-area) | DATAPOINTER(pointer-ref) } END-EXEC. 
+getmain aquire virtual storage
+EXEC CICS GETMAIN SET(pointer-ref) { LENGTH(data-value) | FLENGTH(data-value) [BELOW] } [INITIMG(data-value)] [NOSUSPEND] [SHARED] {USERKEY | CICSKEY] END-EXEC. 
+handle abend establish abend exits
+EXEC CICS HANDLE ABEND { PROGRAM(name) | LABEL(label) | CANCEL | RESET } END-EXEC. 
+handle aid establish routines to be invoked when AID keys (enter, pf and pa keys) are detected by a receive map
+EXEC CICS HANDLE AID option [(label)] END-EXEC. 
+handle condition specifies how certain exception conditions should be processed
+EXEC CICS HANDLE CONDITION condition-name [(label)] END-EXEC. 
+ignore condition specifies that certain exception conditions should be ignored
+EXEC CICS IGNORE CONDITION condition-name ... END-EXEC. 
+link invoke a program, return to the next statement after completion
+EXEC CICS LINK PROGRAM(name) [COMMAREA(data-area) [LENGTH(data-value)] [DATALENGTH(data-value)]] [INPUTMSG(data-area) [INPUTMSGLEN(data-value)]] [SYSID(name)] [SYNCONRETURN] [TRANSID(name)] END-EXEC. 
+load retrieve and load an object module and return its length and address
+EXEC CICS LOAD PROGRAM(name) [SET(pointer-ref)] [LENGTH(data-area) | FLENGTH(data-area)] [ENTRY(pointer-ref)] [HOLD] END-EXEC. 
+pop handle restores handle abend, aid, and conditions temporarily suspended by push handle
+EXEC CICS POP HANDLE END-EXEC. 
+post create a Timer Event Control Area
+EXEC CICS POST [INTERVAL(hhmmss) | TIME(hhmmss) | AFTER [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)] | AT [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)]] SET(pointer-ref) [REQID(name)] END-EXEC. 
+purge message delete a logical message before the task terminates
+EXEC CICS PURGE MESSAGE END-EXEC. 
+push handle temporarily suspend handle abend, aid, and conditions
+EXEC CICS PUSH HANDLE END-EXEC. 
+read read a record from a file
+EXEC CICS READ { DATASET(name) | FILE(name) } { INTO(data-area) | SET(pointer-ref) } [LENGTH(data-area)] RIDFLD(data-area) [KEYLENGTH(data-area) [GENERIC]] [SYSID(name)] [RBA | RRN] [GTEQ | EQUAL] [UPDATE] END-EXEC. 
+readnext read the next sequential record from a file
+EXEC CICS READNEXT { DATASET(name) | FILE(name) } { INTO(data-area) | SET(pointer-ref) } [LENGTH(data-area)] RIDFLD(data-area) [KEYLENGTH(data-area)] [SYSID(name)] [RBA | RRN] [REQID(data-value)] END-EXEC. 
+readprev read the previous sequential record from a file
+EXEC CICS READPREV { DATASET(name) | FILE(name) } { INTO(data-area) | SET(pointer-ref) } [LENGTH(data-area)] RIDFLD(data-area) [KEYLENGTH(data-area)] [SYSID(name)] [RBA | RRN] [REQID(data-value)] END-EXEC. 
+readq td read a record from a transient data queue
+EXEC CICS READQ TD QUEUE(name) { INTO(data-area) | SET(pointer-ref) } [LENGTH(data-area)] [SYSID(name)] [NOSUSPEND] END-EXEC. 
+readq ts read a record from a temporary storage queue
+EXEC CICS READQ TS QUEUE(name) { INTO(data-area) | SET(pointer-ref) } [LENGTH(data-area)] [NUMITEMS(data-area)] [ITEM(data-value) | NEXT] [SYSID(name)] END-EXEC. 
+receive (distributed) receive data sent by a remote process
+EXEC CICS RECEIVE [CONVID(name) | SESSION(name)] { INTO(data-area) | SET(pointer-ref) } { LENGTH(data-area) | FLENGTH(data-area) } [MAXLENGTH(data-value) | MAXFLENGTH(data-value)] [NOTRUNCATE] [STATE(data-area)] END-EXEC. 
+receive (terminal) retrieve input data from a terminal
+EXEC CICS RECEIVE { INTO(data-area) | SET(pointer-ref) } { LENGTH(data-area) | FLENGTH(data-area) } [MAXLENGTH(data-value) | MAXFLENGTH(data-value)] [NOTRUNCATE] [ASIS] [BUFFER] END-EXEC. 
+receive map receive data from a terminal via BMS
+EXEC CICS RECEIVE MAP(name) [MAPSET(name)] [INTO(data-area) | SET(pointer-ref)] [ASIS] END-EXEC. 
+release free virtual storage acquired via a load command
+EXEC CICS RELEASE PROGRAM(name) END-EXEC. 
+resetbr re-establish position for a browse
+EXEC CICS RESETBR { DATASET(name) | FILE(name) } RIDFLD(data-area) [KEYLENGTH(data-value) [GENERIC]] [RBA | RRN] [GTEQ | EQUAL] [REQID(data-value)] [SYSID(name)] END-EXEC. 
+retrieve retrieves data passed to another program via the start command
+EXEC CICS RETRIEVE [INTO(data-area) | SET(pointer-ref)] [LENGTH(data-area)] [RTRANSID(data-area)] [RTERMID(data-area)] [QUEUE(data-area)] [WAIT] END-EXEC. 
+return return to the invoking program
+EXEC CICS RETURN [TRANSID(name) [COMMAREA(data-area) LENGTH(data-value)]] [IMMEDIATE]] [INPUTMSG(data-area) [INPUTMSGLEN(data-value)]] END-EXEC. 
+rewrite updates a record in a file
+EXEC CICS REWRITE { DATASET(name) | FILE(name) } FROM(data-area) [LENGTH(data-area)] [SYSID(name)] END-EXEC. 
+route allows BMS messages to be routed to multiple terminals
+EXEC CICS ROUTE [LIST(data-area)] [OPCLASS(data-area)] [INTERVAL(hhmmss) | AFTER [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)] | AT [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)]] [ERRTERM{(name)]] [TITLE(data-area)] [REQID(name)] [NLEOM] END-EXEC. 
+send (distributed) send data to a remote process
+EXEC CICS SEND [CONVID(name) | SESSION(name)] [ATTACHID(name)] [FROM(data-area) [LENGTH(data-area) | FLENGTH(data-area)]] [INVITE | LAST] [CONFIRM | WAIT] [STATE(data-area)] END-EXEC. 
+send (terminal) send data to a terminal
+EXEC CICS SEND FROM(data-area) [LENGTH(data-area) | FLENGTH(data-area)] [DEST(name)] [WAIT] [INVITE | LAST] [DEFRESP] [STRFIELD] [ERASE] [CTLCHAR(data-area)] END-EXEC. 
+send control send device control instructions to a terminal
+EXEC CICS SEND CONTROL [ERASEAUP | ERASE] [ALARM] [FREEKB] [FRSET] [CURSOR(data-value)] [PRINT] [FORMFEED] [ACCUM] [PAGING | TERMINAL [WAIT] [LAST]] [L40 | L64 | L80 | HONEOM] [REQID(name)] END-EXEC. 
+send map send data to a terminal via BMS
+EXEC CICS SEND MAP(name) [MAPSET(name)] [FROM(data-area)] [LENGTH(data-value)] [DATAONLY | MAPONLY] [ERASEAUP | ERASE] [ALARM] [FREEKB] [FRSET] [CURSOR(data-value)] [PRINT] [FORMFEED] [NLEOM] [ACCUM] [PAGING | TERMINAL [WAIT]] [LAST] [L40 | L64 | L80 | HONEOM] [REQID(name)] END-EXEC. 
+send page write the last page of a BMS message to temporary storage
+EXEC CICS SEND PAGE [RELEASE [TRANSID(name)] | RETAIN] [AUTOPAGE | NOAUTOPAGE] [OPERPURGE] [TRAILER(data-area)] END-EXEC. 
+send text send data to a terminal letting BMS automatically format the data
+EXEC CICS SEND TEXT FROM(data-area) [LENGTH(data-value)] [ERASE] [ALARM] [FREEKB] [CURSOR(data-value)] [PRINT] [FORMFEED] [NLEOM] [ACCUM] [PAGING | TERMINAL [WAIT]] [LAST] [HEADER(data-area)] [TRAILER(data-area)] [JUSTIFY(datavalue) | JUSFIRST | JUSLAST] [L40 | L64 | L80 | HONEOM] [REQID(name)] END-EXEC. 
+send text noedit send data to a terminal similar to terminal control but can direct to temporary storage using paging option
+EXEC CICS SEND TEXT NOEDIT FROM(data-area) [LENGTH(data-value)] [ERASE] [ALARM] [FREEKB] [PRINT] [PAGING | TERMINAL [WAIT] [LAST]] [L40 | L64 | L80 | HONEOM] [REQID(name)] END-EXEC. 
+signoff signs the user off cics
+EXEC CICS SIGNOFF END-EXEC. 
+signon signs the user on to cics
+EXEC CICS SIGNON USERID(datavalue) [PASSWORD(data-value)] [NEWPASSWORD(data-value)] [OIDCARD(data-value)] [NATLANG(data-value)] [natlanginuse(data-area)] [ESMRESP(data-area)] END-EXEC. 
+start initiate another task after or at a specified time
+EXEC CICS START TRANSID(name) [INTERVAL(hhmmss) | TIME(hhmmss) | AFTER [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)] | AT [HOURS(hh)] [MINUTES(mm)] [SECONDS(ss)]] [TERMID(name)] [SYSID(name)] [REQID(name)] [FROM(data-area) [LENGTH(data-value)]] [RTRANSID(name)] [RTERMID(name)] [QUEUE(name)] [NOCHECK] [PROTECT] END-EXEC. 
+startbr initiate a browse
+EXEC CICS STARTBR { DATASET(name) | FILE(name) } RIDFLD(data-area) [KEYLENGTH(data-area) [GENERIC]] [SYSID(name)] [RBA | RRN] [GTEQ | EQUAL] [REQID(data-value)] END-EXEC. 
+suspend temporarily return control to cics
+EXEC CICS SUSPEND END-EXEC. 
+syncpoint rollback or make permanent updates applied to protected resources
+EXEC CICS SYNCPOINT [ROLLBACK] END-EXEC. 
+unlock release a record held by a READ UPDATE command
+EXEC CICS UNLOCK { DATASET(name) | FILE(name) } [SYSID(name)] END-EXEC. 
+wait convid suspend task until accumulated data has been transmitted during an APPC conversation
+EXEC CICS WAIT CONVID(name) [STATE(data-area)] END-EXEC. 
+wait event delay the task until a previously issued POST has expired
+EXEC CICS WAIT EVENT ECADDR(pointer-value) END-EXEC. 
+wait journalnum synchronizes the current task with a previously written journal entry by suspending the task until the record has been successfully written to the journal file
+EXEC CICS WAIT JOURNALNUM(data-value) [REQID(data-value)] [STARTIO] END-EXEC. 
+write write a record to a file
+EXEC CICS WRITE { DATASET(name) | FILE(name) } FROM(data-area) [LENGTH(data-area)] RIDFLD(data-area) [KEYLENGTH(data-area)] [SYSID(name)] [RBA | RRN] [MASSINSERT] END-EXEC. 
+write journalnum write a record to the journal file
+EXEC CICS WRITE JOURNALNUM(data-value) JTYPEID(data-value) FROM(data-area) [LENGTH(data-area)] [PREFIX(data-value) [PFXLENG(data-value)]] [REQID(data-area)] [WAIT] [STARTIO] [NOSUSPEND] END-EXEC. 
+write operator write a message to a system console
+EXEC CICS WRITE OPERATOR TEXT(data-value) [TEXTLENGTH(data-value)] [ROUTECODES(data-value) [NUMROUTES)data-value)]] [ACTION(data-value) | EVENTUAL | IMMEDIATE | CRITICAL | REPLY(data-area) MAXLENGTH(data-value) [REPLYLENGTH(data-area)] [TIMEOUT(data-value)]] END-EXEC. 
+writeq td write a record to a transient data queue
+EXEC CICS WRITEQ TD QUEUE(name) FROM(data-area) [LENGTH(data-area)] [SYSID(name)] END-EXEC. 
+writeq ts write a record to a temporary storage queue
+EXEC CICS WRITEQ TS QUEUE(name) FROM(data-area) [LENGTH(data-area)] [ITEM(data-value) [REWRITE]] [NUMITEMS(data-area)] [SYSID(name)] [MAIN | AUXILIARY] [NOSUSPEND] END-EXEC. 
+xctl terminate the current program and execute the one specified
+EXEC CICS XCTL PROGRAM(name) [COMMAREA(data-area) [LENGTH(data-value)]] [INPUTMSG(data-area) [INPUTMSGLEN(data-value)]] END-EXEC. 

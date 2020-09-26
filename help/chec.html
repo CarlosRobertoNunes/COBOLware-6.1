@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Check</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20080903;9181300">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20130513;15364100">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">Check</FONT></H1>
+<P>Valida&ccedil;&atilde;o de documentos.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">Check<BR></FONT><FONT COLOR="#000000">[
+</FONT><FONT COLOR="#008080">CARTAO </FONT><FONT COLOR="#000000">|
+</FONT><FONT COLOR="#008080">CARD (</FONT><A HREF="#cartao"><FONT COLOR="#000080">n&uacute;mero-do-cart&atilde;o</FONT></A><FONT COLOR="#008080">)
+</FONT><FONT COLOR="#000000">]</FONT><BR>[ <FONT COLOR="#008080">CEI</FONT>
+<EM><A HREF="http://www.mpas.gov.br/">matr&iacute;cula-no-cadastro-espec&iacute;fico-do-inss</A></EM>
+<FONT COLOR="#008080">CEI-EDITADA</FONT> ;<EM> <A HREF="#cei-editada">cei-editada</A></EM>
+]<BR>[ { <FONT COLOR="#008080">CIC</FONT> | <FONT COLOR="#008080">CPF</FONT>
+} <A HREF="http://www.receita.fazenda.gov.br/Aplicacoes/ATCTA/CPF/default.htm">i<EM>nscri&ccedil;&atilde;o-pessoa-f&iacute;sica</EM></A>
+[ { <FONT COLOR="#008080">CIC-EDITADO</FONT> | <FONT COLOR="#008080">CPF-EDITADO</FONT>
+} ; <EM><A HREF="#pf-editada">pf-editada</A></EM> ] ]<BR>[ { <FONT COLOR="#008080">CNPJ</FONT>
+| <FONT COLOR="#008080">CGC</FONT> } <A HREF="http://www.receita.fazenda.gov.br/PessoaJuridica/cnpj/ConsulSitCadastralCnpj.htm">i<EM>nscri&ccedil;&atilde;o-pessoa-jur&iacute;dica</EM></A>
+[ { <FONT COLOR="#008080">CNPJ-EDITADO</FONT> | <FONT COLOR="#008080">CGC-EDITADO</FONT>
+} ; <EM><A HREF="#pj-editada">pj-editada</A></EM> ] ]<BR>[ { <FONT COLOR="#008080">PIS</FONT>
+| <FONT COLOR="#008080">PASEP</FONT> | <FONT COLOR="#008080">PIS-PASEP</FONT>
+}<A HREF="http://www.receita.fazenda.gov.br/Legislacao/LegisAssunto/PisPasCofFin/PisPasCofFin.htm">
+<EM>inscri&ccedil;&atilde;o-no-pis-ou-pasep</EM></A> <BR>[ {
+<FONT COLOR="#008080">PIS-EDITADO</FONT> | <FONT COLOR="#008080">PASEP-EDITADO</FONT>
+| <FONT COLOR="#008080">PIS-PASEP-EDITADO</FONT> } ;
+<EM><A HREF="#pis-pasep-editado">pis-pasep-editado</A></EM> ] ] <BR>[
+<FONT COLOR="#008080">TITULO-ELEITOR</FONT> <EM><A HREF="http://www.tse.gov.br/">n&uacute;mero-do-t&iacute;tulo</A></EM>
+[ <FONT COLOR="#008080">TITULO-EDITADO</FONT> ;<EM> <A HREF="#t&iacute;tulo-editado">t&iacute;tulo-editado</A></EM>
+] ]<BR>[ { <FONT COLOR="#008080">UF</FONT> | <FONT COLOR="#008080">UNIDADE-FEDERATIVA</FONT>
+}<EM><A HREF="http://www.senado.gov.br/sf/senadores/senadores_atual.asp?o=3&amp;u=*&amp;p=*">sigla-da-unidade-federativa</A></EM>
+[ { <FONT COLOR="#008080">UF-EXTENSO</FONT> | <FONT COLOR="#008080">UNIDADE-EXTENSO
+</FONT>};<EM> nome-do-estado</EM> ] ]<BR>[ { <FONT COLOR="#008080">IE</FONT>
+| <FONT COLOR="#008080">INSCRICAO-ESTADUAL</FONT>
+}<EM><A HREF="http://www.sintegra.gov.br/">inscri&ccedil;&atilde;o-estadual</A></EM>&nbsp;
+[<FONT COLOR="#008080"> </FONT>{<FONT COLOR="#008080"> IE-EDITADA
+INSCRICAO-EDITADA</FONT> };<EM> <A HREF="#inscri&ccedil;&atilde;o-estadual-editada">inscri&ccedil;&atilde;o-estadual-editada</A></EM>
+] ]<BR><FONT COLOR="#008080">&nbsp; ERROR-LEVEL</FONT>;<EM><A HREF="#indicador-de-erro">indicador-de-erro</A></EM></P>
+<H5>Argumentos</H5>
+<P><A NAME="cartao"></A><EM>n&uacute;mero-do-cart&atilde;o</EM><EM><FONT COLOR="#000080"><BR><BR></FONT></EM><EM><FONT COLOR="#000000">Vari&aacute;vel
+de 19 bytes que informa o n&uacute;mero do cart&atilde;o de cr&eacute;dito
+a ser validado, pode conter apenas os d&iacute;gitos ou incluir os
+espa&ccedil;os separadores dos blocos de 4.<BR></FONT></EM><EM><BR>cei-editada</EM></P>
+<P><A NAME="pf-editada"></A><A NAME="pj-editada"></A><A NAME="nome-do-estado"></A><A NAME="pis-pasep-editado"></A><A NAME="t&iacute;tulo-editado"></A><A NAME="inscri&ccedil;&atilde;o-estadual-editada"></A><A NAME="indicador-de-erro"></A>
+Vari&aacute;vel de 17 bytes que recebe a matricula da CEI no formato
+editado caso seja consistente.<EM><BR><BR>pf-editada</EM><BR><BR>Vari&aacute;vel
+de 14 bytes que recebe o CIC/CPF&nbsp; no formato editado caso seja
+consistente.<EM><BR></EM><BR><EM>pj-editada</EM><BR><BR>Vari&aacute;vel
+de 18 bytes que recebe o CNPJ/CGC&nbsp; no formato editado caso seja
+consistente.<EM><BR><BR>nome-do-estado<BR><BR></EM>Vari&aacute;vel
+que recebe o nome do estado por extenso caso a sigla seja
+v&aacute;lida.<EM><BR><BR>pis-pasep-editado<BR><BR></EM>Vari&aacute;vel
+de 14 bytes que recebe o pis ou o pasep editado caso seja
+consistente.<EM><BR><BR>t&iacute;tulo-editado</EM><BR><BR>Vari&aacute;vel
+de 13 bytes que recebe o n&uacute;mero do t&iacute;tulo de eleitor no
+formato editado caso seja consistente.<EM><BR><BR>inscri&ccedil;&atilde;o-estadual-editada</EM>
+<BR><BR>Vari&aacute;vel de at&eacute; 18 bytes que recebe a inscri&ccedil;&atilde;o
+estadual no formato editado caso seja consistente de acordo com o
+algoritmo da <EM><A HREF="http://www.sintegra.gov.br/">sigla-da-unidade-federativa</A></EM>
+informada.<BR><BR><EM>indicador-de-erro</EM></P>
+<P>Valor retornado indicativo de erro de consist&ecirc;ncia que
+retorna zero quando as verifica&ccedil;&otilde;es solicitadas forem
+consistentes. Se diferente de zero significa que houve
+inconsist&ecirc;ncia. Em caso de verifica&ccedil;&otilde;es m&uacute;ltiplas
+a identifica&ccedil;&atilde;o dos erros espec&iacute;ficos segue a
+seguinte codifica&ccedil;&atilde;o.</P>
+<TABLE WIDTH=284 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=88>
+	<COL WIDTH=177>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>N&iacute;vel de erro</P>
+		</TD>
+		<TD WIDTH=177>
+			<P>Inconsist&ecirc;ncia</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>1</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">CEI</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>2</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">CIC</FONT>/<FONT COLOR="#008080">CPF</FONT>
+						</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>4</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">CNPJ</FONT>/<FONT COLOR="#008080">CGC</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>8</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">PIS</FONT><I>/</I><FONT COLOR="#008080">PASEP</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>16</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">TITULO-ELEITOR</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>32</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">UNIDADE-FEDERATIVA</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88>
+			<P ALIGN=CENTER>64</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">INSCRICAO-ESTADUAL</FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=88 SDVAL="128" SDNUM="1046;">
+			<P ALIGN=CENTER>128</P>
+		</TD>
+		<TD WIDTH=177>
+			<P><FONT COLOR="#008080">CARTAO</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P>Exemplos</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P>EXEC <FONT COLOR="#008080">COBOLware</FONT> <A HREF="../help"><FONT COLOR="#008080">Check</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CIC</FONT> <FONT COLOR="#008000">cic-digitado</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">ERROR-LEVEL</FONT>;<FONT COLOR="#008000">erro</FONT><BR>END-EXEC<BR><BR>IF
+			<FONT COLOR="#008000">erro</FONT> NOT = <FONT COLOR="#ff0000">0</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			EXEC <FONT COLOR="#008080">COBOLware</FONT> <A HREF="send.html"><FONT COLOR="#008080">Send</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">Message</FONT> &quot;<FONT COLOR="#ff0000">CPF
+			inv&aacute;lido</FONT>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008000">END-EXEC</FONT><BR>END-IF</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P>EXEC <FONT COLOR="#008080">COBOLware</FONT> <A HREF="../help"><FONT COLOR="#008080">Check</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">UNIDADE-FEDERATIVA</FONT>
+			<FONT COLOR="#008000">estado-digitado</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">INSCRICAO-ESTADUAL</FONT>
+			i<FONT COLOR="#008000">nscricao-digitada</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">ERROR-LEVEL</FONT>;<FONT COLOR="#008000">erro</FONT><BR>END-EXEC<BR><BR>IF
+			<FONT COLOR="#008000">erro</FONT> NOT = <FONT COLOR="#ff0000">0</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			EXEC&nbsp; <FONT COLOR="#008080">COBOLware</FONT>
+			<A HREF="send.html"><FONT COLOR="#008080">Send</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">Message</FONT> &quot;<FONT COLOR="#ff0000">Inscri&ccedil;&atilde;o
+			estadual/Estado inconsistente</FONT>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			END-EXEC<BR>END-IF</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P>EXEC <FONT COLOR="#008080">COBOLware</FONT> <A HREF="../help"><FONT COLOR="#008080">Check</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">PIS-PASEP</FONT>
+			<FONT COLOR="#008000">pis-pasep-digitado</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">TITULO-ELEITOR</FONT>
+			<FONT COLOR="#008000">t&iacute;tulo-digitado</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">ERROR-LEVEL</FONT>;<FONT COLOR="#008000">erro</FONT><BR>END-EXEC<BR><BR>IF
+			<FONT COLOR="#008000">erro</FONT> NOT &lt; <FONT COLOR="#ff0000">16</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			EXEC&nbsp; <FONT COLOR="#008080">COBOLware</FONT>
+			<A HREF="send.html"><FONT COLOR="#008080">Send</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">Message</FONT> &quot;<FONT COLOR="#ff0000">T&iacute;tulo
+			de eleitor inconsistente</FONT>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			END-EXEC<BR>&nbsp;&nbsp;&nbsp;&nbsp; SBTRACT <FONT COLOR="#ff0000">16</FONT>
+			FROM <FONT COLOR="#008000">erro</FONT><BR>END-IF<BR><BR>IF <FONT COLOR="#008000">erro</FONT>
+			NOT &lt; <FONT COLOR="#ff0000">8</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			EXEC&nbsp; <FONT COLOR="#008080">COBOLware</FONT>
+			<A HREF="send.html"><FONT COLOR="#008080">Send</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">Message</FONT> &quot;<FONT COLOR="#ff0000">PIS/PASEP
+			inconsistente</FONT>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;
+			END-EXEC<BR>&nbsp;&nbsp;&nbsp;&nbsp; SBTRACT <FONT COLOR="#ff0000">8</FONT>
+			FROM <FONT COLOR="#008000">erro</FONT><BR>END-IF</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,36 @@
+      00022 2      Teste do Relator                 QQTT                                                                                                                                                                                     
+ CWCAD4                                                      02 010
+00001 00 000 O 000 2TIPO                          CODIGO
+00002 01 037 L 031 T T E ET ET TE TE ET TE E TE TE
+00003 02 001 L 006 codigo
+00004 02 008 L 009 Descricao
+00005 02 041 L 004 Tipo
+00006 02 056 L 005 Preco
+00007 02 067 L 005 VENDA
+00008 02 073 L 005 DOLAR
+00009 02 079 E 009 Prompt-DOLAR                  ZZ.ZZ9,99
+00010 03 001 9 005 CODIGO
+00011 03 008 X 030 DESCRICAO
+00012 03 041 9 001 TIPO
+00013 03 042 L 001 -
+00014 03 043 X 008 TIPO-DESCRICAO
+00015 03 053 E 008 PRECO                         Z.ZZ9,99
+00016 03 062 E 010 (=)VENDA                      ZZ.ZZ9,99-
+00017 03 076 E 010 (=)PRECO$                     ZZ.ZZ9,99-
+00018 05 041 L 013 Total do tipo
+00019 05 061 E 011 (=)VENDA[+]                   ZZZ.ZZ9,99-
+00020 05 073 E 013 (=)PRECO$[+]                  Z.ZZZ.ZZ9,99-
+00021 07 041 L 011 Total Geral
+00022 07 061 E 011 (=)VENDA[+]                   ZZZ.ZZ9,99-
+00023 07 073 E 013 (=)PRECO$[+]                  Z.ZZZ.ZZ9,99-
+00024 04 001 Q 000
+00025 05 001 Q 000
+00026 00 000 Q 000
+00027 01 000 P 000                               MENOR    Menor c¢digo                  CODIGO
+00028 02 000 P 000                               MAIOR    Maior c¢digo                  CODIGO
+00029 03 000 P 000                               DOLAR    COTA€ÇO DO DOLAR              PRECO
+00030 01 000 S 000                               ETIPO                          = 000000000000000000            L01
+00031 02 000 S 000                               ICODIGO                        >=Prompt-MENOR
+00032 03 000 S 000                               ECODIGO                        > Prompt-MAIOR
+00033 01 000 C 000                               VENDA    052PRECO                          *1,8                           $0087
+00034 02 000 C 000                               PRECO$   052Prompt-DOLAR                   *PRECO                          0089

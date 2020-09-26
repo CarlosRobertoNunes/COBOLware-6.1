@@ -1,0 +1,112 @@
+XAF = '"XAF"'
+'change/CALL$X"AF"/CALL 'XAF'/* *'
+"change/CALL$X'AF'/CALL "XAF"/* *"
+XAF = '"XE6"'
+'change/CALL$X"E6"/CALL 'XAF'/* *'
+"change/CALL$X'E6'/CALL "XAF"/* *"
+'Top'
+Aspa="'"
+Find ='/DISPLAY ALL$X"01"/|/DISPLAY ALL$X"07"/|/DISPLAY ALL_<01>/'
+Find=Find"|/DISPLAY ALL$X'01'/|/DISPLAY$ALL X'07'/"
+Do Forever
+   Find
+   If Rc \= 0 Then Leave
+   Beep = 0
+   'Change/'Aspa'/"/1 *'
+   'Change/X"01"/X"20"/1 1';"Change/X'01'/X'20'/1 1"
+   'Change/X"07"/X"20"/1 1';If Rc = 0 Then Beep = 1
+   If Beep = 1
+      Then Do
+           'Change/DISPLAY$./CALL X"E5"./1 1'
+           If Rc \= 0 Then 'Change/DISPLAY$/CALL X"E5"/1 1'
+           End
+     Else Do
+          'Change/./ erase eol./1 1'
+          'Change/ AT ???? / AT ???? erase eol /1 1'
+          If Rc \= 0 Then 'Change/ AT ????./ AT ???? erase eol./1 1'
+          'Change/ALL$X"20"/space/1 1'
+          'Change/ALL_<01>/space/1 1'
+          End
+End
+*'Top'
+*Find ='/"$[$]/'
+*Find=Find"|/'$[$]/"
+*Do Forever
+*   Find
+*   If Rc \= 0 Then Leave
+*   'Change/[/ /1 *'
+*   'Change/]/ /1 *'
+*End
+*'Top'
+*'/NOME-TEL PIC/'
+*If Rc = 0
+*   Then Do
+*        'Extract/CurLine'
+*        Line = Upper(CurLine.3)
+*        PosPic = WordPos('PIC',Line)
+*        Pic = Word(Line,PosPic+1)
+*        Pic = Translate(Pic,'   ','X()')
+*        Pic = Word(Pic,1)
+*        NewPic = Pic + 7
+*        'Change/('Pic')/('NewPic')/1 1'
+*        'Change\VALUE "\VALUE "TELAS/\1 1'
+*        If Rc \= 0 Then "Change\VALUE '\VALUE 'TELAS/\1 1"
+*        End
+'Top'
+'/ LINCOL./'
+If Rc = 0
+   Then Do
+        'Next'
+        'Extract/CurLine'
+        Next = CurLine.3
+        'Up'
+        'Extract/CurLine'
+        If WordPos('VALUE',Upper(CurLine.3)) = 0 & WordPos('VALUE',Upper(Next)) = 0
+           Then 'Change/./ VALUE "0101"./1 1'
+        End
+'Top'
+Do Forever
+   '/ ACCEPT $ AT /';If Rc \= 0 Then Leave
+   'Extract/CurLine';LineA = Upper(Translate(CurLine.3,'  ',',.'));PosA = WordPos('ACCEPT',LineA)
+   FieldA = Word(LineA,PosA+1)
+   AtA    = Word(LineA,PosA+3)
+   'Next'
+   'Extract/CurLine';LineD = Upper(Translate(CurLine.3,'  ',',.'));PosD = WordPos('DISPLAY',LineD)
+   If PosD \= 0
+      Then Do
+           FieldD = Word(LineD,PosA+1)
+           AtD    = Word(LineD,PosA+3)
+           If FieldA = FieldD & AtA = AtD
+              Then Do
+                   'Change/ DISPLAY$'AtD'/ /1 1'
+                   If Rc = 0
+                      Then Do
+                           'Change/ WITH / /1 1'
+                           'Change/ IS / /1 1'
+                           'Change/ CONTROL / /1 1'
+                           If Rc = 0
+                              Then Do
+                                   'Extract/CurLine'
+                                   Ctrl = Word(CurLine.3,1)
+                                   Ctrl = Translate(Ctrl,'  ',',.')
+                                   Ctrl = Word(Ctrl,1)
+                                   'Change/ 'Ctrl'/ /1 1'
+                                   End
+                           End
+                   'Extract/CurLine'
+                   If CurLine.3 = ''
+                      Then 'Del'
+                      Else Do
+                           If Words(CurLine.3) = 1 & Word(CurLine.3) = '.'
+                              Then Do
+                                   'Del'
+                                   If Substr(LineA,Length(LineA),1) \= '.'
+                                      Then Do
+                                           'Up'
+                                           'Cappend.'
+                                           End
+                                   End
+                           End
+                   End
+           End
+End

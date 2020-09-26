@@ -1,0 +1,10 @@
+#!/bin/sh
+ln=$1
+shift
+while test ! "$2" = ""
+do
+  shift
+done
+echo $1
+ln -s $1 $ln
+

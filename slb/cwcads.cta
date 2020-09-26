@@ -1,0 +1,32 @@
+
+
+
+
+
+
+
+  C╒digo    ZZZZZ
+
+  Descri┤фo XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+  Valor     ZZ.ZZZ.ZZ9,99
+
+  здддддддддддддддддддддддддддддддддд©
+  Ё X  Pe┤a  X  Acabado  X  Material Ё
+  юдддддддддддддддддддддддддддддддддды
+
+  зддддддддддддддддддддддддддддддддддддддд©
+  Ё X  Importado  X  Garantia  X  Dur═vel Ё
+  юддддддддддддддддддддддддддддддддддддддды
+
+=(
+TELA-CHAVE USING FileName-CODIGO
+TELA-DADOS USING FileName-DESCRICAO
+TELA-DADOS USING FileName-PRECO
+TELA-DADOS USING CWRADIO(1)
+TELA-DADOS USING CWRADIO(2)
+TELA-DADOS USING CWRADIO(3)
+TELA-DADOS USING CWCHECK(1)
+TELA-DADOS USING CWCHECK(2)
+TELA-DADOS USING CWCHECK(3)
+)=

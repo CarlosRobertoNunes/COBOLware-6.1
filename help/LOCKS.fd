@@ -1,0 +1,18 @@
+       FD  LOCKS
+           LABEL RECORD IS STANDARD
+           VALUE OF FILE-ID IS LB-LOCKS.
+
+       01  LOCKS-REG.
+           05 LOCKS-CHAVE.
+              10 LOCKS-DEVICE          PIC  X(030).
+              10 LOCKS-HANDLE           USAGE POINTER.
+           05 LOCKS-LABEL              PIC  X(080).
+           05 LOCKS-USERNAME           PIC  X(030).
+           05 LOCKS-STATUS             PIC  X(002).
+              88 LOCKS-RECORD-LOCKED        VALUE 'D9'.
+              88 LOCKS-FILE-LOCKED          VALUE 'A9'.
+              88 LOCKS-WAITING-RECORD       VALUE '9D'.
+              88 LOCKS-WAITING-FILE         VALUE '9A'.
+              88 LOCKS-OPENED               VALUE '++'.
+              88 LOCKS-CLOSED               VALUE '--'.
+              88 LOCKS-UNLOCKED             VALUE '00'.

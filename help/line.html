@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Line Buttons</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20080411;10271300">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20100531;13362900">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">Line Buttons</FONT></H1>
+<P>Linha de bot&otilde;es.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">Line Buttons [ <A HREF="#SMALL">SMALL</A>
+]</FONT><BR>[ <FONT COLOR="#008080">LINE</FONT> <I><A HREF="#linha">linha</A>
+</I>]<BR>[ <FONT COLOR="#008080">COLUMN</FONT> <I><A HREF="#coluna">coluna</A>
+</I>] <BR>[ <FONT COLOR="#008080">LINE-END</FONT> <I><A HREF="#linha-limite">linha-limite</A>
+</I>]<BR>[ <FONT COLOR="#008080">COLUMN-END</FONT> <I><A HREF="#coluna-limite">coluna-limite</A>
+</I>] <BR>[ <FONT COLOR="#008080">CAPTION</FONT>(1...26) <I><A HREF="#texto-op&ccedil;&atilde;o">texto-op&ccedil;&atilde;o</A>
+</I>] <BR>[ <FONT COLOR="#008080">OPTION</FONT>
+<I><A HREF="#op&ccedil;&atilde;o-default">op&ccedil;&atilde;o-default</A>;<A HREF="#op&ccedil;&atilde;o-selecionada">op&ccedil;&atilde;o-selecionada</A>
+</I>] <BR>[ <FONT COLOR="#008080">OPTION-CHAR</FONT>
+<I><A HREF="#mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada">mnem&ocirc;nico-do-bot&atilde;o-pressionado</A>
+</I>]<BR>[ <A HREF="#TIMEOUT-ENABLE"><FONT COLOR="#008080">TIMEOUT-ENABLE</FONT></A>
+| <A HREF="#TIMEOUT-RETRY"><FONT COLOR="#008080">TIMEOUT-RETRY</FONT></A>
+| <A HREF="#TIMEOUT-ENABLE"><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></A>
+]<BR>[ <FONT COLOR="#008080">TIMEOUT-RETURN</FONT> ;
+<A HREF="#retorno-tempo-limite-decorrido"><I>retorno-tempo-limite-decorrido</I></A>
+]</P>
+<H5>Argumentos</H5>
+<P><A NAME="SMALL"></A><FONT COLOR="#008080"><I>SMALL</I></FONT><I><BR><BR>Indica
+bot&otilde;es reduzidos com a altura de meia linha no modo gr&aacute;fico
+e sem moldura no modo caractere.</I></P>
+<P><A NAME="linha"></A><I>linha</I></P>
+<P>Linha de posicionamento do primeiro bot&atilde;o.</P>
+<P><A NAME="coluna"></A><I>coluna</I></P>
+<P><A NAME="linha-limite"></A>Coluna de posicionamento do primeiro
+bot&atilde;o.<BR><BR><I>linha-limite</I></P>
+<P>Maior n&uacute;mero de linha que pode ser utilizada para o
+posicionamento do &uacute;ltimo bot&atilde;o.</P>
+<P><A NAME="coluna-limite"></A><I>coluna-limite</I></P>
+<P>Maior n&uacute;mero de coluna que pode ser utilizada para o
+posicionamento do &uacute;ltimo bot&atilde;o.</P>
+<P><A NAME="texto-op&ccedil;&atilde;o"></A><I>texto-op&ccedil;&atilde;o</I></P>
+<P>Texto de at&eacute; 34 caracteres a ser exibido em cada bot&atilde;o
+de op&ccedil;&atilde;o (at&eacute; 26) sendo que o caractere &quot;~&quot;
+indica que o caractere seguinte servir&aacute; de mnem&ocirc;nico de
+atalho.</P>
+<P><A NAME="op&ccedil;&atilde;o-default"></A><I>op&ccedil;&atilde;o-default</I></P>
+<P>Valor ou vari&aacute;vel que Indica em qual das 26 op&ccedil;&otilde;es
+deve estar inicialmente o foco.</P>
+<P><A NAME="op&ccedil;&atilde;o-selecionada"></A><I>op&ccedil;&atilde;o-selecionada</I></P>
+<P>Vari&aacute;vel que receber&aacute; o retorno do n&uacute;mero do
+bot&atilde;o selecionado pelo usu&aacute;rio, podendo retornar os
+valores de 1 a 26 ou zero caso o usu&aacute;rio tenha desistido da
+sele&ccedil;&atilde;o.</P>
+<P><A NAME="mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada"></A><I>mnem&ocirc;nico-do-bot&atilde;o-pressionado</I><BR><BR>Vari&aacute;vel
+alfanum&eacute;rica de 1 byte que receber&aacute; o caractere
+mnem&ocirc;nico do bot&atilde;o selecionada pelo usu&aacute;rio, ou
+espa&ccedil;o caso n&atilde;o tenham sido definidos mnem&ocirc;nicos
+ou o usu&aacute;rio tenha desistido da sele&ccedil;&atilde;o.</P>
+<P><FONT COLOR="#008080">TIMEOUT-ENABLE</FONT></P>
+<P>Habilita o t&eacute;rmino por tempo de ociosidade decorrido. O
+bot&atilde;o default ser&aacute; automaticamente selecionado pelo
+sistema em fun&ccedil;&atilde;o do limite de ociosidade declarado na
+configura&ccedil;&atilde;o.</P>
+<P><A NAME="TIMEOUT-RETRY"></A><FONT COLOR="#008080">TIMEOUT-RETRY</FONT></P>
+<P>Habilita 5 segundos de espera para mensagens de coment&aacute;rios.
+Sem maiores consequ&ecirc;ncias o processamento poder&aacute;
+prosseguir mesmo sem a interven&ccedil;&atilde;o ou conhecimento do
+usu&aacute;rio. 
+</P>
+<P><A NAME="TIMEOUT-DISABLE"></A><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></P>
+<P>A interven&ccedil;&atilde;o do usu&aacute;rio ser&aacute;
+obrigat&oacute;ria e o processamento s&oacute; prosseguir&aacute; ao
+ser selecionado um push-button manualmente.</P>
+<P><A NAME="retorno-tempo-limite-decorrido"></A><I>retorno-tempo-limite-decorrido</I></P>
+<P>Vari&aacute;vel que receber&aacute; o retorno indicativo da
+ocorr&ecirc;ncia de limite de tempo decorrido (1 ou zero caso o
+usu&aacute;rio tenha selecionado uma op&ccedil;&atilde;o
+manualmente).</P>
+<H5>Observa&ccedil;&otilde;es</H5>
+<P>A acentua&ccedil;&atilde;o deve ser codificada com a p&aacute;gina
+de c&oacute;digo 850, os processadores de tela se encarregam de
+traduzir para o codifica&ccedil;&atilde;o apropriada a plataforma de
+execu&ccedil;&atilde;o: 
+</P>
+<H5>Exemplo</H5>
+<TABLE WIDTH=486 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=474>
+	<TR>
+		<TD WIDTH=474 HEIGHT=17>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=474 HEIGHT=55 VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOLware <A HREF="../help">Line
+			Buttons</A> <A HREF="#SMALL">SMALL</A></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">LINE</FONT> <A HREF="#linha"><FONT COLOR="#ff0000"><I>23</I></FONT></A>&nbsp;<FONT COLOR="#008080">COLUMN</FONT>
+			<A HREF="#coluna"><FONT COLOR="#ff0000"><I>05<BR></I></FONT></A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">LINE-END</FONT> <A HREF="#linha-limite"><FONT COLOR="#ff0000"><I>23</I></FONT></A>&nbsp;<FONT COLOR="#008080">COLUMN-END</FONT>
+			<A HREF="#coluna-limite"><FONT COLOR="#ff0000"><I>77</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">1</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~Abandona</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">2</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~Exclui</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">3</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~Grava</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">4</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~Modifica</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">OPTION</FONT> <A HREF="#op&ccedil;&atilde;o-default"><FONT COLOR="#008080"><I>1</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">OPTION-CHAR</FONT> <I>;</I><STRONG><A HREF="#mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada"><FONT FACE="Courier New">opcao</FONT></A></STRONG><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<A HREF="#TIMEOUT-DISABLE"><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></A><BR>END-EXEC<BR><BR>EVALUATE
+			<STRONG><A HREF="#mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada"><FONT FACE="Courier New">opcao</FONT></A></STRONG><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">A</FONT>&quot; READ
+			<FONT COLOR="#008000"><FONT FACE="Courier New">FileName</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">E</FONT>&quot; DELETE <FONT COLOR="#008000"><FONT FACE="Courier New">FileName</FONT></FONT><FONT COLOR="#008000">
+			</FONT><FONT COLOR="#000000"><FONT FACE="Courier New">RECORD</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">G</FONT>&quot; REWRITE
+			<FONT COLOR="#008000"><FONT FACE="Courier New">RecordName</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">M</FONT>&quot; ACCEPT
+			<FONT COLOR="#008000"><FONT FACE="Courier New">ScreenName</FONT></FONT><BR>END-EVALUATE</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=474>
+			<P ALIGN=CENTER>Efeito no modo gr&aacute;fico</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=474 HEIGHT=25>
+			<P ALIGN=CENTER><IMG SRC="lineg.jpg" NAME="figura1" ALIGN=LEFT WIDTH=492 HEIGHT=82 BORDER=0><BR CLEAR=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=474>
+			<P ALIGN=CENTER>Efeito no modo texto</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=474>
+			<P ALIGN=CENTER><IMG SRC="linet.jpg" NAME="figura2" ALIGN=LEFT WIDTH=506 HEIGHT=90 BORDER=0><BR CLEAR=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><!--RELATEDTOPICSLIST--><B>Veja tamb&eacute;m</B></H5>
+<P><FONT COLOR="#008080"><A HREF="boxf.html">BoxFileSelect<BR></A><A HREF="boxs.html">BoxSelect</A>
+<A HREF="obje.html#COMBO-BOX"><BR>Object COMBO-BOX</A></FONT><BR><FONT COLOR="#008080"><A HREF="obje.html#LIST-BOX">Object
+LIST-BOX</A><BR><A HREF="send.html">Send Message</A></FONT></P>
+</BODY>
+</HTML>

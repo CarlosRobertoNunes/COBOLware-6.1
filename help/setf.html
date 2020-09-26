@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware SetFocus</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20070322;17215900">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20100222;9511600">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">SetFocus</FONT></H1>
+<P>Posiciona o foco ou protege/desprotege entry-fields.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">SetFocus</FONT><BR>[ <FONT COLOR="#008080">FIELD</FONT>&nbsp;
+<I><A HREF="#campo">nome-de-campo</A> </I>]<BR>[ <FONT COLOR="#008080">SUBSCRIPT</FONT>
+<EM><A HREF="#ocorr&ecirc;ncia">ocorr&ecirc;ncia</A></EM> ]<BR>[
+<A HREF="#prote&ccedil;&atilde;o"><FONT COLOR="#008080">PROTECT</FONT></A>
+| <A HREF="#prote&ccedil;&atilde;o"><FONT COLOR="#008080">UNPROTECT</FONT></A>
+]</P>
+<H5>Argumentos</H5>
+<P><A NAME="campo"></A><A NAME="arquivo"></A><A NAME="ocorr&ecirc;ncia"></A>
+<EM>nome-de-campo</EM><BR><BR>Nome do campo a ser
+tratado.<BR><I><BR>ocorr&ecirc;ncia</I></P>
+<P>Numero da ocorr&ecirc;ncia do campo na janela quando o nome se
+repete na tela, se omitido, trata somente a primeira ocorr&ecirc;ncia.</P>
+<P><A NAME="prote&ccedil;&atilde;o"></A><FONT COLOR="#008080">PROTECT</FONT>,
+<FONT COLOR="#008080">UNPROTECT</FONT></P>
+<P>Protege ou desprotege o campo, n&atilde;o posiciona o cursor.</P>
+<H5>Exemplo</H5>
+<TABLE WIDTH=407 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=395>
+	<TR>
+		<TD WIDTH=395>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=395 VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT><FONT COLOR="#008080">
+			SetFocus</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">FIELD</FONT> DESCRICAO<BR>END-EXEC<BR>EXEC
+			<FONT COLOR="#008080">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT><FONT COLOR="#008080">
+			SetFocus</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">FIELD</FONT> PRECO <FONT COLOR="#008080">PROTECT</FONT><BR>END-EXEC</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><BR><BR>
+</H5>
+</BODY>
+</HTML>

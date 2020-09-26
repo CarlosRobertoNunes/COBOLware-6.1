@@ -1,0 +1,50 @@
+       01  CTAC-LIT-CWMEN3.
+       02  FOREGROUND-COLOR CWACOR-F (09)
+           BACKGROUND-COLOR CWACOR-B (09).
+           05 LINE 07 COLUMN 03 VALUE "Limite de ociosidade".
+           05 LINE 07 COLUMN 23 VALUE " :".
+           05 LINE 09 COLUMN 03 VALUE "Log/Codificado/Pasta".
+           05 LINE 09 COLUMN 23 VALUE " :".
+           05 LINE 09 COLUMN 56 VALUE "Mestre      :".
+           05 LINE 11 COLUMN 03 VALUE "Mouse               ".
+           05 LINE 11 COLUMN 23 VALUE " :".
+           05 LINE 11 COLUMN 56 VALUE "Encerramento:".
+           05 LINE 13 COLUMN 03 VALUE "Senhas com auto-skip".
+           05 LINE 13 COLUMN 23 VALUE " :".
+           05 LINE 13 COLUMN 56 VALUE "Login".
+           05 LINE 13 COLUMN 62 VALUE "      :".
+           05 LINE 15 COLUMN 03 VALUE "Colorir barra de men".
+           05 LINE 15 COLUMN 23 VALUE "u:".
+           05 LINE 15 COLUMN 56 VALUE "Logout      :".
+           05 LINE 17 COLUMN 03 VALUE "Exibir".
+           05 LINE 17 COLUMN 10 VALUE "pasta".
+           05 LINE 17 COLUMN 16 VALUE "corrente:".
+           05 LINE 19 COLUMN 03 VALUE "Spool/Posicionamento".
+           05 LINE 19 COLUMN 23 VALUE " :".
+           05 LINE 21 COLUMN 03 VALUE "Pasta de help       ".
+           05 LINE 21 COLUMN 23 VALUE "  :".
+
+       01  CTAC-VAR-CWMEN3.
+       02  FOREGROUND-COLOR CWACOR-F (09)
+           BACKGROUND-COLOR CWACOR-B (09).
+           05 T01.
+              10 LINE 07 COLUMN 26 PIC Z(003) USING CWCONF-TIMEOUT.
+           05 LINE 07 COLUMN 50 PIC X(020) FROM MSG-1.
+           05 T09.
+              10 LINE 09 COLUMN 70 PIC X(008) USING CWCONF-MASTER.
+           05 T04.
+              10 LINE 10 COLUMN 26 PIC X(050) USING CWCONF-LOGDIR.
+           05 T10.
+              10 LINE 11 COLUMN 70 PIC X(008) USING CWCONF-END.
+           05 T11.
+              10 LINE 13 COLUMN 70 PIC X(008) USING CWCONF-LOGIN.
+           05 T12.
+              10 LINE 15 COLUMN 70 PIC X(008) USING CWCONF-LOGOUT.
+           05 LINE 17 COLUMN 56 PIC X(013) FROM MSG-3.
+           05 T13.
+              10 LINE 17 COLUMN 70 PIC X(008) USING CWCONF-CALLIN.
+           05 LINE 19 COLUMN 56 PIC X(013) FROM MSG-4.
+           05 T14.
+              10 LINE 19 COLUMN 70 PIC X(008) USING CWCONF-CALLOUT.
+           05 T08.
+              10 LINE 21 COLUMN 27 PIC X(050) USING HELP.

@@ -1,0 +1,2312 @@
+      $SET ANS85 NOWARNING NOOPTIONAL-FILE FILESHARE RETRYLOCK
+      $SET 64KSECT SEGSIZE"65536"
+      $SET SPZERO
+       IDENTIFICATION DIVISION.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+           CONSOLE IS CRT
+           COMMAND-LINE IS COMMANDLINE
+           CURSOR IS CURSOR-LC.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+            SELECT CONTROLF     ASSIGN TO DISK
+                   FILE STATUS  CONTROLF-XSEEDSTATUS
+                   ORGANIZATION LINE SEQUENTIAL
+           .
+            SELECT FORNE      ASSIGN TO DISK
+                   FILE STATUS  FORNE-XSEEDSTATUS
+                   ORGANIZATION INDEXED
+                   ACCESS MODE  DYNAMIC
+                   RECORD KEY FOR-FORNE =
+                                        FORNE-OR-FORNE OF FORNE
+                   ALTERNATE RECORD KEY   PFORNE01 =
+                                        FORNE-DS-DESCR OF FORNE
+                                        WITH DUPLICATES
+                   ALTERNATE RECORD KEY   PFORNE02 =
+                                        FORNE-CD-CATEG OF FORNE
+                                        FORNE-DS-DESCR OF FORNE
+                                        WITH DUPLICATES
+                   ALTERNATE RECORD KEY   PFORNE03 =
+                                        FORNE-NR-CGC OF FORNE
+                                        WITH DUPLICATES
+           .
+       DATA DIVISION.
+       FILE SECTION.
+       FD CONTROLF      LABEL RECORD IS STANDARD
+                   VALUE OF FILE-ID IS CONTROLF-XSEEDTITLE.
+       01 CONTROLF-REG           PIC X(0001).
+
+       FD FORNE      LABEL RECORD IS STANDARD
+                   VALUE OF FILE-ID IS FORNE-XSEEDTITLE.
+       01 FORNE-XSEEDREG.
+          05 FORNE-CD-CATEG             PIC 9(0001).
+          05 FORNE-CD-CELULAR           PIC 9(0010).
+          05 FORNE-CD-FONE              PIC 9(0010).
+          05 FORNE-CD-FONERE            PIC 9(0010).
+          05 FORNE-CD-OPERAD            PIC 9(0005).
+          05 FORNE-CD-UF                PIC X(0002).
+          05 FORNE-DS-CONTATO           PIC X(0020).
+          05 FORNE-DS-DESCR             PIC X(0045).
+          05 FORNE-DS-ENDER             PIC X(0035).
+          05 FORNE-DS-NEGOCIO           PIC X(0030).
+          05 FORNE-DS-PRODUTO           PIC X(0030).
+          05 FORNE-DT-SISTE             PIC 9(0008).
+          05 FORNE-HR-TRANSAC           PIC 9(0006).
+          05 FORNE-NM-MUNIC             PIC X(0025).
+          05 FORNE-NR-CCE               PIC X(0015).
+          05 FORNE-NR-CEP               PIC 9(0005).
+          05 FORNE-NR-CEP2              PIC 9(0003).
+          05 FORNE-NR-CGC               PIC 9(0014).
+          05 FORNE-OR-FORNE             PIC 9(0004).
+          05 FORNE-VL-SALDO             PIC S9(10)V9(02).
+
+       WORKING-STORAGE SECTION.
+       01 CONTROLF-WSF.
+          05 CONTROLF-XSEEDTITLE  PIC X(35)
+             VALUE "FILES\CONTROLF.ARQ".
+          05 CONTROLF-XSEEDSTATUS PIC X(02) VALUE SPACES.
+       01 FORNE-WSF.
+          05 FORNE-XSEEDTITLE     PIC X(35)
+             VALUE "\BDPOSTO\FILES\FORNE.ARQ".
+          05 FORNE-XSEEDSTATUS   PIC X(02) VALUE SPACES.
+          05 FORNE-XSEEDEOF      PIC 9(01) VALUE ZEROS.
+          05 FORNE-XSEEDVERSION  PIC 9(06) VALUE 000001.
+
+      * Auto-entry buffer of FORNE
+      * --------------------------
+       01 AEFORNE-XSEEDREG.
+          05 AEFORNE-CD-CATEG PIC 9(0001).
+          05 AEFORNE-CD-CELULAR PIC 9(0010).
+          05 AEFORNE-CD-FONE PIC 9(0010).
+          05 AEFORNE-CD-FONERE PIC 9(0010).
+          05 AEFORNE-CD-OPERAD PIC 9(0005).
+          05 AEFORNE-CD-UF PIC X(0002).
+          05 AEFORNE-DS-CONTATO PIC X(0020).
+          05 AEFORNE-DS-DESCR PIC X(0045).
+          05 AEFORNE-DS-ENDER PIC X(0035).
+          05 AEFORNE-DS-NEGOCIO PIC X(0030).
+          05 AEFORNE-DS-PRODUTO PIC X(0030).
+          05 AEFORNE-DT-SISTE PIC 9(0008).
+          05 AEFORNE-HR-TRANSAC PIC 9(0006).
+          05 AEFORNE-NM-MUNIC PIC X(0025).
+          05 AEFORNE-NR-CCE PIC X(0015).
+          05 AEFORNE-NR-CEP PIC 9(0005).
+          05 AEFORNE-NR-CEP2 PIC 9(0003).
+          05 AEFORNE-NR-CGC PIC 9(0014).
+          05 AEFORNE-OR-FORNE PIC 9(0004).
+          05 AEFORNE-VL-SALDO PIC S9(10)V9(02).
+      ******************************************************************
+      *                 VARIAVEIS DA TELA                              *
+      ******************************************************************
+       01 SCREEN-XSEEDREG.
+          05 SCREEN-CB-CDOPERA PIC 9(0006) VALUE ZEROS.
+          05 SCREEN-CB-DTATU PIC X(0008) VALUE SPACES.
+          05 SCREEN-CB-DTMOV PIC X(0008) VALUE SPACES.
+          05 SCREEN-CB-OPERAD PIC X(0015) VALUE SPACES.
+          05 SCREEN-CB-PROXTEL PIC X(0005) VALUE SPACES.
+          05 SCREEN-CB-TURNO PIC 9(0001) VALUE ZEROS.
+          05 SCREEN-CB-USUARIO PIC X(0030) VALUE SPACES.
+          05 SCREEN-CD-CATEG PIC 9(0001) VALUE ZEROS.
+          05 SCREEN-CD-CELULAR PIC 9(0010) VALUE ZEROS.
+          05 SCREEN-CD-FONE PIC 9(0010) VALUE ZEROS.
+          05 SCREEN-CD-FONERE PIC 9(0010) VALUE ZEROS.
+          05 SCREEN-CD-OPERAD PIC 9(0005) VALUE ZEROS.
+          05 SCREEN-CD-UF PIC X(0002) VALUE SPACES.
+          05 SCREEN-DS-CONTATO PIC X(0020) VALUE SPACES.
+          05 SCREEN-DS-DESCR PIC X(0045) VALUE SPACES.
+          05 SCREEN-DS-ENDER PIC X(0035) VALUE SPACES.
+          05 SCREEN-DS-NEGOCIO PIC X(0030) VALUE SPACES.
+          05 SCREEN-DS-PRODUTO PIC X(0030) VALUE SPACES.
+          05 SCREEN-DT-SISTE PIC 9(0008) VALUE ZEROS.
+          05 SCREEN-HR-TRANSAC PIC 9(0006) VALUE ZEROS.
+          05 SCREEN-MAINT PIC X(0003) VALUE SPACES.
+          05 SCREEN-NM-MUNIC PIC X(0025) VALUE SPACES.
+          05 SCREEN-NR-CCE PIC X(0015) VALUE SPACES.
+          05 SCREEN-NR-CEP PIC 9(0005) VALUE ZEROS.
+          05 SCREEN-NR-CEP2 PIC 9(0003) VALUE ZEROS.
+          05 SCREEN-NR-CGC PIC 9(0014) VALUE ZEROS.
+          05 SCREEN-OR-FORNE PIC 9(0004) VALUE ZEROS.
+          05 SCREEN-VL-SALDO PIC S9(10)V9(02) VALUE ZEROS.
+          05 SCREEN-VL-SALDO-SINALIZADOR PIC X(01) VALUE SPACES.
+       01 VIDEO-XSEEDREG.
+          05 VIDEO-CB-CDOPERA PIC 9(0006) VALUE ZEROS.
+          05 VIDEO-CB-DTATU PIC X(0008) VALUE SPACES.
+          05 VIDEO-CB-DTMOV PIC X(0008) VALUE SPACES.
+          05 VIDEO-CB-OPERAD PIC X(0015) VALUE SPACES.
+          05 VIDEO-CB-PROXTEL PIC X(0005) VALUE SPACES.
+          05 VIDEO-CB-TURNO PIC 9(0001) VALUE ZEROS.
+          05 VIDEO-CB-USUARIO PIC X(0030) VALUE SPACES.
+          05 VIDEO-CD-CATEG PIC 9(0001) VALUE ZEROS.
+          05 VIDEO-CD-CELULAR PIC 9(0010) VALUE ZEROS.
+          05 VIDEO-CD-FONE PIC 9(0010) VALUE ZEROS.
+          05 VIDEO-CD-FONERE PIC 9(0010) VALUE ZEROS.
+          05 VIDEO-CD-OPERAD PIC 9(0005) VALUE ZEROS.
+          05 VIDEO-CD-UF PIC X(0002) VALUE SPACES.
+          05 VIDEO-DS-CONTATO PIC X(0020) VALUE SPACES.
+          05 VIDEO-DS-DESCR PIC X(0045) VALUE SPACES.
+          05 VIDEO-DS-ENDER PIC X(0035) VALUE SPACES.
+          05 VIDEO-DS-NEGOCIO PIC X(0030) VALUE SPACES.
+          05 VIDEO-DS-PRODUTO PIC X(0030) VALUE SPACES.
+          05 VIDEO-DT-SISTE PIC 9(0008) VALUE ZEROS.
+          05 VIDEO-HR-TRANSAC PIC 9(0006) VALUE ZEROS.
+          05 VIDEO-MAINT PIC X(0003) VALUE SPACES.
+          05 VIDEO-NM-MUNIC PIC X(0025) VALUE SPACES.
+          05 VIDEO-NR-CCE PIC X(0015) VALUE SPACES.
+          05 VIDEO-NR-CEP PIC 9(0005) VALUE ZEROS.
+          05 VIDEO-NR-CEP2 PIC 9(0003) VALUE ZEROS.
+          05 VIDEO-NR-CGC PIC 9(0014) VALUE ZEROS.
+          05 VIDEO-OR-FORNE PIC 9(0004) VALUE ZEROS.
+          05 VIDEO-VL-SALDO PIC S9(10)V9(02) VALUE ZEROS.
+          05 VIDEO-VL-SALDO-SINALIZADOR PIC X(01) VALUE SPACES.
+      ******************************************************************
+      *                        SETUP-DATA                              *
+      ******************************************************************
+      ******************************************************************
+      *                    GLOBAL SETUP-DATA                           *
+      ******************************************************************
+       01 GSD-HR-HORA-A.
+       02 GSD-HR-HORA-N        PIC 9(08) VALUE  ZEROS.
+       01 GSD-HR-HORA-A2.
+       02 GSD-HR-ATUAL         PIC 9(06) VALUE  ZEROS.
+       02 GSD-HR-CC            PIC 9(02) VALUE  ZEROS.
+       01 GSD-HR-HORA-A4.
+       02 GSD-HR-ATUAL4        PIC 9(04) VALUE  ZEROS.
+       02 GSD-HR-CC4           PIC 9(04) VALUE  ZEROS.
+       01 GSD-DT-AAMMDD2.
+       02 GSD-DT-CC2           PIC 9(02) VALUE  ZEROS.
+       02 GSD-DT-AA2           PIC 9(02) VALUE  ZEROS.
+       02 GSD-DT-MM2           PIC 9(02) VALUE  ZEROS.
+       02 GSD-DT-DD2           PIC 9(02) VALUE  ZEROS.
+       01 GSD-DT-DATA-A.
+       02 GSD-DT-DATA-N        PIC 9(08) VALUE  ZEROS.
+       01 GSD-DT-ATUAL         PIC 9(08) VALUE
+            0.
+       01 GSD-NM-TELA          PIC X(05) VALUE
+            " ".
+       01 GSD-CD-SISTEMA       PIC 9(02) VALUE
+            0.
+       01 GSD-GLBWORK.
+       02 GSD-WK-NMUSU         PIC X(30) VALUE  SPACES.
+       02 GSD-WK-CDOPE         PIC 9(06) VALUE  ZEROS.
+       02 GSD-WK-NMOPE         PIC X(15) VALUE  SPACES.
+       02 GSD-WK-TURNO         PIC 9(01) VALUE  ZEROS.
+       02 GSD-WK-DTMOV         PIC 9(08) VALUE  ZEROS.
+       02 GSD-WK-DTMOV2        PIC X(08) VALUE  SPACES.
+       02 GSD-WK-DTATU         PIC 9(08) VALUE  ZEROS.
+       02 GSD-WK-DTATU2        PIC X(08) VALUE  SPACES.
+       02 GSD-WK-NIVEL         PIC 9(01) VALUE  ZEROS.
+       02 GSD-WK-ALTER.
+       03 GSD-WK-TELA          PIC X(05) VALUE  SPACES.
+       03 GSD-WK-DOCTO         PIC 9(08) VALUE  ZEROS.
+       03 GSD-WK-DSDOC         PIC X(10) VALUE  SPACES.
+       03 GSD-WK-CLIEN         PIC 9(06) VALUE  ZEROS.
+       03 GSD-WK-VALOR         PIC S9(0010)V9(02) VALUE  ZEROS.
+       03 GSD-WK-OUTROS        PIC X(22) VALUE  SPACES.
+
+      ******************************************************************
+      *                 VARIAVEIS GLOBAIS AUTOMATICAS                  *
+      ******************************************************************
+       01 TRG-ITENS.
+          05 GLB-SLASH    PIC X(01) VALUE "\".
+          05 GLB-TARGET   PIC X(03) VALUE "DOS".
+
+       01 GLB-DCITENS.
+          05 GLB-BASE                PIC 9(04) VALUE ZEROS.
+          05 GLB-CENTURY             PIC 9(02) VALUE ZEROS.
+          05 GLB-DCFORMAT            PIC X(12) VALUE SPACES.
+          05 GLB-DCTYPE              PIC X(02) VALUE SPACES.
+          05 GLB-DCEDIT              PIC X(01) VALUE SPACES.
+          05 GLB-DCLENGTH            PIC 9(01) VALUE ZEROS.
+          05 GLB-DCSINAL             PIC X(01) VALUE SPACES.
+          05 GLB-DCOPERAND           PIC S9(09) VALUE ZEROS.
+          05 GLB-DCDATE              PIC X(25) VALUE SPACES.
+          05 GLB-DCYEAR              PIC 9(04) VALUE ZEROS.
+          05 GLB-DC-DAYNUM            PIC S9(09) VALUE ZEROS.
+          05 GLB-DC-DD-MM-YY          PIC X(08) VALUE SPACES.
+          05 GLB-DC-DD-MMM-YY         PIC X(09) VALUE SPACES.
+          05 GLB-DC-DDMMMYY           PIC X(07) VALUE SPACES.
+          05 GLB-DC-DDMMYY            PIC 9(06) VALUE ZEROS.
+          05 GLB-DC-MM-DD-YY          PIC X(08) VALUE SPACES.
+          05 GLB-DC-MMDDYY            PIC 9(06) VALUE ZEROS.
+          05 GLB-DC-MMM-DD-YY         PIC X(09) VALUE SPACES.
+          05 GLB-DC-MMMDDYY           PIC X(07) VALUE SPACES.
+          05 GLB-DC-UK-ALPHA          PIC X(25) VALUE SPACES.
+          05 GLB-DC-US-ALPHA          PIC X(25) VALUE SPACES.
+          05 GLB-DC-IN-ALPHA          PIC X(25) VALUE SPACES.
+          05 GLB-DC-YYDDD             PIC 9(05) VALUE ZEROS.
+          05 GLB-DC-YYMMDD            PIC 9(06) VALUE ZEROS.
+          05 GLB-DC-YYMMMDD           PIC X(07) VALUE SPACES.
+          05 GLB-DC-TODAY             PIC X(15) VALUE SPACES.
+          05 GLB-DC-WEEKNO            PIC 9(02) VALUE ZEROS.
+          05 GLB-DC-DD-MM-CCYY        PIC X(10) VALUE SPACES.
+          05 GLB-DC-DD-MMM-CCYY       PIC X(11) VALUE SPACES.
+          05 GLB-DC-DDMMMCCYY         PIC X(09) VALUE SPACES.
+          05 GLB-DC-DDMMCCYY          PIC 9(08) VALUE ZEROS.
+          05 GLB-DC-MM-DD-CCYY        PIC X(10) VALUE SPACES.
+          05 GLB-DC-MMDDCCYY          PIC 9(08) VALUE ZEROS.
+          05 GLB-DC-MMM-DD-CCYY       PIC X(11) VALUE SPACES.
+          05 GLB-DC-MMMDDCCYY         PIC X(09) VALUE SPACES.
+          05 GLB-DC-CCYY-MM-DD        PIC X(10) VALUE SPACES.
+          05 GLB-DC-CCYY-MMM-DD       PIC X(11) VALUE SPACES.
+          05 GLB-DC-CCYYDDD           PIC 9(07) VALUE ZEROS.
+          05 GLB-DC-CCYYMMDD          PIC 9(08) VALUE ZEROS.
+          05 GLB-DC-CCYYMMMDD         PIC X(09) VALUE SPACES.
+          05 GLB-DCEDITONLY           PIC X(01) VALUE SPACES.
+
+       01 GLB-DTITENS.
+          05 ACTMTH-A.
+             10 ACTMTH               PIC 9(04) VALUE ZEROS.
+          05 GLB-DATE                PIC X(07) VALUE SPACES.
+          05 GLB-TIME                PIC 9(08) VALUE ZEROS.
+          05 GLB-UNIQUE              PIC 9(12) VALUE ZEROS.
+          05 INPUT-DATE              PIC X(07) VALUE SPACES.
+          05 GLB-TODAY.
+          10 TODAY                   PIC X(07) VALUE SPACES.
+          05 GLB-TODAYS-DAY.
+          10 TODAYS-DAY              PIC 9(02) VALUE ZEROS.
+          05 GLB-TODAYS-MONTH.
+          10 TODAYS-MONTH            PIC X(03) VALUE SPACES.
+          05 GLB-TODAYS-YEAR.
+          10 TODAYS-YEAR             PIC 9(02) VALUE ZEROS.
+          05 GLB-TODAYS-DATE-NUM.
+          10 TODAYS-DATE-NUM         PIC 9(06) VALUE ZEROS.
+          05 GLB-TODAYS-MONTH-NUM.
+          10 TODAYS-MONTH-NUM        PIC 9(02) VALUE ZEROS.
+          05 TRANNO                  PIC 9(06) VALUE ZEROS.
+          05 GLB-YYMMDD.
+             10 GLB-YY               PIC 9(02) VALUE ZEROS.
+             10 GLB-MM               PIC 9(02) VALUE ZEROS.
+             10 GLB-DD               PIC 9(02) VALUE ZEROS.
+          05 GLB-DC-YY-MM-DD.
+             10 GLB-DC-YY-MM-DD-YY   PIC 9(02) VALUE ZEROS.
+             10 GLB-DC-YY-MM-DD-B1   PIC X(01) VALUE "/".
+             10 GLB-DC-YY-MM-DD-MM   PIC 9(02) VALUE ZEROS.
+             10 GLB-DC-YY-MM-DD-B2   PIC X(01) VALUE "/".
+             10 GLB-DC-YY-MM-DD-DD   PIC 9(02) VALUE ZEROS.
+          05 GLB-DC-YY-MMM-DD.
+             10 GLB-DC-YY-MMM-DD-YY   PIC 9(02) VALUE ZEROS.
+             10 GLB-DC-YY-MMM-DD-B1   PIC X(01) VALUE SPACES.
+             10 GLB-DC-YY-MMM-DD-MM   PIC X(03) VALUE SPACES.
+             10 GLB-DC-YY-MMM-DD-B2   PIC X(01) VALUE SPACES.
+             10 GLB-DC-YY-MMM-DD-DD   PIC 9(02) VALUE ZEROS.
+          05 GLB-WC-YY-MM-DD.
+             10 GLB-WC-YY-MM-DD-YY   PIC 9(02) VALUE ZEROS.
+             10 GLB-WC-YY-MM-DD-MM   PIC 9(02) VALUE ZEROS.
+             10 GLB-WC-YY-MM-DD-DD   PIC 9(02) VALUE ZEROS.
+          05 GLB-WC-YY-MMM-DD.
+             10 GLB-WC-YY-MMM-DD-YY   PIC 9(02) VALUE ZEROS.
+             10 GLB-WC-YY-MMM-DD-MM   PIC X(03) VALUE SPACES.
+             10 GLB-WC-YY-MMM-DD-DD   PIC 9(02) VALUE ZEROS.
+
+       01 GLB-NEWITENS.
+          05 GLB-ALTUSER             PIC X(17) VALUE SPACES.
+          05 GLB-DESTENV             PIC X(01) VALUE SPACES.
+          05 GLB-DESTNOFORM          PIC X(17) VALUE SPACES.
+          05 GLB-HUBSTATUS           PIC X(15) VALUE SPACES.
+          05 GLB-HTIMEOUT.
+          10 GLB-HUBTIMEOUT          PIC 9(06) VALUE ZEROS.
+          05 GLB-MACHINE             PIC X(01) VALUE "X".
+          05 GLB-ORIGINENV           PIC X(01) VALUE SPACES.
+          05 GLB-PRIORITY            PIC 9(02) VALUE ZEROS.
+          05 GLB-REPLANG             PIC X(10) VALUE SPACES.
+          05 GLB-SECONDARY           PIC X(01) VALUE SPACES.
+          05 GLB-SELFENV             PIC X(01) VALUE SPACES.
+          05 GLB-STYLE               PIC X(10) VALUE SPACES.
+          05 GLB-SUBSYS              PIC 9(02) VALUE ZEROS.
+          05 GLB-2PC                 PIC X(01) VALUE SPACES.
+
+       01 GLB-ITENS.
+          05 GLB-ASCPRT              PIC X(17) VALUE SPACES.
+          05 GLB-ASCPRTHOST          PIC X(17) VALUE SPACES.
+          05 GLB-BACKUP              PIC X(01) VALUE SPACES.
+          05 GLB-BALANCE             PIC S9(12)V9(04) VALUE ZEROS.
+          05 GLB-CHANGE              PIC X(30) VALUE SPACES.
+          05 GLB-CLOSE               PIC X(05) VALUE SPACES.
+          05 GLB-DESTHOST            PIC X(17) VALUE SPACES.
+          05 GLB-DESTINATION         PIC X(10) VALUE SPACES.
+          05 GLB-DEVICE              PIC X(02) VALUE "LP".
+          05 GLB-EOP                 PIC X(01) VALUE SPACES.
+          05 GLB-ERROR               PIC X(05) VALUE SPACES.
+          05 GLB-EXNAME              PIC X(14) VALUE SPACES.
+          05 GLB-EXTEXT              PIC X(80) VALUE SPACES.
+          05 GLB-FILEINFO            PIC X(01) VALUE SPACES.
+          05 GLB-FORMDEPTH           PIC 9(02) VALUE ZEROS.
+          05 GLB-FORMID              PIC X(20) VALUE SPACES.
+          05 GLB-INITSTN             PIC X(17) VALUE SPACES.
+          05 GLB-LANGUAGE            PIC X(10) VALUE SPACES.
+          05 GLB-LINECOUNT           PIC 9(04) VALUE ZEROS.
+          05 GLB-LINEUP              PIC X(01) VALUE SPACES.
+          05 GLB-LINEUPNAME          PIC X(30) VALUE SPACES.
+          05 GLB-NUMCOPIES           PIC 9(03) VALUE ZEROS.
+          05 GLB-ORIGIN              PIC X(10) VALUE SPACES.
+          05 GLB-ORIGINHOST          PIC X(17) VALUE SPACES.
+          05 GLB-PAGECOUNT           PIC 9(04) VALUE ZEROS.
+          05 GLB-PITCH               PIC 9(03) VALUE ZEROS.
+          05 GLB-PRINTAT             PIC X(10) VALUE SPACES.
+          05 GLB-PRINTBANNER         PIC X(01) VALUE SPACES.
+          05 GLB-PRINTHOST           PIC X(17) VALUE SPACES.
+          05 GLB-PRIV                PIC 9(02) VALUE ZEROS.
+          05 GLB-RECORD              PIC 9(08) VALUE ZEROS.
+          05 GLB-RECOVER             PIC 9(01) VALUE ZEROS.
+          05 GLB-REPORT              PIC X(01) VALUE SPACES.
+          05 GLB-SAVEDAYS            PIC 9(02) VALUE ZEROS.
+          05 GLB-SELF                PIC X(10) VALUE SPACES.
+          05 GLB-SELFHOST            PIC X(17) VALUE SPACES.
+          05 GLB-SHADOW              PIC X(01) VALUE SPACES.
+          05 GLB-SOURCE              PIC X(01) VALUE SPACES.
+          05 GLB-STALANG             PIC X(10) VALUE SPACES.
+          05 GLB-STATUS              PIC X(05) VALUE SPACES.
+          05 GLB-STATION             PIC X(17) VALUE SPACES.
+          05 GLB-STNHOST             PIC X(17) VALUE SPACES.
+          05 GLB-TASK                PIC 9(02) VALUE ZEROS.
+          05 GLB-TITLE               PIC X(60) VALUE SPACES.
+          05 GLB-TOTAL               PIC S9(10)V99 VALUE ZEROS.
+          05 GLB-USER                PIC X(10) VALUE SPACES.
+          05 ISPEC                   PIC X(05) VALUE SPACES.
+          05 GLB-ADD                 PIC X(03) VALUE "ADD".
+          05 GLB-CHG                 PIC X(03) VALUE "CHG".
+          05 GLB-DEL                 PIC X(03) VALUE "DEL".
+          05 GLB-INQ                 PIC X(03) VALUE "INQ".
+          05 GLB-PUR                 PIC X(03) VALUE "PUR".
+          05 GLB-REC                 PIC X(03) VALUE "REC".
+          05 GLB-FIR                 PIC X(03) VALUE "FIR".
+          05 GLB-NEX                 PIC X(03) VALUE "NEX".
+          05 GLB-BAC                 PIC X(03) VALUE "BAC".
+          05 GLB-LAS                 PIC X(03) VALUE "LAS".
+          05 GLB-SPACES              PIC X(80) VALUE SPACES.
+          05 GLB-ZEROS               PIC 9(18) VALUE ZEROS.
+          05 GLB-PARAM               PIC X(60) VALUE SPACES.
+       01 GLB-MENSAGENS.
+       05 GLB-INCLUSIONSUCCESS    PIC X(50) VALUE
+          "Inclusao Efetuada com Sucesso.                    ".
+       05 GLB-INVALIDINCLUSION    PIC X(50) VALUE
+          "Inclusao Invalida. Item ja' existe.               ".
+       05 GLB-INVALIDADD          PIC X(50) VALUE
+          "ADD Invalido. Ver Profiles Duplicates do Ispec.   ".
+       05 GLB-CHANGESUCCESS       PIC X(50) VALUE
+          "Alteracao Efetuada com Sucesso.                   ".
+       05 GLB-INVALIDCHANGE       PIC X(50) VALUE
+          "Alteracao Invalida. Item nao existe.              ".
+       05 GLB-INVALIDCHG          PIC X(50) VALUE
+          "CHG Invalido. Ver Profiles Duplicates do Ispec.   ".
+       05 GLB-DELETIONSUCCESS     PIC X(50) VALUE
+          "Delecao Efetuada com Sucesso.                     ".
+       05 GLB-INVALIDDELETION     PIC X(50) VALUE
+          "Delecao Invalida. Item nao existe.                ".
+       05 GLB-RECOVERSUCCESS      PIC X(50) VALUE
+          "Consulta Efetuada com Sucesso.                    ".
+       05 GLB-INVALIDRECOVER      PIC X(50) VALUE
+          "Consulta Invalida. Item nao existe.               ".
+       05 GLB-RECOVERSUCCESSDEL   PIC X(50) VALUE
+          "Consulta Efetuada. Item Deletado Logicamente.     ".
+       05 GLB-INVALIDRECOVERDEL   PIC X(50) VALUE
+          "Consulta Invalida. Item Deletado.                 ".
+       05 GLB-PURGESUCCESS        PIC X(50) VALUE
+          "Purge Efetuado com Sucesso.                       ".
+       05 GLB-INVALIDPURGE        PIC X(50) VALUE
+          "Purge Invalido. Item nao existe.                  ".
+       05 GLB-FILEEMPTY           PIC X(50) VALUE
+          "Arquivo Vazio.                                    ".
+       05 GLB-ENDFILE             PIC X(50) VALUE
+          "Final do Arquivo.                                 ".
+       05 GLB-BEGINFILE           PIC X(50) VALUE
+          "Inicio do Arquivo.                                ".
+       05 GLB-INVALIDMAINT        PIC X(50) VALUE
+          "Campo de Manutencao Invalido.                     ".
+       05 GLB-INVALIDINQ          PIC X(50) VALUE
+          "INQ nao permitido no final da LG.                 ".
+       05 GLB-INVALIDTEACH        PIC X(50) VALUE
+          "TEACH INVALIDO                                    ".
+       05 GLB-TEACHNOTEXIST       PIC X(50) VALUE
+          "Arquivo nao existe.                               ".
+       05 GLB-ISPECNOTDEFINED     PIC X(50) VALUE
+          "Ispec ainda nao definido.                         ".
+       05 GLB-INVALIDKEY          PIC X(50) VALUE
+          "Tecla Invalida.                                   ".
+       05 GLB-INVALIDSIGN         PIC X(50) VALUE
+          "Sinal Invalido.                                   ".
+       05 GLB-INVALIDNUMERIC      PIC X(50) VALUE
+          "Item Numerico Invalido.                           ".
+       05 GLB-NOTREGISTER         PIC X(50) VALUE
+          "Nao cadastrado em                                 ".
+       05 GLB-REPORTNOTFOUND      PIC X(50) VALUE
+          "Report ou Path nao encontrado.                    ".
+       05 GLB-ITEMNOTREGISTER     PIC X(50) VALUE
+          "Item nao Cadastrado no Ispec                      ".
+       05 GLB-LOGICALLYDELETED    PIC X(50) VALUE
+          "Item Deletado Logicamente no Ispec                ".
+       05 GLB-ITEMSNOTREGISTER    PIC X(50) VALUE
+          "Itens nao Cadastrados no Ispec                    ".
+       05 GLB-FORCEABLEFILLED     PIC X(50) VALUE
+          "Item com Preenchimento Obrigatorio.               ".
+       05 GLB-ORDINATEFILLED      PIC X(50) VALUE
+          "Ordinate Deve Ser Preenchido.                     ".
+       05 GLB-INVALIDDATE         PIC X(50) VALUE
+          "Data Invalida -->                                 ".
+       05 GLB-INVALIDVALUE        PIC X(50) VALUE
+          "Preenchido com Valor Invalido.                    ".
+       05 GLB-BALANCEEQUALZEROS   PIC X(50) VALUE
+          "GLB.BALANCE deve ser zeros quando LAST-LINE = 999.".
+
+       01 GLB-ITENS-PC.
+          05 GLB-ATTACH.
+             10 GLB-ATTACH-OC        PIC X(001) OCCURS 2001 TIMES.
+          05 GLB-ATTACH-I            PIC 9(004) VALUE ZEROS.
+          05 GLB-ATTACH-F            PIC X(001) VALUE SPACES.
+          05 GLB-ATTACH-A            PIC X(080) VALUE SPACES.
+          05 GLB-ATTACH-LEN          PIC 9(004) VALUE ZEROS.
+          05 GLB-ATTACH-EXIT         PIC 9(001) VALUE ZEROS.
+          05 GLB-POS-I               PIC 9(004) VALUE ZEROS.
+          05 GLB-POS-F               PIC 9(004) VALUE ZEROS.
+          05 GLB-TALLY               PIC 9(004) VALUE ZEROS.
+          05 GLB-LENGTH-I            PIC 9(004) VALUE ZEROS.
+          05 GLB-LENGTH-F            PIC 9(004) VALUE ZEROS.
+          05 CURSOR-LC               PIC 9(04) VALUE 0101.
+          05 GLB-CONTEXTO            PIC X(02) VALUE SPACES.
+          05 GLB-COPY                PIC 9(02) VALUE ZEROS.
+          05 GLB-MAXCOPY             PIC 9(02) VALUE ZEROS.
+          05 GLB-CURSOR              PIC 9(04) VALUE 0101.
+          05 GLB-CURSOR-I            PIC 9(04) VALUE 0101.
+          05 GLB-DATABASE            PIC X(10) VALUE SPACES.
+          05 GLB-DBDATASET           PIC X(10) VALUE SPACES.
+          05 GLB-DBVERSION           PIC 9(06) VALUE ZEROS.
+          05 GLB-FKEY                PIC X(02) VALUE ZEROS.
+          05 GLB-INDEX               PIC 9(02) VALUE ZEROS.
+          05 GLB-LENGTH              PIC 9(04) VALUE ZEROS.
+          05 GLB-LINE                PIC 9(02) VALUE ZEROS.
+          05 GLB-NUMCOPY             PIC 9(02) VALUE ZEROS.
+          05 GLB-STPARAMETRO         PIC X(20) VALUE SPACES.
+          05 GLB-STFILES             PIC X(30) VALUE SPACES.
+          05 GLB-WAKEUP              PIC X(01) VALUE SPACES.
+          05 GLB-WKCOMANDO           PIC X(10) VALUE SPACES.
+          05 GLB-WKREPORT            PIC X(10) VALUE SPACES.
+          05 GLB-WKDEVICE            PIC X(02) VALUE SPACES.
+          05 GLB-UPDATE              PIC 9(01) VALUE ZEROS.
+          05 GLB-AUDITDIR            PIC X(30) VALUE SPACES.
+          05 GLB-AUDIT               PIC X(01) VALUE SPACES.
+          05 GLB-TYPE                PIC X(01) VALUE SPACES.
+          05 GLB-MESSAGE.
+             10 GLB-MSGCOPY          PIC 9(02) OCCURS 21 TIMES.
+             10 GLB-MSGHEADER        PIC X(16) OCCURS 21 TIMES.
+             10 GLB-MSGTRAILER       PIC X(50) OCCURS 21 TIMES.
+          05 GLB-MSGINDEX            PIC 9(02) VALUE ZEROS.
+          05 GLB-OK                  PIC X(01) VALUE SPACES.
+          05 GLB-RECALL              PIC X(08) VALUE SPACES.
+          05 GLB-SENDMSG.
+             10 GLB-SMSGHEADER       PIC X(16) VALUE SPACES.
+             10 GLB-SMSGTRAILER      PIC X(64) VALUE SPACES.
+          05 GLB-SERIAL              PIC 9(01) VALUE ZEROS.
+          05 GLB-LOCK                PIC 9(01) VALUE ZEROS.
+          05 GLB-STATUSCODE.
+             10 GLB-STATUSCHAR       PIC X.
+             10 GLB-STATUSSCAN       PIC 99      COMP-5.
+          05 GLB-STATUSNUMB          PIC 9(03) VALUE ZEROS.
+          05 GLB-HUBTITLE            PIC X(35) VALUE SPACES.
+          05 GLB-HUBISPEC            PIC X(10) VALUE SPACES.
+          05 GLB-CPFCURSOR.
+             10 GLB-CPFLINE          PIC 9(02) VALUE ZEROS.
+             10 GLB-CPFCOLUMN        PIC 9(02) VALUE ZEROS.
+          05 GLB-LOWVALUES           PIC X(01) VALUE X"00".
+          05 P2-ISPEC                PIC X(05) VALUE SPACES.
+          05 P2-TEACH                PIC X(05) VALUE SPACES.
+          05 P2-FLAG                 PIC X(01) VALUE SPACES.
+          05 GLB-COMPLEMENT          PIC X(128) VALUE SPACES.
+          05 GLB-ROLLBACK            PIC 9(01) VALUE 1.
+          05 GLB-TRUE                PIC 9(01) VALUE 1.
+          05 GLB-FALSE               PIC 9(01) VALUE ZEROS.
+       78 SOUND-BELL                 VALUE X"E5".
+       78 CLEAR-SCREEN               VALUE X"E4".
+
+       78 GLB-ENT                    VALUE "00".
+       78 GLB-ESC                    VALUE "01".
+       78 F1                         VALUE "02".
+       78 F2                         VALUE "03".
+       78 F3                         VALUE "04".
+       78 F4                         VALUE "05".
+       78 F5                         VALUE "06".
+       78 F6                         VALUE "07".
+       78 F7                         VALUE "08".
+       78 F8                         VALUE "09".
+       78 F9                         VALUE "10".
+       78 F10                        VALUE "11".
+       78 SHIFT-F1                   VALUE "12".
+       78 SHIFT-F2                   VALUE "13".
+       78 SHIFT-F3                   VALUE "14".
+       78 SHIFT-F4                   VALUE "15".
+       78 SHIFT-F5                   VALUE "16".
+       78 SHIFT-F6                   VALUE "17".
+       78 SHIFT-F7                   VALUE "18".
+       78 SHIFT-F8                   VALUE "19".
+       78 SHIFT-F9                   VALUE "20".
+       78 SHIFT-F10                  VALUE "21".
+       78 CTRL-F1                    VALUE "22".
+       78 CTRL-F2                    VALUE "23".
+       78 CTRL-F3                    VALUE "24".
+       78 CTRL-F4                    VALUE "25".
+       78 CTRL-F5                    VALUE "26".
+       78 CTRL-F6                    VALUE "27".
+       78 CTRL-F7                    VALUE "28".
+       78 CTRL-F8                    VALUE "29".
+       78 CTRL-F9                    VALUE "30".
+       78 CTRL-F10                   VALUE "31".
+       78 ALT-F1                     VALUE "32".
+       78 ALT-F2                     VALUE "33".
+       78 ALT-F3                     VALUE "34".
+       78 ALT-F4                     VALUE "35".
+       78 ALT-F5                     VALUE "36".
+       78 ALT-F6                     VALUE "37".
+       78 ALT-F7                     VALUE "38".
+       78 ALT-F8                     VALUE "39".
+       78 ALT-F9                     VALUE "40".
+       78 ALT-F10                    VALUE "41".
+       78 PGUP                       VALUE "54".
+       78 PGDN                       VALUE "55".
+
+      *****************************************************************
+      *                   VARIAVEIS DE MENU/ZOOM                      *
+      *****************************************************************
+       01 GLB-TABINDEX               PIC 9(02) VALUE ZEROS.
+       01 GLB-MAXINDEX               PIC 9(02) VALUE ZEROS.
+       01 GLB-TABOCCUR               PIC 9(02) VALUE ZEROS.
+       01 GLB-TABLINE                PIC 9(02) VALUE ZEROS.
+       01 GLB-ZOOMBREAK              PIC X(20) VALUE SPACES.
+       01 GLB-MENUINDEX              PIC 9(04) VALUE ZEROS.
+       01 GLB-MENUMAXNO              PIC 9(04) VALUE ZEROS.
+       01 GLB-MENUBREAK              PIC X(20) VALUE SPACES.
+       01 GLB-STARTPOS.
+       05 GLB-STARTLINE              PIC 9(02) VALUE ZEROS.
+       05 GLB-STARTCOL               PIC 9(02) VALUE ZEROS.
+       01 GLB-FINALPOS.
+       05 GLB-FINALLINE              PIC 9(02) VALUE ZEROS.
+       05 GLB-FINALCOL               PIC 9(02) VALUE ZEROS.
+       01 GLB-BOXBORDER              PIC X(02) VALUE SPACES.
+       01 GLB-BOXBGCOLOR             PIC X(01) VALUE SPACES.
+       01 GLB-BOXFGCOLOR             PIC X(01) VALUE SPACES.
+      *****************************************************************
+      *                FINAL DAS VARIAVEIS DE MENU                    *
+      *****************************************************************
+
+
+      ******************************************************************
+      *                        LINKAGE SECTION                         *
+      ******************************************************************
+       LINKAGE SECTION.
+       01 GLB-WORK                   PIC X(0150) VALUE SPACES.
+       01 GLB-CALL                   PIC X(05) VALUE SPACES.
+       01 GLB-REQUEST                PIC X(01) VALUE SPACES.
+       01 GLB-TEACH                  PIC X(05) VALUE SPACES.
+       01 GLB-LSN                    PIC X(05) VALUE SPACES.
+       01 GLB-STN                    PIC X(17) VALUE SPACES.
+       01 GLB-USERCODE               PIC X(12) VALUE SPACES.
+
+       SCREEN SECTION.
+       01 ISPEC-SCREEN BACKGROUND-COLOR IS 01.
+             10   LINE 01 COL 01 VALUE "ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      -    "ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿".
+             10   LINE 02 COL 01 VALUE "³ ".
+             10   LINE 02 COL 03 PIC X(30) FROM  SCREEN-CB-USUARIO  AUTO
+            HIGHLIGHT.
+             10   LINE 02 COL 33 VALUE "  Cadastro de Fornecedores
+      -    "         FORNE ³".
+             10   LINE 03 COL 01 VALUE "³ Operador: ".
+             10   LINE 03 COL 13 PIC Z(06) FROM  SCREEN-CB-CDOPERA  AUTO
+      -    .
+             10   LINE 03 COL 19 VALUE "  ".
+             10   LINE 03 COL 21 PIC X(15) FROM  SCREEN-CB-OPERAD  AUTO.
+             10   LINE 03 COL 36 VALUE "  Turno: ".
+             10   LINE 03 COL 45 PIC Z(01) FROM  SCREEN-CB-TURNO  AUTO.
+             10   LINE 03 COL 46 VALUE "  Movto: ".
+             10   LINE 03 COL 55 PIC X(08) FROM  SCREEN-CB-DTMOV  AUTO.
+             10   LINE 03 COL 63 VALUE "  Data: ".
+             10   LINE 03 COL 71 PIC X(08) FROM  SCREEN-CB-DTATU  AUTO.
+             10   LINE 03 COL 79 VALUE " ³".
+             10   LINE 04 COL 01 VALUE "ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+      -    "ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ".
+             10   LINE 05 COL 01 VALUE "
+      -    "                                                ".
+             10   LINE 06 COL 01 VALUE "Servico ..........: ".
+             10   LINE 06 COL 22 PIC X(03) USING SCREEN-MAINT  AUTO.
+             10   LINE 06 COL 25 VALUE "
+      -    "                        ".
+             10   LINE 07 COL 01 VALUE "
+      -    "                                                ".
+             10   LINE 08 COL 01 VALUE "Codigo Fornecedor : ".
+             10   LINE 08 COL 22 PIC Z(04) USING SCREEN-OR-FORNE  AUTO.
+             10   LINE 08 COL 26 VALUE "                   Categoria:"
+           .
+             10   LINE 08 COL 57 PIC Z(01) USING SCREEN-CD-CATEG  AUTO.
+             10   LINE 08 COL 58 VALUE "                      ".
+             10   LINE 09 COL 01 VALUE "Nome Fornecedor ..: ".
+             10   LINE 09 COL 22 PIC X(45) USING SCREEN-DS-DESCR  AUTO.
+             10   LINE 09 COL 67 VALUE "             ".
+             10   LINE 10 COL 01 VALUE "Endereco .........: ".
+             10   LINE 10 COL 22 PIC X(35) USING SCREEN-DS-ENDER  AUTO.
+             10   LINE 10 COL 57 VALUE "                       ".
+             10   LINE 11 COL 01 VALUE "Municipio ........: ".
+             10   LINE 11 COL 22 PIC X(25) USING SCREEN-NM-MUNIC  AUTO.
+             10   LINE 11 COL 47 VALUE "  UF:".
+             10   LINE 11 COL 54 PIC X(02) USING SCREEN-CD-UF  AUTO.
+             10   LINE 11 COL 56 VALUE "     CEP:".
+             10   LINE 11 COL 67 PIC Z(05) USING SCREEN-NR-CEP  AUTO.
+             10   LINE 11 COL 72 VALUE "".
+             10   LINE 11 COL 74 PIC Z(03) USING SCREEN-NR-CEP2  AUTO.
+             10   LINE 11 COL 77 VALUE "   ".
+             10   LINE 12 COL 01 VALUE "CNPJ .............: ".
+             10   LINE 12 COL 22 PIC Z(14) USING SCREEN-NR-CGC  AUTO.
+             10   LINE 12 COL 36 VALUE "     CCE:".
+             10   LINE 12 COL 47 PIC X(15) USING SCREEN-NR-CCE  AUTO.
+             10   LINE 12 COL 62 VALUE "                  ".
+             10   LINE 13 COL 01 VALUE "Fone Comercial ...: ".
+             10   LINE 13 COL 22 PIC Z(10) USING SCREEN-CD-FONE  AUTO.
+             10   LINE 13 COL 32 VALUE " Residencial:".
+             10   LINE 13 COL 47 PIC Z(10) USING SCREEN-CD-FONERE  AUTO.
+             10   LINE 13 COL 57 VALUE " Celular:".
+             10   LINE 13 COL 68 PIC Z(10) USING SCREEN-CD-CELULAR  AUTO
+      -    .
+             10   LINE 13 COL 78 VALUE "  ".
+             10   LINE 14 COL 01 VALUE "Contato ..........: ".
+             10   LINE 14 COL 22 PIC X(20) USING SCREEN-DS-CONTATO  AUTO
+      -    .
+             10   LINE 14 COL 42 VALUE "
+      -    "       ".
+             10   LINE 15 COL 01 VALUE "Ramo de Negocio ..: ".
+             10   LINE 15 COL 22 PIC X(30) USING SCREEN-DS-NEGOCIO  AUTO
+      -    .
+             10   LINE 15 COL 52 VALUE "                            ".
+             10   LINE 16 COL 01 VALUE "Produto Fornecido : ".
+             10   LINE 16 COL 22 PIC X(30) USING SCREEN-DS-PRODUTO  AUTO
+      -    .
+             10   LINE 16 COL 52 VALUE "                            ".
+             10   LINE 17 COL 01 VALUE "
+      -    "                                                ".
+             10   LINE 18 COL 01 VALUE " Servico :
+      -    "                                                ".
+             10   LINE 19 COL 01 VALUE " F1 - Inclusao    F6 - Proximo
+      -    "      Categoria:                                ".
+             10   LINE 20 COL 01 VALUE " F2 - Alteracao   F7 - Anterio
+      -    "          1=Fornecedor     4=Despesas           ".
+             10   LINE 21 COL 01 VALUE " F3 - Exclusao    F8 - Ultimo
+      -    "          2=Transportador  5=Representante      ".
+             10   LINE 22 COL 01 VALUE " F4 - Consulta    F9 - Fornecedo
+      -    "res       3=Vendedor                            ".
+             10   LINE 23 COL 01 VALUE " F5 - Primeiro    Shift+F4 - Con
+      -    "sulta por CNPJ                                  ".
+             10   LINE 24 COL 01 VALUE "
+      -    "                      Proxima Tela : ".
+             10   LINE 24 COL 71 PIC X(05) USING SCREEN-CB-PROXTEL .
+             10   LINE 24 COL 76 VALUE "    ".
+       01 BOX0001 FOREGROUND-COLOR IS 03 BACKGROUND-COLOR IS 00.
+             10   LINE 06 COL 14 VALUE "ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+      -    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»".
+             10   LINE 07 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 08 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 09 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 10 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 11 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 12 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 13 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 14 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 15 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 16 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 17 COL 14 VALUE "º
+      -    "                    º".
+             10   LINE 18 COL 14 VALUE "ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+      -    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼".
+
+       01 ERRMSG BACKGROUND-COLOR IS 01.
+          10   LINE GLB-LINE COL 01 PIC X(16) FROM
+             GLB-MSGHEADER(GLB-INDEX) REVERSE-VIDEO BEEP.
+          10   LINE GLB-LINE COL 17 PIC X(50) FROM
+             GLB-MSGTRAILER(GLB-INDEX) HIGHLIGHT.
+          10   LINE GLB-LINE COL 67 VALUE "              ".
+       01 ATTMSG BACKGROUND-COLOR IS 01.
+          10   LINE GLB-LINE COL 01 PIC X(16) FROM
+             GLB-MSGHEADER(GLB-INDEX) REVERSE-VIDEO.
+          10   LINE GLB-LINE COL 17 PIC X(50) FROM
+             GLB-MSGTRAILER(GLB-INDEX) HIGHLIGHT.
+          10   LINE GLB-LINE COL 67 VALUE "              ".
+       01 SENDMSG BACKGROUND-COLOR IS 01.
+          10   LINE 25 COL 01 PIC X(16) FROM
+             GLB-SMSGHEADER REVERSE-VIDEO.
+          10   LINE 25 COL 17 PIC X(64) FROM
+             GLB-SMSGTRAILER HIGHLIGHT.
+       01 CLEMSG BACKGROUND-COLOR IS 01.
+             10   LINE 25 COL 01 VALUE "
+      -    "                                                ".
+      *****************************************************************
+      *                   PROCEDURE DIVISION                          *
+      *****************************************************************
+       PROCEDURE DIVISION USING GLB-WORK, GLB-CALL,
+                                GLB-REQUEST, GLB-TEACH,
+                                GLB-LSN, GLB-STN, GLB-USERCODE.
+       DECLARATIVES.
+       DEC-CONTROLF-S SECTION.
+           USE AFTER ERROR PROCEDURE ON CONTROLF.
+       DEC-CONTROLF-P.
+           MOVE "CONTROL"           TO GLB-DBDATASET
+           MOVE CONTROLF-XSEEDTITLE      TO GLB-TITLE
+           MOVE CONTROLF-XSEEDSTATUS TO GLB-STATUSCODE
+           GO TO DEC-P.
+       DEC-FORNE-S SECTION.
+           USE AFTER ERROR PROCEDURE ON FORNE.
+       DEC-FORNE-P.
+           MOVE "FORNE" TO GLB-DBDATASET
+           MOVE FORNE-XSEEDTITLE TO GLB-TITLE
+           MOVE FORNE-XSEEDSTATUS TO GLB-STATUSCODE
+           MOVE GLB-STATUSSCAN TO GLB-STATUSNUMB
+           IF GLB-STATUSCHAR = 9 AND
+              GLB-STATUSNUMB = 068
+              MOVE 1 TO GLB-LOCK
+           ELSE
+              GO TO DEC-P.
+       DEC-S SECTION.
+       DEC-P.
+           CALL "XSDDECER" USING
+                BY REFERENCE GLB-TITLE
+                BY REFERENCE GLB-DBDATASET
+                BY REFERENCE GLB-STATUSCODE
+                ON OVERFLOW
+                MOVE "XSDDECER.EXE does not exist or memory overflow "
+                     TO GLB-SMSGTRAILER
+                PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDDECER"
+           STOP RUN
+       END DECLARATIVES.
+      *****************************************************************
+      *                   INICIO DA PROCEDURE                         *
+      *****************************************************************
+       SECTION-01 SECTION 01.
+       INITIALIZE-ISPEC.
+           DISPLAY CLEMSG
+           MOVE "BDPOSTO" TO GLB-DATABASE
+           MOVE "FORNE" TO ISPEC
+           MOVE 1957 TO GLB-BASE
+           MOVE 19 TO GLB-CENTURY
+           MOVE "UK" TO GLB-DCTYPE
+           PERFORM P-ISPUP THRU P-ISPUP-EXT
+           MOVE SPACES TO P2-ISPEC
+           MOVE SPACES TO GLB-CALL
+
+           PERFORM OPEN-FILES
+
+           MOVE GLB-STN      TO GLB-STATION
+           MOVE GLB-LANGUAGE TO GLB-STALANG
+           MOVE GLB-DATABASE TO GLB-ORIGIN
+           MOVE GLB-DATABASE TO GLB-SELF
+           MOVE "T"          TO GLB-SOURCE
+           MOVE ZEROS        TO GLB-MSGINDEX
+           MOVE SPACES       TO GLB-MESSAGE
+           MOVE GLB-CURSOR   TO GLB-CURSOR-I
+           .
+      *****************************************************************
+      *                        PRE-SCREEN                             *
+      *****************************************************************
+       PRE-SCREEN.
+           PERFORM P-DC THRU P-DC-EXT
+           MOVE SPACES TO GLB-ERROR
+           MOVE SPACES TO GLB-RECALL
+           MOVE "PS" TO GLB-CONTEXTO
+           MOVE GLB-CURSOR-I TO GLB-CURSOR
+           INITIALIZE SCREEN-XSEEDREG
+           PERFORM P-INITIALIZE THRU P-INITIALIZE-EXT
+           MOVE GLB-WORK TO GSD-GLBWORK
+           PERFORM LI-CABECALHO THRU LI-CABECALHO-EXT
+           .
+       PRE-SCREEN-EXT.
+           MOVE SPACES TO GLB-REQUEST
+           IF GLB-ERROR = "*****"
+              PERFORM P-RECALL
+              MOVE SCREEN-XSEEDREG TO VIDEO-XSEEDREG
+              MOVE SPACES TO GLB-ERROR.
+      *****************************************************************
+      *                        SHOW SCREEN                            *
+      *****************************************************************
+       SECTION-02 SECTION 02.
+       SHOW-SCREEN.
+           ADD 1 TO TRANNO
+           MOVE GLB-CURSOR TO CURSOR-LC
+           PERFORM P-MESSAGE
+           .
+       SHOW-SCREEN-D.
+           EVALUATE TRUE
+              WHEN SCREEN-VL-SALDO > ZEROS
+                   MOVE "+" TO SCREEN-VL-SALDO-SINALIZADOR
+              WHEN SCREEN-VL-SALDO < ZEROS
+                   MULTIPLY -1 BY SCREEN-VL-SALDO
+                   MOVE "-" TO SCREEN-VL-SALDO-SINALIZADOR
+              WHEN SCREEN-VL-SALDO = ZEROS
+                   MOVE "+" TO SCREEN-VL-SALDO-SINALIZADOR
+           END-EVALUATE
+           IF GLB-ERROR = "*****"
+              MOVE VIDEO-XSEEDREG TO SCREEN-XSEEDREG
+           END-IF
+           PERFORM UNLOCK-FILES
+           DISPLAY ISPEC-SCREEN
+           ACCEPT  ISPEC-SCREEN
+           ACCEPT GLB-FKEY FROM ESCAPE KEY
+           MOVE GLB-CURSOR-I TO GLB-CURSOR
+           MOVE SCREEN-XSEEDREG TO VIDEO-XSEEDREG
+           PERFORM P-DC THRU P-DC-EXT
+           MOVE SPACES TO GLB-ERROR
+           IF GLB-FKEY = GLB-ESC
+              MOVE SPACES TO GLB-RECALL
+           END-IF
+
+           EVALUATE TRUE
+              WHEN GLB-FKEY = F1
+                   MOVE "ADD       " TO SCREEN-MAINT
+                   MOVE "ADD       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F2
+                   MOVE "CHG       " TO SCREEN-MAINT
+                   MOVE "CHG       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F3
+                   MOVE "DEL       " TO SCREEN-MAINT
+                   MOVE "DEL       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F4
+                   MOVE "REC       " TO SCREEN-MAINT
+                   MOVE "REC       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F5
+                   MOVE "FIR       " TO SCREEN-MAINT
+                   MOVE "FIR       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F6
+                   MOVE "NEX       " TO SCREEN-MAINT
+                   MOVE "NEX       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F7
+                   MOVE "BAC       " TO SCREEN-MAINT
+                   MOVE "BAC       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F8
+                   MOVE "LAS       " TO SCREEN-MAINT
+                   MOVE "LAS       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F9
+                   MOVE "MSI       " TO SCREEN-MAINT
+                   MOVE "MSI       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = F10
+                   MOVE "MGE       " TO SCREEN-MAINT
+                   MOVE "MGE       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = SHIFT-F4
+                   MOVE "CGC       " TO SCREEN-MAINT
+                   MOVE "CGC       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = SHIFT-F10
+                   MOVE "LIM       " TO SCREEN-MAINT
+                   MOVE "LIM       " TO VIDEO-MAINT
+              WHEN GLB-FKEY = PGUP PERFORM P-TEACH THRU P-TEACH-EXT
+              WHEN GLB-FKEY = GLB-ESC PERFORM P-PAGE2 THRU P-PAGE2-EXT
+              WHEN GLB-FKEY = GLB-ENT CONTINUE
+              WHEN GLB-FKEY = PGDN CONTINUE
+              WHEN OTHER
+                   MOVE 1 TO GLB-MSGINDEX
+                   MOVE "ERROR" TO GLB-MSGHEADER(1)
+                   MOVE GLB-INVALIDKEY TO GLB-MSGTRAILER(1)
+                   MOVE "*****" TO GLB-ERROR
+           END-EVALUATE
+           EVALUATE TRUE
+              WHEN SCREEN-VL-SALDO-SINALIZADOR = "+" OR " "
+                   CONTINUE
+              WHEN SCREEN-VL-SALDO-SINALIZADOR = "-"
+                   MULTIPLY -1 BY SCREEN-VL-SALDO
+              WHEN OTHER
+                    STRING "VALOR DO SALDO   - "     DELIMITED SIZE
+                           GLB-INVALIDSIGN DELIMITED SIZE
+                           INTO GLB-SMSGTRAILER
+                    PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-EVALUATE
+           .
+       SHOW-SCREEN-EXT.
+           IF GLB-ERROR = "*****" GO TO SHOW-SCREEN.
+
+      *****************************************************************
+      *                           PRE-LINC                            *
+      *****************************************************************
+       PRE-LINC.
+           MOVE SPACES TO GLB-ERROR
+           MOVE ZEROS  TO GLB-MSGINDEX
+           MOVE SPACES TO GLB-MESSAGE
+           MOVE SPACES TO GLB-RECALL
+           MOVE "PL" TO GLB-CONTEXTO
+           PERFORM P-INITIALIZE THRU P-INITIALIZE-EXT
+           EVALUATE TRUE
+              WHEN SCREEN-MAINT = GLB-FIR PERFORM P-FIR THRU P-FIR-EXT
+                                 MOVE GLB-FIR TO SCREEN-MAINT
+              WHEN SCREEN-MAINT = GLB-NEX PERFORM P-NEX THRU P-NEX-EXT
+                                 MOVE GLB-NEX TO SCREEN-MAINT
+              WHEN SCREEN-MAINT = GLB-LAS PERFORM P-LAS THRU P-LAS-EXT
+                                 MOVE GLB-LAS TO SCREEN-MAINT
+              WHEN SCREEN-MAINT = GLB-BAC PERFORM P-BAC THRU P-BAC-EXT
+                                 MOVE GLB-BAC TO SCREEN-MAINT
+              WHEN SCREEN-MAINT = GLB-REC PERFORM P-REC THRU P-REC-EXT
+                                 MOVE GLB-REC TO SCREEN-MAINT
+           END-EVALUATE
+           IF SCREEN-MAINT = GLB-REC OR GLB-FIR OR
+                             GLB-LAS OR GLB-NEX OR GLB-BAC
+              GO TO SHOW-SCREEN
+           END-IF
+           IF SCREEN-CB-PROXTEL NOT = SPACES
+              CONTINUE ELSE GO TO PL-000001.
+           MOVE SCREEN-CB-PROXTEL TO GSD-NM-TELA
+           PERFORM LP-PROX-TELA THRU LP-PROX-TELA-EXT
+           .
+       PL-000001.
+           IF SCREEN-MAINT = "MSI"
+              CONTINUE ELSE GO TO PL-000002.
+           MOVE 03 TO GSD-CD-SISTEMA
+           INITIALIZE GSD-NM-TELA
+           PERFORM LP-PROX-TELA THRU LP-PROX-TELA-EXT
+           .
+       PL-000002.
+           IF SCREEN-MAINT = "MGE"
+              CONTINUE ELSE GO TO PL-000003.
+           MOVE 99 TO GSD-CD-SISTEMA
+           INITIALIZE GSD-NM-TELA
+           PERFORM LP-PROX-TELA THRU LP-PROX-TELA-EXT
+           .
+       PL-000003.
+           IF SCREEN-MAINT = "LST"
+              CONTINUE ELSE GO TO PL-000004.
+           .
+           MOVE 1 TO GLB-TABINDEX
+           DISPLAY ISPEC-SCREEN
+           MOVE 0614 TO GLB-STARTPOS
+           MOVE 1866 TO GLB-FINALPOS
+           MOVE "D" TO GLB-BOXBORDER
+           MOVE "E" TO GLB-BOXBGCOLOR
+           MOVE "C" TO GLB-BOXFGCOLOR
+           DISPLAY BOX0001
+           MOVE 11 TO GLB-MAXINDEX
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           START FORNE KEY NOT LESS FOR-FORNE
+                 NOT INVALID KEY
+                 READ FORNE NEXT WITH NO LOCK
+                      NOT AT END
+                      MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+                 END-READ
+           END-START
+           .
+       PL-000005.
+           MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+           IF (FORNE-OR-FORNE < SCREEN-OR-FORNE )
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           START FORNE KEY NOT LESS FOR-FORNE
+                 NOT INVALID KEY
+                 READ FORNE NEXT WITH NO LOCK
+                      NOT AT END
+                      MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+                 END-READ
+           END-START
+           END-IF
+           START FORNE KEY NOT LESS FOR-FORNE
+                 NOT INVALID KEY
+                 MOVE ZEROS TO FORNE-XSEEDEOF
+                 PERFORM VARYING GLB-TABOCCUR FROM 1 BY 1
+                         UNTIL GLB-TABOCCUR > GLB-MAXINDEX
+                   INITIALIZE FORNE-XSEEDREG
+                   IF FORNE-XSEEDEOF NOT = 1
+                      READ FORNE NEXT WITH NO LOCK
+                           AT END
+                           MOVE 1 TO FORNE-XSEEDEOF
+                           INITIALIZE FORNE-XSEEDREG
+                           NOT AT END
+                           IF FORNE-XSEEDEOF NOT = 1
+           IF (FORNE-OR-FORNE > HIGH-VALUE )
+              MOVE 1 TO FORNE-XSEEDEOF
+              INITIALIZE FORNE-XSEEDREG
+           END-IF
+                           END-IF
+                      END-READ
+                   END-IF
+                   IF GLB-TABOCCUR = GLB-TABINDEX
+                      COMPUTE GLB-TABLINE = (07 + GLB-TABOCCUR - 1)
+                      DISPLAY FORNE-OR-FORNE
+                              LINE GLB-TABLINE COL 15
+                             WITH REVERSE-VIDEO
+                      COMPUTE GLB-TABLINE = (07 + GLB-TABOCCUR - 1)
+                      DISPLAY FORNE-DS-DESCR
+                              LINE GLB-TABLINE COL 20
+                             WITH REVERSE-VIDEO
+                   ELSE
+                      COMPUTE GLB-TABLINE = (07 + GLB-TABOCCUR - 1)
+                      DISPLAY FORNE-OR-FORNE
+                              LINE GLB-TABLINE COL 15
+                              WITH
+                            BACKGROUND-COLOR IS 0
+                      COMPUTE GLB-TABLINE = (07 + GLB-TABOCCUR - 1)
+                      DISPLAY FORNE-DS-DESCR
+                              LINE GLB-TABLINE COL 20
+                              WITH
+                            BACKGROUND-COLOR IS 0
+                   END-IF
+                 END-PERFORM
+           END-START
+           MOVE SPACES TO GLB-ZOOMBREAK
+           CALL "XSDGETCH" USING
+                   BY REFERENCE GLB-ZOOMBREAK
+                   ON OVERFLOW
+                   MOVE "XSDGETCH.EXE does not exist or memory overflow"
+                        TO GLB-SMSGTRAILER
+                   PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDGETCH"
+           EVALUATE TRUE
+              WHEN GLB-ZOOMBREAK = "PGDN"
+                   MOVE SPACES TO GLB-ZOOMBREAK
+                   MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+                   START FORNE KEY GREATER FOR-FORNE
+                    NOT INVALID KEY
+                    MOVE ZEROS TO FORNE-XSEEDEOF
+                    PERFORM VARYING GLB-TABOCCUR FROM 1 BY 1
+                            UNTIL GLB-TABOCCUR > GLB-MAXINDEX
+                      IF FORNE-XSEEDEOF NOT = 1
+                         READ FORNE NEXT     WITH NO LOCK
+                              AT END
+                              MOVE 1 TO FORNE-XSEEDEOF
+                              NOT AT END
+           IF (FORNE-OR-FORNE > HIGH-VALUE )
+              CONTINUE
+           ELSE
+              MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+           END-IF
+                         END-READ
+                      END-IF
+                    END-PERFORM
+                   END-START
+                   MOVE 1 TO GLB-TABINDEX
+              WHEN GLB-ZOOMBREAK = "PGUP"
+                   MOVE SPACES TO GLB-ZOOMBREAK
+                   MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+                   START FORNE KEY LESS    FOR-FORNE
+                    NOT INVALID KEY
+                    MOVE ZEROS TO FORNE-XSEEDEOF
+                    PERFORM VARYING GLB-TABOCCUR FROM 1 BY 1
+                            UNTIL GLB-TABOCCUR > GLB-MAXINDEX
+                      IF FORNE-XSEEDEOF NOT = 1
+                         READ FORNE PREVIOUS WITH NO LOCK
+                              AT END
+                              MOVE 1 TO FORNE-XSEEDEOF
+                              NOT AT END
+                              MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+                         END-READ
+                      END-IF
+                    END-PERFORM
+                   END-START
+                   MOVE 1 TO GLB-TABINDEX
+              WHEN GLB-ZOOMBREAK = "DOWN-ARROW"
+                   MOVE SPACES TO GLB-ZOOMBREAK
+                   ADD 1 TO GLB-TABINDEX
+                   IF GLB-TABINDEX > GLB-MAXINDEX
+                      MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+                      START FORNE KEY GREATER FOR-FORNE
+                            NOT INVALID KEY
+                            READ FORNE NEXT     WITH NO LOCK
+                                 NOT AT END
+           IF (FORNE-OR-FORNE > HIGH-VALUE )
+              CONTINUE
+           ELSE
+              MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+           END-IF
+                            END-READ
+                      END-START
+                      MOVE GLB-MAXINDEX TO GLB-TABINDEX
+                   END-IF
+              WHEN GLB-ZOOMBREAK = "UP-ARROW"
+                   MOVE SPACES TO GLB-ZOOMBREAK
+                   SUBTRACT 1 FROM GLB-TABINDEX
+                   IF GLB-TABINDEX < 1
+                      MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+                      START FORNE KEY LESS    FOR-FORNE
+                            NOT INVALID KEY
+                            READ FORNE PREVIOUS WITH NO LOCK
+                                 NOT AT END
+                                 MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+                            END-READ
+                      END-START
+                      MOVE 1 TO GLB-TABINDEX
+                   END-IF
+              WHEN GLB-ZOOMBREAK = "RIGHT-ARROW"
+                   MOVE SPACES TO GLB-ZOOMBREAK
+                   ADD 1 TO GLB-TABINDEX
+                   IF GLB-TABINDEX > GLB-MAXINDEX
+                      MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+                      START FORNE KEY GREATER FOR-FORNE
+                            NOT INVALID KEY
+                            READ FORNE NEXT     WITH NO LOCK
+                                 NOT AT END
+           IF (FORNE-OR-FORNE > HIGH-VALUE )
+              CONTINUE
+           ELSE
+              MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+           END-IF
+                            END-READ
+                      END-START
+                      MOVE GLB-MAXINDEX TO GLB-TABINDEX
+                   END-IF
+              WHEN GLB-ZOOMBREAK = "LEFT-ARROW"
+                   MOVE SPACES TO GLB-ZOOMBREAK
+                   SUBTRACT 1 FROM GLB-TABINDEX
+                   IF GLB-TABINDEX < 1
+                      MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+                      START FORNE KEY LESS    FOR-FORNE
+                            NOT INVALID KEY
+                            READ FORNE PREVIOUS WITH NO LOCK
+                                 NOT AT END
+                                 MOVE FORNE-XSEEDREG TO AEFORNE-XSEEDREG
+                            END-READ
+                      END-START
+                      MOVE 1 TO GLB-TABINDEX
+                   END-IF
+              WHEN GLB-ZOOMBREAK = "ENTER          "
+                   MOVE "ENTER          " TO GLB-ZOOMBREAK
+              WHEN GLB-ZOOMBREAK = "ESCAPE         "
+                   MOVE "ESCAPE         " TO GLB-ZOOMBREAK
+           WHEN OTHER
+                MOVE SPACES TO GLB-ZOOMBREAK
+           END-EVALUATE
+           IF GLB-ZOOMBREAK NOT = SPACES
+              MOVE AEFORNE-XSEEDREG TO FORNE-XSEEDREG
+              START FORNE KEY NOT LESS FOR-FORNE
+                    NOT INVALID KEY
+                    MOVE ZEROS TO FORNE-XSEEDEOF
+                    PERFORM VARYING GLB-TABOCCUR FROM 1 BY 1
+                            UNTIL GLB-TABOCCUR > GLB-TABINDEX
+                      INITIALIZE FORNE-XSEEDREG
+                      IF FORNE-XSEEDEOF NOT = 1
+                         READ FORNE NEXT WITH NO LOCK
+                              AT END
+                              MOVE 1 TO FORNE-XSEEDEOF
+                              INITIALIZE FORNE-XSEEDREG
+                         END-READ
+                      END-IF
+                    END-PERFORM
+              END-START
+              GO TO PL-000006
+           END-IF
+           GO TO PL-000005.
+       PL-000006.
+           DISPLAY ISPEC-SCREEN
+           IF GLB-ZOOMBREAK = "ENTER"
+              CONTINUE ELSE GO TO PL-000007.
+           MOVE FORNE-OR-FORNE TO SCREEN-OR-FORNE
+           MOVE FORNE-DS-DESCR TO SCREEN-DS-DESCR
+           MOVE "FORNE" TO GLB-RECALL
+           MOVE SPACES TO GLB-TEACH
+           MOVE "*****" TO GLB-ERROR
+           .
+       PL-000007.
+           IF GLB-ZOOMBREAK = "ESCAPE"
+              CONTINUE ELSE GO TO PL-000008.
+           MOVE "FORNE" TO GLB-RECALL
+           MOVE SPACES TO GLB-TEACH
+           MOVE "*****" TO GLB-ERROR
+           .
+       PL-000008.
+           .
+       PL-000004.
+           IF SCREEN-MAINT = "LIM"
+              CONTINUE ELSE GO TO PL-000009.
+           MOVE ZEROS TO SCREEN-CD-FONE
+           MOVE ZEROS TO SCREEN-CD-CATEG
+           INITIALIZE SCREEN-DS-DESCR
+           MOVE "ADD" TO SCREEN-MAINT
+           INITIALIZE SCREEN-NR-CCE
+           MOVE ZEROS TO SCREEN-NR-CEP
+           MOVE ZEROS TO SCREEN-NR-CEP2
+           MOVE ZEROS TO SCREEN-NR-CGC
+           MOVE ZEROS TO SCREEN-OR-FORNE
+           MOVE ZEROS TO SCREEN-CD-CELULAR
+           MOVE ZEROS TO SCREEN-CD-FONERE
+           INITIALIZE SCREEN-NM-MUNIC
+           INITIALIZE SCREEN-DS-ENDER
+           INITIALIZE SCREEN-CD-UF
+           INITIALIZE SCREEN-DS-CONTATO
+           INITIALIZE SCREEN-DS-NEGOCIO
+           INITIALIZE SCREEN-DS-PRODUTO
+           MOVE 0822 TO GLB-CURSOR
+           MOVE "FORNE" TO GLB-RECALL
+           MOVE SPACES TO GLB-TEACH
+           MOVE "*****" TO GLB-ERROR
+           GO TO PRE-LINC-EXT
+           .
+       PL-000009.
+           IF SCREEN-MAINT = "CGC"
+              CONTINUE ELSE GO TO PL-000010.
+           IF SCREEN-NR-CGC = ZEROS
+              CONTINUE ELSE GO TO PL-000011.
+           MOVE "Informe o Numero do CNPJ"
+                TO GLB-SMSGTRAILER
+           PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           .
+       PL-000011.
+           IF SCREEN-NR-CGC NOT = ZEROS
+              CONTINUE ELSE GO TO PL-000012.
+           MOVE SCREEN-NR-CGC TO FORNE-NR-CGC
+           MOVE "*****" TO GLB-STATUS
+           MOVE ZEROS TO FORNE-XSEEDEOF
+           START FORNE KEY NOT LESS    PFORNE03 INVALID KEY
+                       MOVE 1 TO FORNE-XSEEDEOF
+                       INITIALIZE FORNE-XSEEDREG
+                       GO TO PL-000014.
+       PL-000013.
+           IF FORNE-XSEEDEOF = 1 GO TO PL-000014.
+           READ FORNE NEXT WITH NO LOCK  AT END
+                      MOVE 1 TO FORNE-XSEEDEOF
+                      GO TO PL-000014.
+           IF GLB-LOCK = 1
+              MOVE ZEROS TO GLB-LOCK
+              GO TO PL-000013.
+           IF FORNE-NR-CGC NOT = SCREEN-NR-CGC
+              IF GLB-STATUS = "     "
+                 READ FORNE PREVIOUS WITH NO LOCK
+                      AT END CONTINUE END-READ
+              END-IF
+              GO TO PL-000014.
+           MOVE "     " TO GLB-STATUS
+           GO TO PL-000014
+           GO TO PL-000013.
+       PL-000014.
+           IF GLB-STATUS NOT = SPACES
+              CONTINUE ELSE GO TO PL-000015.
+           MOVE "Fornecedor nao Cadastrado com este CNPJ"
+                TO GLB-SMSGTRAILER
+           PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           GO TO PRE-LINC-EXT
+           .
+       PL-000015.
+           MOVE FORNE-CD-FONE TO SCREEN-CD-FONE
+           MOVE FORNE-CD-CATEG TO SCREEN-CD-CATEG
+           MOVE FORNE-DS-DESCR TO SCREEN-DS-DESCR
+           MOVE FORNE-NR-CCE TO SCREEN-NR-CCE
+           MOVE FORNE-NR-CEP TO SCREEN-NR-CEP
+           MOVE FORNE-NR-CEP2 TO SCREEN-NR-CEP2
+           MOVE FORNE-NR-CGC TO SCREEN-NR-CGC
+           MOVE FORNE-OR-FORNE TO SCREEN-OR-FORNE
+           MOVE FORNE-CD-CELULAR TO SCREEN-CD-CELULAR
+           MOVE FORNE-CD-FONERE TO SCREEN-CD-FONERE
+           MOVE FORNE-NM-MUNIC TO SCREEN-NM-MUNIC
+           MOVE FORNE-DS-ENDER TO SCREEN-DS-ENDER
+           MOVE FORNE-CD-UF TO SCREEN-CD-UF
+           MOVE FORNE-DS-CONTATO TO SCREEN-DS-CONTATO
+           MOVE FORNE-DS-NEGOCIO TO SCREEN-DS-NEGOCIO
+           MOVE FORNE-DS-PRODUTO TO SCREEN-DS-PRODUTO
+           MOVE 0822 TO GLB-CURSOR
+           MOVE "FORNE" TO GLB-RECALL
+           MOVE SPACES TO GLB-TEACH
+           MOVE "*****" TO GLB-ERROR
+           .
+       PL-000012.
+           .
+       PL-000010.
+           .
+       PRE-LINC-EXT.
+           IF GLB-ERROR = "*****"
+              PERFORM P-RECALL
+              GO TO SHOW-SCREEN.
+
+      *****************************************************************
+      *                          VALIDATE                             *
+      *****************************************************************
+       SECTION-03 SECTION 03.
+       VALIDATE.
+           IF SCREEN-OR-FORNE = ZEROS
+              MOVE "COD. FORNECEDOR " TO GLB-SMSGHEADER
+              MOVE GLB-ORDINATEFILLED
+                   TO GLB-SMSGTRAILER
+              PERFORM P-WRITEMSG THRU P-WRITEMSG-EXT
+           END-IF
+           IF (SCREEN-MAINT = GLB-ADD OR GLB-CHG) AND
+              (GLB-ERROR = "*****")
+              GO TO VALIDATE-EXT
+           ELSE
+              MOVE SPACES TO GLB-ERROR
+              MOVE ZEROS TO GLB-MSGINDEX
+              MOVE SPACES TO GLB-MESSAGE
+           END-IF
+           EVALUATE TRUE
+              WHEN SCREEN-MAINT = GLB-ADD PERFORM V-ADD THRU V-ADD-EXT
+              WHEN SCREEN-MAINT = GLB-CHG PERFORM V-CHG THRU V-CHG-EXT
+              WHEN SCREEN-MAINT = GLB-DEL PERFORM V-DEL THRU V-DEL-EXT
+              WHEN SCREEN-MAINT = GLB-INQ PERFORM V-INQ THRU V-INQ-EXT
+              WHEN OTHER
+                MOVE GLB-INVALIDMAINT TO GLB-SMSGTRAILER
+                   PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-EVALUATE
+           .
+       VALIDATE-EXT.
+           IF GLB-ERROR = "*****"
+              PERFORM P-RECALL
+              GO TO SHOW-SCREEN.
+
+      *****************************************************************
+      *                            LOGIC                              *
+      *****************************************************************
+       LOGIC.
+           MOVE "LG" TO GLB-CONTEXTO
+           IF SCREEN-MAINT = "ADD" OR
+              SCREEN-MAINT = "CHG"
+              CONTINUE ELSE GO TO LG-000001.
+           IF SCREEN-CD-CATEG NOT = 1 AND
+              SCREEN-CD-CATEG NOT = 2 AND
+              SCREEN-CD-CATEG NOT = 3 AND
+              SCREEN-CD-CATEG NOT = 4 AND
+              SCREEN-CD-CATEG NOT = 5
+              CONTINUE ELSE GO TO LG-000002.
+           MOVE "Categoria Invalida - Informe 1,2,3,4 ou 5"
+                TO GLB-SMSGTRAILER
+           PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           .
+       LG-000002.
+           IF SCREEN-NR-CGC NOT = ZEROS
+              CONTINUE ELSE GO TO LG-000003.
+           MOVE SCREEN-NR-CGC TO FORNE-NR-CGC
+           MOVE "*****" TO GLB-STATUS
+           MOVE ZEROS TO FORNE-XSEEDEOF
+           START FORNE KEY NOT LESS    PFORNE03 INVALID KEY
+                       MOVE 1 TO FORNE-XSEEDEOF
+                       INITIALIZE FORNE-XSEEDREG
+                       GO TO LG-000005.
+       LG-000004.
+           IF FORNE-XSEEDEOF = 1 GO TO LG-000005.
+           READ FORNE NEXT WITH NO LOCK  AT END
+                      MOVE 1 TO FORNE-XSEEDEOF
+                      GO TO LG-000005.
+           IF GLB-LOCK = 1
+              MOVE ZEROS TO GLB-LOCK
+              GO TO LG-000004.
+           IF FORNE-NR-CGC NOT = SCREEN-NR-CGC
+              IF GLB-STATUS = "     "
+                 READ FORNE PREVIOUS WITH NO LOCK
+                      AT END CONTINUE END-READ
+              END-IF
+              GO TO LG-000005.
+           MOVE "     " TO GLB-STATUS
+           GO TO LG-000005
+           GO TO LG-000004.
+       LG-000005.
+           IF GLB-STATUS = SPACES AND
+              SCREEN-NR-CGC = FORNE-NR-CGC AND
+              SCREEN-OR-FORNE NOT = FORNE-OR-FORNE
+              CONTINUE ELSE GO TO LG-000006.
+           MOVE FORNE-OR-FORNE TO GLB-SMSGHEADER
+           MOVE "Fornecedor Ja Cadastrado com CNPJ"
+                TO GLB-SMSGTRAILER
+           PERFORM P-WRITEMSG THRU P-WRITEMSG-EXT
+           .
+       LG-000006.
+           .
+       LG-000003.
+           PERFORM LP-DTATUAL THRU LP-DTATUAL-EXT
+           MOVE GSD-DT-ATUAL TO SCREEN-DT-SISTE
+           MOVE GSD-HR-ATUAL TO SCREEN-HR-TRANSAC
+           MOVE GSD-WK-CDOPE TO SCREEN-CD-OPERAD
+           .
+       LG-000001.
+           IF SCREEN-MAINT = "DEL"
+              CONTINUE ELSE GO TO LG-000007.
+           MOVE GSD-DT-ATUAL TO SCREEN-DT-SISTE
+           MOVE GSD-HR-ATUAL TO SCREEN-HR-TRANSAC
+           MOVE GSD-WK-CDOPE TO SCREEN-CD-OPERAD
+           .
+       LG-000007.
+            .
+       LOGIC-EXT.
+           IF GLB-ERROR = "*****"
+              PERFORM P-RECALL
+              IF GLB-MSGINDEX > ZEROS GO TO SHOW-SCREEN END-IF
+              IF GLB-RECALL = ISPEC GO TO SHOW-SCREEN END-IF
+              IF GLB-WAKEUP = "Y"
+                 MOVE ISPEC TO GLB-RECALL
+                 MOVE "XSDWK" TO ISPEC
+                 PERFORM P-RECALL
+              END-IF
+              GO TO PRE-SCREEN.
+
+      *****************************************************************
+      *                     UPDATE-LOGIC                              *
+      *****************************************************************
+       SECTION-04 SECTION 04.
+       UPDATE-LOGIC.
+           MOVE ZEROS TO GLB-UPDATE
+           IF GLB-MSGINDEX > ZEROS MOVE 1 TO GLB-UPDATE END-IF
+
+           EVALUATE TRUE
+              WHEN SCREEN-MAINT = GLB-ADD PERFORM P-ADD THRU P-ADD-EXT
+              WHEN SCREEN-MAINT = GLB-CHG PERFORM P-CHG THRU P-CHG-EXT
+              WHEN SCREEN-MAINT = GLB-DEL PERFORM P-DEL THRU P-DEL-EXT
+              WHEN SCREEN-MAINT = GLB-INQ
+                MOVE GLB-INVALIDINQ TO GLB-SMSGTRAILER
+                   PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+              WHEN OTHER
+                MOVE GLB-INVALIDMAINT TO GLB-SMSGTRAILER
+                   PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-EVALUATE
+           IF GLB-ERROR NOT = "*****"
+              MOVE GLB-ADD TO SCREEN-MAINT
+           END-IF
+            .
+       UPDATE-LOGIC-EXT.
+           PERFORM P-RECALL
+           IF GLB-UPDATE = 1 GO TO SHOW-SCREEN END-IF
+           IF GLB-ERROR = "*****" GO TO SHOW-SCREEN END-IF
+           IF GLB-RECALL = ISPEC GO TO SHOW-SCREEN END-IF
+           IF GLB-WAKEUP = "Y"
+              MOVE ISPEC TO GLB-RECALL
+              MOVE "XSDWK" TO ISPEC
+              PERFORM P-RECALL
+           END-IF
+           GO TO PRE-SCREEN
+           .
+
+      *****************************************************************
+      *                         GLBLOGIC                              *
+      *****************************************************************
+       GLBLOGIC.
+       LI-CABECALHO.
+           IF GLB-REQUEST = "Y"
+              CONTINUE ELSE GO TO GL-000001.
+           MOVE "AVISO" TO GLB-RECALL
+           MOVE SPACES TO GLB-TEACH
+           MOVE "*****" TO GLB-ERROR
+           GO TO GLBLOGIC-EXT
+           .
+       GL-000001.
+           MOVE GSD-WK-NMUSU TO SCREEN-CB-USUARIO
+           MOVE GSD-WK-DTATU2 TO SCREEN-CB-DTATU
+           MOVE GSD-WK-CDOPE TO SCREEN-CB-CDOPERA
+           MOVE GSD-WK-NMOPE TO SCREEN-CB-OPERAD
+           MOVE GSD-WK-DTMOV2 TO SCREEN-CB-DTMOV
+           MOVE GSD-WK-TURNO TO SCREEN-CB-TURNO
+           .
+       LI-CABECALHO-EXT. EXIT.
+       LP-DTATUAL.
+      *  :
+      *  : FORNECE DATA E HORA ATUAL
+      *  :
+           MOVE TODAYS-DAY TO GSD-DT-DD2
+           MOVE TODAYS-MONTH-NUM TO GSD-DT-MM2
+           MOVE TODAYS-YEAR TO GSD-DT-AA2
+           MOVE 19 TO GLB-CENTURY
+           IF GSD-DT-AA2 < 90
+              CONTINUE ELSE GO TO GL-000002.
+           MOVE 20 TO GLB-CENTURY
+           .
+       GL-000002.
+           MOVE GLB-CENTURY TO GSD-DT-CC2
+           MOVE GSD-DT-AAMMDD2 TO GSD-DT-DATA-A
+           MOVE GSD-DT-DATA-N TO GSD-DT-ATUAL
+      *  :
+           MOVE GLB-TIME TO GSD-HR-HORA-N
+           MOVE GSD-HR-HORA-A TO GSD-HR-HORA-A2
+           MOVE GSD-HR-HORA-A TO GSD-HR-HORA-A4
+           .
+       LP-DTATUAL-EXT. EXIT.
+       LP-PROX-TELA.
+           MOVE GLB-WORK TO GSD-GLBWORK
+           INITIALIZE GSD-WK-TELA
+           MOVE ZEROS TO GSD-WK-DOCTO
+           INITIALIZE GSD-WK-DSDOC
+           MOVE ZEROS TO GSD-WK-CLIEN
+           MOVE ZEROS TO GSD-WK-VALOR
+           INITIALIZE GSD-WK-OUTROS
+           MOVE GSD-GLBWORK TO GLB-WORK
+           IF GSD-NM-TELA = ISPEC
+              CONTINUE ELSE GO TO GL-000003.
+           INITIALIZE GSD-NM-TELA
+           .
+       GL-000003.
+           IF GSD-NM-TELA = SPACES
+              CONTINUE ELSE GO TO GL-000004.
+           IF GSD-CD-SISTEMA = 01
+              CONTINUE ELSE GO TO GL-000005.
+           MOVE "MENFT" TO GSD-NM-TELA
+           .
+       GL-000005.
+           IF GSD-CD-SISTEMA = 02
+              CONTINUE ELSE GO TO GL-000006.
+           MOVE "MENCR" TO GSD-NM-TELA
+           .
+       GL-000006.
+           IF GSD-CD-SISTEMA = 03
+              CONTINUE ELSE GO TO GL-000007.
+           MOVE "MENCP" TO GSD-NM-TELA
+           .
+       GL-000007.
+           IF GSD-CD-SISTEMA = 04
+              CONTINUE ELSE GO TO GL-000008.
+           MOVE "MENCC" TO GSD-NM-TELA
+           .
+       GL-000008.
+           IF GSD-CD-SISTEMA = 05
+              CONTINUE ELSE GO TO GL-000009.
+           MOVE "MENCH" TO GSD-NM-TELA
+           .
+       GL-000009.
+           IF GSD-CD-SISTEMA = 07
+              CONTINUE ELSE GO TO GL-000010.
+           MOVE "MENFC" TO GSD-NM-TELA
+           .
+       GL-000010.
+           IF GSD-CD-SISTEMA = 08
+              CONTINUE ELSE GO TO GL-000011.
+           MOVE "MENCE" TO GSD-NM-TELA
+           .
+       GL-000011.
+           IF GSD-CD-SISTEMA = 09
+              CONTINUE ELSE GO TO GL-000012.
+           MOVE "MENGE" TO GSD-NM-TELA
+           .
+       GL-000012.
+           IF GSD-CD-SISTEMA = 99 OR
+              GSD-CD-SISTEMA = ZEROS
+              CONTINUE ELSE GO TO GL-000013.
+           MOVE "MENU" TO GSD-NM-TELA
+           .
+       GL-000013.
+           .
+       GL-000004.
+           IF GSD-NM-TELA NOT = SPACES
+              CONTINUE ELSE GO TO GL-000014.
+           MOVE GSD-NM-TELA TO GLB-RECALL
+           MOVE SPACES TO GLB-TEACH
+           MOVE "*****" TO GLB-ERROR
+           GO TO GLBLOGIC-EXT
+           .
+       GL-000014.
+           .
+       LP-PROX-TELA-EXT. EXIT.
+            .
+       GLBLOGIC-EXT.
+           EVALUATE TRUE
+             WHEN GLB-CONTEXTO = "PS"
+                  GO TO PRE-SCREEN-EXT
+             WHEN GLB-CONTEXTO = "PL"
+                  GO TO PRE-LINC-EXT
+             WHEN GLB-CONTEXTO = "LG"
+                  GO TO LOGIC-EXT
+             WHEN OTHER
+                  GO TO LOGIC
+           END-EVALUATE
+           .
+
+      *****************************************************************
+      *                   AUTOMATIC LOGICS                            *
+      *****************************************************************
+       P-MESSAGE.
+           EVALUATE TRUE
+             WHEN GLB-MSGINDEX = ZEROS
+                  DISPLAY CLEMSG
+             WHEN GLB-MSGINDEX = 1
+                  MOVE GLB-MSGINDEX TO GLB-INDEX
+                  MOVE 25 TO GLB-LINE
+                  IF GLB-MSGHEADER(GLB-INDEX) = "ATTENTION"
+                     DISPLAY ATTMSG
+                  ELSE
+                     IF GLB-TARGET = "UNX"
+                        CALL SOUND-BELL
+                        PERFORM P-PAGE2 THRU P-PAGE2-EXT
+                     ELSE
+                        DISPLAY ERRMSG
+                     END-IF
+                  END-IF
+                  IF GLB-RECALL NOT = ISPEC AND
+                     GLB-RECALL NOT = SPACES
+                     PERFORM VARYING GLB-TOTAL FROM 1 BY 1
+                             UNTIL GLB-TOTAL > 1000
+                     END-PERFORM
+                     MOVE ZEROS TO GLB-TOTAL
+                  END-IF
+             WHEN OTHER
+                  CALL SOUND-BELL
+                  PERFORM P-PAGE2 THRU P-PAGE2-EXT
+           END-EVALUATE
+           .
+       P-MESSAGE-EXT. EXIT.
+
+       P-PAGE2.
+           IF GLB-RECALL NOT = ISPEC AND
+              GLB-RECALL NOT = SPACES
+              MOVE 1 TO P2-FLAG
+           END-IF
+
+           CALL "XSDPAG2" USING
+                BY REFERENCE GLB-MESSAGE
+                BY REFERENCE GLB-MSGINDEX
+                BY REFERENCE P2-ISPEC
+                BY REFERENCE P2-TEACH
+                BY REFERENCE P2-FLAG
+                BY REFERENCE GLB-LSN
+                ON OVERFLOW
+                    MOVE "XSDPAG2  does not exist or memory overflow "
+                         TO GLB-SMSGTRAILER
+                    PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDPAG2"
+
+           IF P2-FLAG = 1
+              GO TO P-PAGE2-EXT
+           END-IF
+
+
+           IF P2-ISPEC NOT = SPACES
+              MOVE P2-ISPEC TO GLB-RECALL
+              MOVE P2-TEACH TO GLB-TEACH
+              IF GLB-RECALL = ISPEC
+                 PERFORM CLOSE-FILES
+                 MOVE "Y" TO GLB-REQUEST
+                 MOVE GLB-RECALL TO GLB-CALL
+                 EXIT PROGRAM
+              END-IF
+              MOVE "Y" TO GLB-REQUEST
+              PERFORM P-RECALL
+           ELSE
+              MOVE GLB-CURSOR TO CURSOR-LC
+              MOVE "*****" TO GLB-ERROR
+              GO TO SHOW-SCREEN-D
+           END-IF
+           .
+       P-PAGE2-EXT. EXIT.
+       P-TEACH.
+           MOVE SPACES TO GLB-STATUS
+           MOVE CURSOR-LC TO GLB-CURSOR
+           CALL "XSDTEACH" USING
+                BY REFERENCE ISPEC
+                BY REFERENCE GLB-TEACH
+                BY REFERENCE GLB-STATUS
+                BY REFERENCE GLB-SLASH
+                BY REFERENCE GLB-TITLE
+                BY REFERENCE GLB-LSN
+                ON OVERFLOW
+                  MOVE "ERROR" TO GLB-SMSGHEADER
+                    MOVE "XSDTEACH does not exist or memory overflow "
+                         TO GLB-SMSGTRAILER
+                    PERFORM P-WRITEMSG THRU P-WRITEMSG-EXT
+           END-CALL
+           CANCEL "XSDTEACH"
+           IF GLB-STATUS = "*****"
+              MOVE GLB-INVALIDTEACH TO GLB-SMSGHEADER
+              MOVE SPACES TO GLB-SMSGTRAILER
+              STRING " --> "            DELIMITED SIZE
+                     GLB-TITLE          DELIMITED " "
+                     " - "              DELIMITED SIZE
+                     GLB-TEACHNOTEXIST  DELIMITED SIZE
+                     INTO GLB-SMSGTRAILER
+              PERFORM P-WRITEMSG THRU P-WRITEMSG-EXT
+           END-IF
+           MOVE "*****" TO GLB-ERROR
+           .
+       P-TEACH-EXT. EXIT.
+       P-RECALL.
+             IF GLB-RECALL = SPACES
+                CONTINUE
+             ELSE
+                EVALUATE TRUE
+                  WHEN GLB-RECALL = ISPEC
+                       IF GLB-WAKEUP = "Y"
+                          MOVE "RETURN"   TO GLB-WKCOMANDO
+                          MOVE GLB-RECALL TO GLB-WKREPORT
+                          MOVE SPACES     TO GLB-WKDEVICE
+                          PERFORM P-WAKEUP THRU P-WAKEUP-EXT
+                          MOVE "XSDWK" TO GLB-RECALL
+                          PERFORM P-MESSAGE THRU P-MESSAGE-EXT
+                          PERFORM CLOSE-FILES
+                          MOVE GLB-RECALL TO GLB-CALL
+                          EXIT PROGRAM
+                       END-IF
+                       MOVE SPACES TO GLB-ERROR
+                  WHEN GLB-RECALL = "BYE" OR "bye" OR "Bye"
+                       IF GLB-WAKEUP = "Y"
+                          MOVE "RETURN"   TO GLB-WKCOMANDO
+                          MOVE GLB-RECALL TO GLB-WKREPORT
+                          MOVE SPACES     TO GLB-WKDEVICE
+                          PERFORM P-WAKEUP THRU P-WAKEUP-EXT
+                          MOVE "XSDWK" TO GLB-RECALL
+                       END-IF
+                       PERFORM P-MESSAGE THRU P-MESSAGE-EXT
+                       PERFORM CLOSE-FILES
+                       MOVE GLB-RECALL TO GLB-CALL
+                       EXIT PROGRAM
+                  WHEN OTHER
+                       IF GLB-WAKEUP = "Y"
+                          MOVE "RETURN"   TO GLB-WKCOMANDO
+                          MOVE GLB-RECALL TO GLB-WKREPORT
+                          MOVE SPACES     TO GLB-WKDEVICE
+                          PERFORM P-WAKEUP THRU P-WAKEUP-EXT
+                          MOVE "XSDWK" TO GLB-RECALL
+                       END-IF
+                       MOVE GLB-RECALL TO GLB-TITLE
+                       MOVE ZEROS TO GLB-STATUSCODE
+                       CALL "XSDCHEXE" USING BY REFERENCE GLB-TITLE
+                                             BY REFERENCE GLB-STATUSCODE
+                                             BY REFERENCE GLB-LSN
+                       CANCEL "XSDCHEXE"
+                       IF GLB-STATUSCODE NOT = ZEROS
+                          MOVE GLB-RECALL TO GLB-SMSGHEADER
+                          MOVE GLB-ISPECNOTDEFINED TO GLB-SMSGTRAILER
+                          PERFORM P-WRITEMSG THRU P-WRITEMSG-EXT
+                       ELSE
+                          PERFORM P-MESSAGE THRU P-MESSAGE-EXT
+                          PERFORM CLOSE-FILES
+                          MOVE GLB-RECALL TO GLB-CALL
+                          EXIT PROGRAM
+                       END-IF
+                END-EVALUATE
+             END-IF
+             .
+       P-RECALL-EXT. EXIT.
+       P-WAKEUP.
+           CALL "XSDWAKUP" USING
+                BY REFERENCE GLB-WKCOMANDO
+                BY REFERENCE GLB-WKREPORT
+                BY REFERENCE GLB-WKDEVICE
+                BY REFERENCE GLB-LSN
+                ON OVERFLOW
+                MOVE "XSDWAKUP.EXE does not exist or memory overflow "
+                     TO GLB-SMSGTRAILER
+                PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDWAKUP"
+           .
+       P-WAKEUP-EXT. EXIT.
+
+       P-ATTACH-OLD.
+           MOVE SPACES TO GLB-ATTACH-F
+           PERFORM VARYING GLB-ATTACH-I FROM 2000 BY -1
+                                        UNTIL GLB-ATTACH-I < 1
+             IF GLB-ATTACH-OC(GLB-ATTACH-I) NOT = SPACES
+                MOVE X"04"   TO GLB-ATTACH-OC(GLB-ATTACH-I + 1)
+                MOVE X"04"   TO GLB-ATTACH-F
+                MOVE 1     TO GLB-ATTACH-I
+             END-IF
+           END-PERFORM
+           IF GLB-ATTACH-F = SPACES
+              MOVE X"04" TO GLB-ATTACH-OC(1)
+           END-IF
+           .
+       P-ATTACH-OLD-EXT. EXIT.
+
+       P-ATTACH.
+           MOVE ZEROS TO GLB-ATTACH-EXIT
+           SUBTRACT 1 FROM GLB-ATTACH-LEN
+           PERFORM VARYING GLB-ATTACH-I FROM GLB-ATTACH-LEN BY -1
+                                        UNTIL GLB-ATTACH-I < 1 OR
+                                        GLB-ATTACH-EXIT = 1
+             IF GLB-ATTACH-OC(GLB-ATTACH-I) NOT = SPACES
+                MOVE X"04" TO GLB-ATTACH-OC(GLB-ATTACH-I + 1)
+                MOVE 1     TO GLB-ATTACH-EXIT
+             END-IF
+           END-PERFORM
+           IF GLB-ATTACH-EXIT = ZEROS
+              MOVE X"04" TO GLB-ATTACH-OC(1)
+           END-IF
+           .
+       P-ATTACH-EXT. EXIT.
+
+       P-DC.
+           CALL "XSDDTNOW" USING GLB-DCTYPE, GLB-DTITENS
+                ON OVERFLOW
+                MOVE "XSDDTNOW.EXE does not exist or memory overflow "
+                     TO GLB-SMSGTRAILER
+                PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDDTNOW"
+
+           MOVE "YYMMDD"   TO GLB-DCFORMAT
+           MOVE "9"        TO GLB-DCEDIT
+           MOVE GLB-YYMMDD TO GLB-DCDATE
+           PERFORM P-DTCONVERT THRU P-DTCONVERT
+         .
+       P-DC-EXT. EXIT.
+       P-DTCONVERT.
+           CALL "XSDD2000" USING GLB-DCITENS, GLB-TOTAL, GLB-STATUS
+                ON OVERFLOW
+                MOVE "XSDD2000.EXE does not exist or memory overflow "
+                     TO GLB-SMSGTRAILER
+                PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDD2000"
+           MOVE GLB-DC-YYMMDD      TO GLB-WC-YY-MM-DD
+           MOVE GLB-WC-YY-MM-DD-YY TO GLB-DC-YY-MM-DD-YY
+           MOVE GLB-WC-YY-MM-DD-MM TO GLB-DC-YY-MM-DD-MM
+           MOVE GLB-WC-YY-MM-DD-DD TO GLB-DC-YY-MM-DD-DD
+           MOVE GLB-DC-YYMMMDD      TO GLB-WC-YY-MMM-DD
+           MOVE GLB-WC-YY-MMM-DD-YY TO GLB-DC-YY-MMM-DD-YY
+           MOVE GLB-WC-YY-MMM-DD-MM TO GLB-DC-YY-MMM-DD-MM
+           MOVE GLB-WC-YY-MMM-DD-DD TO GLB-DC-YY-MMM-DD-DD
+         .
+       P-DTCONVERT-EXT. EXIT.
+       P-WRITEMSG.
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 1 TO GLB-MSGINDEX
+           END-IF
+           MOVE GLB-NUMCOPY     TO GLB-MSGCOPY(GLB-MSGINDEX)
+           MOVE GLB-SMSGHEADER  TO GLB-MSGHEADER(GLB-MSGINDEX)
+           MOVE GLB-SMSGTRAILER TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           MOVE "*****" TO GLB-ERROR
+           .
+       P-WRITEMSG-EXT. EXIT.
+       P-ERRMSG.
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 1 TO GLB-MSGINDEX
+           END-IF
+           MOVE GLB-NUMCOPY     TO GLB-MSGCOPY(GLB-MSGINDEX)
+           MOVE "ERROR"         TO GLB-MSGHEADER(GLB-MSGINDEX)
+           MOVE GLB-SMSGTRAILER TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           MOVE "*****" TO GLB-ERROR
+           .
+       P-ERRMSG-EXT. EXIT.
+       P-ATTMSG.
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 1 TO GLB-MSGINDEX
+           END-IF
+           MOVE GLB-NUMCOPY     TO GLB-MSGCOPY(GLB-MSGINDEX)
+           MOVE "ATTENTION"     TO GLB-MSGHEADER(GLB-MSGINDEX)
+           MOVE GLB-SMSGTRAILER TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           MOVE "*****" TO GLB-ERROR
+           .
+       P-ATTMSG-EXT. EXIT.
+       P-FATALMSG.
+           MOVE "FATAL ERROR" TO GLB-SMSGHEADER
+           DISPLAY SENDMSG
+           STOP RUN
+           .
+       P-FATALMSG-EXT. EXIT.
+       P-ISPUP.
+           CALL "XSDISPUP" USING GLB-DATABASE, ISPEC, GLB-CALL
+                ON OVERFLOW
+                MOVE "XSDISPUP.EXE does not exist or memory overflow "
+                     TO GLB-SMSGTRAILER
+                PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDISPUP"
+           .
+       P-ISPUP-EXT. EXIT.
+
+      ******************************************************************
+      *                       INITIALIZACAO                            *
+      ******************************************************************
+       P-INITIALIZE.
+           IF GLB-CONTEXTO = "PS"
+             MOVE "ADD" TO SCREEN-MAINT
+           END-IF
+           MOVE ZEROS TO GSD-DT-AA2
+           MOVE ZEROS TO GSD-DT-CC2
+           MOVE ZEROS TO GSD-DT-DATA-N
+           MOVE ZEROS TO GSD-DT-DD2
+           MOVE ZEROS TO GSD-DT-MM2
+           MOVE ZEROS TO GSD-HR-ATUAL
+           MOVE ZEROS TO GSD-HR-ATUAL4
+           MOVE ZEROS TO GSD-HR-CC
+           MOVE ZEROS TO GSD-HR-CC4
+           MOVE ZEROS TO GSD-HR-HORA-N
+           MOVE ZEROS TO GSD-WK-CDOPE
+           MOVE ZEROS TO GSD-WK-CLIEN
+           MOVE ZEROS TO GSD-WK-DOCTO
+           MOVE SPACES TO GSD-WK-DSDOC
+           MOVE ZEROS TO GSD-WK-DTATU
+           MOVE SPACES TO GSD-WK-DTATU2
+           MOVE ZEROS TO GSD-WK-DTMOV
+           MOVE SPACES TO GSD-WK-DTMOV2
+           MOVE ZEROS TO GSD-WK-NIVEL
+           MOVE SPACES TO GSD-WK-NMOPE
+           MOVE SPACES TO GSD-WK-NMUSU
+           MOVE SPACES TO GSD-WK-OUTROS
+           MOVE SPACES TO GSD-WK-TELA
+           MOVE ZEROS TO GSD-WK-TURNO
+           MOVE ZEROS TO GSD-WK-VALOR
+           .
+       P-INITIALIZE-EXT. EXIT.
+
+
+       SCREEN-TO-FILE.
+           MOVE SCREEN-CD-CATEG TO FORNE-CD-CATEG
+           MOVE SCREEN-CD-CELULAR TO FORNE-CD-CELULAR
+           MOVE SCREEN-CD-FONE TO FORNE-CD-FONE
+           MOVE SCREEN-CD-FONERE TO FORNE-CD-FONERE
+           MOVE SCREEN-CD-OPERAD TO FORNE-CD-OPERAD
+           MOVE SCREEN-CD-UF TO FORNE-CD-UF
+           MOVE SCREEN-DS-CONTATO TO FORNE-DS-CONTATO
+           MOVE SCREEN-DS-DESCR TO FORNE-DS-DESCR
+           MOVE SCREEN-DS-ENDER TO FORNE-DS-ENDER
+           MOVE SCREEN-DS-NEGOCIO TO FORNE-DS-NEGOCIO
+           MOVE SCREEN-DS-PRODUTO TO FORNE-DS-PRODUTO
+           MOVE SCREEN-DT-SISTE TO FORNE-DT-SISTE
+           MOVE SCREEN-HR-TRANSAC TO FORNE-HR-TRANSAC
+           MOVE SCREEN-NM-MUNIC TO FORNE-NM-MUNIC
+           MOVE SCREEN-NR-CCE TO FORNE-NR-CCE
+           MOVE SCREEN-NR-CEP TO FORNE-NR-CEP
+           MOVE SCREEN-NR-CEP2 TO FORNE-NR-CEP2
+           MOVE SCREEN-NR-CGC TO FORNE-NR-CGC
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           MOVE SCREEN-VL-SALDO TO FORNE-VL-SALDO
+           .
+       SCREEN-TO-FILE-EXT. EXIT.
+       CHG-SCREENFILE.
+           IF SCREEN-CD-CATEG NOT = ZEROS
+              MOVE SCREEN-CD-CATEG TO FORNE-CD-CATEG
+           END-IF
+           IF SCREEN-CD-CATEG = ALL "9"
+              MOVE ZEROS  TO FORNE-CD-CATEG
+           END-IF
+           IF SCREEN-CD-CELULAR NOT = ZEROS
+              MOVE SCREEN-CD-CELULAR TO FORNE-CD-CELULAR
+           END-IF
+           IF SCREEN-CD-CELULAR = ALL "9"
+              MOVE ZEROS  TO FORNE-CD-CELULAR
+           END-IF
+           IF SCREEN-CD-FONE NOT = ZEROS
+              MOVE SCREEN-CD-FONE TO FORNE-CD-FONE
+           END-IF
+           IF SCREEN-CD-FONE = ALL "9"
+              MOVE ZEROS  TO FORNE-CD-FONE
+           END-IF
+           IF SCREEN-CD-FONERE NOT = ZEROS
+              MOVE SCREEN-CD-FONERE TO FORNE-CD-FONERE
+           END-IF
+           IF SCREEN-CD-FONERE = ALL "9"
+              MOVE ZEROS  TO FORNE-CD-FONERE
+           END-IF
+           IF SCREEN-CD-OPERAD NOT = ZEROS
+              MOVE SCREEN-CD-OPERAD TO FORNE-CD-OPERAD
+           END-IF
+           IF SCREEN-CD-UF NOT = SPACES
+              MOVE SCREEN-CD-UF TO FORNE-CD-UF
+           END-IF
+           IF SCREEN-CD-UF = ALL "X"
+              MOVE SPACES TO FORNE-CD-UF
+           END-IF
+           IF SCREEN-DS-CONTATO NOT = SPACES
+              MOVE SCREEN-DS-CONTATO TO FORNE-DS-CONTATO
+           END-IF
+           IF SCREEN-DS-CONTATO = ALL "X"
+              MOVE SPACES TO FORNE-DS-CONTATO
+           END-IF
+           IF SCREEN-DS-DESCR NOT = SPACES
+              MOVE SCREEN-DS-DESCR TO FORNE-DS-DESCR
+           END-IF
+           IF SCREEN-DS-DESCR = ALL "X"
+              MOVE SPACES TO FORNE-DS-DESCR
+           END-IF
+           IF SCREEN-DS-ENDER NOT = SPACES
+              MOVE SCREEN-DS-ENDER TO FORNE-DS-ENDER
+           END-IF
+           IF SCREEN-DS-ENDER = ALL "X"
+              MOVE SPACES TO FORNE-DS-ENDER
+           END-IF
+           IF SCREEN-DS-NEGOCIO NOT = SPACES
+              MOVE SCREEN-DS-NEGOCIO TO FORNE-DS-NEGOCIO
+           END-IF
+           IF SCREEN-DS-NEGOCIO = ALL "X"
+              MOVE SPACES TO FORNE-DS-NEGOCIO
+           END-IF
+           IF SCREEN-DS-PRODUTO NOT = SPACES
+              MOVE SCREEN-DS-PRODUTO TO FORNE-DS-PRODUTO
+           END-IF
+           IF SCREEN-DS-PRODUTO = ALL "X"
+              MOVE SPACES TO FORNE-DS-PRODUTO
+           END-IF
+           IF SCREEN-DT-SISTE NOT = ZEROS
+              MOVE SCREEN-DT-SISTE TO FORNE-DT-SISTE
+           END-IF
+           IF SCREEN-HR-TRANSAC NOT = ZEROS
+              MOVE SCREEN-HR-TRANSAC TO FORNE-HR-TRANSAC
+           END-IF
+           IF SCREEN-NM-MUNIC NOT = SPACES
+              MOVE SCREEN-NM-MUNIC TO FORNE-NM-MUNIC
+           END-IF
+           IF SCREEN-NM-MUNIC = ALL "X"
+              MOVE SPACES TO FORNE-NM-MUNIC
+           END-IF
+           IF SCREEN-NR-CCE NOT = SPACES
+              MOVE SCREEN-NR-CCE TO FORNE-NR-CCE
+           END-IF
+           IF SCREEN-NR-CCE = ALL "X"
+              MOVE SPACES TO FORNE-NR-CCE
+           END-IF
+           IF SCREEN-NR-CEP NOT = ZEROS
+              MOVE SCREEN-NR-CEP TO FORNE-NR-CEP
+           END-IF
+           IF SCREEN-NR-CEP = ALL "9"
+              MOVE ZEROS  TO FORNE-NR-CEP
+           END-IF
+           IF SCREEN-NR-CEP2 NOT = ZEROS
+              MOVE SCREEN-NR-CEP2 TO FORNE-NR-CEP2
+           END-IF
+           IF SCREEN-NR-CEP2 = ALL "9"
+              MOVE ZEROS  TO FORNE-NR-CEP2
+           END-IF
+           IF SCREEN-NR-CGC NOT = ZEROS
+              MOVE SCREEN-NR-CGC TO FORNE-NR-CGC
+           END-IF
+           IF SCREEN-NR-CGC = ALL "9"
+              MOVE ZEROS  TO FORNE-NR-CGC
+           END-IF
+           IF SCREEN-OR-FORNE NOT = ZEROS
+              MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           END-IF
+           IF SCREEN-VL-SALDO NOT = ZEROS
+              MOVE SCREEN-VL-SALDO TO FORNE-VL-SALDO
+           END-IF
+           .
+       CHG-SCREENFILE-EXT. EXIT.
+       FILE-TO-SCREEN.
+           MOVE FORNE-CD-CATEG             TO SCREEN-CD-CATEG
+           MOVE FORNE-CD-CELULAR           TO SCREEN-CD-CELULAR
+           MOVE FORNE-CD-FONE              TO SCREEN-CD-FONE
+           MOVE FORNE-CD-FONERE            TO SCREEN-CD-FONERE
+           MOVE FORNE-CD-OPERAD            TO SCREEN-CD-OPERAD
+           MOVE FORNE-CD-UF                TO SCREEN-CD-UF
+           MOVE FORNE-DS-CONTATO           TO SCREEN-DS-CONTATO
+           MOVE FORNE-DS-DESCR             TO SCREEN-DS-DESCR
+           MOVE FORNE-DS-ENDER             TO SCREEN-DS-ENDER
+           MOVE FORNE-DS-NEGOCIO           TO SCREEN-DS-NEGOCIO
+           MOVE FORNE-DS-PRODUTO           TO SCREEN-DS-PRODUTO
+           MOVE FORNE-DT-SISTE             TO SCREEN-DT-SISTE
+           MOVE FORNE-HR-TRANSAC           TO SCREEN-HR-TRANSAC
+           MOVE FORNE-NM-MUNIC             TO SCREEN-NM-MUNIC
+           MOVE FORNE-NR-CCE               TO SCREEN-NR-CCE
+           MOVE FORNE-NR-CEP               TO SCREEN-NR-CEP
+           MOVE FORNE-NR-CEP2              TO SCREEN-NR-CEP2
+           MOVE FORNE-NR-CGC               TO SCREEN-NR-CGC
+           MOVE FORNE-OR-FORNE             TO SCREEN-OR-FORNE
+           MOVE FORNE-VL-SALDO             TO SCREEN-VL-SALDO
+           .
+       FILE-TO-SCREEN-EXT. EXIT.
+       P-ADD.
+           PERFORM SCREEN-TO-FILE
+           MOVE "A" TO GLB-TYPE
+           PERFORM FORNE-UPD THRU FORNE-UPD-EXT
+           WRITE FORNE-XSEEDREG INVALID KEY
+                MOVE GLB-INVALIDADD TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                 GO TO P-ADD-EXT
+           END-WRITE
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 21 TO GLB-MSGINDEX
+           END-IF
+           MOVE "ATTENTION" TO GLB-MSGHEADER(GLB-MSGINDEX)
+                MOVE GLB-INCLUSIONSUCCESS
+                         TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           .
+       P-ADD-EXT. EXIT.
+       P-CHG.
+           PERFORM CHG-SCREENFILE
+           MOVE "C" TO GLB-TYPE
+           PERFORM FORNE-UPD THRU FORNE-UPD-EXT
+           REWRITE FORNE-XSEEDREG INVALID KEY
+                MOVE GLB-INVALIDCHG TO GLB-SMSGTRAILER
+                   PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                   GO TO P-CHG-EXT
+           END-REWRITE
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 21 TO GLB-MSGINDEX
+           END-IF
+           MOVE "ATTENTION" TO GLB-MSGHEADER(GLB-MSGINDEX)
+                MOVE GLB-CHANGESUCCESS TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           .
+       P-CHG-EXT. EXIT.
+       P-DEL.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           MOVE "D" TO GLB-TYPE
+           PERFORM FORNE-UPD THRU FORNE-UPD-EXT
+           DELETE FORNE INVALID KEY
+                MOVE GLB-INVALIDDELETION TO GLB-SMSGTRAILER
+                  PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                  GO TO P-DEL-EXT
+           END-DELETE
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 21 TO GLB-MSGINDEX
+           END-IF
+           MOVE "ATTENTION" TO GLB-MSGHEADER(GLB-MSGINDEX)
+                MOVE GLB-DELETIONSUCCESS TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           .
+       P-DEL-EXT. EXIT.
+       V-ADD.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           READ FORNE WITH NO LOCK NOT INVALID KEY
+                MOVE GLB-INVALIDINCLUSION TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-READ
+           .
+       V-ADD-EXT. EXIT.
+       V-CHG.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           READ FORNE WITH NO LOCK INVALID KEY
+                MOVE GLB-INVALIDCHANGE TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-READ
+           .
+       V-CHG-EXT. EXIT.
+       V-DEL.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           READ FORNE WITH NO LOCK INVALID KEY
+                MOVE GLB-INVALIDDELETION TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-READ
+           .
+       V-DEL-EXT. EXIT.
+       V-INQ.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           READ FORNE WITH NO LOCK INVALID KEY
+                MOVE GLB-INVALIDRECOVER TO GLB-SMSGTRAILER
+                 PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-READ
+           .
+       V-INQ-EXT. EXIT.
+       P-PUR.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           MOVE "D" TO GLB-TYPE
+           PERFORM FORNE-UPD THRU FORNE-UPD-EXT
+           DELETE FORNE INVALID KEY
+                MOVE GLB-INVALIDPURGE TO GLB-SMSGTRAILER
+                  PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                  GO TO P-PUR-EXT
+           END-DELETE
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 21 TO GLB-MSGINDEX
+           END-IF
+           MOVE "ATTENTION" TO GLB-MSGHEADER(GLB-MSGINDEX)
+                MOVE GLB-PURGESUCCESS TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           .
+       P-PUR-EXT. EXIT.
+       V-PUR.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           READ FORNE WITH NO LOCK INVALID KEY
+                MOVE GLB-INVALIDPURGE TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+           END-READ
+           .
+       V-PUR-EXT. EXIT.
+       P-REC.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           READ FORNE WITH NO LOCK INVALID KEY
+                MOVE GLB-INVALIDRECOVER TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                GO TO P-REC-EXT
+           END-READ
+           PERFORM FILE-TO-SCREEN
+           ADD 1 TO GLB-MSGINDEX
+           IF GLB-MSGINDEX > 21
+              MOVE 21 TO GLB-MSGINDEX
+           END-IF
+           MOVE "ATTENTION" TO GLB-MSGHEADER(GLB-MSGINDEX)
+                MOVE GLB-RECOVERSUCCESS TO GLB-MSGTRAILER(GLB-MSGINDEX)
+           .
+       P-REC-EXT. EXIT.
+       P-FIR.
+           INITIALIZE FORNE-OR-FORNE
+           START FORNE KEY GREATER FOR-FORNE INVALID KEY
+                MOVE GLB-FILEEMPTY TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                 GO TO P-FIR-EXT
+           END-START
+           READ FORNE NEXT WITH NO LOCK AT END
+                MOVE GLB-FILEEMPTY TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                GO TO P-FIR-EXT
+           END-READ
+           MOVE FORNE-OR-FORNE TO SCREEN-OR-FORNE
+           PERFORM P-REC THRU P-REC-EXT
+           .
+       P-FIR-EXT. EXIT.
+       P-LAS.
+           MOVE ALL "9" TO FORNE-OR-FORNE
+           START FORNE KEY LESS OR EQUAL FOR-FORNE INVALID KEY
+                MOVE GLB-FILEEMPTY TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                 GO TO P-LAS-EXT
+           END-START
+           READ FORNE PREVIOUS WITH NO LOCK AT END
+                MOVE GLB-FILEEMPTY TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                GO TO P-LAS-EXT
+           END-READ
+           MOVE FORNE-OR-FORNE TO SCREEN-OR-FORNE
+           PERFORM P-REC THRU P-REC-EXT
+           .
+       P-LAS-EXT. EXIT.
+       P-NEX.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           START FORNE KEY GREATER FOR-FORNE INVALID KEY
+                MOVE GLB-ENDFILE TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                 GO TO P-NEX-EXT
+           END-START
+           READ FORNE NEXT WITH NO LOCK AT END
+                MOVE GLB-ENDFILE TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                GO TO P-NEX-EXT
+           END-READ
+           MOVE FORNE-OR-FORNE TO SCREEN-OR-FORNE
+           PERFORM P-REC THRU P-REC-EXT
+           .
+       P-NEX-EXT. EXIT.
+       P-BAC.
+           MOVE SCREEN-OR-FORNE TO FORNE-OR-FORNE
+           START FORNE KEY LESS FOR-FORNE INVALID KEY
+                MOVE GLB-BEGINFILE TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                 GO TO P-BAC-EXT
+           END-START
+           READ FORNE PREVIOUS WITH NO LOCK AT END
+                MOVE GLB-BEGINFILE TO GLB-SMSGTRAILER
+                PERFORM P-ERRMSG THRU P-ERRMSG-EXT
+                GO TO P-BAC-EXT
+           END-READ
+           MOVE FORNE-OR-FORNE TO SCREEN-OR-FORNE
+           PERFORM P-REC THRU P-REC-EXT
+           .
+       P-BAC-EXT. EXIT.
+      ******************************************************************
+      *                            FILES                               *
+      ******************************************************************
+       OPEN-FILES.
+           MOVE "FILES" TO GLB-STPARAMETRO
+           CALL "XSDSETUP" USING
+                BY REFERENCE GLB-STPARAMETRO
+                BY REFERENCE GLB-STFILES
+                ON OVERFLOW
+                MOVE "FATAL ERROR" TO GLB-SMSGHEADER
+                MOVE "Exception or Memory Overflow on CALL; SETUP"
+                     TO GLB-SMSGTRAILER
+                PERFORM P-FATALMSG THRU P-FATALMSG-EXT
+           END-CALL
+           CANCEL "XSDSETUP"
+           IF GLB-STFILES = SPACES
+              MOVE "FILES" TO GLB-STFILES
+           END-IF
+           MOVE SPACES TO FORNE-XSEEDTITLE
+           STRING GLB-STFILES DELIMITED " "
+                  GLB-SLASH   DELIMITED " "
+                  "FORNE.ARQ" DELIMITED SIZE
+                              INTO FORNE-XSEEDTITLE
+           PERFORM FORNE-OPEN
+           .
+       CLOSE-FILES.
+           CLOSE FORNE
+           .
+       UNLOCK-FILES.
+           UNLOCK FORNE RECORDS
+           .
+       FORNE-OPEN.
+           OPEN I-O FORNE
+           INITIALIZE FORNE-XSEEDREG.
+       FORNE-UPD.
+           .
+       FORNE-UPD-EXT. EXIT.
+
+

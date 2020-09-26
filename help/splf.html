@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Spool File</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20070322;17220000">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20101119;1093000">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">Spool</FONT> <FONT COLOR="#008080">File</FONT></H1>
+<P>Transfere relat&oacute;rio de arquivo texto para .<A HREF="f5.html">spool</A></P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">Spool</FONT> <FONT COLOR="#008080">FILE</FONT>
+<A HREF="#arquivo"><I>arquivo</I></A><BR>[ <FONT COLOR="#008080">REPORT</FONT>&nbsp;
+<I><A HREF="#c&oacute;digo-relat&oacute;rio">c&oacute;digo-relat&oacute;rio</A>
+</I>]<I><BR></I>[ <FONT COLOR="#008080">WIDTH</FONT>
+<A HREF="#largura-do-relat&oacute;rio"><I>largura-do-relat&oacute;rio</I></A>]
+<BR>[<FONT COLOR="#008080"> TITLE</FONT> <I><A HREF="#t&iacute;tulo-do-relat&oacute;rio">t&iacute;tulo-do-relat&oacute;rio</A>
+</I>]<BR>[ <FONT COLOR="#008080">NOTE</FONT> <EM><A HREF="#coment&aacute;rio">coment&aacute;rio</A></EM>
+]</P>
+<H5>Argumentos</H5>
+<P><A NAME="arquivo"></A><A NAME="c&oacute;digo-relat&oacute;rio"></A>
+<EM>arquivo</EM><BR><BR>Nome do arquivo texto onde deve estar gravado
+o relat&oacute;rio a ser transferido para <A HREF="f5.html">spool</A>.<BR><I><BR>c&oacute;digo-relat&oacute;rio</I></P>
+<P>Identifica&ccedil;&atilde;o do relat&oacute;rio para efeito de
+configura&ccedil;&atilde;o e <A HREF="f5.html">spool</A>.</P>
+<P><I>largura-do-relat&oacute;rio</I></P>
+<P>Largura m&aacute;xima reconhecida para a linha de impress&atilde;o,
+de 60 a 255 colunas, quando omitido &eacute; assumido largura
+132.<BR><BR><I>t&iacute;tulo-do-relat&oacute;rio</I></P>
+<P>Frase de at&eacute; 34, 86 ou 174 caracteres de acordo com a
+largura de impress&atilde;o para documentar o t&iacute;tulo do
+relat&oacute;rio no <A HREF="spool.html">spool</A>.</P>
+<P><A NAME="coment&aacute;rio"></A><EM>coment&aacute;rio<BR><BR></EM>Mensagem
+de coment&aacute;rio na lista de relat&oacute;rios no <A HREF="spool.html">spool</A>.</P>
+<H5>Exemplo</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD WIDTH=42%>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=42% VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT><FONT COLOR="#008080">
+			<A HREF="../help">Spool</A></FONT> <FONT COLOR="#008080">FILE</FONT>
+			<FONT COLOR="#008000"><FONT FACE="Courier New">File-id-relatorio</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">REPORT</FONT> &quot;<A HREF="#c&oacute;digo-relat&oacute;rio"><FONT COLOR="#ff0000">TESTE</FONT></A>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">TITLE</FONT> &quot;<A HREF="#t&iacute;tulo-do-relat&oacute;rio"><FONT COLOR="#ff0000">Teste
+			de Spool</FONT></A>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">NOTE</FONT> &quot;<A HREF="#coment&aacute;rio"><FONT COLOR="#ff0000">Teste
+			do comando Spool File</FONT></A>&quot;<BR>END-EXEC</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><!--RELATEDTOPICSLIST--><B>Veja tamb&eacute;m</B></H5>
+<P><A HREF="clic.html"><FONT COLOR="#008080">Clic</FONT></A><BR><A HREF="prin.html"><FONT COLOR="#008080">Print
+Report</FONT></A><BR><A HREF="f5.html"><FONT COLOR="#008080">Spool</FONT></A><BR><A HREF="rel.html"><FONT COLOR="#008080">Relator</FONT></A></P>
+</BODY>
+</HTML>

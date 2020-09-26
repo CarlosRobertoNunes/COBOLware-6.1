@@ -1,0 +1,31 @@
+       01  CTAC-VAR-CWMEN4.
+           05 LINE 08 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(01).
+           05 LINE 09 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(02).
+           05 LINE 10 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(03).
+           05 LINE 11 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(04).
+           05 LINE 12 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(05).
+           05 LINE 13 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(06).
+           05 LINE 14 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(07).
+           05 LINE 15 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(08).
+           05 LINE 16 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(09).
+           05 LINE 17 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(10).
+           05 LINE 18 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(11).
+           05 LINE 19 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(12).
+           05 LINE 20 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(13).
+           05 LINE 21 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(14).
+           05 LINE 22 COLUMN 11 PIC X(015)
+                 FROM CWCONF-IMPRESSORA(15).

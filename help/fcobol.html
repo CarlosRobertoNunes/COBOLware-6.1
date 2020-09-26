@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware 6.1 - FCOBOL- Gerenciador de desenvolvimento</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="0;0">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20120615;11082300">
+        <STYLE TYPE="text/css">
+        <!--
+                TD P { color: #000000; font-family: "Arial" }
+                H1 { color: #000000 }
+                P { color: #000000; font-family: "Arial" }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1 ALIGN=LEFT><FONT COLOR="#008080">FCOBOL</FONT></H1>
+<P ALIGN=LEFT><STRONG><FONT FACE="Arial">Gerenciador de
+desenvolvimento</FONT></STRONG></P>
+<P ALIGN=LEFT>A rotina de trabalho de desenvolvimento de compila&ccedil;&atilde;o
+requer uma s&eacute;rie comandos para editar, compilar e manter a
+pasta de fontes livre de arquivos desnecess&aacute;rios.
+</P>
+<P ALIGN=LEFT>Normalmente os programadores acabam se cansando de
+executar tantos comandos repetitivos e acabam por fazer um &quot;batch
+de compila&ccedil;&atilde;o&quot; para automatizar o processo. O
+<FONT FACE="Courier New">FCOBOL</FONT> &eacute; o resultado da
+continuidade desta ideia: com um &uacute;nico comando o programa &eacute;
+editado, compilado e depurado, as pastas onde residem os programas
+fontes s&atilde;o controladas e mantidas limpas de arquivos
+desnecess&aacute;rios.</P>
+<P ALIGN=LEFT>O uso deste comando &eacute; fundamental para que os
+fontes sejam tratados pelo precompilador de <A HREF="comandos.html">sintaxe
+COBOL<FONT COLOR="#ff0000">ware</FONT></A> e tratamento de telas. <FONT SIZE=3>O
+precompilador substitui os tradicionais comandos DISPLAY e ACCEPT por
+chamadas a um processador gr&aacute;fico de objetos de tela; as
+declara&ccedil;&otilde;es da SCREEN SECTION s&atilde;o convertidas em
+par&acirc;metros declarados na WORKING-STORAGE SECTION que s&atilde;o
+passados nestas chamadas; este novo programa fonte produzido &eacute;
+que na verdade &eacute; submetido ao compilador COBOL e em seguida
+apagado.</FONT></P>
+<P>Formato: <FONT FACE="Courier New">FCOBOL </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">PROGRAMA</FONT></FONT>
+<FONT FACE="Courier New">[</FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Op&ccedil;&otilde;es</FONT></FONT><FONT FACE="Courier New">]</FONT></P>
+<P>Onde <FONT COLOR="#ff0000"><FONT FACE="Courier New">PROGRAMA</FONT></FONT>
+&eacute; o nome do programa a ser tratado sem extens&otilde;es ou
+caminhos. Estes elementos ser&atilde;o completados automaticamente e
+podem ser definidos por vari&aacute;veis de ambiente.</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD>
+                        <P>Vari&aacute;vel</P>
+                </TD>
+                <TD>
+                        <P>Coment&aacute;rio</P>
+                </TD>
+                <TD>
+                        <P>Defaul</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P><A NAME="EDITOR"></A><FONT COLOR="#008080"><FONT FACE="Courier New">EDITOR</FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT FACE="Arial">Programa editor da prefer&ecirc;ncia do
+                        programador.</FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT FACE="Courier New">Edit ou <A HREF="http://www.kedit.com/">KEDIT</A>
+                        se estiver instalado</FONT></P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P><A NAME="SLB"></A><FONT COLOR="#008080"><FONT FACE="Courier New">SLB</FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT FACE="Arial">Pasta de fontes.</FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT FACE="Courier New">.\slb </FONT>
+                        </P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P><A NAME="CIL"></A><FONT COLOR="#008080"><FONT FACE="Courier New">CIL</FONT></FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT FACE="Arial">Pasta de objetos.</FONT></P>
+                </TD>
+                <TD>
+                        <P><FONT FACE="Courier New">.\cil </FONT>
+                        </P>
+                </TD>
+        </TR>
+</TABLE>
+<P><FONT FACE="Arial">As </FONT><FONT COLOR="#ff0000"><FONT FACE="Courier New">Op&ccedil;&otilde;es</FONT></FONT>
+<FONT FACE="Arial">definem altera&ccedil;&otilde;es no procedimento
+mais usual: editar, compilar e voltar a editar caso o programa
+apresente erro de sintaxe.</FONT></P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD HEIGHT=16>
+                        <P><A NAME="Anim"></A><FONT COLOR="#008080">Anim</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Prepara para animator e/ou &quot;anima&quot;.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=16>
+                        <P><A NAME="Anim1"></A><FONT COLOR="#008080">AnimG</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Prepara para animator e/ou &quot;anima&quot; no modo gr&aacute;fico.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=19>
+                        <P><A NAME="Obj"></A><FONT COLOR="#008080">Obj</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Preserva <FONT COLOR="#ff0000"><FONT FACE="Courier New">PROGRAMA</FONT></FONT>.OBJ
+                        ou prepara para animator sem &quot;animar&quot;.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="List"></A><FONT COLOR="#008080">List</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Compila listando o fonte completo em <FONT COLOR="#ff0000"><FONT FACE="Courier New">PROGRAMA</FONT></FONT>.LST.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="NoDebug"></A><FONT COLOR="#008080">NoDebug</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>N&atilde;o tornar a editar em caso de erros de sintaxe.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="NoCOBOL"></A><FONT COLOR="#008080">NoCOBOL</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Sem compilar .</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="NoEdit"></A><FONT COLOR="#008080">NoEdit</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Sem editar.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="NoLink"></A><FONT COLOR="#008080">NoLink</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Sem linkeditar.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="Seq"></A><FONT COLOR="#008080">Seq</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Sequenciar o fonte&nbsp; quando erro de sintaxe.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="Software"></A><FONT COLOR="#008080">Software</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Anexa m&oacute;dulos do run-time gerando um master program.</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD HEIGHT=18>
+                        <P><A NAME="Sseq"></A><FONT COLOR="#008080">Sseq</FONT></P>
+                </TD>
+                <TD WIDTH=493>
+                        <P>Sequenciar o fonte antes de compilar.</P>
+                </TD>
+        </TR>
+</TABLE>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

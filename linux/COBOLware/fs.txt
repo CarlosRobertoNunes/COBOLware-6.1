@@ -1,0 +1,16 @@
+ O FileShare Ç um software gerenciador de bases de dados que
+ implementa o conceito Cliente/Servidor via TCP/IP.
+
+ Poss°veis causas de falha ao acessar o serviáo do FileShare:
+
+ - Anti-v°rus bloqueando acesso ao services do TCP/IP;
+ - Defeito no hardware de rede (placa/cabos);
+ - Endereáo IP do servidor errado "Set CCITCP2=";
+ - Falta da configuraá∆o do protocolo ICP/IP no Cliente.
+ - FireWall bloqueando o serviáo do FileShare (porta 86);
+ - Nome do servidor FileShare errado "set FSSERVER=";
+ - O sistema n∆o consegue encontrar o arquivo CCITC32.DLL;
+ - Senha errada "Set FSPASSWORD=";
+ - Servidor FileShare fora do ar;
+ - Usu†rio errado "set FSUSERNAME=".
+

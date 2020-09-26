@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware GetFocus</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20070322;17215900">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20130421;22534100">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">GetFocus</FONT></H1>
+<P>Obt&eacute;m o foco do ACCEPT.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">GetFocus</FONT><BR>[ <FONT COLOR="#008080">FIELD;</FONT><I><A HREF="#campo">nome-de-campo</A>
+</I>]<BR>[ <FONT COLOR="#008080">SUBSCRIPT;</FONT> <EM><A HREF="#ocorr&ecirc;ncia">ocorr&ecirc;ncia</A></EM>
+]<BR>[ <FONT COLOR="#008080">LENGTH</FONT>;<A HREF="#tamanho"><I>tamanho</I></A><SPAN STYLE="font-style: normal">
+]</SPAN></P>
+<H5>Argumentos</H5>
+<P><A NAME="campo"></A><A NAME="arquivo"></A><A NAME="ocorr&ecirc;ncia"></A>
+<EM>nome-de-campo</EM><BR><BR>Retorna o nome do campo da posi&ccedil;&atilde;o
+do cursor no momento do ACCEPT.<BR><I><BR>ocorr&ecirc;ncia</I></P>
+<P><A NAME="tamanho"></A>Retorna o n&uacute;mero da ocorr&ecirc;ncia
+do campo da posi&ccedil;&atilde;o do cursor no momento do ACCEPT
+quando o nome se repete na tela.<BR><BR>Tamanho<BR><BR>Retorna o
+tamanho da &aacute;rea digit&aacute;vel preenchida ou em foco.</P>
+<H5>Exemplo</H5>
+<TABLE WIDTH=407 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+	<COL WIDTH=395>
+	<TR>
+		<TD WIDTH=395>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=395 VALIGN=TOP>
+			<P ALIGN=LEFT>ACCEPT <FONT COLOR="#008000">LISTA-DE-MESES</FONT><BR>EXEC
+			<FONT COLOR="#008080">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT><FONT COLOR="#008080">
+			GetFocus</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">FIELD;</FONT><FONT COLOR="#008000">CAMPO</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">SUBSCRIPT;</FONT><FONT COLOR="#008000">OCORRENCIA</FONT><BR>END-EXEC<BR>IF
+			<FONT COLOR="#008000">CAMPO</FONT> = &ldquo;<FONT COLOR="#ff0000">MES</FONT>&rdquo;
+			AND <FONT COLOR="#008000">OCORRENCIA</FONT> = <FONT COLOR="#ff0000">2</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PERFORM
+			<FONT COLOR="#008000">PROCESSA-FEVEREIRO</FONT><BR>END-IF</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><BR><BR>
+</H5>
+</BODY>
+</HTML>

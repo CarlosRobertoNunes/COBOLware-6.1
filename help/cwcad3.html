@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware 6.1 - Exemplo de provedor de lista de sele&ccedil;&atilde;o</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 2.0  (Win32)">
+        <META NAME="CREATED" CONTENT="20070715;23075496">
+        <META NAME="CHANGED" CONTENT="20070715;23082584">
+        <STYLE>
+        <!--
+                P { color: #000000; font-family: "Courier New" }
+                PRE { color: #000000 }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<PRE>       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    <FONT COLOR="#ff0000">CWCAD3</FONT>.
+       AUTHOR.        COBOLware Services Ltda.
+       DATE-WRITTEN.  <FONT COLOR="#ff0000">99/99/9999</FONT>.
+       SECURITY.      <FONT COLOR="#ff0000">*************************************************</FONT>
+<FONT COLOR="#ff0000">                      *                                               *</FONT>
+<FONT COLOR="#ff0000">                      *  Exemplo de provedor de lista de sele&ccedil;&atilde;o      *</FONT>
+<FONT COLOR="#ff0000">                      *                                               *</FONT>
+<FONT COLOR="#ff0000">                      *************************************************</FONT>
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES. DECIMAL-POINT IS COMMA.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+
+           SELECT <FONT COLOR="#008000">FileName</FONT> ASSIGN TO DISK
+                  ORGANIZATION  IS INDEXED
+                  ACCESS MODE   IS DYNAMIC
+                  RECORD  KEY   IS <FONT COLOR="#008000">FileName-CHAVE</FONT>
+                  ALTERNATE RECORD KEY IS <FONT COLOR="#008000">FileName-DESCRICAO</FONT>
+                                          WITH DUPLICATES
+                  LOCK MODE     IS MANUAL
+                  FILE STATUS   IS <FONT COLOR="#008000">FS-FileName</FONT>.
+
+       DATA DIVISION.
+       FILE SECTION.
+
+       FD  <FONT COLOR="#008000">FileName</FONT>
+           LABEL RECORD IS STANDARD
+           VALUE OF FILE-ID IS <FONT COLOR="#008000">LB-FileName</FONT>.
+
+       01  <FONT COLOR="#008000">FileName-REG</FONT>.
+           05 <FONT COLOR="#008000">FileName-CHAVE</FONT>.
+              10 <FONT COLOR="#008000">FileName-CODIGO</FONT>          PIC  9(005).
+           05 <FONT COLOR="#008000">FileName-DESCRICAO</FONT>          PIC  X(030).
+           05 <FONT COLOR="#008000">FileName-PRECO</FONT>              PIC  9(008)V99.
+           05 <FONT COLOR="#008000">FileName-TIPO</FONT>               PIC  9(001).
+              88 <FONT COLOR="#ff00ff">FileName-PECA</FONT>                         VALUE <FONT COLOR="#ff0000">1</FONT>.
+              88 <FONT COLOR="#ff00ff">FileName-ACABADO</FONT>                      VALUE <FONT COLOR="#ff0000">2</FONT>.
+              88 <FONT COLOR="#ff00ff">FileName-MATERIAL</FONT>                     VALUE <FONT COLOR="#ff0000">3</FONT>.
+           05 <FONT COLOR="#008000">FileName-OPCOES</FONT>.
+              10 <FONT COLOR="#ff00ff">FileName-IMPORTADO</FONT>       PIC  9(001).
+              10 <FONT COLOR="#ff00ff">FileName-GARANTIA</FONT>        PIC  9(001).
+              10 <FONT COLOR="#ff00ff">FileName-DURAVEL</FONT>         PIC  9(001).
+
+       WORKING-STORAGE SECTION.
+
+       01  <FONT COLOR="#008000">AREAS-DE-TRABALHO-1</FONT>.
+           05 <FONT COLOR="#008000">REGISTROS</FONT>                   PIC  9(002) VALUE <FONT COLOR="#ff0000">0</FONT>.
+           05 <FONT COLOR="#008000">FS-FileName</FONT>                 PIC  X(002) VALUE &quot;<FONT COLOR="#ff0000">00</FONT>&quot;.
+           05 <FONT COLOR="#008000">LB-FileName</FONT>                 PIC  X(255) VALUE &quot;<FONT COLOR="#ff0000">FileName</FONT>&quot;.
+
+       LINKAGE SECTION.
+
+<A NAME="USER-IO"></A>       01  <FONT COLOR="#008000">USER-IO</FONT>                        PIC  X(001).
+           88 <A HREF="#OPEN-FILE">OPEN-FILE</A>                        VALUE &quot;O&quot; &quot;o&quot;.
+           88 <A HREF="#CLOSE-FILE">CLOSE-FILE</A>                       VALUE &quot;C&quot; &quot;c&quot;.
+           88 <A HREF="#BEGIN-FILE">BEGIN-FILE</A>                       VALUE &quot;B&quot; &quot;b&quot;.
+           88 <A HREF="#END-FILE">END-FILE</A>                         VALUE &quot;E&quot; &quot;e&quot;.
+<A NAME="AT-END"></A>           88 AT-END                           VALUE &quot;*&quot;.
+           88 <A HREF="#READ-NEXT">READ-NEXT</A>                        VALUE &quot;N&quot; &quot;n&quot;.
+           88 <A HREF="#READ-PREVIOUS">READ-PREVIOUS</A>                    VALUE &quot;P&quot; &quot;p&quot;.
+           88 <A HREF="#NOT-LESS">NOT-LESS</A>                         VALUE &quot;&gt;&quot;.
+           88 <A HREF="#NOT-GREATER">NOT-GREATER</A>                      VALUE &quot;&lt;&quot;.
+           88 <A HREF="#EDIT-KEY">EDIT-KEY</A>                         VALUE &quot;$&quot;.
+       01  <FONT COLOR="#008000">ORDER-MODE</FONT>                     PIC  9(001).
+           88 ORDER-BY-LEFT                    VALUE 1.
+           88 ORDER-BY-RIGHT                   VALUE 2.
+       01  <A HREF="obje.html#elemento-esquerdo" NAME="LEFT-ITEM">LEFT-ITEM</A>.
+           05 LIST-CODIGO                 PIC  9(005).
+           05 FILLER                      PIC  X(075).
+       01  <A HREF="obje.html#elemento-esquerdo" NAME="ROGHT-ITEM">RIGHT-ITEM</A>.
+           05 LIST-DESCRICAO              PIC  X(030).
+           05 FILLER                      PIC  X(050).
+       01  <A HREF="obje.html#linhas"><FONT COLOR="#008080">HEIGHT</FONT></A>                         PIC  9(002).
+       01  <A HREF="#WORK-AREA" NAME="WORK-AREA">WORK-AREA</A>                      PIC  X(050).
+       01  <FONT COLOR="#008000">BOXFILESELECT-EDIT</FONT>             PIC  9(003). COPY <A HREF="CWEDIT.CPY"><FONT COLOR="#008080">CWEDIT</FONT></A>.
+       01  <FONT COLOR="#008000">BOXFILESELECT-OPTION</FONT>           PIC  X(076).
+
+       PROCEDURE DIVISION USING USER-IO <FONT COLOR="#008000">ORDER-MODE</FONT>
+                                        <A HREF="obje.html#elemento-esquerdo" NAME="LEFT-ITEM">LEFT-ITEM</A>
+                                        <A HREF="obje.html#elemento-esquerdo" NAME="ROGHT-ITEM">RIGHT-ITEM</A>
+                                        <A HREF="obje.html#linhas"><FONT COLOR="#008080">HEIGHT</FONT></A>
+                                        <A HREF="#WORK-AREA" NAME="WORK-AREA">WORK-AREA</A>
+                                        <FONT COLOR="#008000">BOXFILESELECT-EDIT</FONT>
+                                        <FONT COLOR="#008000">BOXFILESELECT-OPTION</FONT>.
+       000-INICIO.
+
+           EVALUATE TRUE
+               WHEN <A HREF="#USER-IO" NAME="EDIT-KEY"><FONT COLOR="#ff00ff">EDIT-KEY</FONT></A>
+                    CONTINUE <FONT COLOR="#800080">*&gt; Tecla de fun&ccedil;&atilde;o em </FONT><FONT COLOR="#008000">BOXFILESELECT-EDIT</FONT>
+                             <FONT COLOR="#800080">*&gt; Item posicionado em </FONT><FONT COLOR="#008000">BOXFILESELECT-OPTION</FONT>
+               WHEN <A HREF="#USER-IO" NAME="OPEN-FILE"><FONT COLOR="#ff00ff">OPEN-FILE</FONT></A>
+                    OPEN INPUT FileName
+                    MOVE <FONT COLOR="#ff0000">0</FONT> TO <FONT COLOR="#008000">REGISTROS</FONT>
+                    PERFORM TEST AFTER UNTIL <FONT COLOR="#008000">FS-FileName</FONT> &gt; &quot;09&quot;
+                                          OR <FONT COLOR="#008000">REGISTROS</FONT> = <A HREF="obje.html#linhas"><FONT COLOR="#008080">HEIGHT</FONT></A>
+                            READ <FONT COLOR="#008000">FileName</FONT> NEXT RECORD
+                                          IGNORE LOCK
+                            IF   <FONT COLOR="#008000">FS-FileName</FONT> &lt; &quot;<FONT COLOR="#ff0000">10</FONT>&quot;
+                                 ADD <FONT COLOR="#ff0000">1</FONT> TO <FONT COLOR="#008000">REGISTROS</FONT>
+                            END-IF
+                    END-PERFORM
+                    IF   <FONT COLOR="#008000">REGISTROS</FONT> = 0
+                         MOVE <FONT COLOR="#ff0000">1</FONT> TO <FONT COLOR="#008000">REGISTROS</FONT>
+                    END-IF
+                    IF   <FONT COLOR="#008000">REGISTROS</FONT> &lt; <A HREF="obje.html#linhas"><FONT COLOR="#008080">HEIGHT</FONT></A>
+                         MOVE <FONT COLOR="#008000">REGISTROS</FONT> TO <A HREF="obje.html#linhas"><FONT COLOR="#008080">HEIGHT</FONT></A>
+                    END-IF
+               WHEN <A HREF="#USER-IO" NAME="CLOSE-FILE"><FONT COLOR="#ff00ff">CLOSE-FILE</FONT></A>
+                    CLOSE <FONT COLOR="#008000">FileName</FONT>
+               WHEN <A HREF="#USER-IO" NAME="BEGIN-FILE"><FONT COLOR="#ff00ff">BEGIN-FILE</FONT></A>
+                    INITIALIZE <FONT COLOR="#008000">FileName-REG</FONT>
+                    EVALUATE TRUE
+                        WHEN <FONT COLOR="#ff00ff">ORDER-BY-RIGHT</FONT>
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &lt; <FONT COLOR="#008000">FileName-DESCRICAO</FONT>
+                        WHEN OTHER
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &lt; <FONT COLOR="#008000">FileName-CHAVE</FONT>
+                    END-EVALUATE
+               WHEN <A HREF="#USER-IO" NAME="END-FILE"><FONT COLOR="#ff00ff">END-FILE</FONT></A>
+                    MOVE HIGH-VALUE TO <FONT COLOR="#008000">FileName-REG</FONT>
+                    EVALUATE TRUE
+                        WHEN <FONT COLOR="#ff00ff">ORDER-BY-RIGHT</FONT>
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &gt; <FONT COLOR="#008000">FileName-DESCRICAO</FONT>
+                        WHEN OTHER
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &gt; <FONT COLOR="#008000">FileName-CHAVE</FONT>
+                    END-EVALUATE
+               WHEN <A HREF="#USER-IO" NAME="READ-NEXT"><FONT COLOR="#ff00ff">READ-NEXT</FONT></A>
+                    READ <FONT COLOR="#008000">FileName</FONT> NEXT RECORD
+                                  IGNORE LOCK
+                    IF   <FONT COLOR="#008000">FS-FileName</FONT> &gt; &quot;09&quot;
+                         SET <A HREF="#AT-END">AT-END</A> TO TRUE
+                    END-IF
+               WHEN <A HREF="#USER-IO" NAME="READ-PREVIOUS"><FONT COLOR="#ff00ff">READ-PREVIOUS</FONT></A>
+                    READ <FONT COLOR="#008000">FileName</FONT> PREVIOUS RECORD
+                                  IGNORE LOCK
+                    IF   <FONT COLOR="#008000">FS-FileName</FONT> &gt; &quot;09&quot;
+                         SET <A HREF="#AT-END">AT-END</A> TO TRUE
+                    END-IF
+               WHEN <A HREF="#USER-IO" NAME="NOT-LESS"><FONT COLOR="#ff00ff">NOT-LESS</FONT></A>
+                    EVALUATE TRUE
+                        WHEN <FONT COLOR="#ff00ff">ORDER-BY-RIGHT</FONT>
+                             MOVE <A HREF="#ROGHT-ITEM">LIST-DESCRICAO</A> TO <FONT COLOR="#008000">FileName-DESCRICAO</FONT>
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &lt; <FONT COLOR="#008000">FileName-DESCRICAO</FONT>
+                                   INVALID KEY
+                                           SET <A HREF="#AT-END">AT-END</A> TO TRUE
+                             END-START
+                        WHEN OTHER
+                             MOVE <A HREF="#LEFT-ITEM">LIST-CODIGO</A> TO <FONT COLOR="#008000">FileName-CODIGO</FONT>
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &lt; <FONT COLOR="#008000">FileName-CHAVE</FONT>
+                                   INVALID KEY
+                                           SET <A HREF="#AT-END">AT-END</A> TO TRUE
+                             END-START
+                    END-EVALUATE
+               WHEN <A HREF="#USER-IO" NAME="NOT-GREATER"><FONT COLOR="#ff00ff">NOT-GREATER</FONT></A>
+                    EVALUATE TRUE
+                        WHEN <FONT COLOR="#ff00ff">ORDER-BY-RIGHT</FONT>
+                             MOVE <A HREF="#ROGHT-ITEM">LIST-DESCRICAO</A> TO <FONT COLOR="#008000">FileName-DESCRICAO</FONT>
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &gt; <FONT COLOR="#008000">FileName-DESCRICAO</FONT>
+                                   INVALID KEY
+                                           SET <A HREF="#AT-END">AT-END</A> TO TRUE
+                             END-START
+                        WHEN OTHER
+                             MOVE <A HREF="#LEFT-ITEM">LIST-CODIGO</A> TO <FONT COLOR="#008000">FileName-CODIGO</FONT>
+                             START <FONT COLOR="#008000">FileName</FONT> KEY NOT &gt; <FONT COLOR="#008000">FileName-CHAVE</FONT>
+                                   INVALID KEY
+                                           SET <A HREF="#AT-END">AT-END</A> TO TRUE
+                             END-START
+                    END-EVALUATE
+           END-EVALUATE
+
+           MOVE SPACES             TO <FONT COLOR="#008080">LEFT-ITEM</FONT>
+                                      <FONT COLOR="#008080">RIGHT-ITEM</FONT>
+           MOVE <FONT COLOR="#008000">FileName-CODIGO</FONT>    TO <A HREF="#LEFT-ITEM">LIST-CODIGO</A>
+           MOVE <FONT COLOR="#008000">FileName-DESCRICAO</FONT> TO <A HREF="#ROGHT-ITEM">LIST-DESCRICAO</A>
+           GOBACK.
+
+       END PROGRAM <FONT COLOR="#ff0000">CWCAD3</FONT>.
+</PRE>
+</BODY>
+</HTML>

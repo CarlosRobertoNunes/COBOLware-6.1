@@ -1,0 +1,40 @@
+'Top'
+'Change/USING$BRANCO/from branco/*'
+Do Forever
+   '/DISPLAY PARAMETRA UPON COMMAND-LINE/'
+   If Rc \= 0 Then Leave
+   'Change/DISPLAY$/EXEC COBOLware EXECSYSTEM/1 1'
+   'Next'
+   'Change/CALL$PARAMETER/COMMAND PARAMETRA HIDE END-EXEC/1 1'
+End
+'Top'
+Do Forever
+   '/DISPLAY TELA-BRANCA/'
+   If Rc \= 0 Then Leave
+   'Extract/CurLine'
+   If Words(CurLine.3) > 2
+      Then Do
+           'Dup'
+           'Up'
+           'Change/DISPLAY$/display tela-branca/1 1'
+           'Next'
+           'Change/DISPLAY$'Word(CurLine.3,3)'/display 'Word(CurLine.3,3)'/1'
+           End
+
+End
+'Top'
+'/01 TELA-BRANCA.'
+If Rc = 0 Then Do
+               '/ LINE /'
+               'Change/LINE$/blank screen./1 1'
+               'Next'
+               'Extract/CurLine'
+               If Pos('1920',CurLine.3) \= 0 Then 'Del'
+               End
+'Bot'
+'Next'
+'/$/'
+'Extract/CurLine'
+If Pos('PROGRAM',Upper(CurLine.3)) = 0 & Pos('GOBACK',Upper(CurLine.3)) = 0
+   Then 'Input             goback.'
+'Top'

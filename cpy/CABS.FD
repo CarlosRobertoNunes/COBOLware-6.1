@@ -1,0 +1,7 @@
+       FD  CABS
+           LABEL RECORD IS STANDARD
+           VALUE OF FILE-ID IS LB-CABS.
+
+       01  CABS-REG.
+           05 CABS-CHAVE          PIC  X(030).
+

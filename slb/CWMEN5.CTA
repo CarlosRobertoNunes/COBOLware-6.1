@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+    Atributos_de_mensagens:
+
+    X  Sonora
+
+    X  Aguardar_at‚_interven‡Æo 99 segundos
+
+    X  Apagar_mensagem_ap¢s_espera
+
+=(
+USING CWCHECK-ERASE
+USING CWCHECK-STOP
+USING CWCONF-TIMER
+USING CWCHECK-BEEP
+)=

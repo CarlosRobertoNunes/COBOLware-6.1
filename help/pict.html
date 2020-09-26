@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Picture</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20111028;11244100">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">Picture</FONT></H1>
+<P>Tratamento de figuras.</P>
+<H5>Sintaxe</H5>
+<P>Picture&nbsp;[ <A HREF="#DISPLAY"><FONT COLOR="#008080">DISPLAY</FONT></A>
+| <A HREF="#ERASE"><FONT COLOR="#008080">ERASE</FONT></A> | <A HREF="#REMOVE"><FONT COLOR="#008080">REMOVE</FONT></A>
+| <A HREF="#UPDATE"><FONT COLOR="#008080">UPDATE</FONT></A> | <A HREF="#EXTRACT"><FONT COLOR="#008080">EXTRACT</FONT></A>
+] <BR>[ <FONT COLOR="#008080">LINE</FONT> <I><A HREF="#linha">linha</A>
+</I>]<BR>[ <FONT COLOR="#008080">COLUMN</FONT> <A HREF="#coluna"><FONT COLOR="#008080"><I>coluna</I></FONT></A>
+]<BR>[ <FONT COLOR="#008080">WIDTH</FONT> <I><A HREF="#colunas">colunas</A>
+</I>]&nbsp; <BR>[ <FONT COLOR="#008080">HEIGHT</FONT> <I><A HREF="#linhas">linhas</A>
+</I>]<BR>[ [ <FONT COLOR="#008080">IMAGE</FONT> <I><A HREF="#bitmap">bitmap</A>
+</I>] | [ <FONT COLOR="#008080">FILE</FONT> <I><A HREF="#lb-arquivo">lb-arquivo</A>
+</I><FONT COLOR="#008080">RECORD</FONT> <I><A HREF="#arquivo-chave">arquivo-chave</A>
+</I>] <FONT COLOR="#008080">STATUS;</FONT><A HREF="#file-statu"><I>file-status</I></A>
+]</P>
+<H5>Argumentos</H5>
+<P><A NAME="DISPLAY"></A><FONT COLOR="#008080">DISPLAY</FONT></P>
+<P>Exibe a figura na janela.</P>
+<P><A NAME="ERASE"></A><FONT COLOR="#008080">ERASE</FONT></P>
+<P><A NAME="REMOVE"></A>Remove da janela a figura encontrada na
+posi&ccedil;&atilde;o especificada.<BR><BR><FONT COLOR="#008080">REMOVE</FONT></P>
+<P>Exclui a figura do arquivo.</P>
+<P><A NAME="UPDATE"></A><FONT COLOR="#008080">UPDATE</FONT></P>
+<P>Armazena ou atualiza a figura no arquivo.</P>
+<P><A NAME="EXTRACT"></A><FONT COLOR="#008080">EXTRACT</FONT></P>
+<P>Extrai a figura do arquivo de volta para um bitmap.</P>
+<P><A NAME="linha"></A><I>linha</I></P>
+<P>Linha de posicionamento da figura na janela.</P>
+<P><A NAME="coluna"></A><I>coluna</I></P>
+<P>Coluna de posicionamento da figura na janela</P>
+<P><A NAME="colunas"></A><I>colunas</I></P>
+<P>Largura da are&aacute; para exibi&ccedil;&atilde;o da figura em
+colunas</P>
+<P><A NAME="linhas"></A><I>linhas</I></P>
+<P><A NAME="bitmap"></A><A NAME="lb-arquivo"></A><A NAME="arquivo-chave"></A><A NAME="file-status"></A>
+Altura da are&aacute; para exibi&ccedil;&atilde;o da figura da figura
+em linhas.<BR><I><BR>bitmap</I><BR><BR>Nome do arquivo de imagem no
+formato BMP (At&eacute; 50 bytes). Se omitido na op&ccedil;&atilde;o
+DISPLAY ser&aacute; exibida a figura armazenada em <EM>arquivo(chave)</EM>,
+se omitido na op&ccedil;&atilde;o UPDATE um nome de <EM>bitmap</EM>
+ser&aacute; solicitado ao usu&aacute;rio.<BR><BR><I>lb-arquivo</I><BR><BR>Nome
+do arquivo base de armazenagem de bitmaps (At&eacute; 50
+bytes).<BR><BR><I>arquivo-chave<BR><BR></I>Identifica&ccedil;&atilde;o
+do bitmap no arquivo de armazenagem (At&eacute; 50 bytes). Caso n&atilde;o
+seja especificado na op&ccedil;&atilde;o DISPLAY, ser&aacute; exibido
+diretamente o <EM>bitmap</EM>.istro<BR><BR><I>file-status</I><BR><BR>C&oacute;digo
+de retorno de 2 bytes que recebe o eventual erro de acesso ao arquivo
+de armazenamento.</P>
+<H5>Observa&ccedil;&otilde;es</H5>
+<P>Em modo texto as op&ccedil;&otilde;es DISPLAY e ERASE s&atilde;o
+sem efeito.</P>
+<H5>Exemplos</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT><FONT COLOR="#008080">
+			<A HREF="../help">Picture</A> UPDATE<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			FILE</FONT> <A HREF="#lb-arquivo"><FONT FACE="Courier New">lb-filename</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">RECORD</FONT> <A HREF="#lb-arquivo"><FONT FACE="Courier New">filename-chave</FONT></A><BR>END-EXEC</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeito</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><IMG SRC="pict1.jpg" NAME="figura1" ALIGN=LEFT WIDTH=571 HEIGHT=378 BORDER=0><BR CLEAR=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOL</FONT><FONT COLOR="#ff0000">ware</FONT><FONT COLOR="#008080">
+			<A HREF="../help">Picture</A></FONT> <FONT COLOR="#008080">DISPLAY</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">LINE</FONT> <EM><A HREF="#linha"><FONT COLOR="#ff0000">02</FONT></A></EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">COLUMN</FONT> <A HREF="#coluna"><FONT COLOR="#ff0000"><I>02</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">WIDTH</FONT> <A HREF="#colunas"><FONT COLOR="#ff0000"><I>0</I></FONT><FONT COLOR="#ff0000">8</FONT></A>&nbsp;
+			<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">HEIGHT</FONT> <A HREF="#linhas"><FONT COLOR="#ff0000"><I>04</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">FILE</FONT> <A HREF="#lb-arquivo"><FONT FACE="Courier New">lb-filename</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">RECORD</FONT> <A HREF="#lb-arquivo"><FONT FACE="Courier New">filename-chave</FONT></A><BR>END-EXEC</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeito</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><IMG SRC="pict2.jpg" NAME="figura2" ALIGN=LEFT WIDTH=275 HEIGHT=184 BORDER=0><BR CLEAR=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><!--RELATEDTOPICSLIST--><B>Veja tamb&eacute;m</B></H5>
+<P><A NAME="LinKs"></A><A HREF="obje.html#PUSH"><FONT COLOR="#008080">Object
+PUSH-BUTON</FONT></A></P>
+</BODY>
+</HTML>

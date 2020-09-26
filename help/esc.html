@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0037)file://G:\INTERNET\manual\CWTIME.html -->
+<html>
+
+<head>
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<style></style>
+<meta content="Microsoft FrontPage 3.0" name="GENERATOR">
+<title>COBOLware 6.1 -Escape keys</title>
+</head>
+
+<body style="font-family: Arial">
+<b>
+
+<h1 align="left">Escape keys</b></h1>
+
+<p align="justify">Visa melhor legibilidade de código no tratamento de retornos obtidos
+pelo comando ACCEPT <font color="#008000">TECLA</font> FROM ESCAPE KEY. Supondo que o
+usuário tenha pressionado a tecla Esc, o item <font color="#008000">TECLA</font>
+receberia o valor&nbsp; <font color="#FF0000">01</font>. Assim, para tratar este evento,
+seria codificado &nbsp; &quot;IF TECLA = <font color="#FF0000">01</font>&quot;, utilizando
+<font color="#008080">CWKEYS</font>, a declaração passa para &quot;IF ESC&quot;&nbsp;
+facilitando a compreensão do código.<br>
+<br>
+Cada nome de tecla possui uma constante com o prefixo CODE para ser usado na passagem de
+parâmetros, por exemplo criando um push button que deve retornar o código da tecla esc
+quando pressionado.<br>
+<br>
+EXEC <font color="#008080">COBOL<font color="#FF0000">ware</font> <a href="obje.html" style="color: rgb(0,128,128)">Object</a></font>
+<font color="#008080">PUSH-BUTTON</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#008080">CAPTION</font>
+<em>&quot;<a href="obje.html#texto"><font color="#FF0000">~Processar</font></a>&quot;</em><font
+color="#008080"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LINE</font> <a
+href="obje.html#linha2"><font color="#FF0000"><em>23</em></font></a> <font color="#008080">COLUMN</font>
+<a href="obje.html#coluna2" style="color: rgb(255,0,0)"><em>03</em></a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#008080">KEY</font>
+<a href="#CODE-F2" style="color: rgb(0,128,128)">CODE-F2 </a> <a href="obje.html#TAB-OFF"><font
+color="#008080">TAB-OFF</font></a><br>
+END-EXEC<br>
+<br>
+ACCEPT <font color="#008000"><em>tecla</em></font> FROM ESCAPE KEY<br>
+<br>
+IF&nbsp;&nbsp; <a href="#F2" style="color: rgb(0,128,128)">F2</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PERFORM <font color="#008000">PROCESSAR</font><br>
+END-IF</p>
+
+<p align="justify">Encontra-se em <a href="CWKEYS.CPY" style="color: rgb(0,128,128)">CWKEYS.CPY</a>.
+Para obter a definição utilize o comando [COPY CWKEYS] logo após a declaração do
+campo receptor do código da tecla<span style="COLOR: rgb(0,255,0)">.</span></p>
+
+<table border="1">
+  <tr>
+    <td width="100%"><pre><font face="Courier New">      ******************************************************************
+      * Nomes de condicao para teclas (ACCEPT XX FROM ESCAPE KEY)      *
+      ******************************************************************</font><font
+face="Courier New" color="#FF0000">
+</font><font face="Courier New" color="#FF00FF">
+</font><font
+face="Courier New">            88 <font color="#008080"><a name="CURSOR-DOWN">CURSOR-DOWN</a></font>       VALUE <font
+color="#FF0000">00</font>.
+            88 <font color="#008080"><a name="ENTER-KEY">ENTER-KEY</a></font>         VALUE <font
+color="#FF0000">00</font>.
+            88 <font color="#008080"><a name="TAB">TAB</a></font>               VALUE <font
+color="#FF0000">00</font>.
+            88 <font color="#008080"><a name="ESC">ESC</a></font>               VALUE <font
+color="#FF0000">01</font>.
+            88 <font color="#008080"><a name="F1">F1</a></font>                VALUE <font
+color="#FF0000">02</font>.
+            88 <font color="#008080"><a name="F2">F2</a></font>                VALUE <font
+color="#FF0000">03</font>.
+            88 <font color="#008080"><a name="F3">F3</a></font>                VALUE <font
+color="#FF0000">04</font>.
+            88 <font color="#008080"><a name="F4">F4</a></font>                VALUE <font
+color="#FF0000">05</font>.
+            88 <font color="#008080"><a name="F5">F5</a></font>                VALUE <font
+color="#FF0000">06</font>.
+            88 <font color="#008080"><a name="F6">F6</a></font>                VALUE <font
+color="#FF0000">07</font>.
+            88 <font color="#008080"><a name="F7">F7</a></font>                VALUE <font
+color="#FF0000">08</font>.
+            88 <font color="#008080"><a name="F8">F8</a></font>                VALUE <font
+color="#FF0000">09</font>.
+            88 <font color="#008080"><a name="F9">F9</a></font>                VALUE <font
+color="#FF0000">10</font>.
+            88 <font color="#008080"><a name="F10">F10</a></font>               VALUE <font
+color="#FF0000">11</font>.
+            88 <font color="#008080"><a name="SHIFT-F1">SHIFT-F1</a></font>          VALUE <font
+color="#FF0000">12</font>.
+            88 <font color="#008080"><a name="SHIFT-F2">SHIFT-F2</a></font>          VALUE <font
+color="#FF0000">13</font>.
+            88 <font color="#008080"><a name="SHIFT-F3">SHIFT-F3</a></font>          VALUE <font
+color="#FF0000">14</font>.
+            88 <font color="#008080"><a name="SHIFT-F4">SHIFT-F4</a></font>          VALUE <font
+color="#FF0000">15</font>.
+            88 <font color="#008080"><a name="SHIFT-F5">SHIFT-F5</a></font>          VALUE <font
+color="#FF0000">16</font>.
+            88 <font color="#008080"><a name="SHIFT-F6">SHIFT-F6</a></font>          VALUE <font
+color="#FF0000">17</font>.
+            88 <font color="#008080"><a name="SHIFT-F7">SHIFT-F7</a></font>          VALUE <font
+color="#FF0000">18</font>.
+            88 <font color="#008080"><a name="SHIFT-F8">SHIFT-F8</a></font>          VALUE <font
+color="#FF0000">19</font>.
+            88 <font color="#008080"><a name="SHIFT-F9">SHIFT-F9</a></font>          VALUE <font
+color="#FF0000">20</font>.
+            88 <font color="#008080"><a name="SHIFT-F10">SHIFT-F10</a></font>         VALUE <font
+color="#FF0000">21</font>.
+            88 <font color="#008080"><a name="CONTROL-F1">CONTROL-F1</a></font>        VALUE <font
+color="#FF0000">22</font>.
+            88 <font color="#008080"><a name="CONTROL-F2">CONTROL-F2</a></font>        VALUE <font
+color="#FF0000">23</font>.
+            88 <font color="#008080"><a name="CONTROL-F3">CONTROL-F3</a></font>        VALUE <font
+color="#FF0000">24</font>.
+            88 <font color="#008080"><a name="CONTROL-F4">CONTROL-F4</a></font>        VALUE <font
+color="#FF0000">25</font>.
+            88 <font color="#008080"><a name="CONTROL-F5">CONTROL-F5</a></font>        VALUE <font
+color="#FF0000">26</font>.
+            88 <font color="#008080"><a name="CONTROL-F6">CONTROL-F6</a></font>        VALUE <font
+color="#FF0000">27</font>.
+            88 <font color="#008080"><a name="CONTROL-F7">CONTROL-F7</a></font>        VALUE <font
+color="#FF0000">28</font>.
+            88 <font color="#008080"><a name="CONTROL-F8">CONTROL-F8</a></font>        VALUE <font
+color="#FF0000">29</font>.
+            88 <font color="#008080"><a name="CONTROL-F9">CONTROL-F9</a></font>        VALUE <font
+color="#FF0000">30</font>.
+            88 <font color="#008080"><a name="CONTROL-F10">CONTROL-F10</a></font>       VALUE <font
+color="#FF0000">31</font>.
+            88 <font color="#008080"><a name="ALT-F1">ALT-F1</a></font>            VALUE <font
+color="#FF0000">32</font>.
+            88 <font color="#008080"><a name="ALT-F2">ALT-F2</a></font>            VALUE <font
+color="#FF0000">33</font>.
+            88 <font color="#008080"><a name="ALT-F3">ALT-F3</a></font>            VALUE <font
+color="#FF0000">34</font>.
+            88 <font color="#008080"><a name="ALT-F4">ALT-F4</a></font>            VALUE <font
+color="#FF0000">35</font>.
+            88 <font color="#008080"><a name="ALT-F5">ALT-F5</a></font>            VALUE <font
+color="#FF0000">36</font>.
+            88 <font color="#008080"><a name="ALT-F6">ALT-F6</a></font>            VALUE <font
+color="#FF0000">37</font>.
+            88 <font color="#008080"><a name="ALT-F7">ALT-F7</a></font>            VALUE <font
+color="#FF0000">38</font>.
+            88 <font color="#008080"><a name="ALT-F8">ALT-F8</a></font>            VALUE <font
+color="#FF0000">39</font>.
+            88 <font color="#008080"><a name="ALT-F9">ALT-F9</a></font>            VALUE <font
+color="#FF0000">40</font>.
+            88 <font color="#008080"><a name="ALT-F10">ALT-F10</a></font>           VALUE <font
+color="#FF0000">41</font>.
+            88 <font color="#008080"><a name="ALT-1">ALT-1</a></font>             VALUE <font
+color="#FF0000">42</font>.
+            88 <font color="#008080"><a name="ALT-2">ALT-2</a></font>             VALUE <font
+color="#FF0000">43</font>.
+            88 <font color="#008080"><a name="ALT-3">ALT-3</a></font>             VALUE <font
+color="#FF0000">44</font>.
+            88 <font color="#008080"><a name="ALT-4">ALT-4</a></font>             VALUE <font
+color="#FF0000">45</font>.
+            88 <font color="#008080"><a name="ALT-5">ALT-5</a></font>             VALUE <font
+color="#FF0000">46</font>.
+            88 <font color="#008080"><a name="ALT-6">ALT-6</a></font>             VALUE <font
+color="#FF0000">47</font>.
+            88 <font color="#008080"><a name="ALT-7">ALT-7</a></font>             VALUE <font
+color="#FF0000">48</font>.
+            88 <font color="#008080"><a name="ALT-8">ALT-8</a></font>             VALUE <font
+color="#FF0000">49</font>.
+            88 <font color="#008080"><a name="ALT-9">ALT-9</a></font>             VALUE <font
+color="#FF0000">50</font>.
+            88 <font color="#008080"><a name="ALT-0">ALT-0</a></font>             VALUE <font
+color="#FF0000">51</font>.
+            88 <font color="#008080"><a name="ALT-TRACE">ALT-TRACE</a></font>         VALUE <font
+color="#FF0000">52</font>.
+            88 <font color="#008080"><a name="ALT-EQUAL">ALT-EQUAL</a></font>         VALUE <font
+color="#FF0000">53</font>.
+            88 <font color="#008080"><a name="PAGE-UP">PAGE-UP</a></font>           VALUE <font
+color="#FF0000">54 74</font>.
+            88 <font color="#008080"><a name="PAGE-DOWN">PAGE-DOWN</a></font>         VALUE <font
+color="#FF0000">55 82</font>.
+            88 <font color="#008080"><a name="CONTROL-PAGE-UP">CONTROL-PAGE-UP</a></font>   VALUE <font
+color="#FF0000">56</font>.
+            88 <font color="#008080"><a name="CONTROL-PAGE-DOWN">CONTROL-PAGE-DOWN</a></font> VALUE <font
+color="#FF0000">57</font>.
+            88 <font color="#008080"><a name="ALT-A">ALT-A</a></font>             VALUE <font
+color="#FF0000">66</font>.
+            88 <font color="#008080"><a name="ALT-B">ALT-B</a></font>             VALUE <font
+color="#FF0000">67</font>.
+            88 <font color="#008080"><a name="ALT-C">ALT-C</a></font>             VALUE <font
+color="#FF0000">68</font>.
+            88 <font color="#008080"><a name="ALT-D">ALT-D</a></font>             VALUE <font
+color="#FF0000">69</font>.
+            88 <font color="#008080"><a name="ALT-E">ALT-E</a></font>             VALUE <font
+color="#FF0000">70</font>.
+            88 <font color="#008080"><a name="ALT-F">ALT-F</a></font>             VALUE <font
+color="#FF0000">71</font>.
+            88 <font color="#008080"><a name="ALT-G">ALT-G</a></font>             VALUE <font
+color="#FF0000">72</font>.
+            88 <font color="#008080"><a name="ALT-H">ALT-H</a></font>             VALUE <font
+color="#FF0000">73</font>.
+            88 <font color="#008080"><a name="ALT-I">ALT-I</a></font>             VALUE <font
+color="#FF0000">74</font>.
+            88 <font color="#008080"><a name="ALT-J">ALT-J</a></font>             VALUE <font
+color="#FF0000">75</font>.
+            88 <font color="#008080"><a name="ALT-K">ALT-K</a></font>             VALUE <font
+color="#FF0000">76</font>.
+            88 <font color="#008080"><a name="ALT-L">ALT-L</a></font>             VALUE <font
+color="#FF0000">77</font>.
+            88 <font color="#008080"><a name="ALT-M">ALT-M</a></font>             VALUE <font
+color="#FF0000">78</font>.
+            88 <font color="#008080"><a name="ALT-N">ALT-N</a></font>             VALUE <font
+color="#FF0000">79</font>.
+            88 <font color="#008080"><a name="ALT-O">ALT-O</a></font>             VALUE <font
+color="#FF0000">80</font>.
+            88 <font color="#008080"><a name="ALT-P">ALT-P</a></font>             VALUE <font
+color="#FF0000">81</font>.
+            88 <font color="#008080"><a name="ALT-Q">ALT-Q</a></font>             VALUE <font
+color="#FF0000">82</font>.
+            88 <font color="#008080"><a name="ALT-R">ALT-R</a></font>             VALUE <font
+color="#FF0000">83</font>.
+            88 <font color="#008080"><a name="ALT-S">ALT-S</a></font>             VALUE <font
+color="#FF0000">84</font>.
+            88 <font color="#008080"><a name="ALT-T">ALT-T</a></font>             VALUE <font
+color="#FF0000">85</font>.
+            88 <font color="#008080"><a name="ALT-U">ALT-U</a></font>             VALUE <font
+color="#FF0000">86</font>.
+            88 <font color="#008080"><a name="ALT-V">ALT-V</a></font>             VALUE <font
+color="#FF0000">87</font>.
+            88 <font color="#008080"><a name="ALT-W">ALT-W</a></font>             VALUE <font
+color="#FF0000">88</font>.
+            88 <font color="#008080"><a name="ALT-X">ALT-X</a></font>             VALUE <font
+color="#FF0000">89</font>.
+            88 <font color="#008080"><a name="ALT-Y">ALT-Y</a></font>             VALUE <font
+color="#FF0000">90</font>.
+            88 <font color="#008080"><a name="ALT-Z">ALT-Z</a></font>             VALUE <font
+color="#FF0000">91</font>.
+            88 <font color="#008080"><a name="F11">F11</a></font>               VALUE <font
+color="#FF0000">92</font>.
+            88 <font color="#008080"><a name="F12">F12</a></font>               VALUE <font
+color="#FF0000">93</font>.
+            88 <font color="#008080"><a name="SHIFT-F11">SHIFT-F11</a></font>         VALUE <font
+color="#FF0000">94</font>.
+            88 <font color="#008080"><a name="SHIFT-F12">SHIFT-F12</a></font>         VALUE <font
+color="#FF0000">95</font>.
+            88 <font color="#008080"><a name="CONTROL-F11">CONTROL-F11</a></font>       VALUE <font
+color="#FF0000">96</font>.
+            88 <font color="#008080"><a name="CONTROL-F12">CONTROL-F12</a></font>       VALUE <font
+color="#FF0000">97</font>.
+            88 <font color="#008080"><a name="ALT-F11">ALT-F11</a></font>           VALUE <font
+color="#FF0000">98</font>.
+            88 <font color="#008080"><a name="ALT-F12">ALT-F12</a></font>           VALUE <font
+color="#FF0000">99</font>.
+            88 <font color="#008080"><a name="SHIFT-TAB">SHIFT-TAB</a></font>         VALUE <font
+color="#FF0000">99</font>.
+            88 <font color="#008080"><a name="CURSOR-UP">CURSOR-UP</a></font>         VALUE <font
+color="#FF0000">99</font>.
+</font></pre>
+    <pre><font face="Courier New">            78 <a name="CODE-CURSOR-DOWN"><font
+color="#008080">CODE-CURSOR-DOWN</font></a>       VALUE <font color="#FF0000">00</font>.
+            78 <font
+color="#008080"><a name="CODE-ENTER-KEY">CODE-ENTER-KEY</a></font>         VALUE <font
+color="#FF0000">00</font>.
+            78 <font color="#008080"><a name="CODE-TAB">CODE-TAB</a></font>               VALUE <font
+color="#FF0000">00</font>.
+            78 <font color="#008080"><a name="CODE-ESC">CODE-ESC</a></font>               VALUE <font
+color="#FF0000">01</font>.
+            78 <font color="#008080"><a name="CODE-F1">CODE-F1</a></font>                VALUE <font
+color="#FF0000">02</font>.
+            78 <font color="#008080"><a name="CODE-F2">CODE-F2</a></font>                VALUE <font
+color="#FF0000">03</font>.
+            78 <font color="#008080"><a name="CODE-F3">CODE-F3</a></font>                VALUE <font
+color="#FF0000">04</font>.
+            78 <font color="#008080"><a name="CODE-F4">CODE-F4</a></font>                VALUE <font
+color="#FF0000">05</font>.
+            78 <font color="#008080"><a name="CODE-F5">CODE-F5</a></font>                VALUE <font
+color="#FF0000">06</font>.
+            78 <font color="#008080"><a name="CODE-F6">CODE-F6</a></font>                VALUE <font
+color="#FF0000">07</font>.
+            78 <font color="#008080"><a name="CODE-F7">CODE-F7</a></font>                VALUE <font
+color="#FF0000">08</font>.
+            78 <font color="#008080"><a name="CODE-F8">CODE-F8</a></font>                VALUE <font
+color="#FF0000">09</font>.
+            78 <font color="#008080"><a name="CODE-F9">CODE-F9</a></font>                VALUE <font
+color="#FF0000">10</font>.
+            78 <font color="#008080"><a name="CODE-F10">CODE-F10</a></font>               VALUE <font
+color="#FF0000">11</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F1">CODE-SHIFT-F1</a></font>          VALUE <font
+color="#FF0000">12</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F2">CODE-SHIFT-F2</a></font>          VALUE <font
+color="#FF0000">13</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F3">CODE-SHIFT-F3</a></font>          VALUE <font
+color="#FF0000">14</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F4">CODE-SHIFT-F4</a></font>          VALUE <font
+color="#FF0000">15</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F5">CODE-SHIFT-F5</a></font>          VALUE <font
+color="#FF0000">16</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F6">CODE-SHIFT-F6</a></font>          VALUE <font
+color="#FF0000">17</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F7">CODE-SHIFT-F7</a></font>          VALUE <font
+color="#FF0000">18</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F8">CODE-SHIFT-F8</a></font>          VALUE <font
+color="#FF0000">19</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F9">CODE-SHIFT-F9</a></font>          VALUE <font
+color="#FF0000">20</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F10">CODE-SHIFT-F10</a></font>         VALUE <font
+color="#FF0000">21</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F1">CODE-CONTROL-F1</a></font>        VALUE <font
+color="#FF0000">22</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F2">CODE-CONTROL-F2</a></font>        VALUE <font
+color="#FF0000">23</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F3">CODE-CONTROL-F3</a></font>        VALUE <font
+color="#FF0000">24</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F4">CODE-CONTROL-F4</a></font>        VALUE <font
+color="#FF0000">25</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F5">CODE-CONTROL-F5</a></font>        VALUE <font
+color="#FF0000">26</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F6">CODE-CONTROL-F6</a></font>        VALUE <font
+color="#FF0000">27</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F7">CODE-CONTROL-F7</a></font>        VALUE <font
+color="#FF0000">28</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F8">CODE-CONTROL-F8</a></font>        VALUE <font
+color="#FF0000">29</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F9">CODE-CONTROL-F9</a></font>        VALUE <font
+color="#FF0000">30</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F10">CODE-CONTROL-F10</a></font>       VALUE <font
+color="#FF0000">31</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F1">CODE-ALT-F1</a></font>            VALUE <font
+color="#FF0000">32</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F2">CODE-ALT-F2</a></font>            VALUE <font
+color="#FF0000">33</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F3">CODE-ALT-F3</a></font>            VALUE <font
+color="#FF0000">34</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F4">CODE-ALT-F4</a></font>            VALUE <font
+color="#FF0000">35</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F5">CODE-ALT-F5</a></font>            VALUE <font
+color="#FF0000">36</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F6">CODE-ALT-F6</a></font>            VALUE <font
+color="#FF0000">37</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F7">CODE-ALT-F7</a></font>            VALUE <font
+color="#FF0000">38</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F8">CODE-ALT-F8</a></font>            VALUE <font
+color="#FF0000">39</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F9">CODE-ALT-F9</a></font>            VALUE <font
+color="#FF0000">40</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F10">CODE-ALT-F10</a></font>           VALUE <font
+color="#FF0000">41</font>.
+            78 <font color="#008080"><a name="CODE-ALT-1">CODE-ALT-1</a></font>             VALUE <font
+color="#FF0000">42</font>.
+            78 <font color="#008080"><a name="CODE-ALT-2">CODE-ALT-2</a></font>             VALUE <font
+color="#FF0000">43</font>.
+            78 <font color="#008080"><a name="CODE-ALT-3">CODE-ALT-3</a></font>             VALUE <font
+color="#FF0000">44</font>.
+            78 <font color="#008080"><a name="CODE-ALT-4">CODE-ALT-4</a></font>             VALUE <font
+color="#FF0000">45</font>.
+            78 <font color="#008080"><a name="CODE-ALT-5">CODE-ALT-5</a></font>             VALUE <font
+color="#FF0000">46</font>.
+            78 <font color="#008080"><a name="CODE-ALT-6">CODE-ALT-6</a></font>             VALUE <font
+color="#FF0000">47</font>.
+            78 <font color="#008080"><a name="CODE-ALT-7">CODE-ALT-7</a></font>             VALUE <font
+color="#FF0000">48</font>.
+            78 <font color="#008080"><a name="CODE-ALT-8">CODE-ALT-8</a></font>             VALUE <font
+color="#FF0000">49</font>.
+            78 <font color="#008080"><a name="CODE-ALT-9">CODE-ALT-9</a></font>             VALUE <font
+color="#FF0000">50</font>.
+            78 <font color="#008080"><a name="CODE-ALT-0">CODE-ALT-0</a></font>             VALUE <font
+color="#FF0000">51</font>.
+            78 <font color="#008080"><a name="CODE-ALT-TRACE">CODE-ALT-TRACE</a></font>         VALUE <font
+color="#FF0000">52</font>.
+            78 <font color="#008080"><a name="CODE-ALT-EQUAL">CODE-ALT-EQUAL</a></font>         VALUE <font
+color="#FF0000">53</font>.
+            78 <font color="#008080"><a name="CODE-PAGE-UP">CODE-PAGE-UP</a></font>           VALUE <font
+color="#FF0000">54</font>.
+            78 <font color="#008080"><a name="CODE-PAGE-DOWN">CODE-PAGE-DOWN</a></font>         VALUE <font
+color="#FF0000">55</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-PAGE-UP">CODE-CONTROL-PAGE-UP</a></font>   VALUE <font
+color="#FF0000">56</font>.
+            78 <font color="#008080"><a
+name="CODE-CONTROL-PAGE-DOWN">CODE-CONTROL-PAGE-DOWN</a></font> VALUE <font color="#FF0000">57</font>.
+            78 <font
+color="#008080"><a name="CODE-ALT-A">CODE-ALT-A</a></font>             VALUE <font
+color="#FF0000">66</font>.
+            78 <font color="#008080"><a name="CODE-ALT-B">CODE-ALT-B</a></font>             VALUE <font
+color="#FF0000">67</font>.
+            78 <font color="#008080"><a name="CODE-ALT-C">CODE-ALT-C</a></font>             VALUE <font
+color="#FF0000">68</font>.
+            78 <font color="#008080"><a name="CODE-ALT-D">CODE-ALT-D</a></font>             VALUE <font
+color="#FF0000">69</font>.
+            78 <font color="#008080"><a name="CODE-ALT-E">CODE-ALT-E</a></font>             VALUE <font
+color="#FF0000">70</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F">CODE-ALT-F</a></font>             VALUE <font
+color="#FF0000">71</font>.
+            78 <font color="#008080"><a name="CODE-ALT-G">CODE-ALT-G</a></font>             VALUE <font
+color="#FF0000">72</font>.
+            78 <font color="#008080"><a name="CODE-ALT-H">CODE-ALT-H</a></font>             VALUE <font
+color="#FF0000">73</font>.
+            78 <font color="#008080"><a name="CODE-ALT-I">CODE-ALT-I</a></font>             VALUE <font
+color="#FF0000">74</font>.
+            78 <font color="#008080"><a name="CODE-ALT-J">CODE-ALT-J</a></font>             VALUE <font
+color="#FF0000">75</font>.
+            78 <font color="#008080"><a name="CODE-ALT-K">CODE-ALT-K</a></font>             VALUE <font
+color="#FF0000">76</font>.
+            78 <font color="#008080"><a name="CODE-ALT-L">CODE-ALT-L</a></font>             VALUE <font
+color="#FF0000">77</font>.
+            78 <font color="#008080"><a name="CODE-ALT-M">CODE-ALT-M</a></font>             VALUE <font
+color="#FF0000">78</font>.
+            78 <font color="#008080"><a name="CODE-ALT-N">CODE-ALT-N</a></font>             VALUE <font
+color="#FF0000">79</font>.
+            78 <font color="#008080"><a name="CODE-ALT-O">CODE-ALT-O</a></font>             VALUE <font
+color="#FF0000">80</font>.
+            78 <font color="#008080"><a name="CODE-ALT-P">CODE-ALT-P</a></font>             VALUE <font
+color="#FF0000">81</font>.
+            78 <font color="#008080"><a name="CODE-ALT-Q">CODE-ALT-Q</a></font>             VALUE <font
+color="#FF0000">82</font>.
+            78 <font color="#008080"><a name="CODE-ALT-R">CODE-ALT-R</a></font>             VALUE <font
+color="#FF0000">83</font>.
+            78 <font color="#008080"><a name="CODE-ALT-S">CODE-ALT-S</a></font>             VALUE <font
+color="#FF0000">84</font>.
+            78 <font color="#008080"><a name="CODE-ALT-T">CODE-ALT-T</a></font>             VALUE <font
+color="#FF0000">85</font>.
+            78 <font color="#008080"><a name="CODE-ALT-U">CODE-ALT-U</a></font>             VALUE <font
+color="#FF0000">86</font>.
+            78 <font color="#008080"><a name="CODE-ALT-V">CODE-ALT-V</a></font>             VALUE <font
+color="#FF0000">87</font>.
+            78 <font color="#008080"><a name="CODE-ALT-W">CODE-ALT-W</a></font>             VALUE <font
+color="#FF0000">88</font>.
+            78 <font color="#008080"><a name="CODE-ALT-X">CODE-ALT-X</a></font>             VALUE <font
+color="#FF0000">89</font>.
+            78 <font color="#008080"><a name="CODE-ALT-Y">CODE-ALT-Y</a></font>             VALUE <font
+color="#FF0000">90</font>.
+            78 <font color="#008080"><a name="CODE-ALT-Z">CODE-ALT-Z</a></font>             VALUE <font
+color="#FF0000">91</font>.
+            78 <font color="#008080"><a name="CODE-F11">CODE-F11</a></font>               VALUE <font
+color="#FF0000">92</font>.
+            78 <font color="#008080"><a name="CODE-F12">CODE-F12</a></font>               VALUE <font
+color="#FF0000">93</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F11">CODE-SHIFT-F11</a></font>         VALUE <font
+color="#FF0000">94</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-F12">CODE-SHIFT-F12</a></font>         VALUE <font
+color="#FF0000">95</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F11">CODE-CONTROL-F11</a></font>       VALUE <font
+color="#FF0000">96</font>.
+            78 <font color="#008080"><a name="CODE-CONTROL-F12">CODE-CONTROL-F12</a></font>       VALUE <font
+color="#FF0000">97</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F11">CODE-ALT-F11</a></font>           VALUE <font
+color="#FF0000">98</font>.
+            78 <font color="#008080"><a name="CODE-ALT-F12">CODE-ALT-F12</a></font>           VALUE <font
+color="#FF0000">99</font>.
+            78 <font color="#008080"><a name="CODE-SHIFT-TAB">CODE-SHIFT-TAB</a></font>         VALUE <font
+color="#FF0000">99</font>.
+            78 <font color="#008080"><a name="CODE-CURSOR-UP">CODE-CURSOR-UP</a></font>         VALUE <font
+color="#FF0000">99</font>.</font></pre>
+    </td>
+  </tr>
+</table>
+<b>
+
+<p align="justify"></b>Exemplo: O programa <a href="cwcads.html"
+style="color: rgb(0,128,128)">CWCADS</a>&nbsp; ilustra o uso da tabela.</p>
+</body>
+</html>

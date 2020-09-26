@@ -1,0 +1,51 @@
+       FD  FORMATOS
+           LABEL RECORD IS STANDARD
+           RECORD VARYING FROM 10 TO 291 DEPENDING ON SZ-FORMATOS
+           VALUE OF FILE-ID IS LB-FORMATOS.
+
+       01  FORMATOS-REG.
+           05 FORMATOS-CHAVE.
+              10 FORMATOS-TIPO-REG      PIC  X(001).
+              10 FORMATOS-REPORT        PIC  X(007).
+              10 FORMATOS-OBJETO        PIC  9(004) COMP-X.
+           05 FORMATOS-DETALHE.
+              10 FORMATOS-LINHA         PIC  9(002) COMP-X.
+              10 FORMATOS-COLUNA        PIC  9(002) COMP-X.
+              10 FORMATOS-TIPO          PIC  X(001).
+                 88 FORMATOS-EXPORT       VALUE "3".
+                 88 FORMATOS-ESTILO       VALUE "A".
+                 88 FORMATOS-ALFANUMERICO VALUE "X".
+                 88 FORMATOS-EDITADO      VALUE "E" "Z"
+                                                "+" "-" "*" "/" "P" "R".
+                 88 FORMATOS-LITERAL      VALUE "L".
+                 88 FORMATOS-NUMERICO     VALUE "9".
+                 88 FORMATOS-RESULTADO    VALUE "+" "-" "*" "/" "P" "R".
+           05 REDEFINES FORMATOS-DETALHE.
+              10 FORMATOS-OBJETOS       PIC  9(004) COMP-X.
+              10 FORMATOS-PADRAO        PIC  9(001).
+           05 FORMATOS-TAMANHO          PIC  9(002) COMP-X.
+           05 FORMATOS-STRING           PIC  X(219).
+           05 REDEFINES FORMATOS-STRING.
+              10 FORMATOS-DATANAME      PIC  X(030).
+              10 FORMATOS-MASCARA       PIC  X(189).
+              10 REDEFINES FORMATOS-MASCARA.
+                 15 FILLER              PIC  X(179).
+                 15 DATA-Y              PIC  9(008) COMP-X.
+                 15 LICENCA-Y           PIC  9(010) COMP-X.
+                 15 FORMATOS-SIZE-PAGE  PIC  9(002) COMP-X.
+              10 REDEFINES FORMATOS-MASCARA.
+                 15 FILLER              PIC  X(058).
+                 15 FORMATOS-ARQUIVO    PIC  X(050).
+                 15 FORMATOS-DELIM      PIC  X(001).
+                 15 FORMATOS-DESTINO    PIC  X(050).
+                 15 FORMATOS-DATANAME2  PIC  X(030).
+           05 REDEFINES FORMATOS-STRING.
+              15 FORMATOS-ORDENADAS     PIC  9(001).
+              15 FORMATOS-ORDENADA      PIC  X(030) OCCURS 7.
+              15 FORMATOS-DESCENDE      PIC  X(001) OCCURS 7.
+              15 FILLER                 PIC  X(001).
+           05 FORMATOS-PROVEDOR         PIC  X(008).
+           05 FORMATOS-FLAGS            PIC  X(050).
+      *    05 FORMATOS-FLAGS            PIC  X(011).
+      *    05 FILLER                    PIC  X(039).
+

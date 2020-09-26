@@ -1,0 +1,26 @@
+       01  LINHAS-DE-IMPRESSAO-CLIC.
+       02  LINHA-01.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(009) VALUE
+              "Empresa: ".
+           05 CLIC-EMPRESA                   PIC  X(030) VALUE SPACES.
+       02  LINHA-02.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(009) VALUE
+              "Sistema: ".
+           05 CLIC-SISTEMA                   PIC  X(030) VALUE SPACES.
+       02  LINHA-03.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(009) VALUE
+              "Usu rio: ".
+           05 CLIC-USUARIO                   PIC  X(030) VALUE SPACES.
+       02  LINHA-04.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(010) VALUE
+              "Programa: ".
+           05 CLIC-PROGRAMA                  PIC  X(008) VALUE SPACES.
+       02  LINHA-05.
+           05 FILLER                         PIC  X(001) VALUE SPACE.
+           05 FILLER                         PIC  X(016) VALUE
+              "Pasta corrente: ".
+           05 CLIC-PASTA                     PIC  X(050) VALUE SPACES.

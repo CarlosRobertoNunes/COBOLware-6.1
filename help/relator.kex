@@ -1,0 +1,485 @@
+* Converte programa Provedor para tabela de Colunas
+'Set Point .Relator'
+'Extract /alt/ft/fn/FILEId'
+if ftype.1 \= "CBL" & ftype.1 \= "COB"
+then do
+     'emsg COBOLware 6.0: Comando somente para programas Provedores.'
+     exit
+     end
+'Top'
+'Upper *'
+'/ COPY$RELATOR./'
+if Rc \= 0
+then do
+     'emsg COBOLware 6.0: Comando somente para programas Provedores.'
+     '.Relator'
+     exit
+     end
+'Top'
+'Del / COPY$RELATOR./'
+If Rc \= 0 Then Exit
+'Extract/MsgMode'
+'Set Msgmode Off'
+Do Forever
+   'Top'
+   '/ COPY /'
+   If Rc \= 0 Then Leave
+   'Extract/CurLine'
+   Member = Word(CurLine.3,2)
+   'Del'
+   'Up'
+   If Substr(Member,Length(Member),1) = '.'
+      Then Member = Substr(Member,1,Length(Member)-1)
+   'Get 'Member
+End
+'Set Msgmode 'MsgMode.1
+"Wrap Off"
+'Shadow off'
+'MsgMode Off'
+'Reprofile Off'
+'Shift Left 6 *'
+'Shift Right 6 *'
+'Less /*> "?"/'
+'Zone 73 *'
+'Change/$//*'
+'Zone 1 *'
+Descricao=0
+'Get =.dic 1 1'
+If Rc = 0
+   Then Do
+        "Extract /CurLine"
+        'Del'
+        'Up'
+        Descricao = CurLine.3
+        Pos=Substr(Descricao,1,5)
+        If DataType(Pos) = "NUM" Then Descricao=0
+        End
+'CurLine 15'
+'Extract/FileId'
+Self = 'Kedit 'FileId.1' (NoMsg'
+Nome = Translate(FileId.1,' ','.')
+Nome = Word(Nome,1)
+Dic    = 'Kedit 'Nome'.DIC (NoMsg'
+Campos = 'Kedit 'Nome'.TB1 (NoMsg'
+Fields = 'Kedit 'Nome'.TB2 (NoMsg'
+Campos;'Top';'Del *'
+NCampos = 0
+Dic
+Do Y = 1 To 2
+   ':1'
+   If Y = 1
+      Then Do
+           Search = '~Blank'
+           'Zone 47 *'
+           End
+      Else Do
+           Search = '/D/|/V/'
+           'Zone 14 14'
+           End
+   Do Forever
+      Search
+      If Rc \= 0 Then Leave
+      'Extract/CurLine'
+      Usage = Substr(CurLine.3,14,1)
+      Campo = Substr(CurLine.3,16,30)
+      CampoX = Word(Campo,1)
+      If Words(Campo) > 1
+         Then Do
+              Do I = 2 To Words(Campo)
+                 CampoX = CampoX'_'Word(Campo,I)
+              End
+              End
+      Campos
+      'Bot'
+      'Input  'CampoX Usage Translate(Substr(CurLine.3,47),'_',' ')
+      NCampos = NCampos + 1
+      Dic
+      'Del'
+   End
+End
+Dic
+'Qquit'
+Self
+'FT DIC'
+'Del'
+'/ PROCEDURE DIVISION USING PARAMETROS-RELATOR/|/COMMAREA/|/SCREEN SECTION/'
+'Del *'
+
+'Zone 7 7'
+'All /*/'
+If Rc = 0 Then 'Del *'
+'All'
+'Zone 1 *'
+
+'Top'
+'All Blank'
+If Rc = 0 Then "Del *"
+'All'
+'Top'
+Do Forever
+   'Next'
+   If Rc \= 0 Then Leave
+   Do Forever
+      'Extract/CurLine'
+      Line=CurLine.3
+      If  Pos('*>',Line) \= 0
+          Then Do
+               Line = Substr(Line,1,Pos('*',Line)-1)
+               Do Forever
+                  If Substr(Line,Length(Line)) \= ''
+                     Then Leave
+                  Line = Substr(Line,1,Length(Line)-1)
+               End
+               End
+      If  Substr(Line,Length(Line),1) = '.'
+          Then Leave
+      'Next'
+      If Rc \= 0 Then Leave
+      'Extract/CurLine'
+      'Del'
+      'Up'
+      'Cappend  'Space(CurLine.3)
+   End
+   Level = Word(CurLine.3,1)
+   If DataType(Level) = 'NUM' & Level \= '01'
+      Then Do
+           Level = Level + 0
+           'Change/'Word(CurLine.3,1)'/^'Level'/1 1'
+           'Refresh'
+           End
+End
+'Top'
+'Less / PIC /'
+'Less / OCCURS /'
+'Less /^/'
+'Del *'
+'All'
+'All / FILLER /'
+If Rc = 0
+   Then Do
+        'Less / OCCURS /'
+        "Del *"
+        End
+'All / F PIC /'
+If Rc = 0
+   Then Do
+        'Less / OCCURS /'
+        "Del *"
+        End
+'All'
+'Change/^//*'
+"Top"
+Do Forever
+   "/ 88 $ VALUE /|/ 88 $ VALUES /"
+   If Rc \=0 Then Leave
+   "Del"
+   "Up"
+   "ReFresh"
+   "Up"
+End
+"Top"
+"C/ TIMES//*"
+Do Forever
+   "Bot"
+   'Next'
+   "-/ REDEFINES /"
+   If Rc \= 0 Then Leave
+   "Extract/CurLine"
+   Nivel = Translate(CurLine.3,' ','^')
+   Nivel = Word(Nivel,1)
+   Do Forever
+      "Del"
+      "Extract/CurLine"
+      NivelX = Translate(CurLine.3,' ','^')
+      NivelX = Word(NivelX,1)
+      If NivelX < Nivel Then Leave
+      If NivelX = Nivel Then Leave
+      If DataType(NivelX) \= "NUM" Then Leave
+   End
+End
+Do Forever
+   "Bot"
+   'Next'
+   "-/ OCCURS /"
+   If Rc \= 0 Then Leave
+   'C/ PIC / PIC / 1 1'
+   If Rc = 0
+      Then Do
+           "Dup"
+           "C/$OCCURS//1 1"
+           "C/.//1 *"
+           "Extract /CurLine"
+           Occurs = Word(CurLine.3,1)
+           "Del"
+           "Up"
+           "C/OCCURS$"Occurs"//1 1"
+           Occurs = Occurs + 0
+           Do Forever
+              "C/ ././1 1"
+              If Rc \= 0 Then Leave
+           End
+           "Extract /CurLine"
+           Campo = Word(CurLine.3,2)
+           O = 1
+           "Dup "Occurs
+           "Up"
+           "Del"
+           Do Forever
+              If Campo \= "FILLER"
+                 Then Do
+                      CampoX = Campo"-"O
+                      If Length(CampoX) > 30
+                         Then Do
+                              'i 'CampoX
+                              'Change/-//1 *'
+                              'Change/'File'//1 1'
+                              'Extract/CurLine'
+                              CampoX = Word(CurLine.3,1)
+                              'Del'
+                              'Up'
+                              End
+                      "Change/ "Campo" / "CampoX" /1 1"
+                      "Change/ "Campo"./ "CampoX". /1 1"
+                      End
+               "ReFresh"
+               If O = Occurs Then Leave
+               "Next"
+               O = O + 1
+           End
+           End
+      Else Do
+           "Extract /CurLine"
+           Nivel = Word(CurLine.3,1)
+           "Dup"
+           "C/$OCCURS//1 1"
+           "C/.//1 *"
+           "Extract /CurLine"
+           Occurs = Word(CurLine.3,1)
+           "Del"
+           "Up"
+           "C/OCCURS$"Occurs"//1 1"
+           Occurs = Occurs + 0
+           Do Forever
+              "C/ ././1 1"
+              If Rc \= 0 Then Leave
+           End
+           "Extract /CurLine"
+           "Erase "OCCSTA".$$1"
+           "Up"
+           "Set Point .Nivoc"
+           "Next"
+           "Put 1 "OCCSTA".$$1"
+           "Del"
+           Do Forever
+              "Extract /CurLine"
+              NivelX = Word(CurLine.3,1)
+              If NivelX < Nivel Then Leave
+              If NivelX = Nivel Then Leave
+              If DataType(NivelX) \= "NUM" Then Leave
+              "Put 1 "OCCSTA".$$1"
+              "Del"
+              If Rc \= 0 Then Leave
+           End
+           ".Nivoc"
+           O = 0
+           Do Forever
+              O = O + 1
+              If O > Occurs Then Leave
+              Do Forever
+                 If Length(O) < Length(Occurs)
+                    Then O = "0"O
+                    Else Leave
+              End
+              "Kedit "OCCSTA".$$1 (NoMsg"
+              "MsgMode Off"
+              "Ft $$2"
+              "Top"
+              Do Forever
+                 "Next"
+                 If Rc \= 0 Then Leave
+                 "C/./ ./1 1"
+                 "Extract/CurLine"
+                 Campo = Word(CurLine.3,2)
+                 If Campo \= "FILLER"
+                    Then Do
+                         CampoX = Campo"-"O
+                         If Length(CampoX) > 30
+                            Then Do
+                                 'i 'CampoX
+                                 'Change/-//1 *'
+                                 'Change/'File'//1 1'
+                                 'Extract/CurLine'
+                                 CampoX = Word(CurLine.3,1)
+                                 'Del'
+                                 'Up'
+                                 End
+                         "C/ "Campo" / "CampoX" /1 1"
+                         "C/ "Campo"./ "CampoX". /1 1"
+                         "ReFresh"
+                         "C/ PIC / PIC / 1 1"
+                         If Rc = 0 Then "C/ "Campo" / FILLER /1 1"
+                         End
+                 "C/ ././1 1"
+              End
+              "FFile"
+              If O = 1
+                 Then ".Nivoc"
+              "Get "OCCSTA".$$2"
+           End
+           End
+End
+
+"Erase "OCCSTA".$$1"
+"Erase "OCCSTA".$$2"
+"Top"
+* Converte Para Relator
+
+'Less / PIC /'
+'Del *'
+'All'
+Pos = 1
+'Top'
+Fields = 'Kedit =.TB2 (NoMsg'
+Fields;'Top';'Del *'
+Dic
+NFields = 0
+Do Forever
+   Mask = ''
+   'Next'
+   If Rc \= 0 Then Leave
+   'Upp'
+   'RefResh'
+   'Change/*>"/*> "/1 1'
+   'Extract/CurLine'
+   MaskPos = WordPos('*>',CurLine.3)
+   If MaskPos \= 0
+      Then Do
+           'Change/*>$//1 1'
+           MaskPos = MaskPos + 1
+           Mask = Word(CurLine.3,MaskPos)
+           If Mask \= ''
+              Then Do
+                   If Substr(Mask,1,1) = '"'
+                      Then Do
+                           Type = Substr(Mask,2,1)
+                           MaskPos = MaskPos + 1
+                           Mask = Word(CurLine.3,MaskPos)
+                           End
+                      Else Type = '_'
+                   If Mask = ''
+                      Then Mask = '_'
+                      Else Do
+                           MaskPos = Pos(Mask,CurLine.3)
+                           Mask = Substr(CurLine.3,MaskPos)
+                           Mask = Translate(Mask,'_',' ')
+                           End
+                   End
+           'Extract/CurLine'
+           End
+   'Change/'Word(CurLine.3,1)'//1 1'
+   'Change/ PIC / /1 1'
+   'Change/.//1 1'
+   'Extract/CurLine'
+   'Change/'Word(CurLine.3,1)'//1 1'
+   Dataname = Word(CurLine.3,1)
+   Do Forever
+      'C/(0/(/1 1'
+      If Rc \= 0 Then Leave
+   End
+   If Mask \= ''
+      Then Do
+           Fields
+           'Bot'
+           'Input  'Dataname Mask Type
+           NFields = NFields + 1
+           Dic
+           End
+   'C/ S9/ 9/1 *'
+   'C/V/ /1 *'
+   'C/A/X/1 *'
+   'C/ 9 / 9(1) /1 1'
+   'C/ X / X(1) /1 1'
+   Do I = 1 to 38
+      Y = 40 - I
+      'Change/'Copies('9',Y)'/9('Y')/1 *'
+      'Change/'Copies('X',Y)'/X('Y')/1 *'
+   End
+   'Extract/CurLine'
+   Tipo = Substr(Word(CurLine.3,1),1,1)
+   'Change/9(//1 *'
+   'Change/X(//1 *'
+   'Change/)//1 *'
+   'Extract/CurLine'
+   If  Words(CurLine.3) = 2
+       Then Dec = Word(CurLine.3,2)
+       Else Dec = 0
+   Len = Word(CurLine.3,1)
+   Len = Len + Dec
+
+   If Pos < 10000 Then Pos = '0'Pos
+   If Pos < 1000  Then Pos = '0'Pos
+   If Pos < 100   Then Pos = '0'Pos
+   If Pos < 10    Then Pos = '0'Pos
+
+   If Len < 100 Then Len = '0'Len
+   If Len <  10 Then Len = '0'Len
+
+   If Dec < 10 Then Dec = '0'Dec
+   'Change/$/'Pos Len Dec Tipo DataName'/1 1'
+   Pos = Pos + Len
+   'RefResh'
+End
+
+Do I = 1 To NCampos
+   Campos
+   ':'I
+   'Extract/CurLine'
+   Campo = Translate(Word(CurLine.3,1),' ','_')
+   Usage = Word(CurLine.3,2)
+   Mascara = Word(CurLine.3,3)
+   'Top'
+   Dic
+   'Zone 15 46'
+   '/ 'Campo' /'
+   If Rc = 0
+      Then Do
+           'Zone 14 14'
+           'Change/?/'Usage'/1 1'
+           'Zone 47 *'
+           'Change³$³'Translate(Mascara,' ','_')'³1 1'
+           End
+End
+
+Campos;'Qquit'
+
+Do I = 1 To NFields
+   Fields
+   ':'I
+   'Extract/CurLine'
+   Campo = Translate(Word(CurLine.3,1),' ','_')
+   Dic
+   'Top'
+   'Zone 15 46'
+   '/ 'Campo' /'
+   If Rc = 0
+      Then Do
+           Type = Word(CurLine.3,3)
+           If Type \= "_"
+              Then Do
+                   'Zone 14 14'
+                   'Change/?/'Type'/1 1'
+                   End
+           Mask = Translate(Word(CurLine.3,2),' ','_')
+           If Mask \= ''
+              Then Do
+                   'Zone 47 *'
+                   'Change³$³'Mask'³1 1'
+                   End
+           End
+End
+Fields;'Qquit'
+'Zone 1 *'
+'Top'
+If Descricao \= 0
+   Then 'Input 'Descricao
+   Else 'Input Descricao em at‚ 30 caracteres'

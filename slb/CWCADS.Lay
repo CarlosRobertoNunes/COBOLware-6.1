@@ -1,0 +1,38 @@
+       01  CTAC-LIT-CWCADS.
+           05 LINE 08 COLUMN 03 VALUE "C╒digo".
+           05 LINE 10 COLUMN 03 VALUE "Descri┤фo".
+           05 LINE 12 COLUMN 03 VALUE "Valor".
+           05 LINE 14 COLUMN 03 VALUE "зддддддддддддддддддд".
+           05 LINE 14 COLUMN 23 VALUE "ддддддддддддддд©".
+           05 LINE 15 COLUMN 03 VALUE "Ё".
+           05 LINE 15 COLUMN 08 VALUE "Pe┤a".
+           05 LINE 15 COLUMN 17 VALUE "Acabado".
+           05 LINE 15 COLUMN 29 VALUE "Material".
+           05 LINE 15 COLUMN 38 VALUE "Ё".
+           05 LINE 16 COLUMN 03 VALUE "юддддддддддддддддддд".
+           05 LINE 16 COLUMN 23 VALUE "ддддддддддддддды".
+           05 LINE 18 COLUMN 03 VALUE "зддддддддддддддддддд".
+           05 LINE 18 COLUMN 23 VALUE "дддддддддддддддддддд".
+           05 LINE 18 COLUMN 43 VALUE "©".
+           05 LINE 19 COLUMN 03 VALUE "Ё".
+           05 LINE 19 COLUMN 08 VALUE "Importado".
+           05 LINE 19 COLUMN 22 VALUE "Garantia".
+           05 LINE 19 COLUMN 35 VALUE "Dur═vel".
+           05 LINE 19 COLUMN 43 VALUE "Ё".
+           05 LINE 20 COLUMN 03 VALUE "юддддддддддддддддддд".
+           05 LINE 20 COLUMN 23 VALUE "дддддддддддддддддддд".
+           05 LINE 20 COLUMN 43 VALUE "ы".
+
+       01  CTAC-VAR-CWCADS.
+           05 TELA-CHAVE.
+              10 LINE 08 COLUMN 13 PIC Z(005) USING FileName-CODIGO.
+           05 TELA-DADOS.
+              10 LINE 10 COLUMN 13 PIC X(030) USING FileName-DESCRICAO.
+              10 LINE 12 COLUMN 13 PIC ZZ.ZZZ.ZZ9,99
+                 USING FileName-PRECO.
+              10 LINE 15 COLUMN 05 PIC X(001) USING CWRADIO(1).
+              10 LINE 15 COLUMN 14 PIC X(001) USING CWRADIO(2).
+              10 LINE 15 COLUMN 26 PIC X(001) USING CWRADIO(3).
+              10 LINE 19 COLUMN 05 PIC X(001) USING CWCHECK(1).
+              10 LINE 19 COLUMN 19 PIC X(001) USING CWCHECK(2).
+              10 LINE 19 COLUMN 32 PIC X(001) USING CWCHECK(3).

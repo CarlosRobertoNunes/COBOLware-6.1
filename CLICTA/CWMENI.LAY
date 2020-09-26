@@ -1,0 +1,54 @@
+       01  CTAC-LIT-CWMENI.
+       02  FOREGROUND-COLOR GRACOR-F (09)                               MS
+           BACKGROUND-COLOR GRACOR-B (09).                              MS
+           05 LINE 08 COLUMN 24 VALUE "з".
+           05 LINE 08 COLUMN 26 VALUE "Ilustrativos".
+           05 LINE 08 COLUMN 39 VALUE "дддддддддддддддд©".
+           05 LINE 09 COLUMN 24 VALUE "Ё".
+           05 LINE 09 COLUMN 26 VALUE "Exibir registros".
+           05 LINE 09 COLUMN 43 VALUE ":".
+           05 LINE 09 COLUMN 55 VALUE "Ё".
+           05 LINE 10 COLUMN 24 VALUE "Ё".
+           05 LINE 10 COLUMN 26 VALUE "Exibir contadores:".
+           05 LINE 10 COLUMN 55 VALUE "Ё".
+           05 LINE 11 COLUMN 24 VALUE "юддддддддддддддддддд".
+           05 LINE 11 COLUMN 44 VALUE "ддддддддддды".
+           05 LINE 13 COLUMN 17 VALUE "з".
+           05 LINE 13 COLUMN 19 VALUE "Testes".
+           05 LINE 13 COLUMN 57 VALUE "ддддд©".
+           05 LINE 14 COLUMN 17 VALUE "Ё".
+           05 LINE 14 COLUMN 19 VALUE "Limite de registros ".
+           05 LINE 14 COLUMN 39 VALUE "lidos      :".
+           05 LINE 14 COLUMN 62 VALUE "Ё".
+           05 LINE 15 COLUMN 17 VALUE "Ё".
+           05 LINE 15 COLUMN 19 VALUE "Limite de registros ".
+           05 LINE 15 COLUMN 39 VALUE "selecinados:".
+           05 LINE 15 COLUMN 62 VALUE "Ё".
+           05 LINE 16 COLUMN 17 VALUE "юддддддддддддддддддд".
+           05 LINE 16 COLUMN 37 VALUE "дддддддддддддддддддд".
+           05 LINE 16 COLUMN 57 VALUE "ддддды".
+           05 LINE 18 COLUMN 04 VALUE "з".
+           05 LINE 18 COLUMN 06 VALUE "Processamento".
+           05 LINE 18 COLUMN 20 VALUE "дддддддддддддддддддд".
+           05 LINE 18 COLUMN 40 VALUE "дддддддддддддддддддд".
+           05 LINE 18 COLUMN 60 VALUE "ддддддддддддддд©".
+           05 LINE 19 COLUMN 04 VALUE "Ё".
+           05 LINE 19 COLUMN 06 VALUE "Pasta do Relator:".
+           05 LINE 19 COLUMN 75 VALUE "Ё".
+           05 LINE 20 COLUMN 04 VALUE "Ё".
+           05 LINE 20 COLUMN 06 VALUE "Ano base de 'Janelam".
+           05 LINE 20 COLUMN 26 VALUE "ento':".
+           05 LINE 20 COLUMN 75 VALUE "Ё".
+           05 LINE 21 COLUMN 04 VALUE "юддддддддддддддддддд".
+           05 LINE 21 COLUMN 24 VALUE "дддддддддддддддддддд".
+           05 LINE 21 COLUMN 44 VALUE "дддддддддддддддддддд".
+           05 LINE 21 COLUMN 64 VALUE "ддддддддддды".
+
+       01  CTAC-VAR-CWMENI.
+       02  FOREGROUND-COLOR GRACOR-F (09)                               MS
+           BACKGROUND-COLOR GRACOR-B (09).                              MS
+           05 LINE 13 COLUMN 26 PIC X(030) FROM RELATOR-USUARIO.
+           05 T01 LINE 14 COLUMN 52 PIC Z(009) USING RELATOR-IN.
+           05 T02 LINE 15 COLUMN 52 PIC Z(009) USING RELATOR-OUT.
+           05 T03 LINE 19 COLUMN 24 PIC X(050) USING RELATOR.
+           05 T04 LINE 20 COLUMN 33 PIC 9(002) USING RELATOR-YEAR.

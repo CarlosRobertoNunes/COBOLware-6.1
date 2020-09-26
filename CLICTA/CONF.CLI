@@ -1,0 +1,18 @@
+REGISTRO DE ENTRADAS                                                                          (a)         CODIGO DOS VALORES FISCAIS
+FIRMA   : XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                            1  -  OPERACOES COM CREDITO DO IMPOSTO
+INS.EST.: XXXXXXXXXXXXXXXXXXXX   CNPJ(MF) XXXXXXXXXXXXXXXXXXXX                                2  -  OPER.SEM CRED. ISENTAS/NAO TRIB.
+FOLHA   : 999                    MES OU PERIODO/ANO: XXXXXXXXXXXXXXX                          3  -  OPER.SEM CRED. OUTRAS
+------------------------------------------------------------------------------------------------------------------------------------
+    |DOCUMENTOS FISCAIS                                     | CODIFICACAO  |  ICMS VALORES FISCAIS             |IPI VAL.FISCIAS|
+DIA |ESPE.|SERIE |NUMERO|DATA DOC| CODIGO |UF|VALOR CONTABIL|CONTAB.|FISCAL|COD.|BASE DE CALC.|ALQ. |IMPOSTO   |VALOR IPI      |
+    |     |SUB.SE|      |        |EMITENTE|  |              |       |      |(a) |VALOR DA OPER|     |CREDITADO |
+ 99  XXX XXX XX 999999 99\99\99  ZZZZZZ  XX ZZZ.ZZZ.ZZZ,ZZ  XXXXXX   999   9   ZZ.ZZZ.ZZZ,ZZ ZZ,ZZ ZZZ.ZZZ,ZZ  ZZZ.ZZZ.ZZZ,ZZ
+
+=[CAB-01]=
+=(RAZ-IM,INS-IM,CGC-IM,PAG-IM,PER-IM)=
+=[TRACO]=
+=[CAB-04]=
+=[CAB-05]=
+=[CAB-06]=
+=[LIN-IM]=
+=(FROM DIA-IM(4:2))=

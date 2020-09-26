@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware GetFile GetKey</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20100222;13571200">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">GetKey</FONT></H1>
+<P>Leitura de teclado.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">GetKey</FONT> <BR>[ <FONT COLOR="#008080">LINE</FONT>
+<A HREF="#linha"><I>linha</I></A> <FONT COLOR="#008080">COLUMN</FONT>
+<I><A HREF="#coluna">coluna</A> </I>] <BR>[
+<FONT COLOR="#008080">CHARACTER</FONT>;<I><A HREF="#Caractere_retornado">caractere_retornado</A>
+</I>] <BR>[ <FONT COLOR="#008080">KEY</FONT>;<I><A HREF="#C&oacute;digo_da_tecla">c&oacute;digo_da_tecla</A>
+</I>] 
+</P>
+<H5>Argumentos</H5>
+<P><A NAME="linha"></A><I>linha</I></P>
+<P>Linha de posicionamento do cursor na janela</P>
+<P><A NAME="coluna"></A><I>coluna</I></P>
+<P><A NAME="Caractere_retornado"></A><A NAME="C&oacute;digo_da_tecla"></A>
+Coluna de posicionamento do cursor na
+janela.<BR><BR><EM>Caractere_retornado</EM><BR><BR>Vari&aacute;vel de
+um caractere que recebe o caractere digitado pelo
+usu&aacute;rio.<BR><BR><EM>C&oacute;digo_da_tecla</EM><BR><BR>Vari&aacute;vel
+num&eacute;rica de 3 d&iacute;gitos que recebe o c&oacute;digo da
+tecla pressionada conforme a tabela <A HREF="edit.html"><FONT COLOR="#008080">CWEDIT.CPY</FONT></A>.</P>
+<H5>Exemplo</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P><!--RELATEDTOPICSLIST-->Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P>EXEC <FONT COLOR="#008080">COBOLware</FONT> <A HREF=""><FONT COLOR="#008080">GetKey</FONT></A>
+			<BR><FONT COLOR="#008080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			LINE </FONT><FONT COLOR="#ff0000">10</FONT><FONT COLOR="#008080">
+			COLUMN </FONT><FONT COLOR="#ff0000">20</FONT><FONT COLOR="#008080"><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			KEY;</FONT><FONT COLOR="#008000">tecla</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CHARACTER</FONT>;<FONT COLOR="#008000">dado</FONT><BR>END-EXEC</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

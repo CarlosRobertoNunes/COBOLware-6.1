@@ -1,0 +1,13 @@
+
+           SELECT CAMPOS ASSIGN TO DISK
+                  ORGANIZATION  IS INDEXED
+                  ACCESS MODE   IS DYNAMIC
+                  RECORD  KEY   IS CAMPOS-CHAVE
+                  ALTERNATE KEY IS CAMPOS-PRONAMREL
+                                =  CAMPOS-PROVEDOR
+                                   CAMPOS-DATANAME
+                                   CAMPOS-RELATORIO
+                  LOCK MODE     IS MANUAL
+                  RESERVE NO ALTERNATE AREA
+                  FILE STATUS   IS FS-CAMPOS.
+

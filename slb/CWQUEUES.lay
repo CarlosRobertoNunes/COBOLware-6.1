@@ -1,0 +1,4 @@
+       01  LINHAS-DE-IMPRESSAO-CLIC.
+       02  LINHA-01.
+           05 CLIC-FILE                      PIC  X(066) VALUE SPACES.
+           05 CLIC-COUNT                     PIC  ZZZ.ZZZ.ZZ9.

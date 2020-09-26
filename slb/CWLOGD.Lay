@@ -1,0 +1,6 @@
+       01  LINHAS-DE-IMPRESSAO-CLIC.
+       02  LINHA-01.
+           05 FILLER                         PIC  X(055) VALUE
+              "Task Usurio              Data      Hora   M¢dulo    Tem".
+           05 FILLER                         PIC  X(013) VALUE
+              "po    Esta‡Æo".

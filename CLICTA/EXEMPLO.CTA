@@ -1,0 +1,43 @@
+ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+บ COBOLware_Services_Ltda.                                          99/99/9999 บ
+บ Folha_de_pagamentos                                                 XXXXXXXX บ
+ฬออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออน
+บ Cadastramento_de_funcion rios              XXXXXXXXXXXXXX                    บ
+ฬออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออน
+บ                                                                              บ
+บ   01_Matrกcula__: XXXX X                                                     บ
+บ                                                                              บ
+บ   02_Nome_______: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                             บ
+บ                                                                              บ
+บ   03_Sexo_______: X                                                          บ
+บ                                                                              บ
+บ   04_Cargo______: XBXBXBXBXBXBXBXBXBX                                        บ
+บ                                                                              บ
+บ   05_Sal rio____: ZZ.ZZZ.ZZ9,99               06_Situaฦo___: X              บ
+บ                                                                              บ
+บ   07_Tipos______: X X X X X                   08_Admissฦo___: 99/99/9999     บ
+บ                                                                              บ
+บ   09_Obs________: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                             บ
+บ                                                                              บ
+ฬออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออน
+บ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                        GRFP01 บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+=(
+CTAC-DATA BLINK  FROM DATA-DE-HOJE
+CTAC-HORA        FROM HORA
+CTAC-FUNCAO      FROM FUNCAO
+CTAC-MATRICULA  USING FILE-MATRICULA
+CTAC-MATRICULA  USING FILE-DV
+CTAC-NOME       USING FILE-NOME
+CTAC-SEXO       USING FILE-SEXO
+CTAC-CARGO      USING FILE-CARGO
+CTAC-SALARIO    USING FILE-SALARIO BLANK ZERO
+CTAC-SITUACAO   USING FILE-SITUACAO
+CTAC-TIPOS      USING FILE-TIPO1
+CTAC-TIPOS      USING FILE-TIPO2
+CTAC-TIPOS      USING FILE-TIPO3
+CTAC-TIPOS      USING FILE-TIPO4
+CTAC-TIPOS      USING FILE-TIPO5
+CTAC-ADMISSAO   USING FILE-ADMISSAO
+CTAC-OBSERVACAO USING FILE-OBSERVACAO
+CTAC-MENSAGEM    FROM MENSAGEM-ERRO)=

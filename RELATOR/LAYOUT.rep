@@ -1,0 +1,12 @@
+      00008 3      DDDDDDD                                                                                 AAAAAAAAAA                                        |EEEEEE                                                                           CWCAD4                                                      00
+00001 00 000 O 000 1DESCRICAO
+00002 01 000 P 000                               POP      Pop                           CODIGO
+00003 01 000 S 000                               ICODIGO                        > 000100000000000000            L05
+00004        3     CODIGO                        Codigo                        900500
+00005        3     DESCRICAO                     Descricao                     X03000
+00006        3     PRECO                         Preco                         901002
+00007        3     TIPO                          Tipo                          900100
+00008        3     TIPO-DESCRICAO                TipoDescricao                 X00800
+00009        3     IMPORTADO                     Importado                     900100
+00010        3     GARANTIA                      Garantia                      900100
+00011        3     DURAVEL                       Duravel                       900100

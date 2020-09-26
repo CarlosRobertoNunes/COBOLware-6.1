@@ -1,0 +1,15 @@
+       01  CTAC-LIT-CWMEN5.
+           05 LINE 08 COLUMN 05 VALUE "Atributos de mensage".
+           05 LINE 08 COLUMN 25 VALUE "ns:".
+           05 LINE 10 COLUMN 08 VALUE "Sonora".
+           05 LINE 12 COLUMN 08 VALUE "Aguardar at‚ interve".
+           05 LINE 12 COLUMN 28 VALUE "n‡Æo".
+           05 LINE 12 COLUMN 36 VALUE "segundos".
+           05 LINE 14 COLUMN 08 VALUE "Apagar mensagem ap¢s".
+           05 LINE 14 COLUMN 28 VALUE " espera".
+
+       01  CTAC-VAR-CWMEN5.
+           05 LINE 10 COLUMN 05 PIC X(001) USING CWCHECK-ERASE.
+           05 LINE 12 COLUMN 05 PIC X(001) USING CWCHECK-STOP.
+           05 LINE 12 COLUMN 33 PIC 9(002) USING CWCONF-TIMER.
+           05 LINE 14 COLUMN 05 PIC X(001) USING CWCHECK-BEEP.

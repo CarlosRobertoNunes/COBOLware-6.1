@@ -1,0 +1,34 @@
+'Top'
+'Change/)JUST /) JUST /*'
+Find='/ CANCEL /|/ CANCEL"/|/'
+Find=Find" CANCEL'/"
+Do Forever
+   Find
+   If Rc \= 0 Then Leave
+   'Change/ CANCEL"/ CANCEL "/1 1'
+   "Change/ CANCEL'/ CANCEL '/1 1"
+   'Extract/CurLine'
+   Pos = WordPos('CANCEL',Upper(CurLine.3)) + 1
+   Pgm = Word(Upper(CurLine.3),Pos)
+   If Pgm \= '' & Substr(Pgm,1,3) \= '"CW' & Substr(Pgm,1,3) \= "'CW"
+      Then Do
+           If Substr(Pgm,Length(Pgm),1) = '.'
+              Then Pgm = Substr(Pgm,1,Length(Pgm)-1)
+           If Pos \= 2
+              Then Do
+                   'Dup'
+                   'Up'
+                   'Change/CANCEL$//1 1'
+                   'Next'
+                   'Change/'Word(CurLine.3,1)'$CANCEL/CANCEL/1 1'
+                   End
+           'Dup3'
+           'Up'
+           'Change/CANCEL$/DISPLAY "CWCANCELED" UPON ENVIRONMENT-NAME/1 1'
+           'Next'
+           'Change!CANCEL$!DISPLAY 'Pgm' UPON ENVIRONMENT-VALUE!1 1'
+           'Next'
+           'Change/CANCEL$/CALL "CWSQLC" USING "K*"/1 1'
+           'Next'
+           End
+End

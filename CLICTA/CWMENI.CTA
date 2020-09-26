@@ -1,0 +1,29 @@
+
+
+
+
+
+
+
+                       з Ilustrativos дддддддддддддддд©
+                       Ё Exibir_registros :           Ё
+                       Ё Exibir_contadores:           Ё
+                       юдддддддддддддддддддддддддддддды
+
+                з Testes XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ддддд©
+                Ё Limite_de_registros_lidos______: ZZZZZZZZZ Ё
+                Ё Limite_de_registros_selecinados: ZZZZZZZZZ Ё
+                юдддддддддддддддддддддддддддддддддддддддддддды
+
+   з Processamento ддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
+   Ё Pasta_do_Relator: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Ё
+   Ё Ano_base_de_'Janelamento': 99                                        Ё
+   юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+
+=(
+FROM RELATOR-USUARIO
+T01 USING RELATOR-IN
+T02 USING RELATOR-OUT
+T03 USING RELATOR
+T04 USING RELATOR-YEAR
+)=

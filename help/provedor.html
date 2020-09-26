@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware 6.1 - Exemplo de provedor de dados para o Relator</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="20070921;10554100">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20100222;14124100">
+        <STYLE TYPE="text/css">
+        <!--
+                P { color: #000000; font-family: "Courier New" }
+                PRE { color: #000000 }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<PRE>       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    <FONT COLOR="#ff0000">RELATOR-PROVIDER</FONT>.
+       AUTHOR.        COBOLware Services Ltda.
+       DATE-WRITTEN.  <FONT COLOR="#ff0000">99/99/9999</FONT>.
+       SECURITY.      <FONT COLOR="#ff0000">*************************************************</FONT>
+<FONT COLOR="#ff0000">                      *                                               *</FONT>
+<FONT COLOR="#ff0000">                      *  Exemplo de programa provedor de informacoes  *</FONT>
+<FONT COLOR="#ff0000">                      *  para o Relator 1.0                           *</FONT>
+<FONT COLOR="#ff0000">                      *                                               *</FONT>
+<FONT COLOR="#ff0000">                      *************************************************</FONT>
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES. DECIMAL-POINT IS COMMA.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+
+           SELECT <FONT COLOR="#008000">MasterFile</FONT> ASSIGN TO DISK
+                  ORGANIZATION      IS INDEXED
+                  ACCESS MODE       IS SEQUENTIAL
+                  RECORD KEY        IS <FONT COLOR="#008000">MasterFile-CHAVE</FONT>
+                  FILE STATUS       IS <FONT COLOR="#008000">FS-MasterFile</FONT>.
+
+           SELECT <FONT COLOR="#008000">AddFile1</FONT>   ASSIGN TO DISK
+                  ORGANIZATION      IS INDEXED
+                  ACCESS MODE       IS RANDOM
+                  RECORD KEY        IS <FONT COLOR="#008000">AddFile1-CHAVE</FONT>
+                  LOCK MODE         IS AUTOMATIC
+                  FILE STATUS       IS <FONT COLOR="#008000">FS-AddFile1</FONT>.
+
+           SELECT <FONT COLOR="#008000">AddFile2</FONT>   ASSIGN TO DISK
+                  ORGANIZATION      IS INDEXED
+                  ACCESS MODE       IS RANDOM
+                  RECORD KEY        IS <FONT COLOR="#008000">AddFile2-CHAVE</FONT>
+                  LOCK MODE         IS AUTOMATIC
+                  FILE STATUS       IS <FONT COLOR="#008000">FS-AddFile2</FONT>.
+
+       DATA DIVISION.
+       FILE SECTION.
+
+       FD  <FONT COLOR="#008000">MasterFile</FONT>
+           VALUE OF FILE-ID <FONT COLOR="#008000">LB-MasterFile</FONT>.
+
+       01  <FONT COLOR="#008000">MasterFile-REG</FONT>.
+           05 <FONT COLOR="#008000">MasterFile-CHAVE</FONT>.
+              10 <FONT COLOR="#008000">MasterFile-CAMPO-1</FONT>     PIC  9(005).
+           05 <FONT COLOR="#008000">MasterFile-CAMPO-2</FONT>        PIC  X(030).
+           05 <FONT COLOR="#008000">MasterFile-CAMPO-3</FONT>        PIC S9(006)V99.
+           05 <FONT COLOR="#008000">MasterFile-AddFile1-CHAVE</FONT> PIC  9(005).
+
+       FD  <FONT COLOR="#008000">AddFile1</FONT>
+           VALUE OF FILE-ID <FONT COLOR="#008000">LB-AddFile1</FONT>.
+
+       01  <FONT COLOR="#008000">AddFile1-REG</FONT>.
+           05 <FONT COLOR="#008000">AddFile1-CHAVE</FONT>.
+              10 <FONT COLOR="#008000">AddFile1-CAMPO-4</FONT>       PIC  9(005).
+           05 <FONT COLOR="#008000">AddFile1-CAMPO-5</FONT>          PIC  X(030).
+           05 <FONT COLOR="#008000">AddFile1-CAMPO-6</FONT>          PIC  9(008).
+           05 <FONT COLOR="#008000">AddFile1-AddFile2-CHAVE</FONT>   PIC  9(005).
+
+       FD  <FONT COLOR="#008000">AddFile2</FONT>
+           VALUE OF FILE-ID <FONT COLOR="#008000">LB-AddFile2</FONT>.
+
+       01  <FONT COLOR="#008000">AddFile2-REG</FONT>.
+           05 <FONT COLOR="#008000">AddFile2-CHAVE</FONT>.
+              10 <FONT COLOR="#008000">AddFile2-CAMPO-7</FONT>       PIC  9(005).
+           05 <FONT COLOR="#008000">AddFile2-CAMPO-8</FONT>          PIC  X(030).
+           05 <FONT COLOR="#008000">AddFile2-CAMPO-9</FONT>          PIC  9(014).
+           05 <FONT COLOR="#008000">AddFile2-CAMPO-10</FONT>         PIC  9(008).
+
+       WORKING-STORAGE SECTION.
+
+       01  AREAS-DE-TRABALHO.
+           05 <FONT COLOR="#008000">FS-MasterFile</FONT>             PIC  X(002) VALUE &quot;<FONT COLOR="#ff0000">00</FONT>&quot;.
+           05 <FONT COLOR="#008000">LB-MasterFile</FONT>             PIC  X(255) VALUE &quot;<FONT COLOR="#ff0000">MasterFile</FONT>&quot;.
+           05 <FONT COLOR="#008000">FS-AddFile1</FONT>               PIC  X(002) VALUE &quot;<FONT COLOR="#ff0000">00</FONT>&quot;.
+           05 <FONT COLOR="#008000">LB-AddFile1</FONT>               PIC  X(255) VALUE &quot;<FONT COLOR="#ff0000">AddFile1</FONT>&quot;.
+           05 <FONT COLOR="#008000">FS-AddFile2</FONT>               PIC  X(002) VALUE &quot;<FONT COLOR="#ff0000">00</FONT>&quot;.
+           05 <FONT COLOR="#008000">LB-AddFile2</FONT>               PIC  X(255) VALUE &quot;<FONT COLOR="#ff0000">AddFile2</FONT>&quot;.
+
+       LINKAGE SECTION.
+
+<A NAME="COPY"></A>       COPY <A HREF="relator.html"><FONT COLOR="#008080">RELATOR.CPY</FONT></A>.
+           03 <FONT COLOR="#008000">MasterFile-RELATOR</FONT>.
+              04 <FONT COLOR="#008000">CAMPO-1</FONT>       PIC  9(005).
+              04 <FONT COLOR="#008000">CAMPO-2</FONT>       PIC  X(030).
+<A NAME="CAMPO-3"></A>              04 <FONT COLOR="#008000">CAMPO-3</FONT>       PIC S9(006)V99. <FONT COLOR="#ff0000">*&gt; &quot;V&quot;</FONT>
+           03 <FONT COLOR="#008000">AddFile1-RELATOR</FONT>.
+              04 <FONT COLOR="#008000">CAMPO-4</FONT>       PIC  9(005).
+              04 <FONT COLOR="#008000">CAMPO-5</FONT>       PIC  X(030).
+<A NAME="CAMPO-6"></A>              04 <FONT COLOR="#008000">CAMPO-6</FONT>       PIC  9(008).    <FONT COLOR="#ff0000">*&gt; &quot;D&quot; DDMMAAAA</FONT>
+           03 <FONT COLOR="#008000">AddFile2-RELATOR</FONT>.
+              04 <FONT COLOR="#008000">CAMPO-7</FONT>       PIC  9(005).
+              04 <FONT COLOR="#008000">CAMPO-8</FONT>       PIC  X(030).
+              04 <FONT COLOR="#008000">CAMPO-9</FONT>       PIC  9(014).
+<A NAME="CAMPO-10"></A>              04 <FONT COLOR="#008000">CAMPO-10</FONT>      PIC  9(008).  <FONT COLOR="#ff0000">  *&gt; &quot;E&quot; 99999-999</FONT>
+
+       PROCEDURE DIVISION USING <FONT COLOR="#008000">PARAMETROS-RELATOR</FONT>.
+
+       000-INICIO.
+
+           ON   <FONT COLOR="#ff0000">1</FONT>
+
+                INITIALIZE RELATOR-CAMPOS
+                OPEN INPUT <FONT COLOR="#008000">MasterFile AddFile1 AddFile2</FONT>
+                IF   <FONT COLOR="#008000"><FONT FACE="Courier New">FS-</FONT></FONT><FONT COLOR="#008000">MasterFile</FONT> &gt; &quot;<FONT COLOR="#ff0000">09</FONT>&quot;
+                OR   <FONT COLOR="#008000"><FONT FACE="Courier New">FS-</FONT></FONT><FONT COLOR="#008000">AddFile1</FONT> &gt; &quot;<FONT COLOR="#ff0000">09</FONT>&quot;
+                OR   <FONT COLOR="#008000"><FONT FACE="Courier New">FS-</FONT></FONT><FONT COLOR="#008000">AddFile2</FONT> &gt; &quot;<FONT COLOR="#ff0000">09</FONT>&quot;
+                     SET <FONT COLOR="#ff00ff">RELATOR-FIM</FONT> TO TRUE
+                END-IF
+                MOVE <FONT COLOR="#ff0000">HIGH-VALUES</FONT> TO <FONT COLOR="#008000">MasterFile-REG</FONT>
+                                    <FONT COLOR="#008000">AddFile1-REG</FONT>
+                                    <FONT COLOR="#008000">AddFile2-REG</FONT>
+                IF   <FONT COLOR="#008000">RELATOR-COLUNA</FONT> (<FONT COLOR="#ff0000">1</FONT>) = &quot;<FONT COLOR="#ff0000">CAMPO-1</FONT>&quot;
+                     MOVE <FONT COLOR="#008000">RELATOR-MENOR</FONT> (<FONT COLOR="#ff0000">1</FONT>) (<FONT COLOR="#ff0000">1</FONT>: LENGTH OF <FONT COLOR="#008000">CAMPO-1</FONT>)
+                       TO <FONT COLOR="#008000">MasterFile-CAMPO-1</FONT>
+                     START <FONT COLOR="#008000">MasterFile</FONT> KEY NOT LESS <FONT COLOR="#008000">MasterFile-CAMPO-1</FONT>
+                END-IF.
+
+           READ <FONT COLOR="#008000">MasterFile</FONT> IGNORE LOCK
+                AT  END
+                    SET <FONT COLOR="#ff00ff">RELATOR-FIM</FONT> TO TRUE
+                NOT END
+                    PERFORM <FONT COLOR="#008000">110-MOVER-MasterFile</FONT> THRU <FONT COLOR="#008000">110-99-FIM</FONT>
+                    PERFORM <FONT COLOR="#008000">120-MOVER-AddFile1</FONT>   THRU <FONT COLOR="#008000">120-99-FIM</FONT>
+                    PERFORM <FONT COLOR="#008000">130-MOVER-AddFile2</FONT>   THRU <FONT COLOR="#008000">130-99-FIM</FONT>
+           END-READ.
+
+           IF   <FONT COLOR="#008000">RELATOR-COLUNA</FONT> (<FONT COLOR="#ff0000">1</FONT>) = &quot;<FONT COLOR="#ff0000">CAMPO-1</FONT>&quot;
+           AND  <FONT COLOR="#008000">CAMPO-1</FONT> &gt; <FONT COLOR="#008000">RELATOR-MAIOR</FONT> (<FONT COLOR="#ff0000">1</FONT>) (<FONT COLOR="#ff0000">1</FONT>: LENGTH OF <FONT COLOR="#008000">CAMPO-1</FONT>)
+                SET <FONT COLOR="#ff00ff">RELATOR-FIM</FONT> TO TRUE
+           END-IF
+
+           IF   <FONT COLOR="#ff00ff">RELATOR-FIM</FONT>
+                CLOSE <FONT COLOR="#008000">MasterFile</FONT>
+                CLOSE <FONT COLOR="#008000">AddFile1</FONT>
+                CLOSE <FONT COLOR="#008000">AddFile2</FONT>
+           END-IF.
+
+       <FONT COLOR="#008000">000-99-FIM</FONT>. GOBACK.
+
+       <FONT COLOR="#008000">110-MOVER-MasterFile</FONT>.
+
+           INITIALIZE <FONT COLOR="#008000">MasterFile-RELATOR</FONT>
+
+           MOVE <FONT COLOR="#008000">MasterFile-CAMPO-1</FONT> TO <FONT COLOR="#008000">CAMPO-1</FONT>
+           MOVE <FONT COLOR="#008000">MasterFile-CAMPO-2</FONT> TO <FONT COLOR="#008000">CAMPO-2</FONT>
+           MOVE <FONT COLOR="#008000">MasterFile-CAMPO-3</FONT> TO <FONT COLOR="#008000">CAMPO-3</FONT>.
+
+       <FONT COLOR="#008000">110-99-FIM</FONT>. EXIT.
+
+       <FONT COLOR="#008000">120-MOVER-AddFile1</FONT>.
+
+           IF  (<FONT COLOR="#008000">MasterFile-AddFile1-CHAVE</FONT> NOT = <FONT COLOR="#008000">AddFile1-CHAVE</FONT>)
+                INITIALIZE <FONT COLOR="#008000">AddFile1-REG</FONT>
+                MOVE <FONT COLOR="#008000">MasterFile-AddFile1-CHAVE</FONT> TO <FONT COLOR="#008000">AddFile1-CHAVE</FONT>
+                READ <FONT COLOR="#008000">AddFile1</FONT> IGNORE LOCK
+                INVALID KEY
+                        MOVE &quot;<FONT COLOR="#ff0000">Nao encontrado</FONT>&quot; TO <FONT COLOR="#008000">AddFile1-CAMPO-5</FONT>
+                END-READ
+                INITIALIZE <FONT COLOR="#008000">AddFile1-RELATOR</FONT>
+                MOVE <FONT COLOR="#008000">AddFile1-CAMPO-4</FONT> TO <FONT COLOR="#008000">CAMPO-4</FONT>
+                MOVE <FONT COLOR="#008000">AddFile1-CAMPO-5</FONT> TO <FONT COLOR="#008000">CAMPO-5</FONT>
+                MOVE <FONT COLOR="#008000">AddFile1-CAMPO-6</FONT> TO <FONT COLOR="#008000">CAMPO-6</FONT>
+           END-IF.
+
+       <FONT COLOR="#008000">120-99-FIM</FONT>. EXIT.
+
+       <FONT COLOR="#008000">130-MOVER-AddFile2</FONT>.
+
+           IF  (<FONT COLOR="#008000">AddFile1-AddFile2-CHAVE</FONT> NOT = <FONT COLOR="#008000">AddFile2-CHAVE</FONT>)
+               INITIALIZE <FONT COLOR="#008000">AddFile2-REG</FONT>
+               MOVE <FONT COLOR="#008000">AddFile1-AddFile2-CHAVE</FONT> TO <FONT COLOR="#008000">AddFile2-CHAVE</FONT>
+               READ <FONT COLOR="#008000">AddFile2</FONT> IGNORE LOCK
+                    INVALID KEY
+                    MOVE &quot;<FONT COLOR="#ff0000">Nao encontrado</FONT>&quot; TO <FONT COLOR="#008000">AddFile2-CAMPO-8</FONT>
+               END-READ
+               INITIALIZE <FONT COLOR="#008000">AddFile2-RELATOR</FONT>
+               MOVE <FONT COLOR="#008000">AddFile2-CAMPO-7</FONT>  TO <FONT COLOR="#008000">CAMPO-7</FONT>
+               MOVE <FONT COLOR="#008000">AddFile2-CAMPO-8</FONT>  TO <FONT COLOR="#008000">CAMPO-8</FONT>
+               MOVE <FONT COLOR="#008000">AddFile2-CAMPO-9</FONT>  TO <FONT COLOR="#008000">CAMPO-9</FONT>
+               MOVE <FONT COLOR="#008000">AddFile2-CAMPO-10</FONT> TO <FONT COLOR="#008000">CAMPO-10</FONT>
+           END-IF.
+
+       <FONT COLOR="#008000">130-99-FIM</FONT>. EXIT.
+
+       END PROGRAM <FONT COLOR="#ff0000">RELATOR-PROVIDER</FONT>.</PRE>
+</BODY>
+</HTML>

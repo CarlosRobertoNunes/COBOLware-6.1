@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware MD5 HASH</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="20080208;9244000">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20101208;10535700">
+        <STYLE TYPE="text/css">
+        <!--
+                TD P { color: #000000; font-family: "Arial" }
+                H1 { color: #000000 }
+                P { color: #000000; font-family: "Arial" }
+                H5 { color: #000000 }
+                PRE { color: #000000 }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">MD5 Hash</FONT></H1>
+<P>C&aacute;lculo de autentica&ccedil;&atilde;o MD5.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">MD5 HASH </FONT><FONT COLOR="#000000">[
+</FONT><A HREF="#autentica&ccedil;&atilde;o"><FONT COLOR="#008080"><I>autentica&ccedil;&atilde;o</I></FONT></A><FONT COLOR="#000000">
+]</FONT><FONT COLOR="#008080"><BR></FONT><FONT COLOR="#000000">[</FONT><FONT COLOR="#008080">
+FIELD </FONT><FONT COLOR="#000080"><I>campo<BR></I></FONT><FONT COLOR="#000000"><I>|</I></FONT><FONT COLOR="#008080">
+FILE </FONT><A HREF="#arquivo"><FONT COLOR="#000080"><I>arquivo</I></FONT></A><FONT COLOR="#008080">
+STATUS </FONT><A HREF="#file status"><FONT COLOR="#008080"><I>file
+status</I></FONT></A><FONT COLOR="#008080"> </FONT><FONT COLOR="#000000">{</FONT><FONT COLOR="#008080">
+<A HREF="#FILESHARE">FILESHARE</A> | <A HREF="#PROGRESS">PROGRESS</A>
+</FONT><FONT COLOR="#000000">}</FONT><FONT COLOR="#008080"> </FONT><FONT COLOR="#000000">]
+</FONT><FONT COLOR="#008080"><BR>SALT </FONT><A HREF="#chave privada"><FONT COLOR="#000000"><I>chave
+privada</I></FONT></A><FONT COLOR="#008080"><BR></FONT><BR><BR>
+</P>
+<H5>Argumentos</H5>
+<P><A NAME="autentica&ccedil;&atilde;o"></A><I>autentica&ccedil;&atilde;o</I></P>
+<P>Vari&aacute;vel de 32 caracteres que receber&aacute; a string de
+autentica&ccedil;&atilde;o produzida<I>.</I></P>
+<P><I>campo</I></P>
+<P>Vari&aacute;vel de alfanum&eacute;rica de tamanho livre que
+fornece as informa&ccedil;&otilde;es a serem autenticadas.</P>
+<P><A NAME="arquivo"></A><A NAME="chave privada"></A><FONT COLOR="#000000"><I>arquivo<BR><BR>Nome
+do arquivo a ser autenticado.<BR><BR></I></FONT><EM><FONT COLOR="#000000">file
+status</FONT></EM><FONT COLOR="#000000"><I><BR><BR>Vari&aacute;vel de
+2 caracteres que no caso de tratamento de arquivo retorna o c&oacute;digo
+do resultado da opera&ccedil;&atilde;o de abertura seguindo o padr&atilde;o
+do file status do COBOL.</I></FONT></P>
+<P><FONT COLOR="#008080">FILESHARE<BR></FONT><BR>Quando da assinatura
+de um arquivo, para efeito de performance o tratamento &eacute; local
+e bin&aacute;rio, essa op&ccedil;&atilde;o precisa ser selecionada
+caso o arquivo esteja sob ger&ecirc;ncia do Micro Focus Fileshare, de
+qualquer forma s&oacute; &eacute; poss&iacute;vel autenticar arquivos
+com acesso exclusivo.</P>
+<P><FONT COLOR="#008080"><SPAN STYLE="font-style: normal">PROGRESS</SPAN></FONT><FONT COLOR="#000000"><I><BR><BR>Ativa
+uma barra de progresso que permite a interrup&ccedil;&atilde;o do
+processamento no tratamento bin&aacute;rio. <BR><BR>chave
+privada</I></FONT><BR><BR>Vari&aacute;vel de alfanum&eacute;rica de
+tamanho livre ou literal que servir&aacute; de base derivar a
+autentica&ccedil;&atilde;o de forma particular, o algor&iacute;timo
+MD5 &eacute; p&uacute;blico, acrescentando essa chave somente o
+produtor da autentica&ccedil;&atilde;o poder&aacute; reconhecer sua
+autenticidade.</P>
+<H5>Exemplo<BR><BR><BR>
+</H5>
+<TABLE WIDTH=838 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+        <COL WIDTH=826>
+        <TR>
+                <TD WIDTH=826>
+                        <P ALIGN=CENTER>Autenticando o registro do exemplo <A HREF="cwcads.html">CWCADS</A>
+                        derivando com a chave privada &ldquo;COBOLware 6.1&rdquo;
+                        </P>
+                </TD>
+        </TR>
+        <TR>
+                <TD WIDTH=826 VALIGN=TOP>
+                        <PRE STYLE="text-align: left">           EXEC <FONT COLOR="#008080">COBOLware MD5 HASH </FONT><FONT COLOR="#000000">CERTIFICADO</FONT>
+                <FONT COLOR="#008080">FIELD</FONT> FileName-REG
+                <FONT COLOR="#008080">SALT</FONT><FONT COLOR="#008000"> </FONT><FONT COLOR="#000000">&ldquo;</FONT><FONT COLOR="#ff0000">COBOLware 6.1</FONT><FONT COLOR="#000000">&rdquo;</FONT>
+           END-EXEC</PRE>
+                </TD>
+        </TR>
+</TABLE>
+<H5><BR><BR>
+</H5>
+</BODY>
+</HTML>

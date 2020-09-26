@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Execute</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20080428;9094600">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20100222;14190100">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">ExecSystem</FONT></H1>
+<P>Executa comando de sistema operacional.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">ExecSystem</FONT><BR><FONT COLOR="#008080">&nbsp;
+COMMAND</FONT> <EM>linha_de_comando</EM> [ <FONT COLOR="#008080">NOWARNING
+</FONT><FONT COLOR="#000000">| </FONT><FONT COLOR="#008080">HIDE </FONT><FONT COLOR="#000000">]</FONT><BR>[
+<FONT COLOR="#008080">ASSYNCRONE</FONT> | <FONT COLOR="#008080">ERASE-OFF</FONT>
+| <FONT COLOR="#008080">RUN-UNIT</FONT> ]</P>
+<H5>Argumentos</H5>
+<P><EM>linha_de_comando</EM></P>
+<P>Literal ou vari&aacute;vel de at&eacute; 254 bytes contendo uma
+linha de comando a ser interpretada pelo sistema
+operacional.<BR><BR><FONT COLOR="#008080">NOWARNING<BR><BR></FONT>Desabilita
+mensagem de aviso no caso de execu&ccedil;&atilde;o mal
+sucedida.<BR><BR><FONT COLOR="#008080">HIDE<BR><BR></FONT>Executa a
+tarefa no modo escondido e desabilita mensagem de aviso no caso de
+execu&ccedil;&atilde;o mal sucedida.</P>
+<P><FONT COLOR="#008080">ASSYNCRONE<BR><BR></FONT>O comando deve ser
+executado em paralelo. Normalmente o retorno s&oacute; ocorre quando
+o comando &eacute; conclu&iacute;do.<FONT COLOR="#008080"><BR><BR>ERASE-OFF<BR><BR></FONT>No
+modo texto a tela &eacute; apagada antes da execu&ccedil;&atilde;o do
+comando e restaurada na conclus&atilde;o. Com esta op&ccedil;&atilde;o
+a tela fica a merc&ecirc; do comando externo.<FONT COLOR="#008080"><BR><BR>RUN-UNIT</FONT></P>
+<P>A linha de comando ser&aacute; interpretada pelo runtime do COBOL
+e n&atilde;o pelo sistema operacional, produzindo um processo
+paralelo.</P>
+<H5>Exemplo</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<FONT COLOR="#008080">SYSTEM<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			OS-CODE</FONT>;<EM><FONT COLOR="#008000">sistema</FONT></EM><FONT COLOR="#008080"><BR></FONT>END-EXEC<BR>EVALUATE
+			sistema<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHEN 1 EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<FONT COLOR="#008080">ExecSystem Command </FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<EM>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&quot;</EM><EM><FONT COLOR="#ff0000">vi
+			notas.txt</FONT></EM><EM>&quot;</EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			END-EXEC<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHEN 3 EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<FONT COLOR="#008080">ExecSystem Command </FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<EM>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&quot;</EM><EM><FONT COLOR="#ff0000">edit
+			notas.txt</FONT></EM><EM>&quot;</EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			END-EXEC<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHEN 7 EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<FONT COLOR="#008080">ExecSystem Command </FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<EM>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&quot;</EM><EM><FONT COLOR="#ff0000">notepad
+			notas.txt</FONT></EM><EM>&quot;</EM><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			END-EXEC<BR>END-EVALUATE</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><!--RELATEDTOPICSLIST--><BR><BR>
+</P>
+</BODY>
+</HTML>

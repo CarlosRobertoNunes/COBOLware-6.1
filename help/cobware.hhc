@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Desenvolvimento">
+		<param name="Local" value="desenv.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Comandos COBOLware">
+			<param name="Local" value="precomp.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Ambiente">
+				<param name="Local" value="ambiente.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Executa comando de sistema operacional">
+					<param name="Local" value="sys.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Informa a plataforma de execu&ccedil;&atilde;o">
+					<param name="Local" value="unix.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Obt&eacute;m informa&ccedil;&otilde;es do sistema aplicativo">
+					<param name="Local" value="gets.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Interface">
+				<param name="Local" value="visual.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Alertas e mensagens">
+					<param name="Local" value="send.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Barra de processo">
+					<param name="Local" value="proc.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Caixa de di&aacute;logo">
+					<param name="Local" value="boxd.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Caixa de sele&ccedil;&atilde;o">
+					<param name="Local" value="boxs.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Caixa de sele&ccedil;&atilde;o em arquivo">
+					<param name="Local" value="boxf.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Declara&ccedil;&atilde;o de especifica&ccedil;&atilde;o de fonte">
+					<param name="Local" value="font.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Editor de notas">
+					<param name="Local" value="note.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Envio de e-mail">
+					<param name="Local" value="mail.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Help">
+					<param name="Local" value="help.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Leitura de teclado">
+					<param name="Local" value="getk.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Linha de bot&otilde;es">
+					<param name="Local" value="line.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Mensagem">
+					<param name="Local" value="send.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Objetos de interface">
+					<param name="Local" value="obje.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Obt&eacute;m o foco do ACCEPT">
+					<param name="Local" value="getf.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Posiciona o foco ou protege/desprotege entry-fields">
+					<param name="Local" value="setf.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Procurar arquivo">
+					<param name="Local" value="open.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Seletor de fun&ccedil;&otilde;es de manuten&ccedil;&atilde;o">
+					<param name="Local" value="opti.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Tratamento de figuras">
+					<param name="Local" value="pict.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Tratamento de janelas">
+					<param name="Local" value="wind.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Troca de usu&aacute;rio">
+					<param name="Local" value="logo.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Processamento">
+				<param name="Local" value="service.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Ajusta string para exibi&ccedil;&atilde;o">
+					<param name="Local" value="pack.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="C&aacute;lculo de autentica&ccedil;&atilde;o MD5">
+					<param name="Local" value="md5.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Documentos JSON">
+					<param name="Local" value="json.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Documentos XML">
+					<param name="Local" value="xml.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Edita ou de-edita valores de ponto flutuante">
+					<param name="Local" value="floa.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Emiss&atilde;o de relat&oacute;rio">
+					<param name="Local" value="prin.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Obt&eacute;m extenso de valores">
+					<param name="Local" value="exte.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Gera&ccedil;&atilde;o de arquivo em formatos diversos">
+					<param name="Local" value="save.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Gera&ccedil;&atilde;o de n&uacute;mero aleat&oacute;rio">
+					<param name="Local" value="rand.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Grava observa&ccedil;&atilde;o no arquivo de log">
+					<param name="Local" value="logw.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Leitura de arquivo em formatos diversos">
+					<param name="Local" value="load.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Transfere relat&oacute;rio de arquivo texto para spool">
+					<param name="Local" value="splf.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Tratamento de datas e horas">
+					<param name="Local" value="time.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Sequencias">
+					<param name="Local" value="next.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Valida&ccedil;&atilde;o de documentos">
+					<param name="Local" value="chec.html">
+					</OBJECT>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Compila&ccedil;&atilde;o">
+			<param name="Local" value="compila.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Coletiva">
+				<param name="Local" value="cwcobol.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Individual">
+				<param name="Local" value="fcobol.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Exemplos">
+			<param name="Local" value="exemplos.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Listagem">
+				<param name="Local" value="cwlist.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Manuten&ccedil;&atilde;o de cadastros">
+				<param name="Local" value="cwcads.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Provedor de lista de sele&ccedil;&atilde;o">
+				<param name="Local" value="cwcad3.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Validador">
+				<param name="Local" value="cwcad2.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tabelas de c&oacute;digos">
+			<param name="Local" value="tabelas.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Cores">
+				<param name="Local" value="cores.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Escape key">
+				<param name="Local" value="esc.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Teclas de edi&ccedil;&atilde;o">
+				<param name="Local" value="edit.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Utilit&aacute;rios">
+			<param name="Local" value="utils.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Codificador de linhas de impress&atilde;o ">
+				<param name="Local" value="clic.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Codificador de telas (SCREEN SECTION)">
+				<param name="Local" value="ctac.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Importa arquivos padr&atilde;o xBASE">
+				<param name="Local" value="dbfcobol.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Refer&ecirc;ncia cruzada">
+				<param name="Local" value="msrc.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Execu&ccedil;&atilde;o">
+		<param name="Local" value="exec.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Atalho">
+			<param name="Local" value="atalho.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Depura&ccedil;&atilde;o">
+			<param name="Local" value="anim.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Simples">
+			<param name="Local" value="run.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Gerenciamento">
+		<param name="Local" value="menu.html">
+		<param name="URL" value="menu.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Configura&ccedil;&atilde;o">
+			<param name="Local" value="f3.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Arquivos">
+				<param name="Local" value="f3-arquivos.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Cores">
+				<param name="Local" value="f3-cores.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Empresa">
+				<param name="Local" value="f3-empresa.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Grupos">
+				<param name="Local" value="f3-grupos.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Impressoras">
+				<param name="Local" value="f3-impressoras.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Modelos">
+					<param name="Local" value="f3-impressoras_modelos.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Estilos">
+					<param name="Local" value="f3-impressoras_estilos.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Modo de menu">
+				<param name="Local" value="f3-modomenu.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Moldura">
+				<param name="Local" value="f3-moldura.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Programas">
+				<param name="Local" value="f3-programas.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Relator">
+				<param name="Local" value="f3-relator.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Relat&oacute;rios">
+				<param name="Local" value="f3-relatorios.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Senha">
+				<param name="Local" value="f3-senha.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Sistema">
+				<param name="Local" value="f3-sistema.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Suporte">
+				<param name="Local" value="f3-suporte.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Usu&aacute;rios">
+				<param name="Local" value="f3-usuarios.html">
+				</OBJECT>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Modo Help">
+			<param name="Local" value="f1.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Spool">
+			<param name="Local" value="f5.html">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Relator">
+		<param name="Local" value="rel.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Editor">
+			<param name="Local" value="rel1.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Gerador">
+			<param name="Local" value="rel2.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Dicion&aacute;rio de dados">
+			<param name="Local" value="rel3.html">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

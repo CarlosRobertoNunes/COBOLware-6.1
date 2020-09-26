@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware Help</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20130318;18075700">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">Help</FONT></H1>
+<P>Exibi&ccedil;&atilde;o de texto de ajuda.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">Help</FONT> <FONT COLOR="#008080">FILE</FONT>
+<A HREF="#arquivo"><I>arquivo</I></A><BR>[ <FONT COLOR="#008080">TITLE</FONT>
+ <I><A HREF="#t&iacute;tulo-da-janela">t&iacute;tulo-da-janela</A>
+</I>]<BR>[ <FONT COLOR="#008080">LINE</FONT> <I><A HREF="#linha">linha</A>
+</I>]<BR>[ <FONT COLOR="#008080">COLUMN</FONT> <I><A HREF="#coluna">coluna</A>
+</I>]<BR>[ <FONT COLOR="#008080">WIDTH</FONT> <I><A HREF="#colunas">colunas</A>
+</I>]&nbsp; <BR>[ <FONT COLOR="#008080">HEIGHT</FONT> <I><A HREF="#linhas">linhas</A>
+</I>]<BR>[ <A HREF="#top"><FONT COLOR="#008080">TOP </FONT></A>]<BR>[
+<A HREF="#SPOOL"><FONT COLOR="#008080">SPOOL </FONT></A>]<BR>[
+<A HREF="#TIMEOUT-ENABLE"><FONT COLOR="#008080">TIMEOUT-ENABLE</FONT></A>
+| <A HREF="#TIMEOUT-DISABLE"><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></A>
+]<BR>[ <FONT COLOR="#008080">TIMEOUT-RETURN</FONT> ;
+<A HREF="#retorno-tempo-limite-decorrido"><I>retorno-tempo-limite-decorrido</I></A>
+]</P>
+<H5>Argumentos</H5>
+<P><A NAME="arquivo"></A><EM>arquivo</EM><BR><BR>Nome do arquivo
+texto a ser exibido.</P>
+<P><A NAME="t&iacute;tulo-da-janela"></A><I>t&iacute;tulo-da-janela</I></P>
+<P STYLE="font-style: normal">Texto de at&eacute; 76 caracteres para
+o t&iacute;tulo da janela.</P>
+<P><A NAME="linha"></A><I>linha</I></P>
+<P>Linha de posicionamento da janela.</P>
+<P><A NAME="coluna"></A><I>coluna</I></P>
+<P>Coluna de posicionamento da janela.</P>
+<P><A NAME="colunas"></A><I>colunas</I></P>
+<P>Largura da janela em colunas</P>
+<P><A NAME="linhas"></A><I>linhas</I></P>
+<P>Altura da janela em linhas.</P>
+<P><A NAME="top"></A><FONT COLOR="#008080">TOP</FONT></P>
+<P>Indica que a primeira linha do arquivo texto a ser exibido deve
+ser fixada na primeira linha da janela, atuando como um cabe&ccedil;alho
+para a lista.</P>
+<P><A NAME="SPOOL"></A><FONT COLOR="#008080">SPOOL</FONT></P>
+<P>Indica que a fun&ccedil;&atilde;o de impress&atilde;o do help deve
+utilizar o spool do gerenciador de aplica&ccedil;&otilde;es. Em
+ambiente unix. esta a&ccedil;&atilde;o ser&aacute; tomada mesmo se
+n&atilde;o declarada.</P>
+<P><A NAME="TIMEOUT-ENABLE"></A><FONT COLOR="#008080">TIMEOUT-ENABLE</FONT></P>
+<P><A NAME="TIMEOUT-DISABLE"></A>Habilita o t&eacute;rmino por tempo
+de ociosidade decorrido. A op&ccedil;&atilde;o default ser&aacute;
+automaticamente selecionada pelo sistema em fun&ccedil;&atilde;o do
+limite de ociosidade declarado na configura&ccedil;&atilde;o<BR><BR><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></P>
+<P>A interven&ccedil;&atilde;o do usu&aacute;rio ser&aacute;
+obrigat&oacute;ria. O processamento s&oacute; prosseguir&aacute;
+quando o usu&aacute;rio fechar a janela.</P>
+<P><A NAME="retorno-tempo-limite-decorrido"></A><I>retorno-tempo-limite-decorrido</I></P>
+<P>Vari&aacute;vel que receber&aacute; o retorno indicativo da
+ocorr&ecirc;ncia de limite de tempo decorrido (1 ou zero) caso o
+usu&aacute;rio tenha selecionado uma op&ccedil;&atilde;o manualmente.</P>
+<H5>Observa&ccedil;&otilde;es</H5>
+<P>A acentua&ccedil;&atilde;o do arquivo texto deve ser codificada
+com a p&aacute;gina de c&oacute;digo 850, os processadores de tela se
+encarregam de traduzir para o codifica&ccedil;&atilde;o apropriada &agrave;
+plataforma de execu&ccedil;&atilde;o.</P>
+<H5>Exemplo</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<FONT COLOR="#008080"><A HREF="">Help</A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			FILE</FONT> &quot;<EM><A HREF="#arquivo"><FONT COLOR="#ff0000">C:\AUTOEXEC.BAT</FONT></A></EM>&quot;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">LINE </FONT><A HREF="#linha"><FONT COLOR="#ff0000"><I>8</I></FONT></A><FONT COLOR="#008080">
+			COLUMN </FONT><A HREF="#coluna"><FONT COLOR="#ff0000"><I>15</I></FONT></A><FONT COLOR="#008080"><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WIDTH </FONT><A HREF="#colunas"><FONT COLOR="#ff0000"><I>40</I></FONT></A><FONT COLOR="#008080">
+			HEIGHT </FONT><A HREF="#colunas"><FONT COLOR="#ff0000"><I>10</I></FONT></A>&nbsp;&nbsp;<BR>&nbsp;END-EXEC</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeinto no modo gr&aacute;fico</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER><IMG SRC="helpg.jpg" NAME="figura1" ALIGN=BOTTOM WIDTH=423 HEIGHT=279 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeito no modo texto.</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER><IMG SRC="helpt.jpg" NAME="figura2" ALIGN=BOTTOM WIDTH=424 HEIGHT=262 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><!--RELATEDTOPICSLIST--><!--RELATEDTOPICSLIST--><B>Veja tamb&eacute;m</B></H5>
+<P><A NAME="LinKs"></A><A HREF="note.html"><FONT COLOR="#008080">Note</FONT></A></P>
+</BODY>
+</HTML>

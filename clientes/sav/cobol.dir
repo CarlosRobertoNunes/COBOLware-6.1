@@ -1,0 +1,21 @@
+  AddSyn "BACKGROUND-COLOR" = "BACK"
+  AddSyn "COLUMN"           = "COL"
+  AddSyn "CONSOLE"          = "LDA"
+  AddSyn "FOREGROUND-COLOR" = "FORE"
+  AddSyn "HIGHLIGHT"        = "HIGH"
+NoAlter
+NoBound
+  CallFH"CWSQLC"
+  Case
+  Comp
+  DefaultByte"32"
+NoEcho
+  FileShare
+  HostSigns
+  IdxFormat"4"
+  Int()
+NoMs
+  NestCall
+  OldIndex
+NoQuery
+NoTrunc

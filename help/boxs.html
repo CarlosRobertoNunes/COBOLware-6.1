@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>COBOLware BoxSelect</TITLE>
+	<META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20080411;10271300">
+	<META NAME="CHANGEDBY" CONTENT="Carlos Roberto Souza Nunes">
+	<META NAME="CHANGED" CONTENT="20100531;13044600">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; font-family: "Arial" }
+		H1 { color: #000000 }
+		P { color: #000000; font-family: "Arial" }
+		H5 { color: #000000 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1><FONT COLOR="#008080">BoxSelect</FONT></H1>
+<P>Caixa de sele&ccedil;&atilde;o.</P>
+<H5>Sintaxe</H5>
+<P><FONT COLOR="#008080">BoxSelect</FONT><BR>[ <FONT COLOR="#008080">TITLE</FONT>
+<I><A HREF="#mensagem">mensagem</A> </I>]<BR>[ <FONT COLOR="#008080">LINE</FONT>
+<I><A HREF="#linha">linha</A> </I>]<BR>[ <FONT COLOR="#008080">COLUMN</FONT>
+<I><A HREF="#coluna">coluna</A> </I>] <BR>[ <FONT COLOR="#008080">CAPTION</FONT>(1...21)
+<I><A HREF="#texto-op&ccedil;&atilde;o">texto-op&ccedil;&atilde;o</A>
+</I>] <BR>[ <FONT COLOR="#008080">OPTION</FONT>
+<I><A HREF="#op&ccedil;&atilde;o-default">op&ccedil;&atilde;o-default</A>;<A HREF="#op&ccedil;&atilde;o-selecionada">op&ccedil;&atilde;o-selecionada</A>
+</I>] <BR>[ <FONT COLOR="#008080">OPTION-CHAR</FONT>
+<I><A HREF="#mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada">mnem&ocirc;nico-da-op&ccedil;&atilde;o-selecionada</A>
+</I>]<BR>[ <A HREF="#LEAVING"><FONT COLOR="#008080"><SPAN STYLE="text-decoration: none">LEAVING</SPAN></FONT></A>
+]<BR>[ <A HREF="#TIMEOUT-ENABLE"><FONT COLOR="#008080">TIMEOUT-ENABLE</FONT></A>
+| <A HREF="#TIMEOUT-RETRY"><FONT COLOR="#008080">TIMEOUT-RETRY</FONT></A>
+| <A HREF="#TIMEOUT-ENABLE"><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></A>
+]<BR>[ <FONT COLOR="#008080">TIMEOUT-RETURN</FONT> ;
+<A HREF="#retorno-tempo-limite-decorrido"><I>retorno-tempo-limite-decorrido</I></A>
+]</P>
+<H5>Argumentos</H5>
+<P><A NAME="mensagem"></A><I>mensagem</I></P>
+<P>T&iacute;tulo da janela at&eacute; 78 caracteres.</P>
+<P><A NAME="linha"></A><I>linha</I></P>
+<P>Linha de posicionamento da janela.</P>
+<P><A NAME="coluna"></A><I>coluna</I></P>
+<P>Coluna de posicionamento da janela.</P>
+<P><A NAME="texto-op&ccedil;&atilde;o"></A><I>texto-op&ccedil;&atilde;o</I></P>
+<P>Texto de at&eacute; 78 caracteres a ser exibido em cada linha de
+op&ccedil;&atilde;o (at&eacute; 21) sendo que o caractere &quot;~&quot;
+indica que o caractere seguinte servir&aacute; de mnem&ocirc;nico de
+atalho.</P>
+<P><A NAME="op&ccedil;&atilde;o-default"></A><I>op&ccedil;&atilde;o-default</I></P>
+<P>Valor ou vari&aacute;vel que Indica em qual das 21 op&ccedil;&otilde;es
+deve estar inicialmente o foco.</P>
+<P><A NAME="op&ccedil;&atilde;o-selecionada"></A><I>op&ccedil;&atilde;o-selecionada</I></P>
+<P>Vari&aacute;vel que receber&aacute; o retorno do n&uacute;mero da
+linha selecionada pelo usu&aacute;rio, podendo retornar os valores de
+1 a 21 ou zero caso o usu&aacute;rio tenha desistido da sele&ccedil;&atilde;o.</P>
+<P><A NAME="mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada"></A><I>mnem&ocirc;nico-da-op&ccedil;&atilde;o-selecionada</I><BR><BR>Vari&aacute;vel
+alfanum&eacute;rica de 1 byte que receber&aacute; o caractere
+mnem&ocirc;nico da op&ccedil;&atilde;o selecionada pelo usu&aacute;rio,
+ou espa&ccedil;o caso n&atilde;o tenham sido definidos mnem&ocirc;nicos
+ou o usu&aacute;rio tenha desistido da sele&ccedil;&atilde;o.</P>
+<P><A NAME="LEAVING"></A><FONT COLOR="#008080">LEAVING</FONT></P>
+<P>Habilita o encerramento da lista mesmo que o caractere teclado n&atilde;o
+seja um dos mnem&ocirc;nicos declarados retornando em <FONT COLOR="#008080">OPTION-CHAR
+</FONT><FONT COLOR="#000000">e 99 em</FONT><FONT COLOR="#008080">
+OPTION.</FONT></P>
+<P><A NAME="TIMEOUT-ENABLE"></A><BR><FONT COLOR="#008080">TIMEOUT-ENABLE</FONT></P>
+<P>Habilita o t&eacute;rmino por tempo de ociosidade decorrido. A
+op&ccedil;&atilde;o default ser&aacute; automaticamente selecionada
+pelo sistema em fun&ccedil;&atilde;o do limite de ociosidade
+declarado na configura&ccedil;&atilde;o.</P>
+<P><A NAME="TIMEOUT-RETRY"></A><FONT COLOR="#008080">TIMEOUT-RETRY</FONT></P>
+<P>Habilita 5 segundos de espera para mensagens de coment&aacute;rios.
+Sem maiores consequ&ecirc;ncias o processamento poder&aacute;
+prosseguir mesmo sem a interven&ccedil;&atilde;o ou conhecimento do
+usu&aacute;rio. 
+</P>
+<P><A NAME="TIMEOUT-DISABLE"></A><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></P>
+<P>A interven&ccedil;&atilde;o do usu&aacute;rio ser&aacute;
+obrigat&oacute;ria e o processamento s&oacute; prosseguir&aacute; ao
+ser selecionado um push-button manualmente.</P>
+<P><A NAME="retorno-tempo-limite-decorrido"></A><I>retorno-tempo-limite-decorrido</I></P>
+<P>Vari&aacute;vel que receber&aacute; o retorno indicativo da
+ocorr&ecirc;ncia de limite de tempo decorrido (1 ou zero caso o
+usu&aacute;rio tenha selecionado uma op&ccedil;&atilde;o
+manualmente).</P>
+<H5>Observa&ccedil;&otilde;es</H5>
+<P>A acentua&ccedil;&atilde;o deve ser codificada com a p&aacute;gina
+de c&oacute;digo 850, os processadores de tela se encarregam de
+traduzir para o codifica&ccedil;&atilde;o apropriada a plataforma de
+execu&ccedil;&atilde;o: 
+</P>
+<H5>Exemplo</H5>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD HEIGHT=19>
+			<P ALIGN=CENTER>Codifica&ccedil;&atilde;o COBOL</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT=56 VALIGN=TOP>
+			<P ALIGN=LEFT>EXEC <FONT COLOR="#008080">COBOLware</FONT>
+			<A HREF=""><FONT COLOR="#008080">BoxSelect</FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">TITLE</FONT>&nbsp;
+			<I>&quot;</I><A HREF="#mensagem"><FONT COLOR="#ff0000"><I>Selecione_op&ccedil;&atilde;o</I></FONT></A><I>&quot;<BR></I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">LINE</FONT> <A HREF="#linha"><FONT COLOR="#ff0000"><I>10</I></FONT></A>&nbsp;<FONT COLOR="#008080">COLUMN</FONT>
+			<A HREF="#coluna"><FONT COLOR="#ff0000"><I>15</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">1</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~A
+			vista</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">2</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~Contra-apresenta&ccedil;&atilde;o</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">3</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>cor~Tesia</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">4</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~Faturado</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">CAPTION</FONT>(<FONT COLOR="#ff0000">5</FONT>)
+			<I>&quot;</I><A HREF="#texto-op&ccedil;&atilde;o"><FONT COLOR="#ff0000"><I>~Parcelado</I></FONT></A><I>&quot;</I><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">OPTION</FONT> <A HREF="#op&ccedil;&atilde;o-default"><FONT COLOR="#008080"><I>4</I></FONT></A><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<FONT COLOR="#008080">OPTION-CHAR</FONT> <I>;</I><STRONG><A HREF="#mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada"><FONT FACE="Courier New">opcao</FONT></A></STRONG><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<A HREF="#TIMEOUT-DISABLE"><FONT COLOR="#008080">TIMEOUT-DISABLE</FONT></A><BR>END-EXEC<BR><BR>EVALUATE
+			<STRONG><A HREF="#mnem&ocirc;nico-da--op&ccedil;&atilde;o-selecionada"><FONT FACE="Courier New">opcao</FONT></A></STRONG><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">A</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">vista</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">C</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">contra</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">T</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">cortesia</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">F</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">faturado</FONT></FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			WHEN &quot;<FONT COLOR="#ff0000">P</FONT>&quot; PERFORM
+			<FONT COLOR="#008000"><FONT FACE="Courier New">parcelado</FONT></FONT><BR>END-EVALUATE</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeito no modo gr&aacute;fico</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER><IMG SRC="boxsg.jpg" NAME="figura1" ALIGN=BOTTOM WIDTH=157 HEIGHT=116 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER>Efeito no modo texto</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN=CENTER><IMG SRC="boxst.jpg" NAME="figura2" ALIGN=BOTTOM WIDTH=227 HEIGHT=151 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<H5><!--RELATEDTOPICSLIST--><B>Veja tamb&eacute;m</B></H5>
+<P><A NAME="LinKs2"></A><A NAME="LinKs1"></A><A NAME="LinKs"></A><FONT COLOR="#008080"><A HREF="boxf.html">BoxFileSelect<BR></A><A HREF="line.html">Line
+Button</A></FONT><BR><A HREF="obje.html#COMBO-BOX"><FONT COLOR="#008080">Object
+COMBO-BOX</FONT></A><BR><FONT COLOR="#008080"><A HREF="obje.html#LIST-BOX">Object
+LIST-BOX</A><BR><A HREF="send.html">Send Message</A></FONT></P>
+</BODY>
+</HTML>

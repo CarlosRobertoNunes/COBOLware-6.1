@@ -1,0 +1,113 @@
+       01  CTAC-LIT-EXEMPLO.
+       02  FOREGROUND-COLOR CWACOR-F (09)
+           BACKGROUND-COLOR CWACOR-B (09).
+           05 LINE 01 COLUMN 01 VALUE "ษอออออออออออออออออออ".
+           05 LINE 01 COLUMN 21 VALUE "ออออออออออออออออออออ".
+           05 LINE 01 COLUMN 41 VALUE "ออออออออออออออออออออ".
+           05 LINE 01 COLUMN 61 VALUE "อออออออออออออออออออป".
+           05 LINE 02 COLUMN 01 VALUE "บ".
+           05 LINE 02 COLUMN 03 VALUE "COBOLware Services L".
+           05 LINE 02 COLUMN 23 VALUE "tda.".
+           05 LINE 02 COLUMN 80 VALUE "บ".
+           05 LINE 03 COLUMN 01 VALUE "บ".
+           05 LINE 03 COLUMN 03 VALUE "Folha de pagamentos".
+           05 LINE 03 COLUMN 80 VALUE "บ".
+           05 LINE 04 COLUMN 01 VALUE "ฬอออออออออออออออออออ".
+           05 LINE 04 COLUMN 21 VALUE "ออออออออออออออออออออ".
+           05 LINE 04 COLUMN 41 VALUE "ออออออออออออออออออออ".
+           05 LINE 04 COLUMN 61 VALUE "อออออออออออออออออออน".
+           05 LINE 05 COLUMN 01 VALUE "บ".
+           05 LINE 05 COLUMN 03 VALUE "Cadastramento de fun".
+           05 LINE 05 COLUMN 23 VALUE "cion rios".
+           05 LINE 05 COLUMN 80 VALUE "บ".
+           05 LINE 06 COLUMN 01 VALUE "ฬอออออออออออออออออออ".
+           05 LINE 06 COLUMN 21 VALUE "ออออออออออออออออออออ".
+           05 LINE 06 COLUMN 41 VALUE "ออออออออออออออออออออ".
+           05 LINE 06 COLUMN 61 VALUE "อออออออออออออออออออน".
+           05 LINE 07 COLUMN 01 VALUE "บ".
+           05 LINE 07 COLUMN 80 VALUE "บ".
+           05 LINE 08 COLUMN 01 VALUE "บ".
+           05 LINE 08 COLUMN 05 VALUE "01 Matrกcula  :".
+           05 LINE 08 COLUMN 80 VALUE "บ".
+           05 LINE 09 COLUMN 01 VALUE "บ".
+           05 LINE 09 COLUMN 80 VALUE "บ".
+           05 LINE 10 COLUMN 01 VALUE "บ".
+           05 LINE 10 COLUMN 05 VALUE "02 Nome       :".
+           05 LINE 10 COLUMN 80 VALUE "บ".
+           05 LINE 11 COLUMN 01 VALUE "บ".
+           05 LINE 11 COLUMN 80 VALUE "บ".
+           05 LINE 12 COLUMN 01 VALUE "บ".
+           05 LINE 12 COLUMN 05 VALUE "03 Sexo       :".
+           05 LINE 12 COLUMN 80 VALUE "บ".
+           05 LINE 13 COLUMN 01 VALUE "บ".
+           05 LINE 13 COLUMN 80 VALUE "บ".
+           05 LINE 14 COLUMN 01 VALUE "บ".
+           05 LINE 14 COLUMN 05 VALUE "04 Cargo      :".
+           05 LINE 14 COLUMN 80 VALUE "บ".
+           05 LINE 15 COLUMN 01 VALUE "บ".
+           05 LINE 15 COLUMN 80 VALUE "บ".
+           05 LINE 16 COLUMN 01 VALUE "บ".
+           05 LINE 16 COLUMN 05 VALUE "05 Sal rio    :".
+           05 LINE 16 COLUMN 49 VALUE "06 Situaฦo   :".
+           05 LINE 16 COLUMN 80 VALUE "บ".
+           05 LINE 17 COLUMN 01 VALUE "บ".
+           05 LINE 17 COLUMN 80 VALUE "บ".
+           05 LINE 18 COLUMN 01 VALUE "บ".
+           05 LINE 18 COLUMN 05 VALUE "07 Tipos      :".
+           05 LINE 18 COLUMN 49 VALUE "08 Admissฦo   :".
+           05 LINE 18 COLUMN 80 VALUE "บ".
+           05 LINE 19 COLUMN 01 VALUE "บ".
+           05 LINE 19 COLUMN 80 VALUE "บ".
+           05 LINE 20 COLUMN 01 VALUE "บ".
+           05 LINE 20 COLUMN 05 VALUE "09 Obs        :".
+           05 LINE 20 COLUMN 80 VALUE "บ".
+           05 LINE 21 COLUMN 01 VALUE "บ".
+           05 LINE 21 COLUMN 80 VALUE "บ".
+           05 LINE 22 COLUMN 01 VALUE "ฬอออออออออออออออออออ".
+           05 LINE 22 COLUMN 21 VALUE "ออออออออออออออออออออ".
+           05 LINE 22 COLUMN 41 VALUE "ออออออออออออออออออออ".
+           05 LINE 22 COLUMN 61 VALUE "อออออออออออออออออออน".
+           05 LINE 23 COLUMN 01 VALUE "บ".
+           05 LINE 23 COLUMN 73 VALUE "GRFP01".
+           05 LINE 23 COLUMN 80 VALUE "บ".
+           05 LINE 24 COLUMN 01 VALUE "ศอออออออออออออออออออ".
+           05 LINE 24 COLUMN 21 VALUE "ออออออออออออออออออออ".
+           05 LINE 24 COLUMN 41 VALUE "ออออออออออออออออออออ".
+           05 LINE 24 COLUMN 61 VALUE "อออออออออออออออออออผ".
+
+       01  CTAC-VAR-EXEMPLO.
+       02  FOREGROUND-COLOR CWACOR-F (09)
+           BACKGROUND-COLOR CWACOR-B (09).
+           05 CTAC-DATA BLINK.
+              10 LINE 02 COLUMN 69 PIC 99/99/9999 FROM DATA-DE-HOJE.
+           05 CTAC-HORA.
+              10 LINE 03 COLUMN 71 PIC X(008) FROM HORA.
+           05 CTAC-FUNCAO.
+              10 LINE 05 COLUMN 46 PIC X(014) FROM FUNCAO.
+           05 CTAC-MATRICULA.
+              10 LINE 08 COLUMN 21 PIC X(004) USING FILE-MATRICULA.
+              10 LINE 08 COLUMN 26 PIC X(001) USING FILE-DV.
+           05 CTAC-NOME.
+              10 LINE 10 COLUMN 21 PIC X(030) USING FILE-NOME.
+           05 CTAC-SEXO.
+              10 LINE 12 COLUMN 21 PIC X(001) USING FILE-SEXO.
+           05 CTAC-CARGO.
+              10 LINE 14 COLUMN 21 PIC XBXBXBXBXBXBXBXBXBX
+                 USING FILE-CARGO.
+           05 CTAC-SALARIO.
+              10 LINE 16 COLUMN 21 PIC ZZ.ZZZ.ZZ9,99
+                 USING FILE-SALARIO BLANK ZERO.
+           05 CTAC-SITUACAO.
+              10 LINE 16 COLUMN 65 PIC X(001) USING FILE-SITUACAO.
+           05 CTAC-TIPOS.
+              10 LINE 18 COLUMN 21 PIC X(001) USING FILE-TIPO1.
+              10 LINE 18 COLUMN 23 PIC X(001) USING FILE-TIPO2.
+              10 LINE 18 COLUMN 25 PIC X(001) USING FILE-TIPO3.
+              10 LINE 18 COLUMN 27 PIC X(001) USING FILE-TIPO4.
+              10 LINE 18 COLUMN 29 PIC X(001) USING FILE-TIPO5.
+           05 CTAC-ADMISSAO.
+              10 LINE 18 COLUMN 65 PIC 99/99/9999 USING FILE-ADMISSAO.
+           05 CTAC-OBSERVACAO.
+              10 LINE 20 COLUMN 21 PIC X(030) USING FILE-OBSERVACAO.
+           05 CTAC-MENSAGEM.
+              10 LINE 23 COLUMN 03 PIC X(030) FROM MENSAGEM-ERRO.

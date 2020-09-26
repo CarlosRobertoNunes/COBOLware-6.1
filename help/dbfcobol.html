@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+        <TITLE>COBOLware 6.1 - DBFCOBOL - Importador de arquivos xBase</TITLE>
+        <META NAME="GENERATOR" CONTENT="BrOffice.org 3.1  (Win32)">
+        <META NAME="CREATED" CONTENT="0;0">
+        <META NAME="CHANGEDBY" CONTENT="Carlos Roberto de Souza Nunes">
+        <META NAME="CHANGED" CONTENT="20190827;11453900">
+        <!-- saved from url=(0037)file://G:\INTERNET\manual\FCOBOL.html -->
+        <STYLE TYPE="text/css">
+        <!--
+                TD P { color: #000000; font-family: "Arial" }
+                H1 { color: #000000 }
+                P { color: #000000; font-family: "Arial" }
+                PRE { color: #000000 }
+        -->
+        </STYLE>
+</HEAD>
+<BODY LANG="pt-BR" TEXT="#000000" DIR="LTR">
+<H1 ALIGN=LEFT><FONT COLOR="#008080">DBFCOBOL</FONT></H1>
+<P ALIGN=LEFT><STRONG><FONT FACE="Arial">Importador de arquivos xBase</FONT></STRONG></P>
+<P ALIGN=LEFT>O padr&atilde;o de arquivos XBase [<FONT FACE="Courier New">.DBF</FONT>]
+apesar de largamente difundido em aplica&ccedil;&otilde;es de pequeno
+porte, oferece pouca confiabilidade. Isso torna freq&uuml;ente a
+substitui&ccedil;&atilde;o destes aplicativos por sistemas
+profissionais, o que implica na convers&atilde;o das informa&ccedil;&otilde;es.</P>
+<P ALIGN=LEFT>Existem v&aacute;rios meios para converter estas bases
+para um arquivo texto que em seguida podem ser lidos por um programa
+COBOL especialmente elaborado mas o <STRONG><FONT FACE="Courier New">DBFCOBOL</FONT></STRONG>
+&eacute; o meio mais r&aacute;pido e completo.</P>
+<P>Formato: <FONT COLOR="#008080"><FONT FACE="Courier New">DBFCOBOL</FONT></FONT>
+<FONT COLOR="#ff0000"><FONT FACE="Courier New">FileName</FONT></FONT></P>
+<P>Onde <FONT COLOR="#ff0000"><FONT FACE="Courier New">FileName</FONT></FONT>
+&eacute; o nome do arquivo a ser convertido [<FONT COLOR="#ff0000"><FONT FACE="Courier New">FileName</FONT></FONT><FONT FACE="Courier New">.DBF</FONT>].
+Ser&atilde;o gerados dois arquivos: o primeiro [<FONT COLOR="#ff0000"><FONT FACE="Courier New">FileName</FONT></FONT><FONT FACE="Courier New">.CPY</FONT>],
+contendo a descri&ccedil;&atilde;o do arquivo na linguagem COBOL (<FONT COLOR="#808000"><FONT FACE="Courier New">FD</FONT></FONT>)
+e o segundo [<FONT COLOR="#ff0000"><FONT FACE="Courier New">FileName</FONT></FONT><FONT FACE="Courier New">.TXT</FONT>],
+contendo os dados no formato texto como os campos num&eacute;ricos
+devidamente ajustados para a linguagem COBOL.</P>
+<P>Exemplo:</P>
+<P>Utilizando o dBase III+ &reg;, podemos observar a estrutura e o
+conte&uacute;do do arquivo <A HREF="exemplo.dbf">EXEMPLO.DBF</A> que
+tem&nbsp; 4 registros.</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD>
+                        <P><IMG SRC="stru.gif" NAME="figura1" ALT="stru.gif (5514 bytes)" ALIGN=BOTTOM WIDTH=559 HEIGHT=299 BORDER=0></P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P>&nbsp;</P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P><IMG SRC="list.gif" NAME="figura2" ALT="list.gif (7633 bytes)" ALIGN=BOTTOM WIDTH=559 HEIGHT=299 BORDER=0></P>
+                </TD>
+        </TR>
+</TABLE>
+<P>Executando o <STRONG><FONT FACE="Courier New">DBFCOBOL</FONT></STRONG>:</P>
+<TABLE WIDTH=93% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD WIDTH=100%>
+                        <PRE><FONT FACE="Courier New">COBOLware C:\COBOLware&gt;DBFCOBOL EXEMPLO</FONT>
+<FONT FACE="Courier New">DBFCOBOL Conversor de arquivos xBASE para COBOL</FONT>
+
+<FONT FACE="Courier New">COBOLware 6.1</FONT>
+<FONT FACE="Courier New">Copyright (C) 1984-2020 COBOLware Services Ltda.</FONT>
+
+<FONT FACE="Courier New">Verificando estrutura de EXEMPLO.DBF...</FONT>
+<FONT FACE="Courier New">Trecho de FILE SECTION codificado em: EXEMPLO.CPY</FONT>
+<FONT FACE="Courier New">Convertendo arquivo dBASE III+ (R) EXEMPLO.DBF...</FONT>
+<FONT FACE="Courier New">Dados em formato texto em: EXEMPLO.TXT</FONT>
+<FONT FACE="Courier New">4 Lidos de EXEMPLO.DBF 0 pr&eacute;-deletados 4 gravados</FONT>
+
+<FONT FACE="Courier New">COBOLware C:\COBOLware&gt;</FONT></PRE>
+                </TD>
+        </TR>
+</TABLE>
+<P>Resultados:</P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+        <TR>
+                <TD>
+                        <P><FONT FACE="Courier New">EXEMPLO.CPY</FONT></P>
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FONT FACE="Courier New"><FONT SIZE=2>***********************************************************<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        *&nbsp;&nbsp;&nbsp; COBOLware 6.1 Lay-out dBASE III em
+                        texto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        *<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        ***********************************************************<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        FD&nbsp; EXEMPLO<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        RECORD CONTAINS 0120 CHARACTERS<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        LABEL RECORD IS STANDARD<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        VALUE OF FILE-ID IS &quot;EXEMPLO.TXT&quot;.<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        01&nbsp; EXEMPLO-REG.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-CODIGO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; 9(006)+.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-NOME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; X(030).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-ENDERECO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; X(030).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-BAIRRO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; X(020).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-CIDADE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; X(020).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-ESTADO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; X(002).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-CREDITO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; 9(007)V9(002)+.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        05 EXEMPLO-SITUACAO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PIC &nbsp; X(001).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        88 EXEMPLO-SITUACAO-THRUE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        VALUE &quot;T&quot; &quot;Y&quot;.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        88 EXEMPLO-SITUACAO-FALSE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        VALUE &quot;F&quot; &quot;N&quot;.</FONT></FONT></P>
+                </TD>
+        </TR>
+</TABLE>
+<TABLE WIDTH=1006 BORDER=1 CELLPADDING=2 CELLSPACING=3>
+        <COL WIDTH=994>
+        <TR>
+                <TD WIDTH=994>
+                        <P><FONT FACE="Courier New">EXEMPLO.TXT</FONT></P>
+                </TD>
+        </TR>
+        <TR>
+                <TD WIDTH=994 HEIGHT=64>
+                        <PRE><FONT FACE="Courier New"><FONT SIZE=2>000023+TANCREDO DE ALMEIDA NEVES      R.DA SAUDADE,34 SALA 4         CENTRO               BRASILIA             DF000034934+Y</FONT></FONT>
+<FONT FACE="Courier New"><FONT SIZE=2>000934+PEDRO ALVARES CABRAL           PRAIA DO PORTO,90              CIDADE NOVA          PETROPOLIS           PE000045405-N</FONT></FONT>
+<FONT FACE="Courier New"><FONT SIZE=2>002343+CARLOS DRUMOND DE ANDRADE      R.DA CONSOLACAO,34/24          PINDAMONHAMGABA      RIO DE JANEIRO       GB000000300-N</FONT></FONT>
+<FONT FACE="Courier New"><FONT SIZE=2>199203+LUIS CARLOS PRESTES            R.DA FAZENDA, 455              SANTO AMARO          NOVO HORIZONTE       TO000034434-N</FONT></FONT></PRE>
+                </TD>
+        </TR>
+</TABLE>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

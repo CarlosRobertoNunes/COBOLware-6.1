@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff. The LANG and LC_*
+# variables are already set, so you don't need to call lang.sh.
+
+[ -f /bin/firstboot.sh ] && sh /bin/firstboot.sh
+export FSTO="0 -b"
+cd /opt/COBOLware
+./fsserver 192.168.1.3 /sistemas &

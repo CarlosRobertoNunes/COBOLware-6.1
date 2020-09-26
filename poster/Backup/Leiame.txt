@@ -1,0 +1,6 @@
+para compilar o Poster
+é necessário instalar no Delphi 7 os seguintes componentes:
+
+Report Builder.exe
+Zreport.zip
+TExtraDev.v2.6.exe

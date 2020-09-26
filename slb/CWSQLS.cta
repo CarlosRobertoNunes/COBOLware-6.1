@@ -1,0 +1,14 @@
+Peso   % Handler          Read      Write Rewrite Delete  Start  Open Close
+ZZZ9 ZZ9 XXXXXXXXXXXXXXX ZZ.ZZZ.ZZ9 ZZ.ZZZ.ZZ9 ZZZ.ZZ9 ZZZZZ9 ZZZZZ9 ZZZZ9 ZZZZ9
+=(
+from Stat-TOTAL-TIME
+from PERC
+from stat-HANDLER
+from CTAC-READ
+from stat-WRITE
+from stat-REWRITE
+from stat-DELETE
+from stat-START
+from stat-OPEN
+from stat-CLOSE
+)=
