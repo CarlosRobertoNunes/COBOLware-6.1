@@ -1,7 +1,0 @@
-TERM=xterm
-export TERM
-tput mc5
-cat $1
-tput mc4
-rm $1
-
