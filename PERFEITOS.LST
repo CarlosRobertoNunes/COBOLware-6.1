@@ -1,0 +1,456 @@
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   1
+*                      PERFEITOS.cbl
+* Options: NOLIST NOASMLIST OMF(OBJ) OBJ(.\) list(PERFEITOS.lst) xnim
+     1 IDENTIFICATION DIVISION.
+     2 PROGRAM-ID.    PERFEITOS.
+     3 AUTHOR.        Traduzido de Easytrieve (macro esy.kex v.0.10).
+     4 DATE-WRITTEN.  08/03/2021 04:29:35 04:29:40.
+     5 SECURITY.      *************************************************
+     6                *                                               *
+     7                *  Descreva a finalidade do seu novo programa   *
+     8                *                                               *
+     9                *************************************************
+    10                *            KEDIT 5.50 X16 32-BIT NOV 27 2007  *
+    11                *************************************************
+    12 ENVIRONMENT DIVISION.
+    13 CONFIGURATION SECTION.
+    14 SPECIAL-NAMES. DECIMAL-POINT IS COMMA.
+    15 INPUT-OUTPUT SECTION.
+    16 FILE-CONTROL.
+    17*
+    18     SELECT PESSOAL ASSIGN TO PESSOAL
+    19            ORGANIZATION   IS SEQUENTIAL
+    20            FILE STATUS    IS FL-STA-PESSOAL.
+    21*
+    22 DATA DIVISION.
+    23 FILE SECTION.
+    24*
+    25 FD  PESSOAL
+    26     RECORDING MODE IS F
+    27     RECORD CONTAINS 5 CHARACTERS
+    28     BLOCK CONTAINS 0 RECORDS.
+    29*
+    30 01  REG-PESSOAL.
+    31     03 NUMPERF                        PIC  9(005).
+    32*
+    33*================================================================*
+    34 WORKING-STORAGE SECTION.
+    35*================================================================*
+    36 77  FILLER                     PIC  X(31)  VALUE
+    37                               'III WORKING-STORAGE SECTION III'.
+    38*================================================================*
+    39*----------------------------------------------------------------*
+    40*        SUBPROGRAMAS                                            *
+    41*----------------------------------------------------------------*
+    42*
+    43 77  SB-CANCEL                     PIC  X(08)  VALUE '$CANCEL'.
+    44 77  SB-SC5CP                      PIC  X(08)  VALUE '$SC5CP'.
+    45*
+    46*----------------------------------------------------------------*
+    47*-- VARIAVEIS PARA CHAMADA $SC5CP - VER AMBIENTE EXECUCAO        *
+    48*----------------------------------------------------------------*
+    49 01  WRETCODE.
+    50     03 WRETC                          PIC  X.
+    51     03 WRETCSUB                       PIC  X.
+    52     03 WMACRO                         PIC  X(8).
+    53     03 WRC                            PIC  9(9)         COMP.
+    54     03 WRS                            PIC  9(9)         COMP.
+    55 01  WFUNCAO                           PIC  X(5)   VALUE 'AMB'.
+    56 01  WDADOS.
+    57     03 WAMB                           PIC  X(3)   VALUE SPACES.
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   2
+*                      PERFEITOS.cbl
+    58     03 WCPUID                         PIC  X(4)   VALUE SPACES.
+    59*
+    60*----------------------------------------------------------------*
+    61* CAMPOS DE DATA E HORA                                          *
+    62*----------------------------------------------------------------*
+    63*
+    64 01  WDATAAAMMDD.
+    65     03 WDATAAA                        PIC  X(04)  VALUE SPACES.
+    66     03 WDATAMM                        PIC  X(02)  VALUE SPACES.
+    67     03 WDATADD                        PIC  X(02)  VALUE SPACES.
+    68*
+    69 01  WS-DATA-HORA.
+    70     03  WS-DATACURRENT.
+    71         05 WS-ANO-DATA                PIC  X(04)  VALUE SPACES.
+    72         05 WS-MES-DATA                PIC  X(02)  VALUE SPACES.
+    73         05 WS-DIA-DATA                PIC  X(02)  VALUE SPACES.
+    74     03  WS-HORACURRENT.
+    75         05 WS-HOR-HORA                PIC  X(02)  VALUE SPACES.
+    76         05 WS-MIN-HORA                PIC  X(02)  VALUE SPACES.
+    77         05 WS-SEG-HORA                PIC  X(02)  VALUE SPACES.
+    78         05 WS-CEN-HORA                PIC  X(02)  VALUE SPACES.
+    79 01  FILLER REDEFINES     WS-DATA-HORA.
+    80     03  SYSDATE-LONG                  PIC  9(008).
+    81     03  FILLER REDEFINES SYSDATE-LONG.
+    82         05 FILLER                     PIC  X(002).
+    83         05 SYSDATE                    PIC  9(006).
+    84     03  SYSTIME                       PIC  9(008).
+    85*
+    86 01  WS-DATA-HORADISP.
+    87     03  WS-DATADISP.
+    88         05  WS-DIA-DISP               PIC  X(02)  VALUE SPACES.
+    89         05  FILLER                    PIC  X(01)  VALUE '/'.
+    90         05  WS-MES-DISP               PIC  X(02)  VALUE SPACES.
+    91         05  FILLER                    PIC  X(01)  VALUE '/'.
+    92         05  WS-ANO-DISP               PIC  X(04)  VALUE SPACES.
+    93         05  FILLER                    PIC  X(02)  VALUE SPACES.
+    94     03  WS-HORACURRENTP.
+    95         05  WS-HOR-DISP               PIC  X(02)  VALUE SPACES.
+    96         05  FILLER                    PIC  X(01)  VALUE ':'.
+    97         05  WS-MIN-DISP               PIC  X(02)  VALUE SPACES.
+    98         05  FILLER                    PIC  X(01)  VALUE ':'.
+    99         05  WS-SEG-DISP               PIC  X(02)  VALUE SPACES.
+   100*
+   101*----------------------------------------------------------------*
+   102**** VARIAVEIS DE CONTROLE DOS RELATORIOS                        *
+   103*----------------------------------------------------------------*
+   104*
+   105 01  WS-CONTROLE-RELATORIOS.
+   106 02  WS-DISPLAYS.
+   107     03 DIVIDENDO                      PIC  9(005)    VALUE 1.
+   108     03 NUM                            PIC  9(005)    VALUE 0.
+   109     03 DIVISOR                        PIC  9(005)    VALUE 1.
+   110     03 SOMA                           PIC  9(005)    VALUE 0.
+   111     03 QUOCIENTE                      PIC  9(005)    VALUE 0.
+   112     03 I                              PIC  9(008)   VALUE ZEROS.
+   113*
+   114*----------------------------------------------------------------*
+   115*        AREA DE VARIAVES AUXILIARES                             *
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   3
+*                      PERFEITOS.cbl
+   116*----------------------------------------------------------------*
+   117*
+   118 01  WS-VARIAVEIS.
+   119     03 TRACOS                         PIC  X(116)    VALUE
+   120        ALL '-'.
+   121     03 PGMID                          PIC  X(011)    VALUE
+   122        '#PERFEITOS.'.
+   123     03 WS-DISPLAY                     PIC  -ZZZ.ZZZ.ZZZ.ZZZ.ZZ9.
+   124     03 FL-STA-PESSOAL                 PIC  X(002)    VALUE ZEROS.
+   125        88 FL-PESSOAL-EOF                             VALUE '10'.
+   126        88 FL-PESSOAL-OK                              VALUE '00'.
+   127     03 WS-LIDOS-PESSOAL        COMP-3 PIC S9(017)    VALUE ZEROS.
+   128     03 WS-ULT-LIDO-PESSOAL            PIC  X(005)    VALUE SPACE.
+   129*
+   130*----------------------------------------------------------------*
+   131*--> AREA MONTAR TABELAS                                         *
+   132*----------------------------------------------------------------*
+   133*
+   134 01  WS-TABELA-FIXA.
+   135*
+   136  03  WS-OCOR1-MENSAGEM.
+   137    05  WS-OCOR1-LAYOUT                PIC  X(004) VALUE 'QSAM'.
+   138    05  WS-OCOR1-SECTION-PGM           PIC  X(032) VALUE
+   139    'ABRIR-ENTRADA-PESSOAL'.
+   140    05  WS-OCOR1-COD-MSG               PIC  X(004) VALUE '0001'.
+   141    05  WS-OCOR1-COMPL                 PIC  X(100) VALUE
+   142    'ERRO DE ABERTURA DO ARQUIVO PESSOAL'.
+   143    05  WS-OCOR1-QSAM-MSG.
+   144      07  WS-OCOR1-QSAM-STAT           PIC  X(002) VALUE SPACES.
+   145      07  WS-OCOR1-QSAM-DDN            PIC  X(008) VALUE
+   146         'PESSOAL'.
+   147    05  FILLER                         PIC  X(182) VALUE SPACES.
+   148*
+   149  03  WS-OCOR2-MENSAGEM.
+   150    05  WS-OCOR2-LAYOUT                PIC  X(004) VALUE 'QSAM'.
+   151    05  WS-OCOR2-SECTION-PGM           PIC  X(032) VALUE
+   152    'RT-FECHAR-PESSOAL'.
+   153    05  WS-OCOR2-COD-MSG               PIC  X(004) VALUE '0002'.
+   154    05  WS-OCOR2-COMPL                 PIC  X(100) VALUE
+   155    'ERRO AO FECHAR O ARQUIVO PESSOAL'.
+   156    05  WS-OCOR2-QSAM-MSG.
+   157      07  WS-OCOR2-QSAM-STAT           PIC  X(002) VALUE SPACES.
+   158      07  WS-OCOR2-QSAM-DDN            PIC  X(008) VALUE
+   159         'PESSOAL'.
+   160    05  FILLER                         PIC  X(182) VALUE SPACES.
+   161*
+   162  03  WS-OCOR3-MENSAGEM.
+   163    05  WS-OCOR3-LAYOUT                PIC  X(004) VALUE 'QSAM'.
+   164    05  WS-OCOR3-SECTION-PGM           PIC  X(032) VALUE
+   165    'RT-LER-PESSOAL'.
+   166    05  WS-OCOR3-COD-MSG               PIC  X(004) VALUE '0003'.
+   167    05  WS-OCOR3-COMPL                 PIC  X(100) VALUE
+   168    'ERRO DE LEITURA DO ARQUIVO PESSOAL'.
+   169    05  WS-OCOR3-QSAM-MSG.
+   170      07  WS-OCOR3-QSAM-STAT           PIC  X(002) VALUE SPACES.
+   171      07  WS-OCOR3-QSAM-DDN            PIC  X(008) VALUE
+   172         'PESSOAL'.
+   173    05  FILLER                         PIC  X(182) VALUE SPACES.
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   4
+*                      PERFEITOS.cbl
+   174*
+   175 01  WS-TABELA-ALTER.
+   176  03  WS-TABELA-ALTERX   OCCURS 3 TIMES INDEXED BY INDALT.
+   177   05 WS-ALTER-LAYOUT                  PIC  X(004).
+   178   05 WS-ALTER-SECTION-PGM             PIC  X(032).
+   179   05 WS-ALTER-COD-MSG                 PIC  X(004).
+   180   05 WS-ALTER-COMPL                   PIC  X(100).
+   181   05 WS-ALTER-QSAM-MSG                PIC  X(190).
+   182*
+   183*----------------------------------------------------------------*
+*  184 COPY 'SC5LDIS1'.
+   185 77 SC5LDIS1-LAYOUT       PIC X(4).
+   186 77 SC5LDIS1-SECTION-PGM  PIC X(32).
+   187 77 SC5LDIS1-COD-MSG      PIC X(4).
+   188 77 SC5LDIS1-QSAM-MSG     PIC X(60).
+   189 77 SC5LDIS1-AREAMSG      PIC X(9).
+   190 77 SC5LDIS1-PGM          PIC X(8).
+   191*================================================================*
+   192 01  FILLER                            PIC  X(32)  VALUE
+   193                               'FFF  FIM DAWORKING-STORAGE  FFF'.
+   194*================================================================*
+   195*                                                                *
+   196*================================================================*
+   197 PROCEDURE DIVISION.
+   198*================================================================*
+   199*                                                                *
+   200*----------------------------------------------------------------*
+   201*                        ROTINA PRINCIPAL                        *
+   202*----------------------------------------------------------------*
+   203 RT-PRINCIPAL                                SECTION.
+   204*
+   205     PERFORM RT-INICIAR
+   206*
+   207     PERFORM RT-PROCESSAR
+   208             UNTIL FL-PESSOAL-EOF
+   209*
+   210     PERFORM RT-FINALIZAR
+   211*
+   212     MOVE ZEROS TO RETURN-CODE
+   213*
+   214     GOBACK.
+   215*
+   216 RT-PRINCIPALX.                              EXIT.
+   217*----------------------------------------------------------------*
+   218*                     ROTINA DE INICIALIZACAO                    *
+   219*----------------------------------------------------------------*
+   220 RT-INICIAR                                  SECTION.
+   221*
+   222     DISPLAY PGMID '001I ' FUNCTION WHEN-COMPILED
+   223     PERFORM RT-OBTER-AMBIENTE
+   224*
+   225     PERFORM RT-OBTER-HORA
+   226*
+   227     DISPLAY PGMID '001I' TRACOS
+   228     DISPLAY PGMID '001I- INICIO PROC: ' WS-DATA-HORADISP
+   229     DISPLAY PGMID '001I' TRACOS
+   230*
+   231     PERFORM RT-LER-PESSOAL
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   5
+*                      PERFEITOS.cbl
+   232     IF  FL-PESSOAL-EOF
+   233         EXIT SECTION
+   234     END-IF.
+   235*
+   236     PERFORM RT-ABRIR-ENTRADA-PESSOAL.
+   237*
+   238 RT-INICIARX.                                EXIT.
+   239*----------------------------------------------------------------*
+   240*               ROTINA PARA PROCESSAMENTO PRINCIPAL              *
+   241*----------------------------------------------------------------*
+   242 RT-PROCESSAR                                SECTION.
+   243*
+   244 CALCULA.
+   245*
+   246        COMPUTE QUOCIENTE = DIVIDENDO / DIVISOR
+   247        IF QUOCIENTE * DIVISOR EQUAL DIVIDENDO
+   248           ADD DIVISOR TO SOMA
+   249        END-IF.
+   250*    *
+   251     IF SOMA > DIVIDENDO
+   252        GO  TO  PROXIMO-NUM
+   253     END-IF
+   254*    *
+   255     ADD 1 TO DIVISOR
+   256*    *
+   257     IF DIVISOR LESS DIVIDENDO
+   258        GO TO CALCULA
+   259     END-IF
+   260*    *
+   261     IF  (SOMA EQUAL DIVIDENDO)
+   262     AND (DIVIDENDO NOT EQUAL 1)
+   263        ADD 1 TO NUM
+   264        DISPLAY PGMID '200I-  PERFEITO ' NUM ': ' DIVIDENDO
+   265     END-IF.
+   266*    *
+   267 PROXIMO-NUM.
+   268        ADD 1 TO DIVIDENDO
+   269*    *
+   270        IF NUM LESS NUMPERF
+   271           MOVE 1 TO DIVISOR
+   272           MOVE ZERO TO SOMA
+   273           GO TO CALCULA
+   274        END-IF.
+   275 RT-PROCESSARX.                              EXIT.
+   276*----------------------------------------------------------------*
+   277*             OBTER AMBIENTE DE EXECUCAO DO PERFEITOS            *
+   278*----------------------------------------------------------------*
+   279 RT-OBTER-AMBIENTE                           SECTION.
+   280*
+   281     CALL SB-SC5CP USING WRETCODE WFUNCAO WDADOS
+   282**      WABM   DES/HOM/PRD
+   283     IF WRETC  NOT = '0'
+   284        MOVE 'DES'              TO WAMB
+   285     END-IF.
+   286*
+   287 RT-OBTER-AMBIENTEX.                         EXIT.
+   288*----------------------------------------------------------------*
+   289*         ROTINA PARA OBTER DATA E HORA DO PROCESSAMENTO         *
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   6
+*                      PERFEITOS.cbl
+   290*----------------------------------------------------------------*
+   291 RT-OBTER-HORA                               SECTION.
+   292*
+   293     MOVE FUNCTION CURRENT-DATE(1:20)
+   294                                 TO WS-DATA-HORA
+   295     MOVE WS-ANO-DATA            TO WS-ANO-DISP
+   296     MOVE WS-MES-DATA            TO WS-MES-DISP
+   297     MOVE WS-DIA-DATA            TO WS-DIA-DISP
+   298     MOVE WS-HOR-HORA            TO WS-HOR-DISP
+   299     MOVE WS-MIN-HORA            TO WS-MIN-DISP
+   300     MOVE WS-SEG-HORA            TO WS-SEG-DISP
+   301*
+   302     MOVE WS-ANO-DATA            TO WDATAAA
+   303     MOVE WS-MES-DATA            TO WDATAMM
+   304     MOVE WS-DIA-DATA            TO WDATADD.
+   305*
+   306 RT-OBTER-HORAX.                             EXIT.
+   307*----------------------------------------------------------------*
+   308*                     ROTINA DE CANCELAMENTO                     *
+   309*----------------------------------------------------------------*
+   310 RT-CANCELAR                                 SECTION.
+   311*
+   312     DISPLAY PGMID '900I' TRACOS
+   313     DISPLAY PGMID '900I- ESTATISTICA AUXILIAR PARA CANCEL'
+   314     DISPLAY PGMID '900I' TRACOS
+   315*
+   316     MOVE    WS-LIDOS-PESSOAL                        TO WS-DISPLAY
+   317     DISPLAY PGMID '003I- LIDOS DE PESSOAL...........:' WS-DISPLAY
+   318     DISPLAY PGMID '900I' TRACOS
+   319*
+   320     DISPLAY PGMID '003I- ULTIMO LIDO DE PESSOAL:'
+   321             WS-ULT-LIDO-PESSOAL
+   322     CALL SB-CANCEL.
+   323*
+   324 RT-CANCELARX.                               EXIT.
+   325*----------------------------------------------------------------*
+   326*           ROTINA DE FINALIZACAO DO PROGRAMA PERFEITOS          *
+   327*----------------------------------------------------------------*
+   328 RT-FINALIZAR                                SECTION.
+   329*
+   330     PERFORM RT-OBTER-HORA
+   331*
+   332     DISPLAY PGMID '999I' TRACOS
+   333     DISPLAY PGMID '999I- FIM DE PROC: ' WS-DATA-HORADISP
+   334     DISPLAY PGMID '999I' TRACOS
+   335     DISPLAY PGMID '999I- ESTATISTICA DE PROCESSAMENTO'
+   336     DISPLAY PGMID '999I' TRACOS
+   337     MOVE    WS-LIDOS-PESSOAL                        TO WS-DISPLAY
+   338     DISPLAY PGMID '003I- LIDOS DE PESSOAL...........:' WS-DISPLAY
+   339     DISPLAY PGMID '999I' TRACOS.
+   340*
+   341     PERFORM RT-FECHAR-PESSOAL.
+   342*
+   343 RT-FINALIZARX.                              EXIT.
+   344*----------------------------------------------------------------*
+   345*                     ABRIR O ARQUIVO PESSOAL                    *
+   346*----------------------------------------------------------------*
+   347 RT-ABRIR-ENTRADA-PESSOAL                    SECTION.
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   7
+*                      PERFEITOS.cbl
+   348*
+   349     OPEN INPUT PESSOAL
+   350     IF  NOT FL-PESSOAL-OK
+   351         SET INDALT TO 1
+   352         PERFORM RT-MONTA-MSG
+   353     END-IF.
+   354*
+   355 RT-ABRIR-ENTRADA-PESSOALX.                  EXIT.
+   356*----------------------------------------------------------------*
+   357*                    FECHAR O ARQUIVO PESSOAL                    *
+   358*----------------------------------------------------------------*
+   359 RT-FECHAR-PESSOAL                           SECTION.
+   360*
+   361    CLOSE PESSOAL
+   362    IF  NOT FL-PESSOAL-OK
+   363        SET INDALT TO 2
+   364        PERFORM RT-MONTA-MSG
+   365    END-IF.
+   366*
+   367 RT-FECHAR-PESSOALX.                         EXIT.
+   368*----------------------------------------------------------------*
+   369*        ROTINA PARA LEITURA SEQUENCIAL DO ARQUIVO PESSOAL       *
+   370*----------------------------------------------------------------*
+   371 RT-LER-PESSOAL                              SECTION.
+   372*
+   373    READ PESSOAL INTO WS-ULT-LIDO-PESSOAL
+   374*
+   375    IF  FL-PESSOAL-OK
+   376        ADD 1 TO WS-LIDOS-PESSOAL
+   377    ELSE
+   378        IF  NOT FL-PESSOAL-EOF
+   379            SET INDALT TO 3
+   380            PERFORM RT-MONTA-MSG
+   381        ELSE
+   382            IF  FL-PESSOAL-EOF
+   383            AND WS-LIDOS-PESSOAL EQUAL ZERO
+   384                DISPLAY PGMID '003I  *=========================*'
+   385                DISPLAY PGMID '003I  * ARQUIVO "PESSOAL" VAZIO *'
+   386                DISPLAY PGMID '003I  *=========================*'
+   387                DISPLAY PGMID '003I  DDN = PESSOAL'
+   388            END-IF
+   389        END-IF
+   390    END-IF.
+   391*
+   392 RT-LER-PESSOALX.                            EXIT.
+   393*----------------------------------------------------------------*
+   394*        ROTINA PARA MONTAR AS MENSAGENS DA TABELA DE ERRO       *
+   395*----------------------------------------------------------------*
+   396 RT-MONTA-MSG                                SECTION.
+   397*
+   398     MOVE FL-STA-PESSOAL          TO WS-OCOR1-QSAM-STAT
+   399                                     WS-OCOR2-QSAM-STAT
+   400                                     WS-OCOR3-QSAM-STAT
+   401*
+   402     MOVE WS-TABELA-FIXA          TO WS-TABELA-ALTER
+   403     MOVE WS-ALTER-LAYOUT(INDALT)
+   404                                  TO SC5LDIS1-LAYOUT
+   405     MOVE WS-ALTER-SECTION-PGM(INDALT)
+* Micro Focus Object COBOL           V4.0 revision 038 08-Mar-21 04:29 Page   8
+*                      PERFEITOS.cbl
+   406                                  TO SC5LDIS1-SECTION-PGM
+   407     MOVE WS-ALTER-COD-MSG(INDALT)
+   408                                  TO SC5LDIS1-COD-MSG
+   409     MOVE WS-ALTER-QSAM-MSG(INDALT)
+   410                                  TO SC5LDIS1-QSAM-MSG
+   411                                     SC5LDIS1-AREAMSG
+   412*
+   413     MOVE 'PERFEITOS'             TO SC5LDIS1-PGM.
+   414*
+   415     PERFORM RT-8888-FORMATAR-MSG-PAD.
+   416*
+   417     PERFORM RT-CANCELAR.
+   418*
+   419 RT-MONTA-MSGX.                              EXIT.
+*  420 COPY 'SC5LDIS2'.
+   421 RT-8888-FORMATAR-MSG-PAD SECTION.
+   422     DISPLAY PGMID '5L2I' TRACOS
+   423     DISPLAY PGMID '5L2I LAYOUT     ='   SC5LDIS1-LAYOUT
+   424     DISPLAY PGMID '5L2I SECTION-PGM='   SC5LDIS1-SECTION-PGM
+   425     DISPLAY PGMID '5L2I COD-MSG    ='   SC5LDIS1-COD-MSG
+   426     DISPLAY PGMID '5L2I QSAM-MSG   ='   SC5LDIS1-QSAM-MSG
+   427     DISPLAY PGMID '5L2I AREAMSG    ='   SC5LDIS1-AREAMSG
+   428     DISPLAY PGMID '5L2I PGM        ='   SC5LDIS1-PGM
+   429     DISPLAY PGMID '5L2I' TRACOS.
+   430 RT-8888-FORMATAR-MSG-PADX. EXIT.
+   431******************************************************************
+   432*                      FIM  DO  PROGRAMA                         *
+   433******************************************************************
+* Micro Focus Object COBOL           V4.0 revision 038
+* Copyright (C) 1984-1998 Micro Focus Ltd.     URN OXCNM/000047913 
+*                                              REF GNB-166056000AA
+*
+* Total Messages:     0
+* Data:        3192     Code:        1703
