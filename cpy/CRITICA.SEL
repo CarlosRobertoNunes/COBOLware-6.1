@@ -1,6 +1,0 @@
-           SELECT CRITICA ASSIGN TO DISK
-                  ORGANIZATION  IS INDEXED
-                  ACCESS MODE   IS DYNAMIC
-                  RECORD  KEY   IS CRITICA-FIELD
-                  LOCK MODE     IS EXCLUSIVE
-                  FILE STATUS   IS FS-CRITICA.

@@ -1,9 +1,0 @@
-           SELECT FORMATOS ASSIGN TO DISK
-                  ORGANIZATION  IS INDEXED
-                  ACCESS MODE   IS DYNAMIC
-                  RECORD  KEY   IS FORMATOS-CHAVE
-                  LOCK MODE     IS MANUAL
-                  LOCK ON MULTIPLE RECORDS
-                  RESERVE NO ALTERNATE AREA
-                  FILE STATUS IS FS-FORMATOS.
-
