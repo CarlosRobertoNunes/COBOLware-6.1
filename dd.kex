@@ -1,0 +1,1 @@
+'Extract/CurLine';If Pos(' ',CurLine.3) \= 0 Then Do;'Curline 15';'Set Debugging on 10 +r';Trace +r;End

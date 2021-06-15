@@ -1,0 +1,22 @@
+  AddSyn "BACKGROUND-COLOR" = "BACK"
+  AddSyn "COLUMN"           = "COL"
+  AddSyn "CONSOLE"          = "LDA"
+  AddSyn "FOREGROUND-COLOR" = "FORE"
+  AddSyn "HIGHLIGHT"        = "HIGH"
+NoAlter
+  Assign(External)
+NoBound
+NoCallFH
+  Case
+  Comp
+  DefaultByte"32"
+NoEcho
+  FileShare
+  IdxFormat"4"
+  Int()
+  Ms(2)
+  NestCall
+NoQuery
+  Remove"NAME"
+  Sequential"LINE"
+NoTrunc

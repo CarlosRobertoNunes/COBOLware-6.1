@@ -1,0 +1,585 @@
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   1
+*                      carta.cbl
+* Options: NOLIST NOASMLIST OMF(OBJ) OBJ(.\) list(carta.lst) xnim
+     1 IDENTIFICATION DIVISION.
+     2 PROGRAM-ID.    CARTA.
+     3 AUTHOR.        Traduzido de Easytrieve (macro esy.kex v.0.10).
+     4 DATE-WRITTEN.  13/06/2021 00:16:42 00:16:44.
+     5 SECURITY.      *************************************************
+     6                *************************************************
+     7                *                                          HOST *
+     8                *    Microsoft Windows [versÆo 10.0.19043.1052] *
+     9                *************************************************
+    10 ENVIRONMENT DIVISION.
+    11 CONFIGURATION SECTION.
+    12 SPECIAL-NAMES. DECIMAL-POINT IS COMMA.
+    13 INPUT-OUTPUT SECTION.
+    14 FILE-CONTROL.
+    15*
+    16     SELECT CARTAO ASSIGN TO CARD.
+    17*
+    18     SELECT WORKSDS ASSIGN TO WORKSDS
+    19            ORGANIZATION IS INDEXED
+    20            ACCESS MODE  IS DYNAMIC
+    21            RECORD KEY   IS WORKSDS-KEY
+    22                            WITH DUPLICATES
+    23            FILE STATUS  IS FL-STA-WORKSDS.
+    24*
+    25     SELECT LISTA ASSIGN TO LISTA.
+    26*
+    27 DATA DIVISION.
+    28 FILE SECTION.
+    29*
+    30 FD  CARTAO
+    31     RECORDING MODE IS F
+    32     RECORD CONTAINS 080 CHARACTERS
+    33     BLOCK CONTAINS 0 RECORDS.
+    34*
+    35 01  REG-CARTAO.
+    36     03 CARTAO-EMP                     PIC  9(005).
+    37     03 FILLER                         PIC  X(001).
+    38     03 RAISE-PERCENT                  PIC  9(002).
+    39     03 FILLER                         PIC  X(072).
+    40*
+    41 FD  LISTA
+    42     LABEL RECORD IS OMITTED.
+    43*
+    44 01  REG-LISTA                         PIC  X(030).
+    45*
+    46 FD  WORKSDS
+    47     RECORD CONTAINS 1024 CHARACTERS
+    48     BLOCK CONTAINS 0 RECORDS.
+    49*
+    50 01  REG-WORKSDS.
+    51     03 WORKSDS-KEY.
+    52        06 WORKSDS-STRING.
+    53           09 WORKSDS-SEQUENCE         PIC  9(017).
+    54           09 FILLER                   PIC  X(238).
+    55     03 FILLER                         PIC  X(769).
+    56*
+    57 01  REG-WORKSDS-LISTA.
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   2
+*                      carta.cbl
+    58     03 WORKSDS-LISTA.
+    59        06 LISTA-CARTAO-EMP            PIC 9(005).
+    60        06 LISTA-RAISE-PERCENT         PIC 9(002).
+    61        06 FILLER                      PIC  X(1000).
+    62*================================================================*
+    63 WORKING-STORAGE SECTION.
+    64*================================================================*
+    65 77  FILLER                     PIC  X(31)  VALUE
+    66                               'III WORKING-STORAGE SECTION III'.
+    67*================================================================*
+    68*
+    69*----------------------------------------------------------------*
+    70*        SUBPROGRAMAS                                            *
+    71*----------------------------------------------------------------*
+    72*
+    73 77  SB-CANCEL                     PIC  X(08)  VALUE '$CANCEL'.
+    74 77  SB-SC5CP                      PIC  X(08)  VALUE '$SC5CP'.
+    75*
+    76*----------------------------------------------------------------*
+    77* CAMPOS DE DATA E HORA                                          *
+    78*----------------------------------------------------------------*
+    79*
+    80 01  WDATAAAMMDD.
+    81     03 WDATAAA                        PIC  X(04)  VALUE SPACES.
+    82     03 WDATAMM                        PIC  X(02)  VALUE SPACES.
+    83     03 WDATADD                        PIC  X(02)  VALUE SPACES.
+    84*
+    85 01  WS-DATA-HORA.
+    86     03  WS-DATACURRENT.
+    87         05 WS-ANO-DATA                PIC  X(04)  VALUE SPACES.
+    88         05 WS-MES-DATA                PIC  X(02)  VALUE SPACES.
+    89         05 WS-DIA-DATA                PIC  X(02)  VALUE SPACES.
+    90     03  WS-HORACURRENT.
+    91         05 WS-HOR-HORA                PIC  X(02)  VALUE SPACES.
+    92         05 WS-MIN-HORA                PIC  X(02)  VALUE SPACES.
+    93         05 WS-SEG-HORA                PIC  X(02)  VALUE SPACES.
+    94         05 WS-CEN-HORA                PIC  X(02)  VALUE SPACES.
+    95 01  FILLER REDEFINES     WS-DATA-HORA.
+    96     03  SYSDATE-LONG                  PIC  9(008).
+    97     03  FILLER REDEFINES SYSDATE-LONG.
+    98         05 FILLER                     PIC  X(002).
+    99         05 SYSDATE                    PIC  9(006).
+   100     03  SYSTIME                       PIC  9(008).
+   101*
+   102 01  WS-DATA-HORADISP.
+   103     03  WS-DATADISP.
+   104         05  WS-DIA-DISP               PIC  X(02)  VALUE SPACES.
+   105         05  FILLER                    PIC  X(01)  VALUE '/'.
+   106         05  WS-MES-DISP               PIC  X(02)  VALUE SPACES.
+   107         05  FILLER                    PIC  X(01)  VALUE '/'.
+   108         05  WS-ANO-DISP               PIC  X(04)  VALUE SPACES.
+   109         05  FILLER                    PIC  X(02)  VALUE SPACES.
+   110     03  WS-HORACURRENTP.
+   111         05  WS-HOR-DISP               PIC  X(02)  VALUE SPACES.
+   112         05  FILLER                    PIC  X(01)  VALUE ':'.
+   113         05  WS-MIN-DISP               PIC  X(02)  VALUE SPACES.
+   114         05  FILLER                    PIC  X(01)  VALUE ':'.
+   115         05  WS-SEG-DISP               PIC  X(02)  VALUE SPACES.
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   3
+*                      carta.cbl
+   116*
+   117*----------------------------------------------------------------*
+   118*        LINHAS DE IMPRESSAO DO RELATORIO LISTA                  *
+   119*----------------------------------------------------------------*
+   120*
+   121 01  LISTA-LAYOUT.
+   122 02  LISTA-TOP1.
+   123     05 FILLER                         PIC  X(011) VALUE SPACES.
+   124     05 FILLER                         PIC  X(013) VALUE
+   125        "EMP# RAISE-PE".
+   126     05 FILLER                         PIC  X(002) VALUE "RC".
+   127     05 FILLER                         PIC  X(003) VALUE "ENT".
+   128 02  LISTA-DET1.
+   129     05 FILLER                         PIC  X(011) VALUE SPACES.
+   130     05 LISTA-DET1-CARTAO-EMP          PIC  9(005) VALUE ZEROS.
+   131     05 FILLER                         PIC  X(003) VALUE SPACES.
+   132     05 LISTA-DET1-RAISE-PERCENT       PIC  9(002) VALUE ZEROS.
+   133*----------------------------------------------------------------*
+   134**** VARIAVEIS DE CONTROLE DOS RELATORIOS                        *
+   135*----------------------------------------------------------------*
+   136*
+   137 01  WS-CONTROLE-RELATORIOS.
+   138 02  WS-COMPACTADOS COMP-3.
+   139     03 BREAK-LEVEL                    PIC  9(003).
+   140     03 LEVEL                          PIC  9(003).
+   141     03 LINE-COUNT                     PIC  9(018).
+   142        88 REPORT-CLOSED                           VALUE ZERO.
+   143     03 DETAIL-COUNT                   PIC  9(018).
+   144        88 FIRST-DETAIL                            VALUE 0.
+   145     03 PAGE-COUNT                     PIC  9(018).
+   146*
+   147*----------------------------------------------------------------*
+   148*        AREA DE VARIAVES AUXILIARES                             *
+   149*----------------------------------------------------------------*
+   150*
+   151 01  WS-VARIAVEIS.
+   152     03 TRACOS                         PIC  X(109)    VALUE
+   153        ALL '-'.
+   154     03 PGMID                          PIC  X(007)    VALUE
+   155        '#CARTA.'.
+   156     03 WS-DISPLAY                     PIC  -ZZZ.ZZZ.ZZZ.ZZZ.ZZ9.
+   157     03 FL-STA-CARTAO                  PIC  X(002)    VALUE ZEROS.
+   158        88 FL-CARTAO-EOF                              VALUE '10'.
+   159        88 FL-CARTAO-OK                               VALUE '00'.
+   160     03 FL-STA-WORKSDS                 PIC  X(002)    VALUE ZEROS.
+   161        88 FL-WORKSDS-DUPALT                          VALUE '02'.
+   162        88 FL-WORKSDS-DUPKEY                          VALUE '22'.
+   163        88 FL-WORKSDS-EOF                             VALUE '10'.
+   164        88 FL-WORKSDS-NEW                             VALUE '05'.
+   165        88 FL-WORKSDS-OK                              VALUE '00'.
+   166     03 BUFFER                         PIC  X(030)    VALUE ZEROS.
+   167     03 WS-GRAVADOS-WORKSDS     COMP-3 PIC S9(017)    VALUE ZEROS.
+   168     03 WS-LIDOS-CARTAO         COMP-3 PIC S9(017)    VALUE ZEROS.
+   169     03 WS-LIDOS-WORKSDS        COMP-3 PIC S9(017)    VALUE ZEROS.
+   170     03 WS-ULT-LIDO-CARTAO             PIC  X(080)    VALUE SPACE.
+   171     03 WS-ULT-LIDO-WORKSDS            PIC  X(1024)   VALUE SPACE.
+   172*
+   173*----------------------------------------------------------------*
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   4
+*                      carta.cbl
+   174*--> AREA MONTAR TABELAS                                         *
+   175*----------------------------------------------------------------*
+   176*
+   177 01  WS-TABELA-FIXA.
+   178*
+   179  03 WS-OCOR1-MENSAGEM.
+   180     05 WS-OCOR1-LAYOUT                PIC  X(004) VALUE 'QSAM'.
+   181     05 WS-OCOR1-SECTION-PGM           PIC  X(032) VALUE
+   182     'ABRIR-ATUALIZAR-WORKSDS'.
+   183     05 WS-OCOR1-COD-MSG               PIC  X(004) VALUE '0001'.
+   184     05 WS-OCOR1-COMPL                 PIC  X(100) VALUE
+   185     'ERRO DE ABERTURA DO ARQUIVO WORKSDS'.
+   186     05 WS-OCOR1-QSAM-MSG.
+   187        07 WS-OCOR1-QSAM-STAT          PIC  X(002) VALUE SPACES.
+   188        07 WS-OCOR1-QSAM-DDN           PIC  X(008) VALUE
+   189           'WORKSDS'.
+   190     05 FILLER                         PIC  X(180) VALUE SPACES.
+   191*
+   192  03 WS-OCOR2-MENSAGEM.
+   193     05 WS-OCOR2-LAYOUT                PIC  X(004) VALUE 'QSAM'.
+   194     05 WS-OCOR2-SECTION-PGM           PIC  X(032) VALUE
+   195     'RT-LER-WORKSDS'.
+   196     05 WS-OCOR2-COD-MSG               PIC  X(004) VALUE '0002'.
+   197     05 WS-OCOR2-COMPL                 PIC  X(100) VALUE
+   198     'ERRO DE LEITURA DO ARQUIVO WORKSDS'.
+   199     05 WS-OCOR2-QSAM-MSG.
+   200        07 WS-OCOR2-QSAM-STAT          PIC  X(002) VALUE SPACES.
+   201        07 WS-OCOR2-QSAM-DDN           PIC  X(008) VALUE
+   202           'WORKSDS'.
+   203     05 FILLER                         PIC  X(180) VALUE SPACES.
+   204*
+   205  03 WS-OCOR3-MENSAGEM.
+   206     05 WS-OCOR3-LAYOUT                PIC  X(004) VALUE 'QSAM'.
+   207     05 WS-OCOR3-SECTION-PGM           PIC  X(032) VALUE
+   208     'RT-GRAVAR-WORKSDS'.
+   209     05 WS-OCOR3-COD-MSG               PIC  X(004) VALUE '0003'.
+   210     05 WS-OCOR3-COMPL                 PIC  X(100) VALUE
+   211     'ERRO DE GRAVACAO NO ARQUIVO WORKSDS'.
+   212     05 WS-OCOR3-QSAM-MSG.
+   213        07 WS-OCOR3-QSAM-STAT          PIC  X(002) VALUE SPACES.
+   214        07 WS-OCOR3-QSAM-DDN           PIC  X(008) VALUE
+   215           'WORKSDS'.
+   216      07 FILLER                        PIC  X(015) VALUE
+   217         ' WORKSDS-KEY = '.
+   218      07  WS-OCOR3-WORKSDS-KEY         PIC  X(015) VALUE SPACES.
+   219     05 FILLER                         PIC  X(150) VALUE SPACES.
+   220*
+   221 01  WS-TABELA-ALTER.
+   222  03 WS-TABELA-ALTERX   OCCURS 3 TIMES INDEXED BY INDALT.
+   223     05 WS-ALTER-LAYOUT                PIC  X(004).
+   224     05 WS-ALTER-SECTION-PGM           PIC  X(032).
+   225     05 WS-ALTER-COD-MSG               PIC  X(004).
+   226     05 WS-ALTER-COMPL                 PIC  X(100).
+   227     05 WS-ALTER-QSAM-MSG              PIC  X(190).
+   228*
+   229*----------------------------------------------------------------*
+*  230 COPY 'SC5LDIS1'.
+   231 77 SC5LDIS1-LAYOUT       PIC X(4).
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   5
+*                                 carta.cbl (SC5LDIS1.CPY)
+   232 77 SC5LDIS1-SECTION-PGM  PIC X(32).
+   233 77 SC5LDIS1-COD-MSG      PIC X(4).
+   234 77 SC5LDIS1-QSAM-MSG     PIC X(60).
+   235 77 SC5LDIS1-AREAMSG      PIC X(9).
+   236 77 SC5LDIS1-PGM          PIC X(8).
+   237*================================================================*
+   238 01  FILLER                            PIC  X(32)  VALUE
+   239                               'FFF  FIM DAWORKING-STORAGE  FFF'.
+   240*================================================================*
+   241*                                                                *
+   242*================================================================*
+   243 PROCEDURE DIVISION.
+   244*================================================================*
+   245*                                                                *
+   246*----------------------------------------------------------------*
+   247*                        ROTINA PRINCIPAL                        *
+   248*----------------------------------------------------------------*
+   249 RT-PRINCIPAL                                SECTION.
+   250*
+   251     PERFORM RT-INICIAR
+   252*
+   253     PERFORM RT-PROCESSAR
+   254*
+   255     PERFORM RT-FINALIZAR
+   256*
+   257     MOVE ZEROS TO RETURN-CODE
+   258*
+   259     GOBACK.
+   260*
+   261 RT-PRINCIPALX.                              EXIT.
+   262*----------------------------------------------------------------*
+   263*                     ROTINA DE INICIALIZACAO                    *
+   264*----------------------------------------------------------------*
+   265 RT-INICIAR                                  SECTION.
+   266*
+   267     DISPLAY PGMID '001I ' FUNCTION WHEN-COMPILED
+   268     PERFORM RT-OBTER-HORA
+   269*
+   270     DISPLAY PGMID '001I' TRACOS
+   271     DISPLAY PGMID '001I- INICIO PROC: ' WS-DATA-HORADISP
+   272     DISPLAY PGMID '001I' TRACOS
+   273*
+   274     PERFORM RT-ABRIR-ATUALIZAR-WORKSDS.
+   275*
+   276 RT-INICIARX.                                EXIT.
+   277*----------------------------------------------------------------*
+   278*               ROTINA PARA PROCESSAMENTO PRINCIPAL              *
+   279*----------------------------------------------------------------*
+   280 RT-PROCESSAR                                SECTION.
+   281*
+   282     OPEN INPUT CARTAO
+   283*
+   284     PERFORM UNTIL   FL-CARTAO-EOF
+   285             PERFORM RT-LER-CARTAO
+   286             IF   FL-CARTAO-OK
+   287                  PERFORM RT-CARREGA-LISTA
+   288             END-IF
+   289     END-PERFORM
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   6
+*                      carta.cbl
+   290*
+   291     MOVE HIGH-VALUES         TO WORKSDS-KEY
+   292     PERFORM RT-GRAVAR-WORKSDS
+   293*
+   294     PERFORM RT-GERA-RELATORIOS.
+   295*
+   296 RT-PROCESSARX.                              EXIT.
+   297*----------------------------------------------------------------*
+   298*         ROTINA PARA OBTER DATA E HORA DO PROCESSAMENTO         *
+   299*----------------------------------------------------------------*
+   300 RT-OBTER-HORA                               SECTION.
+   301*
+   302     MOVE FUNCTION CURRENT-DATE(1:20)
+   303                                 TO WS-DATA-HORA
+   304     MOVE WS-ANO-DATA            TO WS-ANO-DISP
+   305     MOVE WS-MES-DATA            TO WS-MES-DISP
+   306     MOVE WS-DIA-DATA            TO WS-DIA-DISP
+   307     MOVE WS-HOR-HORA            TO WS-HOR-DISP
+   308     MOVE WS-MIN-HORA            TO WS-MIN-DISP
+   309     MOVE WS-SEG-HORA            TO WS-SEG-DISP
+   310*
+   311     MOVE WS-ANO-DATA            TO WDATAAA
+   312     MOVE WS-MES-DATA            TO WDATAMM
+   313     MOVE WS-DIA-DATA            TO WDATADD.
+   314*
+   315 RT-OBTER-HORAX.                             EXIT.
+   316*----------------------------------------------------------------*
+   317*                     ROTINA DE CANCELAMENTO                     *
+   318*----------------------------------------------------------------*
+   319 RT-CANCELAR                                 SECTION.
+   320*
+   321     DISPLAY PGMID '900I' TRACOS
+   322     DISPLAY PGMID '900I- ESTATISTICA AUXILIAR PARA CANCEL'
+   323     DISPLAY PGMID '900I' TRACOS
+   324*
+   325     MOVE    WS-LIDOS-WORKSDS                        TO WS-DISPLAY
+   326     DISPLAY PGMID '002I- LIDOS DE WORKSDS...........:' WS-DISPLAY
+   327     MOVE    WS-LIDOS-CARTAO                         TO WS-DISPLAY
+   328     DISPLAY PGMID '000I- LIDOS DE CARTAO............:' WS-DISPLAY
+   329     MOVE    WS-GRAVADOS-WORKSDS                     TO WS-DISPLAY
+   330     DISPLAY PGMID '003I- GRAVADOS EM WORKSDS........:' WS-DISPLAY
+   331     DISPLAY PGMID '900I' TRACOS
+   332*
+   333     DISPLAY PGMID '002I- ULTIMO LIDO DE WORKSDS:'
+   334             WS-ULT-LIDO-WORKSDS
+   335     DISPLAY PGMID '000I- ULTIMO LIDO DE CARTAO:'
+   336             WS-ULT-LIDO-CARTAO
+   337     CALL SB-CANCEL.
+   338*
+   339 RT-CANCELARX.                               EXIT.
+   340*----------------------------------------------------------------*
+   341*             ROTINA DE FINALIZACAO DO PROGRAMA CARTA            *
+   342*----------------------------------------------------------------*
+   343 RT-FINALIZAR                                SECTION.
+   344*
+   345     PERFORM RT-OBTER-HORA
+   346*
+   347     DISPLAY PGMID '999I' TRACOS
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   7
+*                      carta.cbl
+   348     DISPLAY PGMID '999I- FIM DE PROC: ' WS-DATA-HORADISP
+   349     DISPLAY PGMID '999I' TRACOS
+   350     DISPLAY PGMID '999I- ESTATISTICA DE PROCESSAMENTO'
+   351     DISPLAY PGMID '999I' TRACOS
+   352     MOVE    WS-LIDOS-WORKSDS                        TO WS-DISPLAY
+   353     DISPLAY PGMID '002I- LIDOS DE WORKSDS...........:' WS-DISPLAY
+   354     MOVE    WS-LIDOS-CARTAO                         TO WS-DISPLAY
+   355     DISPLAY PGMID '000I- LIDOS DE CARTAO............:' WS-DISPLAY
+   356     MOVE    WS-GRAVADOS-WORKSDS                     TO WS-DISPLAY
+   357     DISPLAY PGMID '003I- GRAVADOS EM WORKSDS........:' WS-DISPLAY
+   358     DISPLAY PGMID '999I' TRACOS.
+   359*
+   360     CLOSE WORKSDS.
+   361*
+   362 RT-FINALIZARX.                              EXIT.
+   363*----------------------------------------------------------------*
+   364*                     ABRIR O ARQUIVO WORKSDS                    *
+   365*----------------------------------------------------------------*
+   366 RT-ABRIR-ATUALIZAR-WORKSDS                  SECTION.
+   367*
+   368     OPEN I-O WORKSDS
+   369     IF  FL-WORKSDS-OK
+   370         CLOSE WORKSDS
+   371         DELETE FILE WORKSDS
+   372         OPEN I-O WORKSDS
+   373     END-IF
+   374*
+   375     IF  NOT FL-WORKSDS-OK
+   376     AND NOT FL-WORKSDS-NEW
+   377         SET INDALT TO 1
+   378         PERFORM RT-MONTA-MSG
+   379     END-IF.
+   380*
+   381 RT-ABRIR-ATUALIZAR-WORKSDSX.                EXIT.
+   382*----------------------------------------------------------------*
+   383*               ROTINA PARA GERACAO DE RELATORIO(S)              *
+   384*----------------------------------------------------------------*
+   385 RT-GERA-RELATORIOS                          SECTION.
+   386*
+   387     INITIALIZE WS-CONTROLE-RELATORIOS
+   388     INITIALIZE WORKSDS-KEY
+   389     START WORKSDS KEY NOT LESS WORKSDS-KEY
+   390     PERFORM UNTIL FL-WORKSDS-EOF
+   391          PERFORM RT-LER-WORKSDS
+   392          IF FL-WORKSDS-OK
+   393             PERFORM RT-GERAR-RELATORIO-LISTA
+   394          END-IF
+   395     END-PERFORM.
+   396*
+   397 RT-GERA-RELATORIOSX.                        EXIT.
+   398*----------------------------------------------------------------*
+   399*        ROTINA PARA LEITURA SEQUENCIAL DO ARQUIVO WORKSDS       *
+   400*----------------------------------------------------------------*
+   401 RT-LER-WORKSDS                              SECTION.
+   402*
+   403     READ WORKSDS NEXT RECORD
+   404*
+   405     IF  FL-WORKSDS-OK
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   8
+*                      carta.cbl
+   406     OR  FL-WORKSDS-DUPALT
+   407         ADD 1 TO WS-LIDOS-WORKSDS
+   408     ELSE
+   409         IF  NOT FL-WORKSDS-EOF
+   410             SET INDALT TO 2
+   411             PERFORM RT-MONTA-MSG
+   412         ELSE
+   413             IF  FL-WORKSDS-EOF
+   414             AND WS-LIDOS-WORKSDS EQUAL ZERO
+   415                 DISPLAY PGMID '002I *=========================*'
+   416                 DISPLAY PGMID '002I * ARQUIVO "WORKSDS" VAZIO *'
+   417                 DISPLAY PGMID '002I *=========================*'
+   418             END-IF
+   419         END-IF
+   420     END-IF.
+   421*
+   422 RT-LER-WORKSDSX.                            EXIT.
+   423*----------------------------------------------------------------*
+   424*             ROTINA PARA GRAVACAO NO ARQUIVO WORKSDS            *
+   425*----------------------------------------------------------------*
+   426 RT-GRAVAR-WORKSDS                           SECTION.
+   427*
+   428     WRITE REG-WORKSDS
+   429*
+   430     IF  FL-WORKSDS-OK
+   431     OR  FL-WORKSDS-DUPALT
+   432         ADD 1 TO WS-GRAVADOS-WORKSDS
+   433     ELSE
+   434         IF   NOT FL-WORKSDS-DUPKEY
+   435              SET INDALT TO 3
+   436              PERFORM RT-MONTA-MSG
+   437         END-IF
+   438     END-IF.
+   439*
+   440 RT-GRAVAR-WORKSDSX.                         EXIT.
+   441*----------------------------------------------------------------*
+   442*                   GERACAO DO RELATORIO LISTA                   *
+   443*----------------------------------------------------------------*
+   444 RT-GERAR-RELATORIO-LISTA                    SECTION.
+   445*
+   446     IF   WORKSDS-STRING EQUAL HIGH-VALUES
+   447          CLOSE LISTA
+   448          INITIALIZE WS-CONTROLE-RELATORIOS
+   449          EXIT SECTION
+   450     END-IF
+   451*
+   452     MOVE    LISTA-CARTAO-EMP    TO LISTA-DET1-CARTAO-EMP
+   453     MOVE    LISTA-RAISE-PERCENT TO LISTA-DET1-RAISE-PERCENT
+   454     MOVE    LISTA-DET1          TO BUFFER
+   455     PERFORM RT-IMPRIMIR-LINHA-LISTA
+   456*
+   457     ADD     1                         TO DETAIL-COUNT.
+   458*
+   459 RT-GERAR-RELATORIO-LISTAX.                  EXIT.
+   460*----------------------------------------------------------------*
+   461*        ROTINA DE IMPRESSAO DE LINHA DO LISTA E CABECALHO       *
+   462*----------------------------------------------------------------*
+   463 RT-IMPRIMIR-LINHA-LISTA                     SECTION.
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page   9
+*                      carta.cbl
+   464*
+   465     IF REPORT-CLOSED
+   466        OPEN OUTPUT LISTA
+   467        MOVE 59               TO LINE-COUNT
+   468     END-IF
+   469*
+   470     IF  LINE-COUNT NOT LESS 58
+   471         ADD   1              TO PAGE-COUNT
+   472         WRITE REG-LISTA    FROM LISTA-TOP1 AFTER 2
+   473         MOVE  SPACES         TO REG-LISTA
+   474         WRITE REG-LISTA                    AFTER 1
+   475         MOVE  3              TO LINE-COUNT
+   476         SET   FIRST-DETAIL   TO TRUE
+   477     END-IF.
+   478*
+   479     ADD   1                  TO LINE-COUNT
+   480     WRITE REG-LISTA FROM BUFFER            AFTER 1.
+   481*.
+   482 RT-IMPRIMIR-LINHA-LISTAX.                   EXIT.
+   483*----------------------------------------------------------------*
+   484*        ROTINA PARA LEITURA SEQUENCIAL DO ARQUIVO CARTAO        *
+   485*----------------------------------------------------------------*
+   486 RT-LER-CARTAO                               SECTION.
+   487*
+   488     READ CARTAO
+   489       AT END
+   490          CLOSE CARTAO
+   491          SET FL-CARTAO-EOF TO TRUE
+   492          IF  WS-LIDOS-CARTAO EQUAL ZERO
+   493              DISPLAY PGMID '000I  *=========================*'
+   494              DISPLAY PGMID '000I  * NAO HA CARTOES PARA LER *'
+   495              DISPLAY PGMID '000I  *=========================*'
+   496          END-IF
+   497       NOT AT END
+   498           SET FL-CARTAO-OK TO TRUE
+   499           ADD 1 TO WS-LIDOS-CARTAO
+   500     END-READ.
+   501*
+   502 RT-LER-CARTAOX.                             EXIT.
+   503*----------------------------------------------------------------*
+   504*       GRAVAR DADOS DA LINHA DO RELATORIO LISTA NO WORKSDS      *
+   505*----------------------------------------------------------------*
+   506 RT-CARREGA-LISTA                            SECTION.
+   507*
+   508     ADD  1                    TO WS-GRAVADOS-WORKSDS
+   509     MOVE 'LISTA'              TO REG-WORKSDS
+   510     MOVE WS-GRAVADOS-WORKSDS  TO WORKSDS-SEQUENCE
+   511     MOVE CARTAO-EMP           TO LISTA-CARTAO-EMP
+   512     MOVE RAISE-PERCENT        TO LISTA-RAISE-PERCENT
+   513     PERFORM RT-GRAVAR-WORKSDS.
+   514*
+   515 RT-CARREGA-LISTAX.                          EXIT.
+   516*----------------------------------------------------------------*
+   517*        ROTINA PARA MONTAR AS MENSAGENS DA TABELA DE ERRO       *
+   518*----------------------------------------------------------------*
+   519 RT-MONTA-MSG                                SECTION.
+   520*
+   521     MOVE WORKSDS-KEY             TO WS-OCOR3-WORKSDS-KEY
+* Micro Focus Object COBOL           V4.0 revision 038 13-Jun-21 00:16 Page  10
+*                      carta.cbl
+   522*
+   523     MOVE FL-STA-WORKSDS          TO WS-OCOR1-QSAM-STAT
+   524                                     WS-OCOR2-QSAM-STAT
+   525                                     WS-OCOR3-QSAM-STAT
+   526*
+   527     MOVE WS-TABELA-FIXA          TO WS-TABELA-ALTER
+   528     MOVE WS-ALTER-LAYOUT(INDALT)
+   529                                  TO SC5LDIS1-LAYOUT
+   530     MOVE WS-ALTER-SECTION-PGM(INDALT)
+   531                                  TO SC5LDIS1-SECTION-PGM
+   532     MOVE WS-ALTER-COD-MSG(INDALT)
+   533                                  TO SC5LDIS1-COD-MSG
+   534     MOVE WS-ALTER-QSAM-MSG(INDALT)
+   535                                  TO SC5LDIS1-QSAM-MSG
+   536                                     SC5LDIS1-AREAMSG
+   537*
+   538     MOVE 'CARTA'                 TO SC5LDIS1-PGM.
+   539*
+   540     PERFORM RT-8888-FORMATAR-MSG-PAD.
+   541*
+   542     PERFORM RT-CANCELAR.
+   543*
+   544 RT-MONTA-MSGX.                              EXIT.
+*  545 COPY 'SC5LDIS2'.
+   546 RT-8888-FORMATAR-MSG-PAD SECTION.
+   547     DISPLAY PGMID '5L2I' TRACOS
+   548     DISPLAY PGMID '5L2I LAYOUT     ='   SC5LDIS1-LAYOUT
+   549     DISPLAY PGMID '5L2I SECTION-PGM='   SC5LDIS1-SECTION-PGM
+   550     DISPLAY PGMID '5L2I COD-MSG    ='   SC5LDIS1-COD-MSG
+   551     DISPLAY PGMID '5L2I QSAM-MSG   ='   SC5LDIS1-QSAM-MSG
+   552     DISPLAY PGMID '5L2I AREAMSG    ='   SC5LDIS1-AREAMSG
+   553     DISPLAY PGMID '5L2I PGM        ='   SC5LDIS1-PGM
+   554     DISPLAY PGMID '5L2I' TRACOS.
+   555 RT-8888-FORMATAR-MSG-PADX. EXIT.
+   556******************************************************************
+   557*                      FIM  DO  PROGRAMA                         *
+   558******************************************************************
+* Micro Focus Object COBOL           V4.0 revision 038
+* Copyright (C) 1984-1998 Micro Focus Ltd.     URN OXCNM/000047913 
+*                                              REF GNB-166056000AA
+*
+* Total Messages:     0
+* Data:        5800     Code:        2702

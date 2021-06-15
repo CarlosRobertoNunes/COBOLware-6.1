@@ -1,0 +1,247 @@
+* Micro Focus Object COBOL           V4.0 revision 038 17-Feb-21 10:58 Page   1
+*                      CURDATE.cbl
+* Options: NOLIST NOASMLIST OMF(OBJ) OBJ(.\) list(CURDATE.LST) xnim
+     1*
+     2 IDENTIFICATION DIVISION.
+     3 PROGRAM-ID.    CURDATE.
+     4 AUTHOR.        Traduzido de Easytrieve (macro esy.kex v.0.10).
+     5 DATE-WRITTEN.  17/02/2021 10:58:37 10:58:37.
+     6 SECURITY.      *************************************************
+     7                *                                               *
+     8                *  Descreva a finalidade do seu novo programa   *
+     9                *                                               *
+    10                *************************************************
+    11                *            KEDIT 5.50 X16 32-BIT NOV 27 2007  *
+    12                *************************************************
+    13 ENVIRONMENT DIVISION.
+    14 CONFIGURATION SECTION.
+    15 SPECIAL-NAMES. DECIMAL-POINT IS COMMA.
+    16 INPUT-OUTPUT SECTION.
+    17 DATA DIVISION.
+    18 WORKING-STORAGE SECTION.
+    19*================================================================*
+    20 77  FILLER                     PIC  X(31)  VALUE
+    21                               'III WORKING-STORAGE SECTION III'.
+    22*================================================================*
+    23*----------------------------------------------------------------*
+    24*        SUBPROGRAMAS                                            *
+    25*----------------------------------------------------------------*
+    26*
+    27 77  SB-CANCEL                     PIC  X(08)  VALUE '$CANCEL'.
+    28 77  SB-SC5CP                      PIC  X(08)  VALUE '$SC5CP'.
+    29*
+    30*----------------------------------------------------------------*
+    31*-- VARIAVEIS PARA CHAMADA $SC5CP - VER AMBIENTE EXECUCAO        *
+    32*----------------------------------------------------------------*
+    33 01  WRETCODE.
+    34     03 WRETC                      PIC  X.
+    35     03 WRETCSUB                   PIC  X.
+    36     03 WMACRO                     PIC  X(8).
+    37     03 WRC                        PIC  9(9)   COMP.
+    38     03 WRS                        PIC  9(9)   COMP.
+    39 01  WFUNCAO                       PIC  X(5)   VALUE 'AMB'.
+    40 01  WDADOS.
+    41     03 WAMB                       PIC  X(3)   VALUE SPACES.
+    42     03 WCPUID                     PIC  X(4)   VALUE SPACES.
+    43*
+    44*----------------------------------------------------------------*
+    45* CAMPOS DE DATA E HORA                                          *
+    46*----------------------------------------------------------------*
+    47*
+    48 01  WDATAAAMMDD.
+    49     03 WDATAAA                    PIC  X(04)  VALUE SPACES.
+    50     03 WDATAMM                    PIC  X(02)  VALUE SPACES.
+    51     03 WDATADD                    PIC  X(02)  VALUE SPACES.
+    52*
+    53 01  WS-DATA-HORA.
+    54     03  WS-DATACURRENT.
+    55         05 WS-ANO-DATA            PIC  X(04)  VALUE SPACES.
+    56         05 WS-MES-DATA            PIC  X(02)  VALUE SPACES.
+    57         05 WS-DIA-DATA            PIC  X(02)  VALUE SPACES.
+* Micro Focus Object COBOL           V4.0 revision 038 17-Feb-21 10:58 Page   2
+*                      CURDATE.cbl
+    58     03  WS-HORACURRENT.
+    59         05 WS-HOR-HORA            PIC  X(02)  VALUE SPACES.
+    60         05 WS-MIN-HORA            PIC  X(02)  VALUE SPACES.
+    61         05 WS-SEG-HORA            PIC  X(02)  VALUE SPACES.
+    62         05 WS-CEN-HORA            PIC  X(02)  VALUE SPACES.
+    63 01  FILLER REDEFINES     WS-DATA-HORA.
+    64     03  SYSDATE-LONG              PIC  9(008).
+    65     03  FILLER REDEFINES SYSDATE-LONG.
+    66         05 FILLER                 PIC  X(002).
+    67         05 SYSDATE                PIC  9(006).
+    68     03  SYSTIME                   PIC  9(008).
+    69*
+    70 01  WS-DATA-HORADISP.
+    71     03  WS-DATADISP.
+    72         05  WS-DIA-DISP           PIC  X(02)  VALUE SPACES.
+    73         05  FILLER                PIC  X(01)  VALUE '/'.
+    74         05  WS-MES-DISP           PIC  X(02)  VALUE SPACES.
+    75         05  FILLER                PIC  X(01)  VALUE '/'.
+    76         05  WS-ANO-DISP           PIC  X(04)  VALUE SPACES.
+    77         05  FILLER                PIC  X(02)  VALUE SPACES.
+    78     03  WS-HORACURRENTP.
+    79         05  WS-HOR-DISP           PIC  X(02)  VALUE SPACES.
+    80         05  FILLER                PIC  X(01)  VALUE ':'.
+    81         05  WS-MIN-DISP           PIC  X(02)  VALUE SPACES.
+    82         05  FILLER                PIC  X(01)  VALUE ':'.
+    83         05  WS-SEG-DISP           PIC  X(02)  VALUE SPACES.
+    84*
+    85*----------------------------------------------------------------*
+    86**** VARIAVEIS DE CONTROLE DOS RELATORIOS                        *
+    87*----------------------------------------------------------------*
+    88*
+    89 01  WS-CONTROLE-RELATORIOS.
+    90 02  WS-DISPLAYS.
+    91     03 WS-CURR-DATE                PIC  X(010)    VALUE SPACES.
+    92     03 WS-CURR-TIME                PIC  X(008)    VALUE SPACES.
+    93*
+    94*----------------------------------------------------------------*
+    95*        AREA DE VARIAVES AUXILIARES                             *
+    96*----------------------------------------------------------------*
+    97*
+    98 01  WS-VARIAVEIS.
+    99     03 TRACOS                         PIC  X(118)    VALUE
+   100        ALL '-'.
+   101     03 PGMID                          PIC  X(009)    VALUE
+   102        '#CURDATE.'.
+   103     03 WS-DISPLAY                     PIC  -ZZZ.ZZZ.ZZZ.ZZZ.ZZ9.
+   104*
+   105*================================================================*
+   106 01  FILLER                            PIC  X(32)  VALUE
+   107                               'FFF  FIM DAWORKING-STORAGE  FFF'.
+   108*================================================================*
+   109*                                                                *
+   110*================================================================*
+   111 PROCEDURE DIVISION.
+   112*================================================================*
+   113*                                                                *
+   114*----------------------------------------------------------------*
+   115*                        ROTINA PRINCIPAL                        *
+* Micro Focus Object COBOL           V4.0 revision 038 17-Feb-21 10:58 Page   3
+*                      CURDATE.cbl
+   116*----------------------------------------------------------------*
+   117 RT-PRINCIPAL                                SECTION.
+   118*
+   119     PERFORM RT-INICIAR
+   120*
+   121     PERFORM RT-PROCESSAR
+   122*
+   123     PERFORM RT-FINALIZAR
+   124*
+   125     MOVE ZEROS TO RETURN-CODE
+   126*
+   127     GOBACK.
+   128*
+   129 RT-PRINCIPALX.                              EXIT.
+   130*----------------------------------------------------------------*
+   131*                     ROTINA DE INICIALIZACAO                    *
+   132*----------------------------------------------------------------*
+   133 RT-INICIAR                                  SECTION.
+   134*
+   135     DISPLAY PGMID '001I ' FUNCTION WHEN-COMPILED
+   136     PERFORM RT-OBTER-AMBIENTE
+   137*
+   138     PERFORM RT-OBTER-HORA
+   139*
+   140     DISPLAY PGMID '001I' TRACOS
+   141     DISPLAY PGMID '001I- INICIO PROC: ' WS-DATA-HORADISP
+   142     DISPLAY PGMID '001I' TRACOS.
+   143*
+   144 RT-INICIARX.                                EXIT.
+   145*----------------------------------------------------------------*
+   146*               ROTINA PARA PROCESSAMENTO PRINCIPAL              *
+   147*----------------------------------------------------------------*
+   148 RT-PROCESSAR                                SECTION.
+   149*
+   150     PERFORM RT-JOB-001.
+   151*
+   152 RT-PROCESSARX.                              EXIT.
+   153*----------------------------------------------------------------*
+   154*              OBTER AMBIENTE DE EXECUCAO DO CURDATE             *
+   155*----------------------------------------------------------------*
+   156 RT-OBTER-AMBIENTE                           SECTION.
+   157*
+   158     CALL SB-SC5CP USING WRETCODE WFUNCAO WDADOS
+   159**      WABM   DES/HOM/PRD
+   160     IF WRETC  NOT = '0'
+   161        MOVE 'DES'              TO WAMB
+   162     END-IF.
+   163*
+   164 RT-OBTER-AMBIENTEX.                         EXIT.
+   165*----------------------------------------------------------------*
+   166*         ROTINA PARA OBTER DATA E HORA DO PROCESSAMENTO         *
+   167*----------------------------------------------------------------*
+   168 RT-OBTER-HORA                               SECTION.
+   169*
+   170     MOVE FUNCTION CURRENT-DATE(1:20)
+   171                                 TO WS-DATA-HORA
+   172     MOVE WS-ANO-DATA            TO WS-ANO-DISP
+   173     MOVE WS-MES-DATA            TO WS-MES-DISP
+* Micro Focus Object COBOL           V4.0 revision 038 17-Feb-21 10:58 Page   4
+*                      CURDATE.cbl
+   174     MOVE WS-DIA-DATA            TO WS-DIA-DISP
+   175     MOVE WS-HOR-HORA            TO WS-HOR-DISP
+   176     MOVE WS-MIN-HORA            TO WS-MIN-DISP
+   177     MOVE WS-SEG-HORA            TO WS-SEG-DISP
+   178*
+   179     MOVE WS-ANO-DATA            TO WDATAAA
+   180     MOVE WS-MES-DATA            TO WDATAMM
+   181     MOVE WS-DIA-DATA            TO WDATADD.
+   182*
+   183 RT-OBTER-HORAX.                             EXIT.
+   184*----------------------------------------------------------------*
+   185*                     ROTINA DE CANCELAMENTO                     *
+   186*----------------------------------------------------------------*
+   187 RT-CANCELAR                                 SECTION.
+   188*
+   189     DISPLAY PGMID '900I' TRACOS
+   190     DISPLAY PGMID '900I- ESTATISTICA AUXILIAR PARA CANCEL'
+   191     DISPLAY PGMID '900I' TRACOS
+   192*
+   193     DISPLAY PGMID '900I' TRACOS
+   194*
+   195     CALL SB-CANCEL.
+   196*
+   197 RT-CANCELARX.                               EXIT.
+   198*----------------------------------------------------------------*
+   199*            ROTINA DE FINALIZACAO DO PROGRAMA CURDATE           *
+   200*----------------------------------------------------------------*
+   201 RT-FINALIZAR                                SECTION.
+   202*
+   203     PERFORM RT-OBTER-HORA
+   204*
+   205     DISPLAY PGMID '999I' TRACOS
+   206     DISPLAY PGMID '999I- FIM DE PROC: ' WS-DATA-HORADISP
+   207     DISPLAY PGMID '999I' TRACOS
+   208     DISPLAY PGMID '999I- ESTATISTICA DE PROCESSAMENTO'
+   209     DISPLAY PGMID '999I' TRACOS
+   210     DISPLAY PGMID '999I' TRACOS.
+   211*
+   212 RT-FINALIZARX.                              EXIT.
+   213*----------------------------------------------------------------*
+   214*               ROTINA JOB-001 (DE JOB EASYTRIEVE)               *
+   215*----------------------------------------------------------------*
+   216 RT-JOB-001                                  SECTION.
+   217*
+   218          PERFORM RT-OBTER-HORA
+   219          MOVE SYSDATE-LONG TO WS-CURR-DATE
+   220          PERFORM RT-OBTER-HORA
+   221          MOVE SYSTIME TO WS-CURR-TIME
+   222          DISPLAY PGMID '008I-  THE CURRENT DATE IS : '
+   223                  WS-CURR-DATE
+   224          DISPLAY PGMID '008I-  THE CURRENT TIME IS : '
+   225                  WS-CURR-TIME.
+   226*
+   227 RT-JOB-001X.                                EXIT.
+   228******************************************************************
+   229*                      FIM  DO  PROGRAMA                         *
+   230******************************************************************
+* Micro Focus Object COBOL           V4.0 revision 038
+* Micro Focus Object COBOL           V4.0 revision 038 17-Feb-21 10:58 Page   5
+*                      CURDATE.cbl
+* Copyright (C) 1984-1998 Micro Focus Ltd.     URN OXCNM/000047913 
+*                                              REF GNB-166056000AA
+*
+* Total Messages:     0
+* Data:         856     Code:         730
